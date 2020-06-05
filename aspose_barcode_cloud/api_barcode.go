@@ -762,11 +762,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		}
 	}
 	if requestFile != nil {
-		fbs, _ := ioutil.ReadAll(requestFile)
-		//fileBytes = fbs
-		//fileName = requestFile.Name()
-		requestFile.Close()
-		postBody = fbs
+		postBody, _ = ioutil.ReadAll(requestFile)
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
