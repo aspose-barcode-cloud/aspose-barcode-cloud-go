@@ -12,7 +12,7 @@ package aspose_barcode_cloud
 // Represents extended BarcodeGenerator params.
 type GeneratorParams struct {
 	// Type of barcode to generate.
-	TypeOfBarcode *EncodeBarcodeType `json:"TypeOfBarcode"`
+	TypeOfBarcode EncodeBarcodeType `json:"TypeOfBarcode"`
 	// Text to encode.
 	Text string `json:"Text"`
 	// Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
