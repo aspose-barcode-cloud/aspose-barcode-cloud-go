@@ -8,14 +8,15 @@
  */
 
 package aspose_barcode_cloud
-// FontStyle : 
+
+// FontStyle :
 type FontStyle string
 
 // List of FontStyle
 const (
-	REGULAR_FontStyle FontStyle = "Regular"
-	BOLD_FontStyle FontStyle = "Bold"
-	ITALIC_FontStyle FontStyle = "Italic"
+	REGULAR_FontStyle   FontStyle = "Regular"
+	BOLD_FontStyle      FontStyle = "Bold"
+	ITALIC_FontStyle    FontStyle = "Italic"
 	UNDERLINE_FontStyle FontStyle = "Underline"
 	STRIKEOUT_FontStyle FontStyle = "Strikeout"
 )

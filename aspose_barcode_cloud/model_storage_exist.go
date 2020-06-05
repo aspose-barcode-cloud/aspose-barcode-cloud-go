@@ -11,6 +11,6 @@ package aspose_barcode_cloud
 
 // Storage exists
 type StorageExist struct {
-	// Shows that the storage exists.             
+	// Shows that the storage exists.
 	Exists bool `json:"Exists"`
 }

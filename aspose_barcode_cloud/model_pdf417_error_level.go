@@ -8,7 +8,8 @@
  */
 
 package aspose_barcode_cloud
-// Pdf417ErrorLevel : 
+
+// Pdf417ErrorLevel :
 type Pdf417ErrorLevel string
 
 // List of Pdf417ErrorLevel

@@ -9,7 +9,7 @@
 
 package aspose_barcode_cloud
 
-// QR parameters.             
+// QR parameters.
 type QrParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
@@ -21,7 +21,7 @@ type QrParams struct {
 	ECIEncoding *EciEncodings `json:"ECIEncoding,omitempty"`
 	// QR symbology type of BarCode's encoding mode. Default value: QREncodeMode.Auto.
 	EncodeMode *QrEncodeMode `json:"EncodeMode,omitempty"`
-	// Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel.             
+	// Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel.
 	ErrorLevel *QrErrorLevel `json:"ErrorLevel,omitempty"`
 	// Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto.
 	Version *QrVersion `json:"Version,omitempty"`

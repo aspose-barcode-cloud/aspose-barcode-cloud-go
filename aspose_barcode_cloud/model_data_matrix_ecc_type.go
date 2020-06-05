@@ -8,16 +8,17 @@
  */
 
 package aspose_barcode_cloud
-// DataMatrixEccType : 
+
+// DataMatrixEccType :
 type DataMatrixEccType string
 
 // List of DataMatrixEccType
 const (
 	ECC_AUTO_DataMatrixEccType DataMatrixEccType = "EccAuto"
-	ECC000_DataMatrixEccType DataMatrixEccType = "Ecc000"
-	ECC050_DataMatrixEccType DataMatrixEccType = "Ecc050"
-	ECC080_DataMatrixEccType DataMatrixEccType = "Ecc080"
-	ECC100_DataMatrixEccType DataMatrixEccType = "Ecc100"
-	ECC140_DataMatrixEccType DataMatrixEccType = "Ecc140"
-	ECC200_DataMatrixEccType DataMatrixEccType = "Ecc200"
+	ECC000_DataMatrixEccType   DataMatrixEccType = "Ecc000"
+	ECC050_DataMatrixEccType   DataMatrixEccType = "Ecc050"
+	ECC080_DataMatrixEccType   DataMatrixEccType = "Ecc080"
+	ECC100_DataMatrixEccType   DataMatrixEccType = "Ecc100"
+	ECC140_DataMatrixEccType   DataMatrixEccType = "Ecc140"
+	ECC200_DataMatrixEccType   DataMatrixEccType = "Ecc200"
 )

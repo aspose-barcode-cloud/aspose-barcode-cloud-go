@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// AutoSizeMode : 
+
+// AutoSizeMode :
 type AutoSizeMode string
 
 // List of AutoSizeMode
 const (
-	NONE_AutoSizeMode AutoSizeMode = "None"
-	NEAREST_AutoSizeMode AutoSizeMode = "Nearest"
+	NONE_AutoSizeMode          AutoSizeMode = "None"
+	NEAREST_AutoSizeMode       AutoSizeMode = "Nearest"
 	INTERPOLATION_AutoSizeMode AutoSizeMode = "Interpolation"
 )

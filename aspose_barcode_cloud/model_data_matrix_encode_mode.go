@@ -8,15 +8,16 @@
  */
 
 package aspose_barcode_cloud
-// DataMatrixEncodeMode : 
+
+// DataMatrixEncodeMode :
 type DataMatrixEncodeMode string
 
 // List of DataMatrixEncodeMode
 const (
-	AUTO_DataMatrixEncodeMode DataMatrixEncodeMode = "Auto"
-	ASCII_DataMatrixEncodeMode DataMatrixEncodeMode = "ASCII"
-	FULL_DataMatrixEncodeMode DataMatrixEncodeMode = "Full"
+	AUTO_DataMatrixEncodeMode   DataMatrixEncodeMode = "Auto"
+	ASCII_DataMatrixEncodeMode  DataMatrixEncodeMode = "ASCII"
+	FULL_DataMatrixEncodeMode   DataMatrixEncodeMode = "Full"
 	CUSTOM_DataMatrixEncodeMode DataMatrixEncodeMode = "Custom"
-	C40_DataMatrixEncodeMode DataMatrixEncodeMode = "C40"
-	TEXT_DataMatrixEncodeMode DataMatrixEncodeMode = "Text"
+	C40_DataMatrixEncodeMode    DataMatrixEncodeMode = "C40"
+	TEXT_DataMatrixEncodeMode   DataMatrixEncodeMode = "Text"
 )

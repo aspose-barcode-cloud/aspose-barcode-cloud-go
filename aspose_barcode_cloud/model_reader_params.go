@@ -9,27 +9,27 @@
 
 package aspose_barcode_cloud
 
-// Represents BarcodeReader object.             
+// Represents BarcodeReader object.
 type ReaderParams struct {
-	// The type of barcode to read.             
+	// The type of barcode to read.
 	Type_ *DecodeBarcodeType `json:"Type,omitempty"`
-	// Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+	// Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
 	ChecksumValidation *ChecksumValidation `json:"ChecksumValidation,omitempty"`
 	// A flag which force engine to detect codetext encoding for Unicode.
 	DetectEncoding bool `json:"DetectEncoding,omitempty"`
 	// Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
 	Preset *PresetType `json:"Preset,omitempty"`
-	// Set X for area for recognition.             
+	// Set X for area for recognition.
 	RectX int32 `json:"RectX,omitempty"`
-	// Set Y for area for recognition.             
+	// Set Y for area for recognition.
 	RectY int32 `json:"RectY,omitempty"`
-	// Set Width of area for recognition.             
+	// Set Width of area for recognition.
 	RectWidth int32 `json:"RectWidth,omitempty"`
-	// Set Height of area for recognition.             
+	// Set Height of area for recognition.
 	RectHeight int32 `json:"RectHeight,omitempty"`
-	// Value indicating whether FNC symbol strip must be done.             
+	// Value indicating whether FNC symbol strip must be done.
 	StripFNC bool `json:"StripFNC,omitempty"`
-	// Timeout of recognition process.             
+	// Timeout of recognition process.
 	Timeout int32 `json:"Timeout,omitempty"`
 	// Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
 	MedianSmoothingWindowSize int32 `json:"MedianSmoothingWindowSize,omitempty"`

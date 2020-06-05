@@ -9,8 +9,8 @@
 
 package aspose_barcode_cloud
 
-// BarCodeErrorResponse             
+// BarCodeErrorResponse
 type BarCodeErrorResponse struct {
-	// Error             
+	// Error
 	Error_ *ModelError `json:"Error,omitempty"`
 }

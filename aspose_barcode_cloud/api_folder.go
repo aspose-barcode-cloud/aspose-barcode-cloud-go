@@ -1,4 +1,3 @@
-
 /*
  * Aspose.Barcode Cloud API Reference
  *
@@ -12,12 +11,12 @@ package aspose_barcode_cloud
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -39,8 +38,8 @@ FolderApiService Copy folder
 
 */
 
-type FolderApiCopyFolderOpts struct { 
-	SrcStorageName optional.String
+type FolderApiCopyFolderOpts struct {
+	SrcStorageName  optional.String
 	DestStorageName optional.String
 }
 
@@ -50,7 +49,6 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -101,13 +99,12 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -124,7 +121,7 @@ FolderApiService Create the folder
 
 */
 
-type FolderApiCreateFolderOpts struct { 
+type FolderApiCreateFolderOpts struct {
 	StorageName optional.String
 }
 
@@ -134,7 +131,6 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -181,13 +177,12 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -205,9 +200,9 @@ FolderApiService Delete folder
 
 */
 
-type FolderApiDeleteFolderOpts struct { 
+type FolderApiDeleteFolderOpts struct {
 	StorageName optional.String
-	Recursive optional.Bool
+	Recursive   optional.Bool
 }
 
 func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, optionals *FolderApiDeleteFolderOpts) (*http.Response, error) {
@@ -216,7 +211,6 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -266,13 +260,12 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -289,16 +282,16 @@ FolderApiService Get all files and folders within a folder
 @return FilesList
 */
 
-type FolderApiGetFilesListOpts struct { 
+type FolderApiGetFilesListOpts struct {
 	StorageName optional.String
 }
 
 func (a *FolderApiService) GetFilesList(ctx context.Context, path string, optionals *FolderApiGetFilesListOpts) (FilesList, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue FilesList
 	)
 
@@ -356,21 +349,21 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v FilesList
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -389,8 +382,8 @@ FolderApiService Move folder
 
 */
 
-type FolderApiMoveFolderOpts struct { 
-	SrcStorageName optional.String
+type FolderApiMoveFolderOpts struct {
+	SrcStorageName  optional.String
 	DestStorageName optional.String
 }
 
@@ -400,7 +393,6 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -451,16 +443,14 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
 	return httpResponse, err
 }
-

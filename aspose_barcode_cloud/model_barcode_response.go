@@ -9,14 +9,14 @@
 
 package aspose_barcode_cloud
 
-// Represents information about barcode.             
+// Represents information about barcode.
 type BarcodeResponse struct {
-	// Barcode data.             
+	// Barcode data.
 	BarcodeValue string `json:"BarcodeValue,omitempty"`
-	// Type of the barcode.             
+	// Type of the barcode.
 	Type_ string `json:"Type,omitempty"`
-	// Region with barcode.             
+	// Region with barcode.
 	Region []RegionPoint `json:"Region,omitempty"`
-	// Checksum of barcode.             
+	// Checksum of barcode.
 	Checksum string `json:"Checksum,omitempty"`
 }

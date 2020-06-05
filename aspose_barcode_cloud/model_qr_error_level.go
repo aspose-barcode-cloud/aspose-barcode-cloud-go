@@ -8,7 +8,8 @@
  */
 
 package aspose_barcode_cloud
-// QrErrorLevel : 
+
+// QrErrorLevel :
 type QrErrorLevel string
 
 // List of QRErrorLevel

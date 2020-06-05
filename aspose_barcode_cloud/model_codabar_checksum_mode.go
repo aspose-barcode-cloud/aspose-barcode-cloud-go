@@ -8,7 +8,8 @@
  */
 
 package aspose_barcode_cloud
-// CodabarChecksumMode : 
+
+// CodabarChecksumMode :
 type CodabarChecksumMode string
 
 // List of CodabarChecksumMode

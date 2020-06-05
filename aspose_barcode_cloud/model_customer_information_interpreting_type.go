@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// CustomerInformationInterpretingType : 
+
+// CustomerInformationInterpretingType :
 type CustomerInformationInterpretingType string
 
 // List of CustomerInformationInterpretingType
 const (
 	C_TABLE_CustomerInformationInterpretingType CustomerInformationInterpretingType = "CTable"
 	N_TABLE_CustomerInformationInterpretingType CustomerInformationInterpretingType = "NTable"
-	OTHER_CustomerInformationInterpretingType CustomerInformationInterpretingType = "Other"
+	OTHER_CustomerInformationInterpretingType   CustomerInformationInterpretingType = "Other"
 )

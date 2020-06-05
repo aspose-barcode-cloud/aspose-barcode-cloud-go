@@ -1,4 +1,3 @@
-
 /*
  * Aspose.Barcode Cloud API Reference
  *
@@ -12,13 +11,13 @@ package aspose_barcode_cloud
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 	"os"
+	"strings"
 )
 
 // Linger please
@@ -41,10 +40,10 @@ FileApiService Copy file
 
 */
 
-type FileApiCopyFileOpts struct { 
-	SrcStorageName optional.String
+type FileApiCopyFileOpts struct {
+	SrcStorageName  optional.String
 	DestStorageName optional.String
-	VersionId optional.String
+	VersionId       optional.String
 }
 
 func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiCopyFileOpts) (*http.Response, error) {
@@ -53,7 +52,6 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -107,13 +105,12 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -131,9 +128,9 @@ FileApiService Delete file
 
 */
 
-type FileApiDeleteFileOpts struct { 
+type FileApiDeleteFileOpts struct {
 	StorageName optional.String
-	VersionId optional.String
+	VersionId   optional.String
 }
 
 func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals *FileApiDeleteFileOpts) (*http.Response, error) {
@@ -142,7 +139,6 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -192,13 +188,12 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -216,17 +211,17 @@ FileApiService Download file
 @return *os.File
 */
 
-type FileApiDownloadFileOpts struct { 
+type FileApiDownloadFileOpts struct {
 	StorageName optional.String
-	VersionId optional.String
+	VersionId   optional.String
 }
 
 func (a *FileApiService) DownloadFile(ctx context.Context, path string, optionals *FileApiDownloadFileOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue []byte
 	)
 
@@ -287,21 +282,21 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v *os.File
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -321,10 +316,10 @@ FileApiService Move file
 
 */
 
-type FileApiMoveFileOpts struct { 
-	SrcStorageName optional.String
+type FileApiMoveFileOpts struct {
+	SrcStorageName  optional.String
 	DestStorageName optional.String
-	VersionId optional.String
+	VersionId       optional.String
 }
 
 func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiMoveFileOpts) (*http.Response, error) {
@@ -333,7 +328,6 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 		postBody   interface{}
 		fileName   string
 		fileBytes  []byte
-		
 	)
 
 	// create path and map variables
@@ -387,13 +381,12 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		return httpResponse, newErr
 	}
 
@@ -403,7 +396,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 /*
 FileApiService Upload file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
+ * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
  * @param file File to upload
  * @param optional nil or *FileApiUploadFileOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
@@ -411,16 +404,16 @@ FileApiService Upload file
 @return FilesUploadResult
 */
 
-type FileApiUploadFileOpts struct { 
+type FileApiUploadFileOpts struct {
 	StorageName optional.String
 }
 
 func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.File, optionals *FileApiUploadFileOpts) (FilesUploadResult, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Put")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue FilesUploadResult
 	)
 
@@ -452,7 +445,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-    requestFile := file
+	requestFile := file
 	if requestFile != nil {
 		postBody, _ = ioutil.ReadAll(requestFile)
 	}
@@ -482,24 +475,23 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v FilesUploadResult
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
 	return returnValue, httpResponse, err
 }
-

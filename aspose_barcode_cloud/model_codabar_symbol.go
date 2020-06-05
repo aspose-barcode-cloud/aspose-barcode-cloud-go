@@ -8,7 +8,8 @@
  */
 
 package aspose_barcode_cloud
-// CodabarSymbol : 
+
+// CodabarSymbol :
 type CodabarSymbol string
 
 // List of CodabarSymbol

@@ -8,13 +8,14 @@
  */
 
 package aspose_barcode_cloud
-// AztecSymbolMode : 
+
+// AztecSymbolMode :
 type AztecSymbolMode string
 
 // List of AztecSymbolMode
 const (
-	AUTO_AztecSymbolMode AztecSymbolMode = "Auto"
-	COMPACT_AztecSymbolMode AztecSymbolMode = "Compact"
+	AUTO_AztecSymbolMode       AztecSymbolMode = "Auto"
+	COMPACT_AztecSymbolMode    AztecSymbolMode = "Compact"
 	FULL_RANGE_AztecSymbolMode AztecSymbolMode = "FullRange"
-	RUNE__AztecSymbolMode AztecSymbolMode = "Rune"
+	RUNE__AztecSymbolMode      AztecSymbolMode = "Rune"
 )

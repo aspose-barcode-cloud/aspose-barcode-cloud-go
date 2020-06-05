@@ -1,4 +1,3 @@
-
 /*
  * Aspose.Barcode Cloud API Reference
  *
@@ -12,13 +11,13 @@ package aspose_barcode_cloud
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 	"os"
+	"strings"
 )
 
 // Linger please
@@ -29,26 +28,26 @@ var (
 type BarcodeApiService service
 
 /*
-BarcodeApiService Generate barcode.             
+BarcodeApiService Generate barcode.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param type_ Type of barcode to generate.             
- * @param text Text to encode.             
+ * @param type_ Type of barcode to generate.
+ * @param text Text to encode.
  * @param optional nil or *BarcodeApiGetBarcodeGenerateOpts - Optional Parameters:
      * @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
      * @param "TextLocation" (optional.String) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below.
-     * @param "TextAlignment" (optional.String) -  Text alignment.             
+     * @param "TextAlignment" (optional.String) -  Text alignment.
      * @param "TextColor" (optional.String) -  Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param "FontSizeMode" (optional.String) -  Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
      * @param "Resolution" (optional.Float64) -  Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
-     * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.             
-     * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.             
+     * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
+     * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param "DimensionX" (optional.Float64) -  The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
      * @param "TextSpace" (optional.Float64) -  Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon.
-     * @param "Units" (optional.String) -  Common Units for all measuring in query. Default units: pixel.             
+     * @param "Units" (optional.String) -  Common Units for all measuring in query. Default units: pixel.
      * @param "SizeMode" (optional.String) -  Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None.
-     * @param "BarHeight" (optional.Float64) -  Height of the barcode in given units. Default units: pixel.             
-     * @param "ImageHeight" (optional.Float64) -  Height of the barcode image in given units. Default units: pixel.             
-     * @param "ImageWidth" (optional.Float64) -  Width of the barcode image in given units. Default units: pixel.             
+     * @param "BarHeight" (optional.Float64) -  Height of the barcode in given units. Default units: pixel.
+     * @param "ImageHeight" (optional.Float64) -  Height of the barcode image in given units. Default units: pixel.
+     * @param "ImageWidth" (optional.Float64) -  Width of the barcode image in given units. Default units: pixel.
      * @param "RotationAngle" (optional.Float64) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0.
      * @param "BackColor" (optional.String) -  Background color of the barcode image. Default value: Color.White.
      * @param "BarColor" (optional.String) -  Bars color. Default value: Color.Black.
@@ -56,10 +55,10 @@ BarcodeApiService Generate barcode.
      * @param "BorderWidth" (optional.Float64) -  Border width. Default value: 0. Ignored if Visible is set to false.
      * @param "BorderDashStyle" (optional.String) -  Border dash style. Default value: BorderDashStyle.Solid.
      * @param "BorderVisible" (optional.Bool) -  Border visibility. If false than parameter Width is always ignored (0). Default value: false.
-     * @param "EnableChecksum" (optional.String) -  Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology             
+     * @param "EnableChecksum" (optional.String) -  Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology
      * @param "EnableEscape" (optional.Bool) -  Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR.
      * @param "FilledBars" (optional.Bool) -  Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
-     * @param "AlwaysShowChecksum" (optional.Bool) -  Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.             
+     * @param "AlwaysShowChecksum" (optional.Bool) -  Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param "WideNarrowRatio" (optional.Float64) -  Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
      * @param "ValidateText" (optional.Bool) -  Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param "SupplementData" (optional.String) -  Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
@@ -69,46 +68,46 @@ BarcodeApiService Generate barcode.
 @return *os.File
 */
 
-type BarcodeApiGetBarcodeGenerateOpts struct { 
-	TwoDDisplayText optional.String
-	TextLocation optional.String
-	TextAlignment optional.String
-	TextColor optional.String
-	FontSizeMode optional.String
-	Resolution optional.Float64
-	ResolutionX optional.Float64
-	ResolutionY optional.Float64
-	DimensionX optional.Float64
-	TextSpace optional.Float64
-	Units optional.String
-	SizeMode optional.String
-	BarHeight optional.Float64
-	ImageHeight optional.Float64
-	ImageWidth optional.Float64
-	RotationAngle optional.Float64
-	BackColor optional.String
-	BarColor optional.String
-	BorderColor optional.String
-	BorderWidth optional.Float64
-	BorderDashStyle optional.String
-	BorderVisible optional.Bool
-	EnableChecksum optional.String
-	EnableEscape optional.Bool
-	FilledBars optional.Bool
+type BarcodeApiGetBarcodeGenerateOpts struct {
+	TwoDDisplayText    optional.String
+	TextLocation       optional.String
+	TextAlignment      optional.String
+	TextColor          optional.String
+	FontSizeMode       optional.String
+	Resolution         optional.Float64
+	ResolutionX        optional.Float64
+	ResolutionY        optional.Float64
+	DimensionX         optional.Float64
+	TextSpace          optional.Float64
+	Units              optional.String
+	SizeMode           optional.String
+	BarHeight          optional.Float64
+	ImageHeight        optional.Float64
+	ImageWidth         optional.Float64
+	RotationAngle      optional.Float64
+	BackColor          optional.String
+	BarColor           optional.String
+	BorderColor        optional.String
+	BorderWidth        optional.Float64
+	BorderDashStyle    optional.String
+	BorderVisible      optional.Bool
+	EnableChecksum     optional.String
+	EnableEscape       optional.Bool
+	FilledBars         optional.Bool
 	AlwaysShowChecksum optional.Bool
-	WideNarrowRatio optional.Float64
-	ValidateText optional.Bool
-	SupplementData optional.String
-	SupplementSpace optional.Float64
-	Format optional.String
+	WideNarrowRatio    optional.Float64
+	ValidateText       optional.Bool
+	SupplementData     optional.String
+	SupplementSpace    optional.Float64
+	Format             optional.String
 }
 
 func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string, text string, optionals *BarcodeApiGetBarcodeGenerateOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue []byte
 	)
 
@@ -257,32 +256,32 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v *os.File
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		if httpResponse.StatusCode == 400 {
 			var v BarCodeErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -290,20 +289,20 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 }
 
 /*
-BarcodeApiService Recognize barcode from a file on server.             
+BarcodeApiService Recognize barcode from a file on server.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
  * @param optional nil or *BarcodeApiGetBarcodeRecognizeOpts - Optional Parameters:
-     * @param "Type_" (optional.String) -  The type of barcode to read.             
-     * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+     * @param "Type_" (optional.String) -  The type of barcode to read.
+     * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
      * @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param "RectX" (optional.Int32) -  Set X for area for recognition.             
-     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.             
-     * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.             
-     * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.             
-     * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.             
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.             
+     * @param "RectX" (optional.Int32) -  Set X for area for recognition.
+     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.
+     * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
+     * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
+     * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -324,55 +323,55 @@ BarcodeApiService Recognize barcode from a file on server.
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "RectangleRegion" (optional.String) - 
+     * @param "RectangleRegion" (optional.String) -
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
 
 @return BarcodeResponseList
 */
 
-type BarcodeApiGetBarcodeRecognizeOpts struct { 
-	Type_ optional.String
-	ChecksumValidation optional.String
-	DetectEncoding optional.Bool
-	Preset optional.String
-	RectX optional.Int32
-	RectY optional.Int32
-	RectWidth optional.Int32
-	RectHeight optional.Int32
-	StripFNC optional.Bool
-	Timeout optional.Int32
-	MedianSmoothingWindowSize optional.Int32
-	AllowMedianSmoothing optional.Bool
-	AllowComplexBackground optional.Bool
+type BarcodeApiGetBarcodeRecognizeOpts struct {
+	Type_                             optional.String
+	ChecksumValidation                optional.String
+	DetectEncoding                    optional.Bool
+	Preset                            optional.String
+	RectX                             optional.Int32
+	RectY                             optional.Int32
+	RectWidth                         optional.Int32
+	RectHeight                        optional.Int32
+	StripFNC                          optional.Bool
+	Timeout                           optional.Int32
+	MedianSmoothingWindowSize         optional.Int32
+	AllowMedianSmoothing              optional.Bool
+	AllowComplexBackground            optional.Bool
 	AllowDatamatrixIndustrialBarcodes optional.Bool
-	AllowDecreasedImage optional.Bool
-	AllowDetectScanGap optional.Bool
-	AllowIncorrectBarcodes optional.Bool
-	AllowInvertImage optional.Bool
-	AllowMicroWhiteSpotsRemoving optional.Bool
-	AllowOneDFastBarcodesDetector optional.Bool
-	AllowOneDWipedBarsRestoration optional.Bool
-	AllowQRMicroQrRestoration optional.Bool
-	AllowRegularImage optional.Bool
-	AllowSaltAndPepperFiltering optional.Bool
-	AllowWhiteSpotsRemoving optional.Bool
-	RegionLikelihoodThresholdPercent optional.Float64
-	ScanWindowSizes optional.Interface
-	Similarity optional.Float64
-	SkipDiagonalSearch optional.Bool
-	AustralianPostEncodingTable optional.String
-	RectangleRegion optional.String
-	Storage optional.String
-	Folder optional.String
+	AllowDecreasedImage               optional.Bool
+	AllowDetectScanGap                optional.Bool
+	AllowIncorrectBarcodes            optional.Bool
+	AllowInvertImage                  optional.Bool
+	AllowMicroWhiteSpotsRemoving      optional.Bool
+	AllowOneDFastBarcodesDetector     optional.Bool
+	AllowOneDWipedBarsRestoration     optional.Bool
+	AllowQRMicroQrRestoration         optional.Bool
+	AllowRegularImage                 optional.Bool
+	AllowSaltAndPepperFiltering       optional.Bool
+	AllowWhiteSpotsRemoving           optional.Bool
+	RegionLikelihoodThresholdPercent  optional.Float64
+	ScanWindowSizes                   optional.Interface
+	Similarity                        optional.Float64
+	SkipDiagonalSearch                optional.Bool
+	AustralianPostEncodingTable       optional.String
+	RectangleRegion                   optional.String
+	Storage                           optional.String
+	Folder                            optional.String
 }
 
 func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string, optionals *BarcodeApiGetBarcodeRecognizeOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue BarcodeResponseList
 	)
 
@@ -526,21 +525,21 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v BarcodeResponseList
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -548,19 +547,19 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 }
 
 /*
-BarcodeApiService Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.             
+BarcodeApiService Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters:
-     * @param "Type_" (optional.String) -  The type of barcode to read.             
-     * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+     * @param "Type_" (optional.String) -  The type of barcode to read.
+     * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
      * @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param "RectX" (optional.Int32) -  Set X for area for recognition.             
-     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.             
-     * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.             
-     * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.             
-     * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.             
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.             
+     * @param "RectX" (optional.Int32) -  Set X for area for recognition.
+     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.
+     * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
+     * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
+     * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -581,55 +580,55 @@ BarcodeApiService Recognize barcode from an url or from request body. Request bo
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "RectangleRegion" (optional.String) - 
+     * @param "RectangleRegion" (optional.String) -
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data
 
 @return BarcodeResponseList
 */
 
-type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct { 
-	Type_ optional.String
-	ChecksumValidation optional.String
-	DetectEncoding optional.Bool
-	Preset optional.String
-	RectX optional.Int32
-	RectY optional.Int32
-	RectWidth optional.Int32
-	RectHeight optional.Int32
-	StripFNC optional.Bool
-	Timeout optional.Int32
-	MedianSmoothingWindowSize optional.Int32
-	AllowMedianSmoothing optional.Bool
-	AllowComplexBackground optional.Bool
+type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
+	Type_                             optional.String
+	ChecksumValidation                optional.String
+	DetectEncoding                    optional.Bool
+	Preset                            optional.String
+	RectX                             optional.Int32
+	RectY                             optional.Int32
+	RectWidth                         optional.Int32
+	RectHeight                        optional.Int32
+	StripFNC                          optional.Bool
+	Timeout                           optional.Int32
+	MedianSmoothingWindowSize         optional.Int32
+	AllowMedianSmoothing              optional.Bool
+	AllowComplexBackground            optional.Bool
 	AllowDatamatrixIndustrialBarcodes optional.Bool
-	AllowDecreasedImage optional.Bool
-	AllowDetectScanGap optional.Bool
-	AllowIncorrectBarcodes optional.Bool
-	AllowInvertImage optional.Bool
-	AllowMicroWhiteSpotsRemoving optional.Bool
-	AllowOneDFastBarcodesDetector optional.Bool
-	AllowOneDWipedBarsRestoration optional.Bool
-	AllowQRMicroQrRestoration optional.Bool
-	AllowRegularImage optional.Bool
-	AllowSaltAndPepperFiltering optional.Bool
-	AllowWhiteSpotsRemoving optional.Bool
-	RegionLikelihoodThresholdPercent optional.Float64
-	ScanWindowSizes optional.Interface
-	Similarity optional.Float64
-	SkipDiagonalSearch optional.Bool
-	AustralianPostEncodingTable optional.String
-	RectangleRegion optional.String
-	Url optional.String
-	Image optional.Interface
+	AllowDecreasedImage               optional.Bool
+	AllowDetectScanGap                optional.Bool
+	AllowIncorrectBarcodes            optional.Bool
+	AllowInvertImage                  optional.Bool
+	AllowMicroWhiteSpotsRemoving      optional.Bool
+	AllowOneDFastBarcodesDetector     optional.Bool
+	AllowOneDWipedBarsRestoration     optional.Bool
+	AllowQRMicroQrRestoration         optional.Bool
+	AllowRegularImage                 optional.Bool
+	AllowSaltAndPepperFiltering       optional.Bool
+	AllowWhiteSpotsRemoving           optional.Bool
+	RegionLikelihoodThresholdPercent  optional.Float64
+	ScanWindowSizes                   optional.Interface
+	Similarity                        optional.Float64
+	SkipDiagonalSearch                optional.Bool
+	AustralianPostEncodingTable       optional.String
+	RectangleRegion                   optional.String
+	Url                               optional.String
+	Image                             optional.Interface
 }
 
 func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Context, optionals *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Post")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Post")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue BarcodeResponseList
 	)
 
@@ -753,12 +752,12 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-    var requestFile *os.File
+	var requestFile *os.File
 	if optionals != nil && optionals.Image.IsSet() {
 		fileOk := false
 		requestFile, fileOk = optionals.Image.Value().(*os.File)
 		if !fileOk {
-				return returnValue, nil, reportError("image should be *os.File")
+			return returnValue, nil, reportError("image should be *os.File")
 		}
 	}
 	if requestFile != nil {
@@ -790,21 +789,21 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v BarcodeResponseList
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -812,7 +811,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 }
 
 /*
-BarcodeApiService Generate multiple barcodes and return in response stream             
+BarcodeApiService Generate multiple barcodes and return in response stream
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param generatorParamsList List of barcodes
  * @param optional nil or *BarcodeApiPostGenerateMultipleOpts - Optional Parameters:
@@ -821,16 +820,16 @@ BarcodeApiService Generate multiple barcodes and return in response stream
 @return *os.File
 */
 
-type BarcodeApiPostGenerateMultipleOpts struct { 
+type BarcodeApiPostGenerateMultipleOpts struct {
 	Format optional.String
 }
 
 func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPostGenerateMultipleOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Post")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Post")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue []byte
 	)
 
@@ -889,21 +888,21 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v *os.File
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -911,27 +910,27 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 }
 
 /*
-BarcodeApiService Generate barcode and save on server (from query params or from file with json or xml content)             
+BarcodeApiService Generate barcode and save on server (from query params or from file with json or xml content)
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
- * @param type_ Type of barcode to generate.             
- * @param text Text to encode.             
+ * @param type_ Type of barcode to generate.
+ * @param text Text to encode.
  * @param optional nil or *BarcodeApiPutBarcodeGenerateFileOpts - Optional Parameters:
      * @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
      * @param "TextLocation" (optional.String) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below.
-     * @param "TextAlignment" (optional.String) -  Text alignment.             
+     * @param "TextAlignment" (optional.String) -  Text alignment.
      * @param "TextColor" (optional.String) -  Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param "FontSizeMode" (optional.String) -  Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
      * @param "Resolution" (optional.Float64) -  Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
-     * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.             
-     * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.             
+     * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
+     * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param "DimensionX" (optional.Float64) -  The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
      * @param "TextSpace" (optional.Float64) -  Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon.
-     * @param "Units" (optional.String) -  Common Units for all measuring in query. Default units: pixel.             
+     * @param "Units" (optional.String) -  Common Units for all measuring in query. Default units: pixel.
      * @param "SizeMode" (optional.String) -  Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None.
-     * @param "BarHeight" (optional.Float64) -  Height of the barcode in given units. Default units: pixel.             
-     * @param "ImageHeight" (optional.Float64) -  Height of the barcode image in given units. Default units: pixel.             
-     * @param "ImageWidth" (optional.Float64) -  Width of the barcode image in given units. Default units: pixel.             
+     * @param "BarHeight" (optional.Float64) -  Height of the barcode in given units. Default units: pixel.
+     * @param "ImageHeight" (optional.Float64) -  Height of the barcode image in given units. Default units: pixel.
+     * @param "ImageWidth" (optional.Float64) -  Width of the barcode image in given units. Default units: pixel.
      * @param "RotationAngle" (optional.Float64) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0.
      * @param "BackColor" (optional.String) -  Background color of the barcode image. Default value: Color.White.
      * @param "BarColor" (optional.String) -  Bars color. Default value: Color.Black.
@@ -939,10 +938,10 @@ BarcodeApiService Generate barcode and save on server (from query params or from
      * @param "BorderWidth" (optional.Float64) -  Border width. Default value: 0. Ignored if Visible is set to false.
      * @param "BorderDashStyle" (optional.String) -  Border dash style. Default value: BorderDashStyle.Solid.
      * @param "BorderVisible" (optional.Bool) -  Border visibility. If false than parameter Width is always ignored (0). Default value: false.
-     * @param "EnableChecksum" (optional.String) -  Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology             
+     * @param "EnableChecksum" (optional.String) -  Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology
      * @param "EnableEscape" (optional.Bool) -  Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR.
      * @param "FilledBars" (optional.Bool) -  Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
-     * @param "AlwaysShowChecksum" (optional.Bool) -  Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.             
+     * @param "AlwaysShowChecksum" (optional.Bool) -  Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param "WideNarrowRatio" (optional.Float64) -  Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
      * @param "ValidateText" (optional.Bool) -  Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param "SupplementData" (optional.String) -  Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
@@ -954,48 +953,48 @@ BarcodeApiService Generate barcode and save on server (from query params or from
 @return ResultImageInfo
 */
 
-type BarcodeApiPutBarcodeGenerateFileOpts struct { 
-	TwoDDisplayText optional.String
-	TextLocation optional.String
-	TextAlignment optional.String
-	TextColor optional.String
-	FontSizeMode optional.String
-	Resolution optional.Float64
-	ResolutionX optional.Float64
-	ResolutionY optional.Float64
-	DimensionX optional.Float64
-	TextSpace optional.Float64
-	Units optional.String
-	SizeMode optional.String
-	BarHeight optional.Float64
-	ImageHeight optional.Float64
-	ImageWidth optional.Float64
-	RotationAngle optional.Float64
-	BackColor optional.String
-	BarColor optional.String
-	BorderColor optional.String
-	BorderWidth optional.Float64
-	BorderDashStyle optional.String
-	BorderVisible optional.Bool
-	EnableChecksum optional.String
-	EnableEscape optional.Bool
-	FilledBars optional.Bool
+type BarcodeApiPutBarcodeGenerateFileOpts struct {
+	TwoDDisplayText    optional.String
+	TextLocation       optional.String
+	TextAlignment      optional.String
+	TextColor          optional.String
+	FontSizeMode       optional.String
+	Resolution         optional.Float64
+	ResolutionX        optional.Float64
+	ResolutionY        optional.Float64
+	DimensionX         optional.Float64
+	TextSpace          optional.Float64
+	Units              optional.String
+	SizeMode           optional.String
+	BarHeight          optional.Float64
+	ImageHeight        optional.Float64
+	ImageWidth         optional.Float64
+	RotationAngle      optional.Float64
+	BackColor          optional.String
+	BarColor           optional.String
+	BorderColor        optional.String
+	BorderWidth        optional.Float64
+	BorderDashStyle    optional.String
+	BorderVisible      optional.Bool
+	EnableChecksum     optional.String
+	EnableEscape       optional.Bool
+	FilledBars         optional.Bool
 	AlwaysShowChecksum optional.Bool
-	WideNarrowRatio optional.Float64
-	ValidateText optional.Bool
-	SupplementData optional.String
-	SupplementSpace optional.Float64
-	Storage optional.String
-	Folder optional.String
-	Format optional.String
+	WideNarrowRatio    optional.Float64
+	ValidateText       optional.Bool
+	SupplementData     optional.String
+	SupplementSpace    optional.Float64
+	Storage            optional.String
+	Folder             optional.String
+	Format             optional.String
 }
 
 func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name string, type_ string, text string, optionals *BarcodeApiPutBarcodeGenerateFileOpts) (ResultImageInfo, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Put")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue ResultImageInfo
 	)
 
@@ -1151,32 +1150,32 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v ResultImageInfo
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		if httpResponse.StatusCode == 400 {
 			var v BarCodeErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -1184,30 +1183,30 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 }
 
 /*
-BarcodeApiService Recognition of a barcode from file on server with parameters in body.             
+BarcodeApiService Recognition of a barcode from file on server with parameters in body.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
  * @param readerParams BarcodeReader object with parameters.
  * @param optional nil or *BarcodeApiPutBarcodeRecognizeFromBodyOpts - Optional Parameters:
-     * @param "Type_" (optional.String) - 
+     * @param "Type_" (optional.String) -
      * @param "Storage" (optional.String) -  The storage name
      * @param "Folder" (optional.String) -  The image folder.
 
 @return BarcodeResponseList
 */
 
-type BarcodeApiPutBarcodeRecognizeFromBodyOpts struct { 
-	Type_ optional.String
+type BarcodeApiPutBarcodeRecognizeFromBodyOpts struct {
+	Type_   optional.String
 	Storage optional.String
-	Folder optional.String
+	Folder  optional.String
 }
 
 func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, name string, readerParams ReaderParams, optionals *BarcodeApiPutBarcodeRecognizeFromBodyOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Put")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue BarcodeResponseList
 	)
 
@@ -1273,21 +1272,21 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v BarcodeResponseList
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -1295,7 +1294,7 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 }
 
 /*
-BarcodeApiService Generate image with multiple barcodes and put new file on server             
+BarcodeApiService Generate image with multiple barcodes and put new file on server
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name New filename
  * @param generatorParamsList List of barcodes
@@ -1307,18 +1306,18 @@ BarcodeApiService Generate image with multiple barcodes and put new file on serv
 @return ResultImageInfo
 */
 
-type BarcodeApiPutGenerateMultipleOpts struct { 
-	Format optional.String
-	Folder optional.String
+type BarcodeApiPutGenerateMultipleOpts struct {
+	Format  optional.String
+	Folder  optional.String
 	Storage optional.String
 }
 
 func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPutGenerateMultipleOpts) (ResultImageInfo, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Put")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue ResultImageInfo
 	)
 
@@ -1384,35 +1383,34 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v ResultImageInfo
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		if httpResponse.StatusCode == 400 {
 			var v BarCodeErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
 	return returnValue, httpResponse, err
 }
-

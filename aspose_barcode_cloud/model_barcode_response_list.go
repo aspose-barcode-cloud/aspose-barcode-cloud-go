@@ -9,8 +9,8 @@
 
 package aspose_barcode_cloud
 
-// Represents information about barcode list.             
+// Represents information about barcode list.
 type BarcodeResponseList struct {
-	// List of barcodes which are present in image.             
+	// List of barcodes which are present in image.
 	Barcodes []BarcodeResponse `json:"Barcodes,omitempty"`
 }

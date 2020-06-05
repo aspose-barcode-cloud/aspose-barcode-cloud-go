@@ -8,13 +8,14 @@
  */
 
 package aspose_barcode_cloud
-// Pdf417CompactionMode : 
+
+// Pdf417CompactionMode :
 type Pdf417CompactionMode string
 
 // List of Pdf417CompactionMode
 const (
-	AUTO_Pdf417CompactionMode Pdf417CompactionMode = "Auto"
-	TEXT_Pdf417CompactionMode Pdf417CompactionMode = "Text"
+	AUTO_Pdf417CompactionMode    Pdf417CompactionMode = "Auto"
+	TEXT_Pdf417CompactionMode    Pdf417CompactionMode = "Text"
 	NUMERIC_Pdf417CompactionMode Pdf417CompactionMode = "Numeric"
-	BINARY_Pdf417CompactionMode Pdf417CompactionMode = "Binary"
+	BINARY_Pdf417CompactionMode  Pdf417CompactionMode = "Binary"
 )

@@ -9,18 +9,18 @@
 
 package aspose_barcode_cloud
 
-// Caption             
+// Caption
 type CaptionParams struct {
-	// Caption text.             
+	// Caption text.
 	Text string `json:"Text,omitempty"`
-	// Text alignment.             
+	// Text alignment.
 	Alignment *TextAlignment `json:"Alignment,omitempty"`
-	// Text color.             
+	// Text color.
 	Color string `json:"Color,omitempty"`
-	// Is caption visible.             
+	// Is caption visible.
 	Visible bool `json:"Visible,omitempty"`
-	// Font.             
+	// Font.
 	Font *FontParams `json:"Font,omitempty"`
-	// Padding.             
+	// Padding.
 	Padding *Padding `json:"Padding,omitempty"`
 }

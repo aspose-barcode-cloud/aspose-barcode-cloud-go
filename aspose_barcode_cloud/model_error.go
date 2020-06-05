@@ -11,12 +11,12 @@ package aspose_barcode_cloud
 
 // Error
 type ModelError struct {
-	// Code             
+	// Code
 	Code string `json:"Code,omitempty"`
-	// Message             
+	// Message
 	Message string `json:"Message,omitempty"`
-	// Description             
+	// Description
 	Description string `json:"Description,omitempty"`
-	// Inner Error             
+	// Inner Error
 	InnerError *ErrorDetails `json:"InnerError,omitempty"`
 }

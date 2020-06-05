@@ -8,14 +8,15 @@
  */
 
 package aspose_barcode_cloud
-// BorderDashStyle : 
+
+// BorderDashStyle :
 type BorderDashStyle string
 
 // List of BorderDashStyle
 const (
-	SOLID_BorderDashStyle BorderDashStyle = "Solid"
-	DASH_BorderDashStyle BorderDashStyle = "Dash"
-	DOT_BorderDashStyle BorderDashStyle = "Dot"
-	DASH_DOT_BorderDashStyle BorderDashStyle = "DashDot"
+	SOLID_BorderDashStyle        BorderDashStyle = "Solid"
+	DASH_BorderDashStyle         BorderDashStyle = "Dash"
+	DOT_BorderDashStyle          BorderDashStyle = "Dot"
+	DASH_DOT_BorderDashStyle     BorderDashStyle = "DashDot"
 	DASH_DOT_DOT_BorderDashStyle BorderDashStyle = "DashDotDot"
 )

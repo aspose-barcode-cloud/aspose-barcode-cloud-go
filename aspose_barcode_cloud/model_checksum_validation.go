@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// ChecksumValidation : 
+
+// ChecksumValidation :
 type ChecksumValidation string
 
 // List of ChecksumValidation
 const (
 	DEFAULT__ChecksumValidation ChecksumValidation = "Default"
-	ON_ChecksumValidation ChecksumValidation = "On"
-	OFF_ChecksumValidation ChecksumValidation = "Off"
+	ON_ChecksumValidation       ChecksumValidation = "On"
+	OFF_ChecksumValidation      ChecksumValidation = "Off"
 )

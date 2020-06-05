@@ -8,15 +8,16 @@
  */
 
 package aspose_barcode_cloud
-// QrEncodeMode : 
+
+// QrEncodeMode :
 type QrEncodeMode string
 
 // List of QREncodeMode
 const (
-	AUTO_QrEncodeMode QrEncodeMode = "Auto"
-	BYTES_QrEncodeMode QrEncodeMode = "Bytes"
-	UTF8_BOM_QrEncodeMode QrEncodeMode = "Utf8BOM"
-	UTF16_BEBOM_QrEncodeMode QrEncodeMode = "Utf16BEBOM"
-	ECI_ENCODING_QrEncodeMode QrEncodeMode = "ECIEncoding"
+	AUTO_QrEncodeMode              QrEncodeMode = "Auto"
+	BYTES_QrEncodeMode             QrEncodeMode = "Bytes"
+	UTF8_BOM_QrEncodeMode          QrEncodeMode = "Utf8BOM"
+	UTF16_BEBOM_QrEncodeMode       QrEncodeMode = "Utf16BEBOM"
+	ECI_ENCODING_QrEncodeMode      QrEncodeMode = "ECIEncoding"
 	EXTENDED_CODETEXT_QrEncodeMode QrEncodeMode = "ExtendedCodetext"
 )

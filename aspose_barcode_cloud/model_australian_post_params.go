@@ -9,7 +9,7 @@
 
 package aspose_barcode_cloud
 
-// AustralianPost barcode parameters.             
+// AustralianPost barcode parameters.
 type AustralianPostParams struct {
 	// Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other\"
 	EncodingTable *CustomerInformationInterpretingType `json:"EncodingTable,omitempty"`

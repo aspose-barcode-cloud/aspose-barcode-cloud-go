@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// CodeLocation : 
+
+// CodeLocation :
 type CodeLocation string
 
 // List of CodeLocation
 const (
 	BELOW_CodeLocation CodeLocation = "Below"
 	ABOVE_CodeLocation CodeLocation = "Above"
-	NONE_CodeLocation CodeLocation = "None"
+	NONE_CodeLocation  CodeLocation = "None"
 )

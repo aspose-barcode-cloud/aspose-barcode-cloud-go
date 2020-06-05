@@ -9,10 +9,10 @@
 
 package aspose_barcode_cloud
 
-// Wrapper around Drawing.Point for proper specification.             
+// Wrapper around Drawing.Point for proper specification.
 type RegionPoint struct {
-	// X-coordinate             
+	// X-coordinate
 	X int32 `json:"X"`
-	// Y-coordinate             
+	// Y-coordinate
 	Y int32 `json:"Y"`
 }

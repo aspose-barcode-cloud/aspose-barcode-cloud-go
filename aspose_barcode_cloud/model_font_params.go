@@ -9,12 +9,12 @@
 
 package aspose_barcode_cloud
 
-// Font.             
+// Font.
 type FontParams struct {
-	// Font family.             
+	// Font family.
 	Family string `json:"Family,omitempty"`
-	// Font size in units.             
+	// Font size in units.
 	Size float64 `json:"Size,omitempty"`
-	// Font style.             
+	// Font style.
 	Style *FontStyle `json:"Style,omitempty"`
 }

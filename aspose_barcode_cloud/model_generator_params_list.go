@@ -9,12 +9,12 @@
 
 package aspose_barcode_cloud
 
-// Represents list of barcode generators             
+// Represents list of barcode generators
 type GeneratorParamsList struct {
-	// List of barcode generators             
+	// List of barcode generators
 	BarcodeBuilders []GeneratorParams `json:"BarcodeBuilders,omitempty"`
-	// Shift step according to X axis             
+	// Shift step according to X axis
 	XStep int32 `json:"XStep"`
-	// Shift step according to Y axis             
+	// Shift step according to Y axis
 	YStep int32 `json:"YStep"`
 }

@@ -9,8 +9,8 @@
 
 package aspose_barcode_cloud
 
-// Postal parameters. Used for Postnet, Planet.             
+// Postal parameters. Used for Postnet, Planet.
 type PostalParams struct {
-	// Short bar's height of Postal barcodes.             
+	// Short bar's height of Postal barcodes.
 	ShortBarHeight float64 `json:"ShortBarHeight,omitempty"`
 }

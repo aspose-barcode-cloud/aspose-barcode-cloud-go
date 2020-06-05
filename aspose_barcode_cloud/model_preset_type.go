@@ -8,15 +8,16 @@
  */
 
 package aspose_barcode_cloud
+
 // PresetType : See QualitySettings allows to configure recognition quality and speed manually.
 type PresetType string
 
 // List of PresetType
 const (
-	HIGH_PERFORMANCE_PresetType PresetType = "HighPerformance"
-	NORMAL_QUALITY_PresetType PresetType = "NormalQuality"
+	HIGH_PERFORMANCE_PresetType       PresetType = "HighPerformance"
+	NORMAL_QUALITY_PresetType         PresetType = "NormalQuality"
 	HIGH_QUALITY_DETECTION_PresetType PresetType = "HighQualityDetection"
-	MAX_QUALITY_DETECTION_PresetType PresetType = "MaxQualityDetection"
-	HIGH_QUALITY_PresetType PresetType = "HighQuality"
-	MAX_BAR_CODES_PresetType PresetType = "MaxBarCodes"
+	MAX_QUALITY_DETECTION_PresetType  PresetType = "MaxQualityDetection"
+	HIGH_QUALITY_PresetType           PresetType = "HighQuality"
+	MAX_BAR_CODES_PresetType          PresetType = "MaxBarCodes"
 )

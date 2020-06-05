@@ -9,13 +9,13 @@
 
 package aspose_barcode_cloud
 
-// PDF417 parameters.             
+// PDF417 parameters.
 type Pdf417Params struct {
-	// Height/Width ratio of 2D BarCode module.             
+	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
-	// Encoding of codetext.             
+	// Encoding of codetext.
 	TextEncoding string `json:"TextEncoding,omitempty"`
-	// Columns count.             
+	// Columns count.
 	Columns int32 `json:"Columns,omitempty"`
 	// Pdf417 symbology type of BarCode's compaction mode. Default value: Pdf417CompactionMode.Auto.
 	CompactionMode *Pdf417CompactionMode `json:"CompactionMode,omitempty"`

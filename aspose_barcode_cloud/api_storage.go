@@ -1,4 +1,3 @@
-
 /*
  * Aspose.Barcode Cloud API Reference
  *
@@ -12,12 +11,12 @@ package aspose_barcode_cloud
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
-	"fmt"
-	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -36,16 +35,16 @@ StorageApiService Get disc usage
 @return DiscUsage
 */
 
-type StorageApiGetDiscUsageOpts struct { 
+type StorageApiGetDiscUsageOpts struct {
 	StorageName optional.String
 }
 
 func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *StorageApiGetDiscUsageOpts) (DiscUsage, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue DiscUsage
 	)
 
@@ -102,21 +101,21 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v DiscUsage
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -133,16 +132,16 @@ StorageApiService Get file versions
 @return FileVersions
 */
 
-type StorageApiGetFileVersionsOpts struct { 
+type StorageApiGetFileVersionsOpts struct {
 	StorageName optional.String
 }
 
 func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, optionals *StorageApiGetFileVersionsOpts) (FileVersions, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue FileVersions
 	)
 
@@ -200,21 +199,21 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v FileVersions
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -232,17 +231,17 @@ StorageApiService Check if file or folder exists
 @return ObjectExist
 */
 
-type StorageApiObjectExistsOpts struct { 
+type StorageApiObjectExistsOpts struct {
 	StorageName optional.String
-	VersionId optional.String
+	VersionId   optional.String
 }
 
 func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optionals *StorageApiObjectExistsOpts) (ObjectExist, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue ObjectExist
 	)
 
@@ -303,21 +302,21 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v ObjectExist
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
@@ -333,10 +332,10 @@ StorageApiService Check if storage exists
 */
 func (a *StorageApiService) StorageExists(ctx context.Context, storageName string) (StorageExist, *http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Get")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod  = strings.ToUpper("Get")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
 		returnValue StorageExist
 	)
 
@@ -391,24 +390,23 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: responseBody,
+			body:  responseBody,
 			error: httpResponse.Status,
 		}
-		
+
 		if httpResponse.StatusCode == 200 {
 			var v StorageExist
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-				if err != nil {
-					newErr.error = err.Error()
-					return returnValue, httpResponse, newErr
-				}
-				newErr.model = v
+			if err != nil {
+				newErr.error = err.Error()
 				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
 		}
-		
+
 		return returnValue, httpResponse, newErr
 	}
 
 	return returnValue, httpResponse, err
 }
-

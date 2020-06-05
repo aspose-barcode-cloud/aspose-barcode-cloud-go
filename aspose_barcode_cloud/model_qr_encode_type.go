@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// QrEncodeType : 
+
+// QrEncodeType :
 type QrEncodeType string
 
 // List of QREncodeType
 const (
-	AUTO_QrEncodeType QrEncodeType = "Auto"
-	FORCE_QR_QrEncodeType QrEncodeType = "ForceQR"
+	AUTO_QrEncodeType           QrEncodeType = "Auto"
+	FORCE_QR_QrEncodeType       QrEncodeType = "ForceQR"
 	FORCE_MICRO_QR_QrEncodeType QrEncodeType = "ForceMicroQR"
 )

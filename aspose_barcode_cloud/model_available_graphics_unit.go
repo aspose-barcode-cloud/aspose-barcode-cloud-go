@@ -8,13 +8,14 @@
  */
 
 package aspose_barcode_cloud
-// AvailableGraphicsUnit : Subset of GraphicsUnit.             
+
+// AvailableGraphicsUnit : Subset of GraphicsUnit.
 type AvailableGraphicsUnit string
 
 // List of AvailableGraphicsUnit
 const (
-	PIXEL_AvailableGraphicsUnit AvailableGraphicsUnit = "Pixel"
-	POINT_AvailableGraphicsUnit AvailableGraphicsUnit = "Point"
-	INCH_AvailableGraphicsUnit AvailableGraphicsUnit = "Inch"
+	PIXEL_AvailableGraphicsUnit      AvailableGraphicsUnit = "Pixel"
+	POINT_AvailableGraphicsUnit      AvailableGraphicsUnit = "Point"
+	INCH_AvailableGraphicsUnit       AvailableGraphicsUnit = "Inch"
 	MILLIMETER_AvailableGraphicsUnit AvailableGraphicsUnit = "Millimeter"
 )

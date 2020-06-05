@@ -9,12 +9,12 @@
 
 package aspose_barcode_cloud
 
-// Created image info.             
+// Created image info.
 type ResultImageInfo struct {
-	// Result file size.             
+	// Result file size.
 	FileSize int64 `json:"FileSize"`
-	// Result image width.             
+	// Result image width.
 	ImageWidth int32 `json:"ImageWidth,omitempty"`
-	// Result image height.             
+	// Result image height.
 	ImageHeight int32 `json:"ImageHeight,omitempty"`
 }

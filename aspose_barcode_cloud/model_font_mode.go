@@ -8,11 +8,12 @@
  */
 
 package aspose_barcode_cloud
-// FontMode : 
+
+// FontMode :
 type FontMode string
 
 // List of FontMode
 const (
-	AUTO_FontMode FontMode = "Auto"
+	AUTO_FontMode   FontMode = "Auto"
 	MANUAL_FontMode FontMode = "Manual"
 )

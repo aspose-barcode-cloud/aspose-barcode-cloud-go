@@ -9,14 +9,14 @@
 
 package aspose_barcode_cloud
 
-// Aztec parameters.             
+// Aztec parameters.
 type AztecParams struct {
-	// Height/Width ratio of 2D BarCode module.             
+	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
 	// Level of error correction of Aztec types of barcode. Value should between 10 to 95.
 	ErrorLevel int32 `json:"ErrorLevel,omitempty"`
 	// Aztec Symbol mode. Default value: AztecSymbolMode.Auto.
 	SymbolMode *AztecSymbolMode `json:"SymbolMode,omitempty"`
-	// Sets the encoding of codetext.             
+	// Sets the encoding of codetext.
 	TextEncoding string `json:"TextEncoding,omitempty"`
 }

@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// EnableChecksum : 
+
+// EnableChecksum :
 type EnableChecksum string
 
 // List of EnableChecksum
 const (
 	DEFAULT__EnableChecksum EnableChecksum = "Default"
-	YES_EnableChecksum EnableChecksum = "Yes"
-	NO_EnableChecksum EnableChecksum = "No"
+	YES_EnableChecksum      EnableChecksum = "Yes"
+	NO_EnableChecksum       EnableChecksum = "No"
 )

@@ -8,14 +8,15 @@
  */
 
 package aspose_barcode_cloud
-// Itf14BorderType : 
+
+// Itf14BorderType :
 type Itf14BorderType string
 
 // List of ITF14BorderType
 const (
-	NONE_Itf14BorderType Itf14BorderType = "None"
-	FRAME_Itf14BorderType Itf14BorderType = "Frame"
-	BAR_Itf14BorderType Itf14BorderType = "Bar"
+	NONE_Itf14BorderType      Itf14BorderType = "None"
+	FRAME_Itf14BorderType     Itf14BorderType = "Frame"
+	BAR_Itf14BorderType       Itf14BorderType = "Bar"
 	FRAME_OUT_Itf14BorderType Itf14BorderType = "FrameOut"
-	BAR_OUT_Itf14BorderType Itf14BorderType = "BarOut"
+	BAR_OUT_Itf14BorderType   Itf14BorderType = "BarOut"
 )

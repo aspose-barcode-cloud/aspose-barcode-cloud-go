@@ -8,12 +8,13 @@
  */
 
 package aspose_barcode_cloud
-// TextAlignment : 
+
+// TextAlignment :
 type TextAlignment string
 
 // List of TextAlignment
 const (
-	LEFT_TextAlignment TextAlignment = "Left"
+	LEFT_TextAlignment   TextAlignment = "Left"
 	CENTER_TextAlignment TextAlignment = "Center"
-	RIGHT_TextAlignment TextAlignment = "Right"
+	RIGHT_TextAlignment  TextAlignment = "Right"
 )
