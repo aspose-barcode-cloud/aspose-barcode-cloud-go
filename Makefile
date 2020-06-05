@@ -2,11 +2,15 @@ SRC=./aspose_barcode_cloud
 TEST=./test
 
 .PHONY: all
-all: format test
+all: format lint test
 
 .PHONY: format
 format:
 	./scripts/fmt.sh
+
+.PHONY: lint
+lint:
+	./scripts/vet.sh
 
 .PHONY: test
 test:
