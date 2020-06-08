@@ -24,35 +24,16 @@
 
 package aspose_barcode_cloud
 
-import (
-	"net/http"
+// DataMatrixEccType :
+type DataMatrixEccType string
+
+// List of DataMatrixEccType
+const (
+	DataMatrixEccTypeEccAuto DataMatrixEccType = "EccAuto"
+	DataMatrixEccTypeEcc000  DataMatrixEccType = "Ecc000"
+	DataMatrixEccTypeEcc050  DataMatrixEccType = "Ecc050"
+	DataMatrixEccTypeEcc080  DataMatrixEccType = "Ecc080"
+	DataMatrixEccTypeEcc100  DataMatrixEccType = "Ecc100"
+	DataMatrixEccTypeEcc140  DataMatrixEccType = "Ecc140"
+	DataMatrixEccTypeEcc200  DataMatrixEccType = "Ecc200"
 )
-
-type APIResponse struct {
-	*http.Response `json:"-"`
-	Message        string `json:"message,omitempty"`
-	// Operation is the name of the swagger operation.
-	Operation string `json:"operation,omitempty"`
-	// RequestURL is the request URL. This value is always available, even if the
-	// embedded *http.Response is nil.
-	RequestURL string `json:"url,omitempty"`
-	// Method is the HTTP method used for the request.  This value is always
-	// available, even if the embedded *http.Response is nil.
-	Method string `json:"method,omitempty"`
-	// Payload holds the contents of the response body (which may be nil or empty).
-	// This is provided here as the raw response.Body() reader will have already
-	// been drained.
-	Payload []byte `json:"-"`
-}
-
-func NewAPIResponse(r *http.Response) *APIResponse {
-
-	response := &APIResponse{Response: r}
-	return response
-}
-
-func NewAPIResponseWithError(errorMessage string) *APIResponse {
-
-	response := &APIResponse{Message: errorMessage}
-	return response
-}

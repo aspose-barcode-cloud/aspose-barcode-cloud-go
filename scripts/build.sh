@@ -2,4 +2,5 @@
 
 set -euo pipefail
 
-go build ./aspose_barcode_cloud
+go build ./aspose_barcode_cloud/...
+go build ./cmd/...

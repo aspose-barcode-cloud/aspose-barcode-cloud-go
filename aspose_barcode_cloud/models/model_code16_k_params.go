@@ -24,35 +24,12 @@
 
 package aspose_barcode_cloud
 
-import (
-	"net/http"
-)
-
-type APIResponse struct {
-	*http.Response `json:"-"`
-	Message        string `json:"message,omitempty"`
-	// Operation is the name of the swagger operation.
-	Operation string `json:"operation,omitempty"`
-	// RequestURL is the request URL. This value is always available, even if the
-	// embedded *http.Response is nil.
-	RequestURL string `json:"url,omitempty"`
-	// Method is the HTTP method used for the request.  This value is always
-	// available, even if the embedded *http.Response is nil.
-	Method string `json:"method,omitempty"`
-	// Payload holds the contents of the response body (which may be nil or empty).
-	// This is provided here as the raw response.Body() reader will have already
-	// been drained.
-	Payload []byte `json:"-"`
-}
-
-func NewAPIResponse(r *http.Response) *APIResponse {
-
-	response := &APIResponse{Response: r}
-	return response
-}
-
-func NewAPIResponseWithError(errorMessage string) *APIResponse {
-
-	response := &APIResponse{Message: errorMessage}
-	return response
+// Code16K parameters.
+type Code16KParams struct {
+	// Height/Width ratio of 2D BarCode module.
+	AspectRatio float64 `json:"AspectRatio,omitempty"`
+	// Size of the left quiet zone in xDimension. Default value: 10, meaning if xDimension = 2px than left quiet zone will be 20px.
+	QuietZoneLeftCoef int32 `json:"QuietZoneLeftCoef,omitempty"`
+	// Size of the right quiet zone in xDimension. Default value: 1, meaning if xDimension = 2px than right quiet zone will be 2px.
+	QuietZoneRightCoef int32 `json:"QuietZoneRightCoef,omitempty"`
 }

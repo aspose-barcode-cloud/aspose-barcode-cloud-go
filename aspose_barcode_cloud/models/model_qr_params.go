@@ -24,35 +24,20 @@
 
 package aspose_barcode_cloud
 
-import (
-	"net/http"
-)
-
-type APIResponse struct {
-	*http.Response `json:"-"`
-	Message        string `json:"message,omitempty"`
-	// Operation is the name of the swagger operation.
-	Operation string `json:"operation,omitempty"`
-	// RequestURL is the request URL. This value is always available, even if the
-	// embedded *http.Response is nil.
-	RequestURL string `json:"url,omitempty"`
-	// Method is the HTTP method used for the request.  This value is always
-	// available, even if the embedded *http.Response is nil.
-	Method string `json:"method,omitempty"`
-	// Payload holds the contents of the response body (which may be nil or empty).
-	// This is provided here as the raw response.Body() reader will have already
-	// been drained.
-	Payload []byte `json:"-"`
-}
-
-func NewAPIResponse(r *http.Response) *APIResponse {
-
-	response := &APIResponse{Response: r}
-	return response
-}
-
-func NewAPIResponseWithError(errorMessage string) *APIResponse {
-
-	response := &APIResponse{Message: errorMessage}
-	return response
+// QR parameters.
+type QrParams struct {
+	// Height/Width ratio of 2D BarCode module.
+	AspectRatio float64 `json:"AspectRatio,omitempty"`
+	// Encoding of codetext.
+	TextEncoding string `json:"TextEncoding,omitempty"`
+	// QR / MicroQR selector mode. Select ForceQR for standard QR symbols, Auto for MicroQR.
+	EncodeType *QrEncodeType `json:"EncodeType,omitempty"`
+	// Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings.
+	ECIEncoding *EciEncodings `json:"ECIEncoding,omitempty"`
+	// QR symbology type of BarCode's encoding mode. Default value: QREncodeMode.Auto.
+	EncodeMode *QrEncodeMode `json:"EncodeMode,omitempty"`
+	// Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel.
+	ErrorLevel *QrErrorLevel `json:"ErrorLevel,omitempty"`
+	// Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto.
+	Version *QrVersion `json:"Version,omitempty"`
 }

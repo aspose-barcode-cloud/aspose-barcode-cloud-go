@@ -7,6 +7,7 @@ import (
 
 	"github.com/antihax/optional"
 	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud"
+	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/models"
 )
 
 func main() {
@@ -25,7 +26,7 @@ func main() {
 	defer file.Close()
 
 	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-		Preset: optional.NewString(string(api.HIGH_PERFORMANCE_PresetType)),
+		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
 	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(ctx, optionals)

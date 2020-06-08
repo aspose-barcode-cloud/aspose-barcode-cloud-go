@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/antihax/optional"
 	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud"
+	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/models"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -29,7 +30,7 @@ func NewContextForTests() context.Context {
 }
 
 func TestGetBarcodeGenerate(t *testing.T) {
-	imgData, response, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(NewContextForTests(), string(api.CODE128_EncodeBarcodeType), "Go SDK", nil)
+	imgData, response, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(NewContextForTests(), string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
 	if err != nil {
 		t.Errorf("Api error: %s", err)
 	}
@@ -43,7 +44,7 @@ func TestPutBarcodeGenerateFile(t *testing.T) {
 	genImgInfo, response, err := NewClientForTests().BarcodeApi.PutBarcodeGenerateFile(
 		NewContextForTests(),
 		"TestPutBarcodeGenerateFile.png",
-		string(api.CODE128_EncodeBarcodeType),
+		string(models.EncodeBarcodeTypeCode128),
 		"Go SDK",
 		&api.BarcodeApiPutBarcodeGenerateFileOpts{
 			Folder: optional.NewString(TestFolder),
@@ -63,12 +64,12 @@ func TestPutGenerateMultiple(t *testing.T) {
 	genImgInfo, response, err := NewClientForTests().BarcodeApi.PutGenerateMultiple(
 		NewContextForTests(),
 		"TestPutBarcodeGenerateFile.png",
-		api.GeneratorParamsList{
-			BarcodeBuilders: []api.GeneratorParams{{
-				TypeOfBarcode: api.CODE128_EncodeBarcodeType,
+		models.GeneratorParamsList{
+			BarcodeBuilders: []models.GeneratorParams{{
+				TypeOfBarcode: models.EncodeBarcodeTypeCode128,
 				Text:          "First barcode",
 			}, {
-				TypeOfBarcode: api.QR_EncodeBarcodeType,
+				TypeOfBarcode: models.EncodeBarcodeTypeQR,
 				Text:          "Second barcode",
 			},
 			},
@@ -92,12 +93,12 @@ func TestPutGenerateMultiple(t *testing.T) {
 func TestPostGenerateMultiple(t *testing.T) {
 	imgData, response, err := NewClientForTests().BarcodeApi.PostGenerateMultiple(
 		NewContextForTests(),
-		api.GeneratorParamsList{
-			BarcodeBuilders: []api.GeneratorParams{{
-				TypeOfBarcode: api.CODE128_EncodeBarcodeType,
+		models.GeneratorParamsList{
+			BarcodeBuilders: []models.GeneratorParams{{
+				TypeOfBarcode: models.EncodeBarcodeTypeCode128,
 				Text:          "First barcode",
 			}, {
-				TypeOfBarcode: api.QR_EncodeBarcodeType,
+				TypeOfBarcode: models.EncodeBarcodeTypeQR,
 				Text:          "Second barcode",
 			},
 			},
@@ -129,7 +130,7 @@ func TestPostBarcodeRecognizeFromUrlOrContent(t *testing.T) {
 	defer file.Close()
 
 	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-		Preset: optional.NewString(string(api.HIGH_PERFORMANCE_PresetType)),
+		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
 	recognized, response, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewContextForTests(), optionals)
@@ -139,7 +140,7 @@ func TestPostBarcodeRecognizeFromUrlOrContent(t *testing.T) {
 
 	require.Equal(t, 200, response.StatusCode)
 	require.Equal(t, 1, len(recognized.Barcodes))
-	assert.Equal(t, string(api.PDF417_DecodeBarcodeType), recognized.Barcodes[0].Type_)
+	assert.Equal(t, string(models.DecodeBarcodeTypePdf417), recognized.Barcodes[0].Type_)
 	assert.Equal(t, "Aspose.BarCode for Cloud Sample", recognized.Barcodes[0].BarcodeValue)
 	require.Greater(t, len(recognized.Barcodes[0].Region), 0)
 	assert.Greater(t, recognized.Barcodes[0].Region[0].X, int32(0))
