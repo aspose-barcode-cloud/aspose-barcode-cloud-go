@@ -48,8 +48,8 @@ var (
 	// ContextAccessToken takes a string oauth2 access token as authentication for the request.
 	ContextAccessToken = contextKey("accesstoken")
 
-	// ContextAPIKey takes an APIKey as authentication for the request
-	ContextAPIKey = contextKey("apikey")
+	// ContextJWT takes an TODO as authentication for the request
+	ContextJWT = contextKey("jwt")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth

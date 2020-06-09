@@ -303,6 +303,15 @@ func (c *APIClient) prepareRequest(
 		if auth, ok := ctx.Value(ContextAccessToken).(string); ok {
 			httpReq.Header.Add("Authorization", "Bearer "+auth)
 		}
+
+		// JWT Authentication
+		if tokSrc, ok := ctx.Value(ContextJWT).(oauth2.TokenSource); ok {
+			jwtToken, err := tokSrc.Token()
+			if err != nil {
+				return nil, err
+			}
+			jwtToken.SetAuthHeader(httpReq)
+		}
 	}
 
 	for header, value := range c.cfg.DefaultHeader {
