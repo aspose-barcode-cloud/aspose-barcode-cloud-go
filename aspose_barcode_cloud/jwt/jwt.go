@@ -15,19 +15,19 @@ const defaultGrantType = "client_credentials"
 const defaultTokenURL = "https://api.aspose.cloud/connect/token"
 
 type Config struct {
-	ClientId     string `json:"ClientId"`
-	ClientSecret string `json:"ClientSecret"`
-	TokenURL     string `json:"TokenURL"`
+	ClientId     string `json:"clientId"`
+	ClientSecret string `json:"clientSecret"`
+	TokenUrl     string `json:"tokenUrl"`
 }
 
-func NewConfig(clientID string, clientSecret string) Config {
+func NewConfig(clientID string, clientSecret string) *Config {
 	config := Config{
 		ClientId:     clientID,
 		ClientSecret: clientSecret,
-		TokenURL:     defaultTokenURL,
+		TokenUrl:     defaultTokenURL,
 	}
 
-	return config
+	return &config
 }
 
 // TokenSource returns a JWT TokenSource using the configuration
@@ -49,7 +49,7 @@ func (js jwtSource) Token() (*oauth2.Token, error) {
 	v.Set("client_id", js.conf.ClientId)
 	v.Set("client_secret", js.conf.ClientSecret)
 	hc := oauth2.NewClient(js.ctx, nil)
-	resp, err := hc.PostForm(js.conf.TokenURL, v)
+	resp, err := hc.PostForm(js.conf.TokenUrl, v)
 	if err != nil {
 		return nil, fmt.Errorf("jwt: cannot fetch token: %v", err)
 	}

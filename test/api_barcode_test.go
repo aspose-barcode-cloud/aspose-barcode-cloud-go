@@ -14,35 +14,28 @@ import (
 )
 
 var TestFolder = fmt.Sprintf("BarcodeTests/%s", uuid.New())
+var TestConfig, _ = NewConfig("configuration.json")
 
 func NewClientForTests() *api.APIClient {
-	cfg := api.NewConfiguration()
-	cfg.BasePath = "http://localhost:47972/v3.0"
-	client := api.NewAPIClient(cfg)
-
-	return client
+	return api.NewAPIClient(&TestConfig.ApiConfig)
 }
 
-func NewContextForTests() context.Context {
-	ctx := context.WithValue(context.TODO(), api.ContextAccessToken, "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1OTEyNzc1MDMsImV4cCI6MTU5MTM2MzkwMywiaXNzIjoiaHR0cHM6Ly9hcGktcWEuYXNwb3NlLmNsb3VkIiwiYXVkIjpbImh0dHBzOi8vYXBpLXFhLmFzcG9zZS5jbG91ZC9yZXNvdXJjZXMiLCJhcGkucGxhdGZvcm0iLCJhcGkucHJvZHVjdHMiXSwiY2xpZW50X2lkIjoiYmFyY29kZS5jbG91ZCIsImNsaWVudF91c2FnZSI6InBvc3QiLCJjbGllbnRfc3RvcmFnZSI6ImdldCIsImNsaWVudF9yZXN0cmljdGlvbnMiOiJnZXQiLCJjbGllbnRfZGVmYXVsdF9zdG9yYWdlIjoiMEZCOUI2MjctNzY5QS00MjJBLUJBMkUtODhBMUUzNEFDODA1IiwiY2xpZW50X2lkU3J2SWQiOiIxODkyMDEiLCJzY29wZSI6WyJhcGkucGxhdGZvcm0iLCJhcGkucHJvZHVjdHMiXX0.ZXYVEiZncgoEVHaFFg0p4MGGBlak2Z7OKzXhYu6WukEyYa9fCXw6vAoLUJqsam2-FKpXhZtssLBzyPrRP7kqtJ1gTNEMsSEDbK2HwLr6WzXfCn81h7VJiV6IOsqn0KY0K8Yb-Ge27G_325hJKzPp712hN6Cl1bTjG9lnfnPdZ2g1SGYMcQ_6062hTukXHDYTYY_1yr-SM_TfWOzIuQ8z1Wop_lmX2ur3hRPP1OyS33hwbxGbrErzXvlBFPxf5GWCSzZCaBk-JQYMRMH0QKUE-RPXtrwCwsd6ejvGN74JQZXpt__hUjGh7FaKmaOFfSL4H4VnMzCzbvmE9VH7D-Ol4g")
-
-	return ctx
+func NewAuthContextForTests() context.Context {
+	return context.WithValue(context.Background(), api.ContextJWT, TestConfig.JwtConfig.TokenSource(context.Background()))
 }
 
 func TestGetBarcodeGenerate(t *testing.T) {
-	imgData, response, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(NewContextForTests(), string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
-	if err != nil {
-		t.Errorf("Api error: %s", err)
-	}
-
+	imgData, response, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(NewAuthContextForTests(), string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
+	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
+
 	assert.Equal(t, "image/png", response.Header.Get("content-type"))
 	assert.Greater(t, len(imgData), 0)
 }
 
 func TestPutBarcodeGenerateFile(t *testing.T) {
 	genImgInfo, response, err := NewClientForTests().BarcodeApi.PutBarcodeGenerateFile(
-		NewContextForTests(),
+		NewAuthContextForTests(),
 		"TestPutBarcodeGenerateFile.png",
 		string(models.EncodeBarcodeTypeCode128),
 		"Go SDK",
@@ -50,11 +43,9 @@ func TestPutBarcodeGenerateFile(t *testing.T) {
 			Folder: optional.NewString(TestFolder),
 		},
 	)
-	if err != nil {
-		t.Errorf("Api error: %s", err)
-	}
-
+	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
+
 	assert.Greater(t, genImgInfo.FileSize, int64(0))
 	assert.Greater(t, genImgInfo.ImageWidth, int32(0))
 	assert.Greater(t, genImgInfo.ImageHeight, int32(0))
@@ -62,7 +53,7 @@ func TestPutBarcodeGenerateFile(t *testing.T) {
 
 func TestPutGenerateMultiple(t *testing.T) {
 	genImgInfo, response, err := NewClientForTests().BarcodeApi.PutGenerateMultiple(
-		NewContextForTests(),
+		NewAuthContextForTests(),
 		"TestPutBarcodeGenerateFile.png",
 		models.GeneratorParamsList{
 			BarcodeBuilders: []models.GeneratorParams{{
@@ -80,11 +71,9 @@ func TestPutGenerateMultiple(t *testing.T) {
 			Folder: optional.NewString(TestFolder),
 		},
 	)
-	if err != nil {
-		t.Errorf("Api error: %s", err)
-	}
-
+	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
+
 	assert.Greater(t, genImgInfo.FileSize, int64(0))
 	assert.Greater(t, genImgInfo.ImageWidth, int32(0))
 	assert.Greater(t, genImgInfo.ImageHeight, int32(0))
@@ -92,7 +81,7 @@ func TestPutGenerateMultiple(t *testing.T) {
 
 func TestPostGenerateMultiple(t *testing.T) {
 	imgData, response, err := NewClientForTests().BarcodeApi.PostGenerateMultiple(
-		NewContextForTests(),
+		NewAuthContextForTests(),
 		models.GeneratorParamsList{
 			BarcodeBuilders: []models.GeneratorParams{{
 				TypeOfBarcode: models.EncodeBarcodeTypeCode128,
@@ -109,11 +98,9 @@ func TestPostGenerateMultiple(t *testing.T) {
 			Format: optional.NewString("png"),
 		},
 	)
-	if err != nil {
-		t.Errorf("Api error: %s", err)
-	}
-
+	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
+
 	assert.Equal(t, "image/png", response.Header.Get("content-type"))
 	assert.Greater(t, len(imgData), 0)
 
@@ -123,23 +110,18 @@ func TestPostBarcodeRecognizeFromUrlOrContent(t *testing.T) {
 	fileName := "../testdata/pdf417Sample.png"
 
 	file, err := os.Open(fileName)
-	if err != nil {
-		t.Errorf("File '%s' open error: %s", fileName, err)
-		t.FailNow()
-	}
+	require.Nil(t, err)
 	defer file.Close()
 
 	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
 		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
-	recognized, response, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewContextForTests(), optionals)
-	if err != nil {
-		t.Errorf("Api error: %s", err)
-	}
-
+	recognized, response, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewAuthContextForTests(), optionals)
+	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
 	require.Equal(t, 1, len(recognized.Barcodes))
+
 	assert.Equal(t, string(models.DecodeBarcodeTypePdf417), recognized.Barcodes[0].Type_)
 	assert.Equal(t, "Aspose.BarCode for Cloud Sample", recognized.Barcodes[0].BarcodeValue)
 	require.Greater(t, len(recognized.Barcodes[0].Region), 0)

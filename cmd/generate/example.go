@@ -11,21 +11,15 @@ import (
 )
 
 func main() {
+	jwtConf := jwt.NewConfig(
+		"App SID from https://dashboard.aspose.cloud/#/apps",
+		"App Key from https://dashboard.aspose.cloud/#/apps",
+	)
 	fileName := "testdata/generated.png"
 
-	apiCfg := api.NewConfiguration()
-	apiCfg.BasePath = "https://api-qa.aspose.cloud/v3.0"
-	client := api.NewAPIClient(apiCfg)
+	authCtx := context.WithValue(context.Background(), api.ContextJWT, jwtConf.TokenSource(context.Background()))
 
-
-	jwtConf := jwt.NewConfig(
-		"barcode.cloud",
-		"gW9S5WZX8xQ5ArVM",
-	)
-	// TODO: Use base URL from apiCfg
-	jwtConf.TokenURL = "https://api-qa.aspose.cloud/connect/token"
-	tokenSource := jwtConf.TokenSource(context.TODO())
-	authCtx := context.WithValue(context.TODO(), api.ContextJWT, tokenSource)
+	client := api.NewAPIClient(api.NewConfiguration())
 
 	data, resp, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
 	if err != nil {

@@ -7,8 +7,8 @@ import (
 
 func main() {
 	conf := jwt.NewConfig(
-		"f60b7a02-6306-4cc9-b423-96c7591b699b",
-		"4bff3dd4c702380388d9e0eb620edbf4",
+		"App SID from https://dashboard.aspose.cloud/#/apps",
+		"App Key from https://dashboard.aspose.cloud/#/apps",
 	)
 
 	ctx := context.Background()

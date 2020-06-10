@@ -48,7 +48,7 @@ var (
 	// ContextAccessToken takes a string oauth2 access token as authentication for the request.
 	ContextAccessToken = contextKey("accesstoken")
 
-	// ContextJWT takes an TODO as authentication for the request
+	// ContextJWT takes ClientId and ClientSecret to fetch JWT as authentication for the request
 	ContextJWT = contextKey("jwt")
 )
 
@@ -67,10 +67,9 @@ type APIKey struct {
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
 	Host          string            `json:"host,omitempty"`
-	Scheme        string            `json:"scheme,omitempty"`
 	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
 	UserAgent     string            `json:"userAgent,omitempty"`
-	HTTPClient    *http.Client
+	HTTPClient    *http.Client      `json:"-"`
 }
 
 func NewConfiguration() *Configuration {
