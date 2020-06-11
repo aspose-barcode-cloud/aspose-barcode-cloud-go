@@ -2,10 +2,10 @@ package test
 
 import (
 	"encoding/json"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"testing"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

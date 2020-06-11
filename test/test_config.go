@@ -2,8 +2,8 @@ package test
 
 import (
 	"encoding/json"
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/jwt"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"io/ioutil"
 	"os"
 )

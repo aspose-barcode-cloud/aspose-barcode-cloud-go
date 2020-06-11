@@ -1,5 +1,3 @@
-SRC=./aspose_barcode_cloud
-TEST=./test
 
 .PHONY: all
 all: format lint test
@@ -17,7 +15,7 @@ test:
 	./scripts/test.sh
 
 .PHONY: build
-build: format
+build: format lint
 	./scripts/build.sh
 
 .PHONY: clean

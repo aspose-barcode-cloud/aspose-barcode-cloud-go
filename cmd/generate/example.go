@@ -3,11 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"os"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud"
-	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/aspose_barcode_cloud/models"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 )
 
 func main() {
