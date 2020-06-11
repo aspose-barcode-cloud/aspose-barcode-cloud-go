@@ -31,7 +31,7 @@ type AztecParams struct {
 	// Level of error correction of Aztec types of barcode. Value should between 10 to 95.
 	ErrorLevel int32 `json:"ErrorLevel,omitempty"`
 	// Aztec Symbol mode. Default value: AztecSymbolMode.Auto.
-	SymbolMode *AztecSymbolMode `json:"SymbolMode,omitempty"`
+	SymbolMode AztecSymbolMode `json:"SymbolMode,omitempty"`
 	// Sets the encoding of codetext.
 	TextEncoding string `json:"TextEncoding,omitempty"`
 }

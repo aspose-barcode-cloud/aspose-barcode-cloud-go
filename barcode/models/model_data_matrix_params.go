@@ -33,9 +33,9 @@ type DataMatrixParams struct {
 	// Columns count.
 	Columns int32 `json:"Columns,omitempty"`
 	// Datamatrix ECC type. Default value: DataMatrixEccType.Ecc200.
-	DataMatrixEcc *DataMatrixEccType `json:"DataMatrixEcc,omitempty"`
+	DataMatrixEcc DataMatrixEccType `json:"DataMatrixEcc,omitempty"`
 	// Encode mode of Datamatrix barcode. Default value: DataMatrixEncodeMode.Auto.
-	DataMatrixEncodeMode *DataMatrixEncodeMode `json:"DataMatrixEncodeMode,omitempty"`
+	DataMatrixEncodeMode DataMatrixEncodeMode `json:"DataMatrixEncodeMode,omitempty"`
 	// Rows count.
 	Rows int32 `json:"Rows,omitempty"`
 }

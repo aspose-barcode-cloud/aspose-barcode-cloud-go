@@ -27,13 +27,13 @@ package barcode
 // Represents BarcodeReader object.
 type ReaderParams struct {
 	// The type of barcode to read.
-	Type_ *DecodeBarcodeType `json:"Type,omitempty"`
+	Type DecodeBarcodeType `json:"Type,omitempty"`
 	// Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
-	ChecksumValidation *ChecksumValidation `json:"ChecksumValidation,omitempty"`
+	ChecksumValidation ChecksumValidation `json:"ChecksumValidation,omitempty"`
 	// A flag which force engine to detect codetext encoding for Unicode.
 	DetectEncoding bool `json:"DetectEncoding,omitempty"`
 	// Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-	Preset *PresetType `json:"Preset,omitempty"`
+	Preset PresetType `json:"Preset,omitempty"`
 	// Set X for area for recognition.
 	RectX int32 `json:"RectX,omitempty"`
 	// Set Y for area for recognition.
@@ -85,5 +85,5 @@ type ReaderParams struct {
 	// Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
 	SkipDiagonalSearch bool `json:"SkipDiagonalSearch,omitempty"`
 	// Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-	AustralianPostEncodingTable *CustomerInformationInterpretingType `json:"AustralianPostEncodingTable,omitempty"`
+	AustralianPostEncodingTable CustomerInformationInterpretingType `json:"AustralianPostEncodingTable,omitempty"`
 }

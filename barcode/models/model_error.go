@@ -33,5 +33,5 @@ type ModelError struct {
 	// Description
 	Description string `json:"Description,omitempty"`
 	// Inner Error
-	InnerError *ErrorDetails `json:"InnerError,omitempty"`
+	InnerError ErrorDetails `json:"InnerError,omitempty"`
 }

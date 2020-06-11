@@ -33,9 +33,9 @@ type Pdf417Params struct {
 	// Columns count.
 	Columns int32 `json:"Columns,omitempty"`
 	// Pdf417 symbology type of BarCode's compaction mode. Default value: Pdf417CompactionMode.Auto.
-	CompactionMode *Pdf417CompactionMode `json:"CompactionMode,omitempty"`
+	CompactionMode Pdf417CompactionMode `json:"CompactionMode,omitempty"`
 	// Pdf417 symbology type of BarCode's error correction level ranging from level0 to level8, level0 means no error correction info, level8 means best error correction which means a larger picture.
-	ErrorLevel *Pdf417ErrorLevel `json:"ErrorLevel,omitempty"`
+	ErrorLevel Pdf417ErrorLevel `json:"ErrorLevel,omitempty"`
 	// Macro Pdf417 barcode's file ID. Used for MacroPdf417.
 	MacroFileID int32 `json:"MacroFileID,omitempty"`
 	// Macro Pdf417 barcode's segment ID, which starts from 0, to MacroSegmentsCount - 1.

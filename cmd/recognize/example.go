@@ -42,6 +42,6 @@ func main() {
 	}
 
 	for i, barcode := range recognized.Barcodes {
-		fmt.Printf("Recognized #%d: %s %s", i+1, barcode.Type_, barcode.BarcodeValue)
+		fmt.Printf("Recognized #%d: %s %s", i+1, barcode.Type, barcode.BarcodeValue)
 	}
 }
