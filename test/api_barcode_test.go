@@ -1,13 +1,14 @@
 package test
 
 import (
+	"os"
+	"testing"
+
 	"github.com/antihax/optional"
 	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"os"
-	"testing"
 )
 
 func TestGetBarcodeGenerate(t *testing.T) {
@@ -25,7 +26,7 @@ func TestGetBarcodeRecognize(t *testing.T) {
 	client := NewClientForTests()
 	ctx := NewAuthContextForTests()
 
-	uploadTestFile(t, client, ctx, uploadedFilename)
+	uploadTestFile(ctx, t, client, uploadedFilename)
 
 	recognized, _, err := client.BarcodeApi.GetBarcodeRecognize(ctx, uploadedFilename, &api.BarcodeApiGetBarcodeRecognizeOpts{
 		Folder: optional.NewString(TestFolder),
@@ -112,7 +113,7 @@ func TestPutBarcodeRecognizeFromBody(t *testing.T) {
 	client := NewClientForTests()
 	ctx := NewAuthContextForTests()
 
-	uploadTestFile(t, client, ctx, uploadedFilename)
+	uploadTestFile(ctx, t, client, uploadedFilename)
 
 	recognized, _, err := client.BarcodeApi.PutBarcodeRecognizeFromBody(ctx, uploadedFilename, models.ReaderParams{
 		Preset: models.PresetTypeHighPerformance,

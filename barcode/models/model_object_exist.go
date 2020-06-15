@@ -24,7 +24,7 @@
 
 package barcode
 
-// Object exists
+//ObjectExist - Object exists
 type ObjectExist struct {
 	// Indicates that the file or folder exists.
 	Exists bool `json:"Exists"`

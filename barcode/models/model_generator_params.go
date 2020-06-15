@@ -24,7 +24,7 @@
 
 package barcode
 
-// Represents extended BarcodeGenerator params.
+//GeneratorParams - Represents extended BarcodeGenerator params.
 type GeneratorParams struct {
 	// Type of barcode to generate.
 	TypeOfBarcode EncodeBarcodeType `json:"TypeOfBarcode"`
@@ -92,7 +92,7 @@ type GeneratorParams struct {
 	AlwaysShowChecksum bool `json:"AlwaysShowChecksum,omitempty"`
 	// Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
 	WideNarrowRatio float64 `json:"WideNarrowRatio,omitempty"`
-	// Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode's specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
+	// Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode's specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
 	ValidateText bool `json:"ValidateText,omitempty"`
 	// Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
 	SupplementData string `json:"SupplementData,omitempty"`

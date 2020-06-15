@@ -28,18 +28,18 @@ func TestNewConfig(t *testing.T) {
 	config, err := NewConfig("configuration.example.json")
 	require.Nil(t, err)
 
-	assert.Equal(t, "https://api.aspose.cloud/connect/token", config.JwtConfig.TokenUrl)
-	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.ApiConfig.BasePath)
+	assert.Equal(t, "https://api.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
+	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
 }
 
 func TestConfigMarshal(t *testing.T) {
 	config := Config{
 		JwtConfig: jwt.Config{
-			ClientId:     "ClientId",
+			ClientID:     "ClientID",
 			ClientSecret: "ClientSecret",
-			TokenUrl:     "TokenUrl",
+			TokenURL:     "TokenURL",
 		},
-		ApiConfig: api.Configuration{
+		APIConfig: api.Configuration{
 			BasePath:  "BasePath",
 			Host:      "Host",
 			UserAgent: "UserAgent",
@@ -49,18 +49,18 @@ func TestConfigMarshal(t *testing.T) {
 	bytes, err := json.Marshal(config)
 	require.Nil(t, err)
 
-	assert.Equal(t, "{\"jwt\":{\"clientId\":\"ClientId\",\"clientSecret\":\"ClientSecret\",\"tokenUrl\":\"TokenUrl\"},\"api\":{\"basePath\":\"BasePath\",\"host\":\"Host\",\"userAgent\":\"UserAgent\"}}", string(bytes))
+	assert.Equal(t, "{\"jwt\":{\"clientId\":\"ClientID\",\"clientSecret\":\"ClientSecret\",\"tokenUrl\":\"TokenURL\"},\"api\":{\"basePath\":\"BasePath\",\"host\":\"Host\",\"userAgent\":\"UserAgent\"}}", string(bytes))
 }
 
 func TestNewConfigFromJson(t *testing.T) {
-	config, err := NewConfigFromJson([]byte("{\"jwt\":{\"clientId\":\"ClientId\",\"clientSecret\":\"ClientSecret\",\"tokenUrl\":\"TokenUrl\"},\"api\":{\"basePath\":\"BasePath\",\"host\":\"Host\",\"userAgent\":\"UserAgent\"}}"))
+	config, err := NewConfigFromJSON([]byte("{\"jwt\":{\"clientId\":\"ClientID\",\"clientSecret\":\"ClientSecret\",\"tokenUrl\":\"TokenURL\"},\"api\":{\"basePath\":\"BasePath\",\"host\":\"Host\",\"userAgent\":\"UserAgent\"}}"))
 	require.Nil(t, err)
 
-	assert.Equal(t, "ClientId", config.JwtConfig.ClientId)
+	assert.Equal(t, "ClientID", config.JwtConfig.ClientID)
 	assert.Equal(t, "ClientSecret", config.JwtConfig.ClientSecret)
-	assert.Equal(t, "TokenUrl", config.JwtConfig.TokenUrl)
+	assert.Equal(t, "TokenURL", config.JwtConfig.TokenURL)
 
-	assert.Equal(t, "BasePath", config.ApiConfig.BasePath)
-	assert.Equal(t, "Host", config.ApiConfig.Host)
-	assert.Equal(t, "UserAgent", config.ApiConfig.UserAgent)
+	assert.Equal(t, "BasePath", config.APIConfig.BasePath)
+	assert.Equal(t, "Host", config.APIConfig.Host)
+	assert.Equal(t, "UserAgent", config.APIConfig.UserAgent)
 }

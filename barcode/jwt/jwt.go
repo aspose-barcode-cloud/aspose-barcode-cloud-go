@@ -11,17 +11,19 @@ import (
 	"time"
 )
 
+//Config - JWT auth configuration
 type Config struct {
-	ClientId     string `json:"clientId"`
+	ClientID     string `json:"clientId"`
 	ClientSecret string `json:"clientSecret"`
-	TokenUrl     string `json:"tokenUrl"`
+	TokenURL     string `json:"tokenUrl"`
 }
 
+//NewConfig creates new Config
 func NewConfig(clientID string, clientSecret string) *Config {
 	config := Config{
-		ClientId:     clientID,
+		ClientID:     clientID,
 		ClientSecret: clientSecret,
-		TokenUrl:     "https://api.aspose.cloud/connect/token",
+		TokenURL:     "https://api.aspose.cloud/connect/token",
 	}
 
 	return &config
@@ -43,10 +45,10 @@ type jwtSource struct {
 func (js jwtSource) Token() (*oauth2.Token, error) {
 	v := url.Values{}
 	v.Set("grant_type", "client_credentials")
-	v.Set("client_id", js.conf.ClientId)
+	v.Set("client_id", js.conf.ClientID)
 	v.Set("client_secret", js.conf.ClientSecret)
 	hc := oauth2.NewClient(js.ctx, nil)
-	resp, err := hc.PostForm(js.conf.TokenUrl, v)
+	resp, err := hc.PostForm(js.conf.TokenURL, v)
 	if err != nil {
 		return nil, fmt.Errorf("jwt: cannot fetch token: %v", err)
 	}

@@ -40,21 +40,22 @@ var (
 	_ context.Context
 )
 
+//StorageApiService -
 type StorageApiService service
 
+//StorageApiGetDiscUsageOpts - Optional Parameters for StorageApiGetDiscUsage
+type StorageApiGetDiscUsageOpts struct {
+	StorageName optional.String
+}
+
 /*
-StorageApiService Get disc usage
+GetDiscUsage -  Get disc usage
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *StorageApiGetDiscUsageOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
 
 @return DiscUsage
 */
-
-type StorageApiGetDiscUsageOpts struct {
-	StorageName optional.String
-}
-
 func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *StorageApiGetDiscUsageOpts) (DiscUsage, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
@@ -116,7 +117,7 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -138,8 +139,13 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 	return returnValue, httpResponse, err
 }
 
+//StorageApiGetFileVersionsOpts - Optional Parameters for StorageApiGetFileVersions
+type StorageApiGetFileVersionsOpts struct {
+	StorageName optional.String
+}
+
 /*
-StorageApiService Get file versions
+GetFileVersions -  Get file versions
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File path e.g. &#39;/file.ext&#39;
  * @param optional nil or *StorageApiGetFileVersionsOpts - Optional Parameters:
@@ -147,11 +153,6 @@ StorageApiService Get file versions
 
 @return FileVersions
 */
-
-type StorageApiGetFileVersionsOpts struct {
-	StorageName optional.String
-}
-
 func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, optionals *StorageApiGetFileVersionsOpts) (FileVersions, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
@@ -214,7 +215,7 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -236,8 +237,14 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 	return returnValue, httpResponse, err
 }
 
+//StorageApiObjectExistsOpts - Optional Parameters for StorageApiObjectExists
+type StorageApiObjectExistsOpts struct {
+	StorageName optional.String
+	VersionId   optional.String
+}
+
 /*
-StorageApiService Check if file or folder exists
+ObjectExists -  Check if file or folder exists
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
  * @param optional nil or *StorageApiObjectExistsOpts - Optional Parameters:
@@ -246,12 +253,6 @@ StorageApiService Check if file or folder exists
 
 @return ObjectExist
 */
-
-type StorageApiObjectExistsOpts struct {
-	StorageName optional.String
-	VersionId   optional.String
-}
-
 func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optionals *StorageApiObjectExistsOpts) (ObjectExist, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
@@ -317,7 +318,7 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -340,7 +341,7 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 }
 
 /*
-StorageApiService Check if storage exists
+StorageExists -  Check if storage exists
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param storageName Storage name
 
@@ -405,7 +406,7 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}

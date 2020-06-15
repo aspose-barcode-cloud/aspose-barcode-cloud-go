@@ -24,7 +24,7 @@
 
 package barcode
 
-// File upload result
+//FilesUploadResult - File upload result
 type FilesUploadResult struct {
 	// List of uploaded file names
 	Uploaded []string `json:"Uploaded,omitempty"`

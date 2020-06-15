@@ -24,7 +24,7 @@
 
 package barcode
 
-// QR parameters.
+//QrParams - QR parameters.
 type QrParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

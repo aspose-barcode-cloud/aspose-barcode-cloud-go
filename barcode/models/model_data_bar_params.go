@@ -24,7 +24,7 @@
 
 package barcode
 
-// Databar parameters.
+//DataBarParams - Databar parameters.
 type DataBarParams struct {
 	// Height/Width ratio of 2D BarCode module. Used for DataBar stacked.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

@@ -24,7 +24,7 @@
 
 package barcode
 
-// Caption
+//CaptionParams - Caption
 type CaptionParams struct {
 	// Caption text.
 	Text string `json:"Text,omitempty"`

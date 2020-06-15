@@ -1,13 +1,13 @@
 
 .PHONY: all
-all: format lint test
+all: format vet test tidy
 
 .PHONY: format
 format:
 	./scripts/fmt.sh
 
-.PHONY: lint
-lint:
+.PHONY: vet
+vet:
 	./scripts/vet.sh
 
 .PHONY: test
@@ -15,9 +15,13 @@ test:
 	./scripts/test.sh
 
 .PHONY: build
-build: format lint
+build: format vet
 	./scripts/build.sh
 
-.PHONY: clean
-clean:
-	./scripts/clean.sh
+.PHONY: lint
+lint: format
+	./scripts/lint.sh
+
+.PHONY: tidy
+tidy:
+	./scripts/tidy.sh

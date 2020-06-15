@@ -24,7 +24,7 @@
 
 package barcode
 
-// Aztec parameters.
+//AztecParams - Aztec parameters.
 type AztecParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

@@ -24,7 +24,7 @@
 
 package barcode
 
-// ITF parameters.
+//ItfParams - ITF parameters.
 type ItfParams struct {
 	// ITF border (bearer bar) thickness in Unit value. Default value: 12pt.
 	BorderThickness float64 `json:"BorderThickness,omitempty"`

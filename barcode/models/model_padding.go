@@ -24,7 +24,7 @@
 
 package barcode
 
-// Padding around barcode.
+//Padding - Padding around barcode.
 type Padding struct {
 	// Left padding.
 	Left float64 `json:"Left,omitempty"`

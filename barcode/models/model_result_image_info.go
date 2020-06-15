@@ -24,7 +24,7 @@
 
 package barcode
 
-// Created image info.
+//ResultImageInfo - Created image info.
 type ResultImageInfo struct {
 	// Result file size.
 	FileSize int64 `json:"FileSize"`

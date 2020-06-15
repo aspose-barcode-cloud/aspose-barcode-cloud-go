@@ -40,10 +40,17 @@ var (
 	_ context.Context
 )
 
+//FolderApiService -
 type FolderApiService service
 
+//FolderApiCopyFolderOpts - Optional Parameters for FolderApiCopyFolder
+type FolderApiCopyFolderOpts struct {
+	SrcStorageName  optional.String
+	DestStorageName optional.String
+}
+
 /*
-FolderApiService Copy folder
+CopyFolder -  Copy folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Source folder path e.g. &#39;/src&#39;
  * @param destPath Destination folder path e.g. &#39;/dst&#39;
@@ -53,12 +60,6 @@ FolderApiService Copy folder
 
 
 */
-
-type FolderApiCopyFolderOpts struct {
-	SrcStorageName  optional.String
-	DestStorageName optional.String
-}
-
 func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiCopyFolderOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Put")
@@ -116,7 +117,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -127,8 +128,13 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 	return httpResponse, err
 }
 
+//FolderApiCreateFolderOpts - Optional Parameters for FolderApiCreateFolder
+type FolderApiCreateFolderOpts struct {
+	StorageName optional.String
+}
+
 /*
-FolderApiService Create the folder
+CreateFolder -  Create the folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path to create e.g. &#39;folder_1/folder_2/&#39;
  * @param optional nil or *FolderApiCreateFolderOpts - Optional Parameters:
@@ -136,11 +142,6 @@ FolderApiService Create the folder
 
 
 */
-
-type FolderApiCreateFolderOpts struct {
-	StorageName optional.String
-}
-
 func (a *FolderApiService) CreateFolder(ctx context.Context, path string, optionals *FolderApiCreateFolderOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Put")
@@ -194,7 +195,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -205,8 +206,14 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 	return httpResponse, err
 }
 
+//FolderApiDeleteFolderOpts - Optional Parameters for FolderApiDeleteFolder
+type FolderApiDeleteFolderOpts struct {
+	StorageName optional.String
+	Recursive   optional.Bool
+}
+
 /*
-FolderApiService Delete folder
+DeleteFolder -  Delete folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path e.g. &#39;/folder&#39;
  * @param optional nil or *FolderApiDeleteFolderOpts - Optional Parameters:
@@ -215,12 +222,6 @@ FolderApiService Delete folder
 
 
 */
-
-type FolderApiDeleteFolderOpts struct {
-	StorageName optional.String
-	Recursive   optional.Bool
-}
-
 func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, optionals *FolderApiDeleteFolderOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Delete")
@@ -277,7 +278,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -288,8 +289,13 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 	return httpResponse, err
 }
 
+//FolderApiGetFilesListOpts - Optional Parameters for FolderApiGetFilesList
+type FolderApiGetFilesListOpts struct {
+	StorageName optional.String
+}
+
 /*
-FolderApiService Get all files and folders within a folder
+GetFilesList -  Get all files and folders within a folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path e.g. &#39;/folder&#39;
  * @param optional nil or *FolderApiGetFilesListOpts - Optional Parameters:
@@ -297,11 +303,6 @@ FolderApiService Get all files and folders within a folder
 
 @return FilesList
 */
-
-type FolderApiGetFilesListOpts struct {
-	StorageName optional.String
-}
-
 func (a *FolderApiService) GetFilesList(ctx context.Context, path string, optionals *FolderApiGetFilesListOpts) (FilesList, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
@@ -364,7 +365,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -386,8 +387,14 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 	return returnValue, httpResponse, err
 }
 
+//FolderApiMoveFolderOpts - Optional Parameters for FolderApiMoveFolder
+type FolderApiMoveFolderOpts struct {
+	SrcStorageName  optional.String
+	DestStorageName optional.String
+}
+
 /*
-FolderApiService Move folder
+MoveFolder -  Move folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Folder path to move e.g. &#39;/folder&#39;
  * @param destPath Destination folder path to move to e.g &#39;/dst&#39;
@@ -397,12 +404,6 @@ FolderApiService Move folder
 
 
 */
-
-type FolderApiMoveFolderOpts struct {
-	SrcStorageName  optional.String
-	DestStorageName optional.String
-}
-
 func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiMoveFolderOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Put")
@@ -460,7 +461,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}

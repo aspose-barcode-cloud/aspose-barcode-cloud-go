@@ -24,7 +24,7 @@
 
 package barcode
 
-// Represents BarcodeReader object.
+//ReaderParams - Represents BarcodeReader object.
 type ReaderParams struct {
 	// The type of barcode to read.
 	Type DecodeBarcodeType `json:"Type,omitempty"`

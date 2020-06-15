@@ -41,10 +41,18 @@ var (
 	_ context.Context
 )
 
+//FileApiService -
 type FileApiService service
 
+//FileApiCopyFileOpts - Optional Parameters for FileApiCopyFile
+type FileApiCopyFileOpts struct {
+	SrcStorageName  optional.String
+	DestStorageName optional.String
+	VersionId       optional.String
+}
+
 /*
-FileApiService Copy file
+CopyFile -  Copy file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Source file path e.g. &#39;/folder/file.ext&#39;
  * @param destPath Destination file path
@@ -55,13 +63,6 @@ FileApiService Copy file
 
 
 */
-
-type FileApiCopyFileOpts struct {
-	SrcStorageName  optional.String
-	DestStorageName optional.String
-	VersionId       optional.String
-}
-
 func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiCopyFileOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Put")
@@ -122,7 +123,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -133,8 +134,14 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 	return httpResponse, err
 }
 
+//FileApiDeleteFileOpts - Optional Parameters for FileApiDeleteFile
+type FileApiDeleteFileOpts struct {
+	StorageName optional.String
+	VersionId   optional.String
+}
+
 /*
-FileApiService Delete file
+DeleteFile -  Delete file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File path e.g. &#39;/folder/file.ext&#39;
  * @param optional nil or *FileApiDeleteFileOpts - Optional Parameters:
@@ -143,12 +150,6 @@ FileApiService Delete file
 
 
 */
-
-type FileApiDeleteFileOpts struct {
-	StorageName optional.String
-	VersionId   optional.String
-}
-
 func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals *FileApiDeleteFileOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Delete")
@@ -205,7 +206,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -216,8 +217,14 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 	return httpResponse, err
 }
 
+//FileApiDownloadFileOpts - Optional Parameters for FileApiDownloadFile
+type FileApiDownloadFileOpts struct {
+	StorageName optional.String
+	VersionId   optional.String
+}
+
 /*
-FileApiService Download file
+DownloadFile -  Download file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File path e.g. &#39;/folder/file.ext&#39;
  * @param optional nil or *FileApiDownloadFileOpts - Optional Parameters:
@@ -226,12 +233,6 @@ FileApiService Download file
 
 @return *os.File
 */
-
-type FileApiDownloadFileOpts struct {
-	StorageName optional.String
-	VersionId   optional.String
-}
-
 func (a *FileApiService) DownloadFile(ctx context.Context, path string, optionals *FileApiDownloadFileOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
@@ -297,7 +298,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -319,8 +320,15 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 	return returnValue, httpResponse, err
 }
 
+//FileApiMoveFileOpts - Optional Parameters for FileApiMoveFile
+type FileApiMoveFileOpts struct {
+	SrcStorageName  optional.String
+	DestStorageName optional.String
+	VersionId       optional.String
+}
+
 /*
-FileApiService Move file
+MoveFile -  Move file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Source file path e.g. &#39;/src.ext&#39;
  * @param destPath Destination file path e.g. &#39;/dest.ext&#39;
@@ -331,13 +339,6 @@ FileApiService Move file
 
 
 */
-
-type FileApiMoveFileOpts struct {
-	SrcStorageName  optional.String
-	DestStorageName optional.String
-	VersionId       optional.String
-}
-
 func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiMoveFileOpts) (*http.Response, error) {
 	var (
 		httpMethod = strings.ToUpper("Put")
@@ -398,7 +399,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}
@@ -409,8 +410,13 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 	return httpResponse, err
 }
 
+//FileApiUploadFileOpts - Optional Parameters for FileApiUploadFile
+type FileApiUploadFileOpts struct {
+	StorageName optional.String
+}
+
 /*
-FileApiService Upload file
+UploadFile -  Upload file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
  * @param file File to upload
@@ -419,11 +425,6 @@ FileApiService Upload file
 
 @return FilesUploadResult
 */
-
-type FileApiUploadFileOpts struct {
-	StorageName optional.String
-}
-
 func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.File, optionals *FileApiUploadFileOpts) (FilesUploadResult, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Put")
@@ -490,7 +491,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	}
 
 	if httpResponse.StatusCode >= 300 {
-		newErr := GenericApiError{
+		newErr := GenericAPIError{
 			error: httpResponse.Status,
 			text:  string(responseBody),
 		}

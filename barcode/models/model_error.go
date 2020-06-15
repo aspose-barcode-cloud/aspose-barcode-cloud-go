@@ -24,7 +24,7 @@
 
 package barcode
 
-// Error
+//ModelError - Error
 type ModelError struct {
 	// Code
 	Code string `json:"Code,omitempty"`

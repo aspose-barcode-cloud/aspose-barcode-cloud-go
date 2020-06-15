@@ -24,7 +24,7 @@
 
 package barcode
 
-// Represents information about barcode.
+//BarcodeResponse - Represents information about barcode.
 type BarcodeResponse struct {
 	// Barcode data.
 	BarcodeValue string `json:"BarcodeValue,omitempty"`

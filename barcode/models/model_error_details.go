@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-// The error details
+//ErrorDetails - The error details
 type ErrorDetails struct {
 	// The request id
 	RequestId string `json:"RequestId,omitempty"`

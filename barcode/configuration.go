@@ -48,7 +48,7 @@ var (
 	// ContextAccessToken takes a string oauth2 access token as authentication for the request.
 	ContextAccessToken = contextKey("accesstoken")
 
-	// ContextJWT takes ClientId and ClientSecret to fetch JWT as authentication for the request
+	// ContextJWT takes ClientID and ClientSecret to fetch JWT as authentication for the request
 	ContextJWT = contextKey("jwt")
 )
 
@@ -64,6 +64,7 @@ type APIKey struct {
 	Prefix string
 }
 
+// Configuration - API configuration
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
 	Host          string            `json:"host,omitempty"`
@@ -72,6 +73,7 @@ type Configuration struct {
 	HTTPClient    *http.Client      `json:"-"`
 }
 
+// NewConfiguration - constructor
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.aspose.cloud/v3.0",
@@ -81,6 +83,7 @@ func NewConfiguration() *Configuration {
 	return cfg
 }
 
+// AddDefaultHeader allow to add custom header
 func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }

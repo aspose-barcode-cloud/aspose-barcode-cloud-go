@@ -2,17 +2,20 @@ package test
 
 import (
 	"encoding/json"
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"io/ioutil"
 	"os"
+
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
 
+//Config is Configuration
 type Config struct {
 	JwtConfig jwt.Config        `json:"jwt"`
-	ApiConfig api.Configuration `json:"api"`
+	APIConfig api.Configuration `json:"api"`
 }
 
+//NewConfig creates new Config from JSON-file
 func NewConfig(fileName string) (*Config, error) {
 	f, err := os.Open(fileName)
 	if err != nil {
@@ -25,7 +28,7 @@ func NewConfig(fileName string) (*Config, error) {
 		return nil, err
 	}
 
-	config, err := NewConfigFromJson(bytes)
+	config, err := NewConfigFromJSON(bytes)
 	if err != nil {
 		return nil, err
 	}
@@ -33,10 +36,11 @@ func NewConfig(fileName string) (*Config, error) {
 	return config, nil
 }
 
-func NewConfigFromJson(bytes []byte) (*Config, error) {
+//NewConfigFromJSON creates new Config from JSON-bytes
+func NewConfigFromJSON(bytes []byte) (*Config, error) {
 	config := Config{
 		JwtConfig: *jwt.NewConfig("", ""),
-		ApiConfig: *api.NewConfiguration(),
+		APIConfig: *api.NewConfiguration(),
 	}
 	err := json.Unmarshal(bytes, &config)
 	if err != nil {
