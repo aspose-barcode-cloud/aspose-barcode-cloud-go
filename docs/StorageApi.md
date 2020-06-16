@@ -30,18 +30,14 @@ Name | Type | Description  | Notes
  **storageName** | **optional.String**| Storage name |
 
 ### GetDiscUsage Return type
+
 [**DiscUsage**](DiscUsage.md)
 
 ### GetDiscUsage Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetFileVersions
 
@@ -66,18 +62,14 @@ Name | Type | Description  | Notes
  **storageName** | **optional.String**| Storage name |
 
 ### GetFileVersions Return type
+
 [**FileVersions**](FileVersions.md)
 
 ### GetFileVersions Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## ObjectExists
 
@@ -103,18 +95,14 @@ Name | Type | Description  | Notes
  **versionId** | **optional.String**| File version ID |
 
 ### ObjectExists Return type
+
 [**ObjectExist**](ObjectExist.md)
 
 ### ObjectExists Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## StorageExists
 
@@ -129,16 +117,11 @@ Name | Type | Description  | Notes
  **storageName** | **string**| Storage name |
 
 ### StorageExists Return type
+
 [**StorageExist**](StorageExist.md)
 
 ### StorageExists Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

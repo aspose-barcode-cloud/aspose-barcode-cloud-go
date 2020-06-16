@@ -36,18 +36,14 @@ Name | Type | Description  | Notes
  **destStorageName** | **optional.String**| Destination storage name |
 
 ### CopyFolder Return type
+
  (empty response body)
 
 ### CopyFolder Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## CreateFolder
 
@@ -72,18 +68,14 @@ Name | Type | Description  | Notes
  **storageName** | **optional.String**| Storage name |
 
 ### CreateFolder Return type
+
  (empty response body)
 
 ### CreateFolder Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## DeleteFolder
 
@@ -109,18 +101,14 @@ Name | Type | Description  | Notes
  **recursive** | **optional.Bool**| Enable to delete folders, subfolders and files | [default to false]
 
 ### DeleteFolder Return type
+
  (empty response body)
 
 ### DeleteFolder Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetFilesList
 
@@ -145,18 +133,14 @@ Name | Type | Description  | Notes
  **storageName** | **optional.String**| Storage name |
 
 ### GetFilesList Return type
+
 [**FilesList**](FilesList.md)
 
 ### GetFilesList Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## MoveFolder
 
@@ -184,16 +168,11 @@ Name | Type | Description  | Notes
  **destStorageName** | **optional.String**| Destination storage name |
 
 ### MoveFolder Return type
+
  (empty response body)
 
 ### MoveFolder Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

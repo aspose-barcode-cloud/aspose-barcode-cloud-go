@@ -37,18 +37,14 @@ Name | Type | Description  | Notes
  **versionId** | **optional.String**| File version ID to copy |
 
 ### CopyFile Return type
+
  (empty response body)
 
 ### CopyFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## DeleteFile
 
@@ -74,18 +70,14 @@ Name | Type | Description  | Notes
  **versionId** | **optional.String**| File version ID to delete |
 
 ### DeleteFile Return type
+
  (empty response body)
 
 ### DeleteFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## DownloadFile
 
@@ -111,18 +103,14 @@ Name | Type | Description  | Notes
  **versionId** | **optional.String**| File version ID to download |
 
 ### DownloadFile Return type
+
 **byte[]**
 
 ### DownloadFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: multipart/form-data
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## MoveFile
 
@@ -151,18 +139,14 @@ Name | Type | Description  | Notes
  **versionId** | **optional.String**| File version ID to move |
 
 ### MoveFile Return type
+
  (empty response body)
 
 ### MoveFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## UploadFile
 
@@ -189,16 +173,11 @@ Name | Type | Description  | Notes
  **storageName** | **optional.String**| Storage name |
 
 ### UploadFile Return type
+
 [**FilesUploadResult**](FilesUploadResult.md)
 
 ### UploadFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -67,18 +67,14 @@ Name | Type | Description  | Notes
  **format** | **optional.String**| Result image format. |
 
 ### GetBarcodeGenerate Return type
+
 **byte[]**
 
 ### GetBarcodeGenerate Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: image/png, image/bmp, image/gif, image/jpeg, image/svg+xml, image/tiff
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetBarcodeRecognize
 
@@ -126,7 +122,7 @@ Name | Type | Description  | Notes
  **allowSaltAndPepperFiltering** | **optional.Bool**| Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots. |
  **allowWhiteSpotsRemoving** | **optional.Bool**| Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering. |
  **regionLikelihoodThresholdPercent** | **optional.Float64**| Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
- **scanWindowSizes** | [**optional.Interface of []int32**](int32.md)| Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
+ **scanWindowSizes** | **optional.Interface of []int32**| Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
  **similarity** | **optional.Float64**| Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
  **skipDiagonalSearch** | **optional.Bool**| Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **australianPostEncodingTable** | **optional.String**| Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
@@ -135,18 +131,14 @@ Name | Type | Description  | Notes
  **folder** | **optional.String**| The image folder. |
 
 ### GetBarcodeRecognize Return type
+
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
 ### GetBarcodeRecognize Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PostBarcodeRecognizeFromUrlOrContent
 
@@ -192,7 +184,7 @@ Name | Type | Description  | Notes
  **allowSaltAndPepperFiltering** | **optional.Bool**| Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots. |
  **allowWhiteSpotsRemoving** | **optional.Bool**| Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering. |
  **regionLikelihoodThresholdPercent** | **optional.Float64**| Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
- **scanWindowSizes** | [**optional.Interface of []int32**](int32.md)| Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
+ **scanWindowSizes** | **optional.Interface of []int32**| Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
  **similarity** | **optional.Float64**| Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
  **skipDiagonalSearch** | **optional.Bool**| Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **australianPostEncodingTable** | **optional.String**| Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
@@ -201,18 +193,14 @@ Name | Type | Description  | Notes
  **image** | **optional.Interface of *os.File**| Image data |
 
 ### PostBarcodeRecognizeFromUrlOrContent Return type
+
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
 ### PostBarcodeRecognizeFromUrlOrContent Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/octet-stream
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PostGenerateMultiple
 
@@ -237,18 +225,14 @@ Name | Type | Description  | Notes
  **format** | **optional.String**| Format to return stream in | [default to png]
 
 ### PostGenerateMultiple Return type
+
 **byte[]**
 
 ### PostGenerateMultiple Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json, application/xml
-- **Accept**: image/png, image/bmp, image/gif, image/jpeg, image/svg+xml, image/tiff
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PutBarcodeGenerateFile
 
@@ -309,18 +293,14 @@ Name | Type | Description  | Notes
  **format** | **optional.String**| The image format. |
 
 ### PutBarcodeGenerateFile Return type
+
 [**ResultImageInfo**](ResultImageInfo.md)
 
 ### PutBarcodeGenerateFile Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json, application/xml
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PutBarcodeRecognizeFromBody
 
@@ -349,18 +329,14 @@ Name | Type | Description  | Notes
  **folder** | **optional.String**| The image folder. |
 
 ### PutBarcodeRecognizeFromBody Return type
+
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
 ### PutBarcodeRecognizeFromBody Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PutGenerateMultiple
 
@@ -389,16 +365,11 @@ Name | Type | Description  | Notes
  **storage** | **optional.String**| The storage name |
 
 ### PutGenerateMultiple Return type
+
 [**ResultImageInfo**](ResultImageInfo.md)
 
 ### PutGenerateMultiple Authorization
 
 [JWT](../README.md#JWT)
 
-### HTTP request headers
-
-- **Content-Type**: application/json, application/xml
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
