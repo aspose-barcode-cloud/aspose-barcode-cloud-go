@@ -117,7 +117,7 @@ GetBarcodeGenerate -  Generate barcode.
      * @param "SupplementSpace" (optional.Float64) -  Space between main the BarCode and supplement BarCode.
      * @param "Format" (optional.String) -  Result image format.
 
-@return *os.File
+ * @return []byte
 */
 func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string, text string, optionals *BarcodeApiGetBarcodeGenerateOpts) ([]byte, *http.Response, error) {
 	var (
@@ -381,7 +381,7 @@ GetBarcodeRecognize -  Recognize barcode from a file on server.
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
 
-@return BarcodeResponseList
+ * @return BarcodeResponseList
 */
 func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string, optionals *BarcodeApiGetBarcodeRecognizeOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
@@ -638,7 +638,7 @@ PostBarcodeRecognizeFromUrlOrContent -  Recognize barcode from an url or from re
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data
 
-@return BarcodeResponseList
+ * @return BarcodeResponseList
 */
 func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Context, optionals *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
@@ -839,7 +839,7 @@ PostGenerateMultiple -  Generate multiple barcodes and return in response stream
  * @param optional nil or *BarcodeApiPostGenerateMultipleOpts - Optional Parameters:
      * @param "Format" (optional.String) -  Format to return stream in
 
-@return *os.File
+ * @return []byte
 */
 func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPostGenerateMultipleOpts) ([]byte, *http.Response, error) {
 	var (
@@ -1004,7 +1004,7 @@ PutBarcodeGenerateFile -  Generate barcode and save on server (from query params
      * @param "Folder" (optional.String) -  Image&#39;s folder.
      * @param "Format" (optional.String) -  The image format.
 
-@return ResultImageInfo
+ * @return ResultImageInfo
 */
 func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name string, type_ string, text string, optionals *BarcodeApiPutBarcodeGenerateFileOpts) (ResultImageInfo, *http.Response, error) {
 	var (
@@ -1216,7 +1216,7 @@ PutBarcodeRecognizeFromBody -  Recognition of a barcode from file on server with
      * @param "Storage" (optional.String) -  The storage name
      * @param "Folder" (optional.String) -  The image folder.
 
-@return BarcodeResponseList
+ * @return BarcodeResponseList
 */
 func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, name string, readerParams ReaderParams, optionals *BarcodeApiPutBarcodeRecognizeFromBodyOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
@@ -1327,7 +1327,7 @@ PutGenerateMultiple -  Generate image with multiple barcodes and put new file on
      * @param "Folder" (optional.String) -  Folder to place file to
      * @param "Storage" (optional.String) -  The storage name
 
-@return ResultImageInfo
+ * @return ResultImageInfo
 */
 func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPutGenerateMultipleOpts) (ResultImageInfo, *http.Response, error) {
 	var (

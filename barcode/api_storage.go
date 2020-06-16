@@ -54,7 +54,7 @@ GetDiscUsage -  Get disc usage
  * @param optional nil or *StorageApiGetDiscUsageOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
 
-@return DiscUsage
+ * @return DiscUsage
 */
 func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *StorageApiGetDiscUsageOpts) (DiscUsage, *http.Response, error) {
 	var (
@@ -151,7 +151,7 @@ GetFileVersions -  Get file versions
  * @param optional nil or *StorageApiGetFileVersionsOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
 
-@return FileVersions
+ * @return FileVersions
 */
 func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, optionals *StorageApiGetFileVersionsOpts) (FileVersions, *http.Response, error) {
 	var (
@@ -251,7 +251,7 @@ ObjectExists -  Check if file or folder exists
      * @param "StorageName" (optional.String) -  Storage name
      * @param "VersionId" (optional.String) -  File version ID
 
-@return ObjectExist
+ * @return ObjectExist
 */
 func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optionals *StorageApiObjectExistsOpts) (ObjectExist, *http.Response, error) {
 	var (
@@ -345,7 +345,7 @@ StorageExists -  Check if storage exists
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param storageName Storage name
 
-@return StorageExist
+ * @return StorageExist
 */
 func (a *StorageApiService) StorageExists(ctx context.Context, storageName string) (StorageExist, *http.Response, error) {
 	var (

@@ -1,6 +1,7 @@
 # GeneratorParams
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **TypeOfBarcode** | [***EncodeBarcodeType**](EncodeBarcodeType.md) | Type of barcode to generate.  | [default to null]
@@ -55,5 +56,3 @@ Name | Type | Description | Notes
 **QR** | [***QrParams**](QrParams.md) | QR params. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

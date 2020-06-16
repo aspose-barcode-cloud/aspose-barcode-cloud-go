@@ -1,6 +1,7 @@
 # FileVersion
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | File or folder name. | [optional] [default to null]
@@ -12,5 +13,3 @@ Name | Type | Description | Notes
 **IsLatest** | **bool** | Specifies whether the file is (true) or is not (false) the latest version of an file. | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

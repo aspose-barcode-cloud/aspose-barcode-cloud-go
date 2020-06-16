@@ -301,7 +301,7 @@ GetFilesList -  Get all files and folders within a folder
  * @param optional nil or *FolderApiGetFilesListOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
 
-@return FilesList
+ * @return FilesList
 */
 func (a *FolderApiService) GetFilesList(ctx context.Context, path string, optionals *FolderApiGetFilesListOpts) (FilesList, *http.Response, error) {
 	var (

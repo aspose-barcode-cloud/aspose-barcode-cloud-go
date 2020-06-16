@@ -1,6 +1,7 @@
 # BarcodeResponse
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BarcodeValue** | **string** | Barcode data.  | [optional] [default to null]
@@ -9,5 +10,3 @@ Name | Type | Description | Notes
 **Checksum** | **string** | Checksum of barcode.  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

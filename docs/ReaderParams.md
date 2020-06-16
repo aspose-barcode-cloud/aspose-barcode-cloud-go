@@ -1,6 +1,7 @@
 # ReaderParams
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Type_** | [***DecodeBarcodeType**](DecodeBarcodeType.md) | The type of barcode to read.  | [optional] [default to null]
@@ -35,5 +36,3 @@ Name | Type | Description | Notes
 **AustralianPostEncodingTable** | [***CustomerInformationInterpretingType**](CustomerInformationInterpretingType.md) | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

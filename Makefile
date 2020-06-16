@@ -5,6 +5,7 @@ all: format vet test tidy
 .PHONY: format
 format:
 	./scripts/fmt.sh
+	./scripts/docs_format.sh
 
 .PHONY: vet
 vet:

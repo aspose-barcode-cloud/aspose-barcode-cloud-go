@@ -231,7 +231,7 @@ DownloadFile -  Download file
      * @param "StorageName" (optional.String) -  Storage name
      * @param "VersionId" (optional.String) -  File version ID to download
 
-@return *os.File
+ * @return []byte
 */
 func (a *FileApiService) DownloadFile(ctx context.Context, path string, optionals *FileApiDownloadFileOpts) ([]byte, *http.Response, error) {
 	var (
@@ -423,7 +423,7 @@ UploadFile -  Upload file
  * @param optional nil or *FileApiUploadFileOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
 
-@return FilesUploadResult
+ * @return FilesUploadResult
 */
 func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.File, optionals *FileApiUploadFileOpts) (FilesUploadResult, *http.Response, error) {
 	var (

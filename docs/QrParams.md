@@ -1,6 +1,7 @@
 # QrParams
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AspectRatio** | **float64** | Height/Width ratio of 2D BarCode module. | [optional] [default to null]
@@ -12,5 +13,3 @@ Name | Type | Description | Notes
 **Version** | [***QrVersion**](QRVersion.md) | Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

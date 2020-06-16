@@ -1,6 +1,7 @@
 # ResultImageInfo
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FileSize** | **int64** | Result file size.  | [default to null]
@@ -8,5 +9,3 @@ Name | Type | Description | Notes
 **ImageHeight** | **int32** | Result image height.  | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
