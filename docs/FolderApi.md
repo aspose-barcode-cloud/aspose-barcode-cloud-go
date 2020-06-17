@@ -20,8 +20,8 @@ Copy folder
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **srcPath** | **string**| Source folder path e.g. &#39;/src&#39; |
- **destPath** | **string**| Destination folder path e.g. &#39;/dst&#39; |
+ **srcPath** | **string** | Source folder path e.g. &#39;/src&#39; |
+ **destPath** | **string** | Destination folder path e.g. &#39;/dst&#39; |
  **optional** | ***FolderApiCopyFolderOpts** | optional parameters | nil if no parameters
 
 ### CopyFolder Optional Parameters
@@ -32,8 +32,8 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
 
- **srcStorageName** | **optional.String**| Source storage name |
- **destStorageName** | **optional.String**| Destination storage name |
+ **SrcStorageName** | **optional.String** | Source storage name |
+ **DestStorageName** | **optional.String** | Destination storage name |
 
 ### CopyFolder Return type
 
@@ -55,7 +55,7 @@ Create the folder
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| Folder path to create e.g. &#39;folder_1/folder_2/&#39; |
+ **path** | **string** | Folder path to create e.g. &#39;folder_1/folder_2/&#39; |
  **optional** | ***FolderApiCreateFolderOpts** | optional parameters | nil if no parameters
 
 ### CreateFolder Optional Parameters
@@ -65,7 +65,7 @@ Optional parameters are passed through a pointer to a FolderApiCreateFolderOpts 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
+ **StorageName** | **optional.String** | Storage name |
 
 ### CreateFolder Return type
 
@@ -87,7 +87,7 @@ Delete folder
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| Folder path e.g. &#39;/folder&#39; |
+ **path** | **string** | Folder path e.g. &#39;/folder&#39; |
  **optional** | ***FolderApiDeleteFolderOpts** | optional parameters | nil if no parameters
 
 ### DeleteFolder Optional Parameters
@@ -97,8 +97,8 @@ Optional parameters are passed through a pointer to a FolderApiDeleteFolderOpts 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
- **recursive** | **optional.Bool**| Enable to delete folders, subfolders and files | [default to false]
+ **StorageName** | **optional.String** | Storage name |
+ **Recursive** | **optional.Bool** | Enable to delete folders, subfolders and files | [default to false]
 
 ### DeleteFolder Return type
 
@@ -120,7 +120,7 @@ Get all files and folders within a folder
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| Folder path e.g. &#39;/folder&#39; |
+ **path** | **string** | Folder path e.g. &#39;/folder&#39; |
  **optional** | ***FolderApiGetFilesListOpts** | optional parameters | nil if no parameters
 
 ### GetFilesList Optional Parameters
@@ -130,7 +130,7 @@ Optional parameters are passed through a pointer to a FolderApiGetFilesListOpts 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
+ **StorageName** | **optional.String** | Storage name |
 
 ### GetFilesList Return type
 
@@ -152,8 +152,8 @@ Move folder
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **srcPath** | **string**| Folder path to move e.g. &#39;/folder&#39; |
- **destPath** | **string**| Destination folder path to move to e.g &#39;/dst&#39; |
+ **srcPath** | **string** | Folder path to move e.g. &#39;/folder&#39; |
+ **destPath** | **string** | Destination folder path to move to e.g &#39;/dst&#39; |
  **optional** | ***FolderApiMoveFolderOpts** | optional parameters | nil if no parameters
 
 ### MoveFolder Optional Parameters
@@ -164,8 +164,8 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
 
- **srcStorageName** | **optional.String**| Source storage name |
- **destStorageName** | **optional.String**| Destination storage name |
+ **SrcStorageName** | **optional.String** | Source storage name |
+ **DestStorageName** | **optional.String** | Destination storage name |
 
 ### MoveFolder Return type
 

@@ -27,7 +27,7 @@ Optional parameters are passed through a pointer to a StorageApiGetDiscUsageOpts
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
- **storageName** | **optional.String**| Storage name |
+ **StorageName** | **optional.String** | Storage name |
 
 ### GetDiscUsage Return type
 
@@ -49,7 +49,7 @@ Get file versions
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| File path e.g. &#39;/file.ext&#39; |
+ **path** | **string** | File path e.g. &#39;/file.ext&#39; |
  **optional** | ***StorageApiGetFileVersionsOpts** | optional parameters | nil if no parameters
 
 ### GetFileVersions Optional Parameters
@@ -59,7 +59,7 @@ Optional parameters are passed through a pointer to a StorageApiGetFileVersionsO
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
+ **StorageName** | **optional.String** | Storage name |
 
 ### GetFileVersions Return type
 
@@ -81,7 +81,7 @@ Check if file or folder exists
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39; |
+ **path** | **string** | File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39; |
  **optional** | ***StorageApiObjectExistsOpts** | optional parameters | nil if no parameters
 
 ### ObjectExists Optional Parameters
@@ -91,8 +91,8 @@ Optional parameters are passed through a pointer to a StorageApiObjectExistsOpts
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
- **versionId** | **optional.String**| File version ID |
+ **StorageName** | **optional.String** | Storage name |
+ **VersionId** | **optional.String** | File version ID |
 
 ### ObjectExists Return type
 
@@ -114,7 +114,7 @@ Check if storage exists
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **storageName** | **string**| Storage name |
+ **storageName** | **string** | Storage name |
 
 ### StorageExists Return type
 

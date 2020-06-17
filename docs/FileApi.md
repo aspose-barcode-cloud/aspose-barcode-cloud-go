@@ -20,8 +20,8 @@ Copy file
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **srcPath** | **string**| Source file path e.g. &#39;/folder/file.ext&#39; |
- **destPath** | **string**| Destination file path |
+ **srcPath** | **string** | Source file path e.g. &#39;/folder/file.ext&#39; |
+ **destPath** | **string** | Destination file path |
  **optional** | ***FileApiCopyFileOpts** | optional parameters | nil if no parameters
 
 ### CopyFile Optional Parameters
@@ -32,9 +32,9 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
 
- **srcStorageName** | **optional.String**| Source storage name |
- **destStorageName** | **optional.String**| Destination storage name |
- **versionId** | **optional.String**| File version ID to copy |
+ **SrcStorageName** | **optional.String** | Source storage name |
+ **DestStorageName** | **optional.String** | Destination storage name |
+ **VersionId** | **optional.String** | File version ID to copy |
 
 ### CopyFile Return type
 
@@ -56,7 +56,7 @@ Delete file
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| File path e.g. &#39;/folder/file.ext&#39; |
+ **path** | **string** | File path e.g. &#39;/folder/file.ext&#39; |
  **optional** | ***FileApiDeleteFileOpts** | optional parameters | nil if no parameters
 
 ### DeleteFile Optional Parameters
@@ -66,8 +66,8 @@ Optional parameters are passed through a pointer to a FileApiDeleteFileOpts stru
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
- **versionId** | **optional.String**| File version ID to delete |
+ **StorageName** | **optional.String** | Storage name |
+ **VersionId** | **optional.String** | File version ID to delete |
 
 ### DeleteFile Return type
 
@@ -89,7 +89,7 @@ Download file
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| File path e.g. &#39;/folder/file.ext&#39; |
+ **path** | **string** | File path e.g. &#39;/folder/file.ext&#39; |
  **optional** | ***FileApiDownloadFileOpts** | optional parameters | nil if no parameters
 
 ### DownloadFile Optional Parameters
@@ -99,8 +99,8 @@ Optional parameters are passed through a pointer to a FileApiDownloadFileOpts st
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **storageName** | **optional.String**| Storage name |
- **versionId** | **optional.String**| File version ID to download |
+ **StorageName** | **optional.String** | Storage name |
+ **VersionId** | **optional.String** | File version ID to download |
 
 ### DownloadFile Return type
 
@@ -122,8 +122,8 @@ Move file
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **srcPath** | **string**| Source file path e.g. &#39;/src.ext&#39; |
- **destPath** | **string**| Destination file path e.g. &#39;/dest.ext&#39; |
+ **srcPath** | **string** | Source file path e.g. &#39;/src.ext&#39; |
+ **destPath** | **string** | Destination file path e.g. &#39;/dest.ext&#39; |
  **optional** | ***FileApiMoveFileOpts** | optional parameters | nil if no parameters
 
 ### MoveFile Optional Parameters
@@ -134,9 +134,9 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
 
- **srcStorageName** | **optional.String**| Source storage name |
- **destStorageName** | **optional.String**| Destination storage name |
- **versionId** | **optional.String**| File version ID to move |
+ **SrcStorageName** | **optional.String** | Source storage name |
+ **DestStorageName** | **optional.String** | Destination storage name |
+ **VersionId** | **optional.String** | File version ID to move |
 
 ### MoveFile Return type
 
@@ -158,8 +158,8 @@ Upload file
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **path** | **string**| Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.  |
- **file** | ***os.File**| File to upload |
+ **path** | **string** | Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.  |
+ **file** | ***os.File** | File to upload |
  **optional** | ***FileApiUploadFileOpts** | optional parameters | nil if no parameters
 
 ### UploadFile Optional Parameters
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
 
- **storageName** | **optional.String**| Storage name |
+ **StorageName** | **optional.String** | Storage name |
 
 ### UploadFile Return type
 
