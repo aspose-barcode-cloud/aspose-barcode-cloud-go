@@ -5,7 +5,6 @@
     "tokenUrl": "https://api.aspose.cloud/connect/token"
   },
   "api": {
-    "basePath": "https://api.aspose.cloud/v3.0",
-    "userAgent": "Aspose-Barcode-SDK/20.5.0/go"
+    "basePath": "https://api.aspose.cloud/v3.0"
   }
 }

@@ -21,14 +21,11 @@ func main() {
 
 	client := api.NewAPIClient(api.NewConfiguration())
 
-	data, resp, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
+	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
 	if err != nil {
 		panic(err)
 	}
 
-	if resp.StatusCode != 200 {
-		panic(data)
-	}
 	out, err := os.Create(fileName)
 	if err != nil {
 		panic(err)
