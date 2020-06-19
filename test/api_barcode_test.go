@@ -41,7 +41,7 @@ func TestGetBarcodeRecognize(t *testing.T) {
 	assert.Greater(t, recognized.Barcodes[0].Region[0].Y, int32(0))
 }
 
-func TestPostBarcodeRecognizeFromUrlOrContent(t *testing.T) {
+func TestPostBarcodeRecognizeFromUrlOrContent_File(t *testing.T) {
 	fileName := "../testdata/pdf417Sample.png"
 
 	file, err := os.Open(fileName)
@@ -51,6 +51,26 @@ func TestPostBarcodeRecognizeFromUrlOrContent(t *testing.T) {
 	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
 		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
+	}
+	recognized, _, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewAuthContextForTests(), optionals)
+	require.Nil(t, err)
+	require.Equal(t, 1, len(recognized.Barcodes))
+
+	assert.Equal(t, string(models.DecodeBarcodeTypePdf417), recognized.Barcodes[0].Type)
+	assert.Equal(t, "Aspose.BarCode for Cloud Sample", recognized.Barcodes[0].BarcodeValue)
+	require.Greater(t, len(recognized.Barcodes[0].Region), 0)
+	assert.Greater(t, recognized.Barcodes[0].Region[0].X, int32(0))
+	assert.Greater(t, recognized.Barcodes[0].Region[0].Y, int32(0))
+}
+
+func TestPostBarcodeRecognizeFromUrlOrContent_Bytes(t *testing.T) {
+	fileName := "../testdata/pdf417Sample.png"
+
+	bytes := readFileContent(t, fileName)
+
+	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
+		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
+		Image:  optional.NewInterface(bytes),
 	}
 	recognized, _, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewAuthContextForTests(), optionals)
 	require.Nil(t, err)

@@ -80,7 +80,7 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
 }
 
 /*
-GetBarcodeGenerate -  Generate barcode.
+ * GetBarcodeGenerate -  Generate barcode.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param type_ Type of barcode to generate.
  * @param text Text to encode.
@@ -343,7 +343,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
 }
 
 /*
-GetBarcodeRecognize -  Recognize barcode from a file on server.
+ * GetBarcodeRecognize -  Recognize barcode from a file on server.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
  * @param optional nil or *BarcodeApiGetBarcodeRecognizeOpts - Optional Parameters:
@@ -601,7 +601,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 }
 
 /*
-PostBarcodeRecognizeFromUrlOrContent -  Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
+ * PostBarcodeRecognizeFromUrlOrContent -  Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters:
      * @param "Type_" (optional.String) -  The type of barcode to read.
@@ -769,16 +769,19 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	var requestFile *os.File
+
 	if optionals != nil && optionals.Image.IsSet() {
-		fileOk := false
-		requestFile, fileOk = optionals.Image.Value().(*os.File)
-		if !fileOk {
-			return returnValue, nil, reportError("image should be *os.File")
+		if requestFile, fileOk := optionals.Image.Value().(*os.File); fileOk {
+			var err error
+			postBody, err = ioutil.ReadAll(requestFile)
+			if err != nil {
+				return returnValue, nil, err
+			}
+		} else if requestBytes, bytesOK := optionals.Image.Value().([]byte); bytesOK {
+			postBody = requestBytes
+		} else {
+			return returnValue, nil, reportError("image should be *os.File or []byte")
 		}
-	}
-	if requestFile != nil {
-		postBody, _ = ioutil.ReadAll(requestFile)
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {
@@ -833,7 +836,7 @@ type BarcodeApiPostGenerateMultipleOpts struct {
 }
 
 /*
-PostGenerateMultiple -  Generate multiple barcodes and return in response stream
+ * PostGenerateMultiple -  Generate multiple barcodes and return in response stream
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param generatorParamsList List of barcodes
  * @param optional nil or *BarcodeApiPostGenerateMultipleOpts - Optional Parameters:
@@ -964,7 +967,7 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
 }
 
 /*
-PutBarcodeGenerateFile -  Generate barcode and save on server (from query params or from file with json or xml content)
+ * PutBarcodeGenerateFile -  Generate barcode and save on server (from query params or from file with json or xml content)
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
  * @param type_ Type of barcode to generate.
@@ -1207,7 +1210,7 @@ type BarcodeApiPutBarcodeRecognizeFromBodyOpts struct {
 }
 
 /*
-PutBarcodeRecognizeFromBody -  Recognition of a barcode from file on server with parameters in body.
+ * PutBarcodeRecognizeFromBody -  Recognition of a barcode from file on server with parameters in body.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name The image file name.
  * @param readerParams BarcodeReader object with parameters.
@@ -1318,7 +1321,7 @@ type BarcodeApiPutGenerateMultipleOpts struct {
 }
 
 /*
-PutGenerateMultiple -  Generate image with multiple barcodes and put new file on server
+ * PutGenerateMultiple -  Generate image with multiple barcodes and put new file on server
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param name New filename
  * @param generatorParamsList List of barcodes
