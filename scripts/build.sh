@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -euo pipefail
+
+go build ./barcode/...
+go build ./cmd/...
