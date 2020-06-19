@@ -28,7 +28,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/antihax/optional"
-	. "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -50,7 +49,7 @@ type FolderApiCopyFolderOpts struct {
 }
 
 /*
-CopyFolder -  Copy folder
+ * CopyFolder -  Copy folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Source folder path e.g. &#39;/src&#39;
  * @param destPath Destination folder path e.g. &#39;/dst&#39;
@@ -134,7 +133,7 @@ type FolderApiCreateFolderOpts struct {
 }
 
 /*
-CreateFolder -  Create the folder
+ * CreateFolder -  Create the folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path to create e.g. &#39;folder_1/folder_2/&#39;
  * @param optional nil or *FolderApiCreateFolderOpts - Optional Parameters:
@@ -213,7 +212,7 @@ type FolderApiDeleteFolderOpts struct {
 }
 
 /*
-DeleteFolder -  Delete folder
+ * DeleteFolder -  Delete folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path e.g. &#39;/folder&#39;
  * @param optional nil or *FolderApiDeleteFolderOpts - Optional Parameters:
@@ -295,7 +294,7 @@ type FolderApiGetFilesListOpts struct {
 }
 
 /*
-GetFilesList -  Get all files and folders within a folder
+ * GetFilesList -  Get all files and folders within a folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path Folder path e.g. &#39;/folder&#39;
  * @param optional nil or *FolderApiGetFilesListOpts - Optional Parameters:
@@ -394,7 +393,7 @@ type FolderApiMoveFolderOpts struct {
 }
 
 /*
-MoveFolder -  Move folder
+ * MoveFolder -  Move folder
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param srcPath Folder path to move e.g. &#39;/folder&#39;
  * @param destPath Destination folder path to move to e.g &#39;/dst&#39;

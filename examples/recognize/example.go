@@ -7,8 +7,7 @@ import (
 	"os"
 
 	"github.com/antihax/optional"
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 )
 
 func main() {
@@ -24,15 +23,15 @@ func main() {
 	}
 	defer file.Close()
 
-	client := api.NewAPIClient(api.NewConfiguration())
-	authCtx := context.WithValue(context.Background(), api.ContextJWT, jwtConf.TokenSource(context.Background()))
+	client := barcode.NewAPIClient(barcode.NewConfiguration())
+	authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
 
-	optionals := &api.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-		Preset: optional.NewString(string(models.PresetTypeHighPerformance)),
+	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
+		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
 
-	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, optionals)
+	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
 	if err != nil {
 		panic(err)
 	}
@@ -41,7 +40,7 @@ func main() {
 		fmt.Printf("No barcodes in %s", fileName)
 	}
 
-	for i, barcode := range recognized.Barcodes {
-		fmt.Printf("Recognized #%d: %s %s", i+1, barcode.Type, barcode.BarcodeValue)
+	for i, oneBarcode := range recognized.Barcodes {
+		fmt.Printf("Recognized #%d: %s %s", i+1, oneBarcode.Type, oneBarcode.BarcodeValue)
 	}
 }

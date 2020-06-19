@@ -6,8 +6,7 @@ import (
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"os"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	models "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 )
 
 func main() {
@@ -17,11 +16,11 @@ func main() {
 	)
 	fileName := "testdata/generated.png"
 
-	authCtx := context.WithValue(context.Background(), api.ContextJWT, jwtConf.TokenSource(context.Background()))
+	authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
 
-	client := api.NewAPIClient(api.NewConfiguration())
+	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(models.EncodeBarcodeTypeCode128), "Go SDK", nil)
+	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(barcode.EncodeBarcodeTypeQR), "Go SDK example", nil)
 	if err != nil {
 		panic(err)
 	}

@@ -28,7 +28,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/antihax/optional"
-	. "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -49,7 +48,7 @@ type StorageApiGetDiscUsageOpts struct {
 }
 
 /*
-GetDiscUsage -  Get disc usage
+ * GetDiscUsage -  Get disc usage
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *StorageApiGetDiscUsageOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
@@ -145,7 +144,7 @@ type StorageApiGetFileVersionsOpts struct {
 }
 
 /*
-GetFileVersions -  Get file versions
+ * GetFileVersions -  Get file versions
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File path e.g. &#39;/file.ext&#39;
  * @param optional nil or *StorageApiGetFileVersionsOpts - Optional Parameters:
@@ -244,7 +243,7 @@ type StorageApiObjectExistsOpts struct {
 }
 
 /*
-ObjectExists -  Check if file or folder exists
+ * ObjectExists -  Check if file or folder exists
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
  * @param optional nil or *StorageApiObjectExistsOpts - Optional Parameters:
@@ -341,12 +340,12 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 }
 
 /*
-StorageExists -  Check if storage exists
+ * StorageExists -  Check if storage exists
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param storageName Storage name
 
  * @return StorageExist
-*/
+ */
 func (a *StorageApiService) StorageExists(ctx context.Context, storageName string) (StorageExist, *http.Response, error) {
 	var (
 		httpMethod  = strings.ToUpper("Get")
