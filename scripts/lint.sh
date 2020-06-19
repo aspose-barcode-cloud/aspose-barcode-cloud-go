@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-golint -set_exit_status ./...
+golint -set_exit_status ./examples/ ./test/

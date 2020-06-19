@@ -11,33 +11,132 @@ To use these SDKs, you will need App SID and App Key which can be looked up at [
 
 ## Prerequisites
 
-To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
+To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is a free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 ## Installation
 
-TODO: Go get
+### Using Go Modules (recommended)
+
+1. Go to existing module directory, or create a new module (see <https://blog.golang.org/using-go-modules>)
+1. Run `go get` command
+
+    ```shell script
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@2006.0.0
+    ```
+
+### Using GOPATH (for Go < 1.11 )
+
+1. Run `go get` command outside module directory
+
+    ```shell script
+   go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode
+   ```
 
 ## Sample usage
 
-### Generate barcode
+### Generate an image with barcode
 
-The examples below show how you can generate Code128 barcode and save it into local file using **barcode**:
+The examples below show how you can generate QR barcode and save it into a local file using **barcode**:
 
 ```go
-TODO:
+package main
+
+import (
+    "context"
+    "fmt"
+    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+    "os"
+)
+
+func main() {
+    jwtConf := jwt.NewConfig(
+        "App SID from https://dashboard.aspose.cloud/#/apps",
+        "App Key from https://dashboard.aspose.cloud/#/apps",
+    )
+    fileName := "testdata/generated.png"
+
+    authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+
+    client := barcode.NewAPIClient(barcode.NewConfiguration())
+
+    data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(barcode.EncodeBarcodeTypeQR), "Go SDK example", nil)
+    if err != nil {
+        panic(err)
+    }
+
+    out, err := os.Create(fileName)
+    if err != nil {
+        panic(err)
+    }
+    defer out.Close()
+
+    written, err := out.Write(data)
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Printf("Written %d bytes to file %s\n", written, fileName)
+}
 ```
 
-### Recognize barcode from image
+### Recognize a barcode on image
 
-The examples below show how you can recognize barcode text and type on image using **barcode**:
+The examples below show how you can recognize barcode text and type on the image using **barcode**:
 
 ```go
-TODO:
+package main
+
+import (
+    "context"
+    "fmt"
+    "github.com/antihax/optional"
+    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+    "os"
+)
+
+func main() {
+    jwtConf := jwt.NewConfig(
+        "App SID from https://dashboard.aspose.cloud/#/apps",
+        "App Key from https://dashboard.aspose.cloud/#/apps",
+    )
+    fileName := "testdata/pdf417Sample.png"
+
+    file, err := os.Open(fileName)
+    if err != nil {
+        panic(err)
+    }
+    defer file.Close()
+
+    client := barcode.NewAPIClient(barcode.NewConfiguration())
+    authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+
+    optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
+        Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
+        Image:  optional.NewInterface(file),
+    }
+
+    recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
+    if err != nil {
+        panic(err)
+    }
+
+    if len(recognized.Barcodes) == 0 {
+        fmt.Printf("No barcodes in %s", fileName)
+    }
+
+    for i, oneBarcode := range recognized.Barcodes {
+        fmt.Printf("Recognized #%d: %s %s", i+1, oneBarcode.Type, oneBarcode.BarcodeValue)
+    }
+}
 ```
 
 ## Dependencies
 
-- TODO:
+- github.com/antihax/optional
+- github.com/google/uuid
+- golang.org/x/oauth2
 
 ## Licensing
 

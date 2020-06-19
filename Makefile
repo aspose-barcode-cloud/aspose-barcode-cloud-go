@@ -1,6 +1,6 @@
 
 .PHONY: all
-all: format vet test tidy
+all: format test
 
 .PHONY: format
 format:
@@ -20,9 +20,16 @@ build: format vet
 	./scripts/build.sh
 
 .PHONY: lint
-lint: format
+lint:
 	./scripts/lint.sh
 
 .PHONY: tidy
 tidy:
 	./scripts/tidy.sh
+
+.PHONY: update_packages
+update_packages:
+	./scripts/update_packages.sh
+
+.PHONY: release
+release: lint update_packages tidy build test

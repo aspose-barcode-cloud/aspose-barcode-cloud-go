@@ -70,10 +70,6 @@ Name | Type | Description  | Notes
 
 **byte[]**
 
-### GetBarcodeGenerate Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetBarcodeRecognize
@@ -134,10 +130,6 @@ Name | Type | Description  | Notes
 
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
-### GetBarcodeRecognize Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PostBarcodeRecognizeFromUrlOrContent
@@ -196,10 +188,6 @@ Name | Type | Description  | Notes
 
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
-### PostBarcodeRecognizeFromUrlOrContent Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PostGenerateMultiple
@@ -227,10 +215,6 @@ Name | Type | Description  | Notes
 ### PostGenerateMultiple Return type
 
 **byte[]**
-
-### PostGenerateMultiple Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -296,10 +280,6 @@ Name | Type | Description  | Notes
 
 [**ResultImageInfo**](ResultImageInfo.md)
 
-### PutBarcodeGenerateFile Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PutBarcodeRecognizeFromBody
@@ -332,10 +312,6 @@ Name | Type | Description  | Notes
 
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
-### PutBarcodeRecognizeFromBody Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## PutGenerateMultiple
@@ -367,9 +343,5 @@ Name | Type | Description  | Notes
 ### PutGenerateMultiple Return type
 
 [**ResultImageInfo**](ResultImageInfo.md)
-
-### PutGenerateMultiple Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
