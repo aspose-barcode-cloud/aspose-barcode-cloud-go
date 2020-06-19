@@ -39,10 +39,6 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-### CopyFolder Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## CreateFolder
@@ -70,10 +66,6 @@ Name | Type | Description  | Notes
 ### CreateFolder Return type
 
  (empty response body)
-
-### CreateFolder Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -104,10 +96,6 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-### DeleteFolder Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetFilesList
@@ -135,10 +123,6 @@ Name | Type | Description  | Notes
 ### GetFilesList Return type
 
 [**FilesList**](FilesList.md)
-
-### GetFilesList Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -170,9 +154,5 @@ Name | Type | Description  | Notes
 ### MoveFolder Return type
 
  (empty response body)
-
-### MoveFolder Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -40,10 +40,6 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-### CopyFile Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## DeleteFile
@@ -73,10 +69,6 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-### DeleteFile Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## DownloadFile
@@ -105,10 +97,6 @@ Name | Type | Description  | Notes
 ### DownloadFile Return type
 
 **byte[]**
-
-### DownloadFile Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -142,10 +130,6 @@ Name | Type | Description  | Notes
 
  (empty response body)
 
-### MoveFile Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## UploadFile
@@ -175,9 +159,5 @@ Name | Type | Description  | Notes
 ### UploadFile Return type
 
 [**FilesUploadResult**](FilesUploadResult.md)
-
-### UploadFile Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

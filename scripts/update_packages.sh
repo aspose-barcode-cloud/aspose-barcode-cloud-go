@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-go build ./...
+go get -u

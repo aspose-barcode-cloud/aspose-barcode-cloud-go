@@ -33,10 +33,6 @@ Name | Type | Description  | Notes
 
 [**DiscUsage**](DiscUsage.md)
 
-### GetDiscUsage Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## GetFileVersions
@@ -64,10 +60,6 @@ Name | Type | Description  | Notes
 ### GetFileVersions Return type
 
 [**FileVersions**](FileVersions.md)
-
-### GetFileVersions Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -98,10 +90,6 @@ Name | Type | Description  | Notes
 
 [**ObjectExist**](ObjectExist.md)
 
-### ObjectExists Authorization
-
-[JWT](../README.md#JWT)
-
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 ## StorageExists
@@ -119,9 +107,5 @@ Name | Type | Description  | Notes
 ### StorageExists Return type
 
 [**StorageExist**](StorageExist.md)
-
-### StorageExists Authorization
-
-[JWT](../README.md#JWT)
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
