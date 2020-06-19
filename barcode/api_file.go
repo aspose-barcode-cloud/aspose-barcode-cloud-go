@@ -28,7 +28,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/antihax/optional"
-	. "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -464,7 +463,11 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	}
 	requestFile := file
 	if requestFile != nil {
-		postBody, _ = ioutil.ReadAll(requestFile)
+		var err error
+		postBody, err = ioutil.ReadAll(requestFile)
+		if err != nil {
+			return returnValue, nil, err
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
 	if err != nil {

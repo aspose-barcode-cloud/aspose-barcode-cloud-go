@@ -44,7 +44,8 @@ func uploadTestFile(ctx context.Context, t *testing.T, client *barcode.APIClient
 func readFileContent(t *testing.T, fileName string) []byte {
 	file, err := os.Open(fileName)
 	require.Nil(t, err)
-	bytes, _ := ioutil.ReadAll(file)
+	bytes, err := ioutil.ReadAll(file)
+	require.Nil(t, err)
 	file.Close()
 	return bytes
 }

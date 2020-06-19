@@ -28,7 +28,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/antihax/optional"
-	. "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/models"
 	"io/ioutil"
 	"net/http"
 	"net/url"
