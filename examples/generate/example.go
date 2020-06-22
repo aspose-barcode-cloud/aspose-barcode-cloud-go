@@ -15,11 +15,16 @@ func main() {
 	)
 	fileName := "testdata/generated.png"
 
-	authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+	authCtx := context.WithValue(context.Background(),
+		barcode.ContextJWT,
+		jwtConf.TokenSource(context.Background()))
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(barcode.EncodeBarcodeTypeQR), "Go SDK example", nil)
+	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
+		string(barcode.EncodeBarcodeTypeQR),
+		"Go SDK example",
+		nil)
 	if err != nil {
 		panic(err)
 	}

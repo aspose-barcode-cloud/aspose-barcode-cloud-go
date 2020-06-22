@@ -23,14 +23,18 @@ func main() {
 	defer file.Close()
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
-	authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+	authCtx := context.WithValue(context.Background(),
+		barcode.ContextJWT,
+		jwtConf.TokenSource(context.Background()))
 
 	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
 
-	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
+	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(
+		authCtx,
+		&optionals)
 	if err != nil {
 		panic(err)
 	}

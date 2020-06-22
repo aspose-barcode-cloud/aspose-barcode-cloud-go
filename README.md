@@ -56,11 +56,16 @@ func main() {
     )
     fileName := "testdata/generated.png"
 
-    authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+    authCtx := context.WithValue(context.Background(),
+        barcode.ContextJWT,
+        jwtConf.TokenSource(context.Background()))
 
     client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-    data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(barcode.EncodeBarcodeTypeQR), "Go SDK example", nil)
+    data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
+        string(barcode.EncodeBarcodeTypeQR),
+        "Go SDK example",
+        nil)
     if err != nil {
         panic(err)
     }
@@ -110,14 +115,18 @@ func main() {
     defer file.Close()
 
     client := barcode.NewAPIClient(barcode.NewConfiguration())
-    authCtx := context.WithValue(context.Background(), barcode.ContextJWT, jwtConf.TokenSource(context.Background()))
+    authCtx := context.WithValue(context.Background(),
+        barcode.ContextJWT,
+        jwtConf.TokenSource(context.Background()))
 
     optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
         Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
         Image:  optional.NewInterface(file),
     }
 
-    recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
+    recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(
+        authCtx,
+        &optionals)
     if err != nil {
         panic(err)
     }
