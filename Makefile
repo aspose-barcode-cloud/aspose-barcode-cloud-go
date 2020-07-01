@@ -1,4 +1,3 @@
-
 .PHONY: all
 all: format test
 
@@ -16,7 +15,7 @@ test:
 	./scripts/test.sh
 
 .PHONY: build
-build: format vet
+build:
 	./scripts/build.sh
 
 .PHONY: lint
@@ -31,5 +30,11 @@ tidy:
 update_packages:
 	./scripts/update_packages.sh
 
+.PHONY: update
+update: update_packages tidy
+
 .PHONY: release
-release: lint update_packages tidy build test
+release: format vet lint update_packages tidy build test
+
+.PHONY: ci
+ci: build test
