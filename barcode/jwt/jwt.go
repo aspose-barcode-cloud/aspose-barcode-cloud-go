@@ -16,6 +16,7 @@ type Config struct {
 	ClientID     string `json:"clientId"`
 	ClientSecret string `json:"clientSecret"`
 	TokenURL     string `json:"tokenUrl"`
+	AccessToken  string `json:"accessToken"`
 }
 
 //NewConfig creates new Config
@@ -43,6 +44,16 @@ type jwtSource struct {
 }
 
 func (js jwtSource) Token() (*oauth2.Token, error) {
+	if js.conf.AccessToken != "" {
+		return &oauth2.Token{
+				AccessToken: js.conf.AccessToken,
+				// Never expires
+				// Because there is no way to update existing token
+				Expiry: time.Unix(1<<63-1, 0),
+			},
+			nil
+	}
+
 	v := url.Values{}
 	v.Set("grant_type", "client_credentials")
 	v.Set("client_id", js.conf.ClientID)
