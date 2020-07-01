@@ -36,5 +36,5 @@ jobs:
     - name: Test
       run: go test -v ./...
       env:
-        TEST_API_BASE_PATH: ${{ secrets.TEST_CONFIGURATION_BASE_URL }}
+        TEST_API_BASE_PATH: ${{ secrets.TEST_CONFIGURATION_BASE_URL }}/v3.0
         TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
