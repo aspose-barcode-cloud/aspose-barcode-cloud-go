@@ -12,22 +12,31 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+var TestConfigurationFile = "configuration.json"
+var TestEnvPrefix = "TEST"
+
 //TestFolder Aspose.Storage folder for test files
 //noinspection GoNameStartsWithPackageName
 var TestFolder = fmt.Sprintf("BarcodeTests/%s", uuid.New())
 
-//TestConfig configuration for testing
-//noinspection GoNameStartsWithPackageName
-var TestConfig, _ = NewConfig("configuration.json")
-
 //NewClientForTests creates new Client with TestConfig
-func NewClientForTests() *barcode.APIClient {
-	return barcode.NewAPIClient(&TestConfig.APIConfig)
+func NewClientForTests() (*barcode.APIClient, error) {
+	testConfig, err := NewTestConfig(TestConfigurationFile, TestEnvPrefix)
+	if err != nil {
+		return nil, err
+	}
+
+	return barcode.NewAPIClient(&testConfig.APIConfig), nil
 }
 
 //NewAuthContextForTests context for testing
-func NewAuthContextForTests() context.Context {
-	return context.WithValue(context.Background(), barcode.ContextJWT, TestConfig.JwtConfig.TokenSource(context.Background()))
+func NewAuthContextForTests() (context.Context, error) {
+	testConfig, err := NewTestConfig(TestConfigurationFile, TestEnvPrefix)
+	if err != nil {
+		return nil, err
+	}
+
+	return context.WithValue(context.Background(), barcode.ContextJWT, testConfig.JwtConfig.TokenSource(context.Background())), nil
 }
 
 func uploadTestFile(ctx context.Context, t *testing.T, client *barcode.APIClient, uploadedFilename string) {

@@ -30,6 +30,26 @@ func NewConfig(clientID string, clientSecret string) *Config {
 	return &config
 }
 
+func (c *Config) Validate() error {
+	if len(c.AccessToken) > 0 {
+		return nil
+	}
+
+	if len(c.ClientID) == 0 {
+		return fmt.Errorf("incorrect ClientID value '%s'", c.ClientID)
+	}
+
+	if len(c.ClientSecret) == 0 {
+		return fmt.Errorf("incorrect ClientSecret value '%s'", c.ClientSecret)
+	}
+
+	if len(c.TokenURL) == 0 {
+		return fmt.Errorf("incorrect TokenURL value '%s'", c.TokenURL)
+	}
+
+	return nil
+}
+
 // TokenSource returns a JWT TokenSource using the configuration
 // in c and the HTTP client from the provided context.
 func (c *Config) TokenSource(ctx context.Context) oauth2.TokenSource {

@@ -39,34 +39,40 @@ type Config struct {
 	APIConfig api.Configuration `json:"api"`
 }
 
-//NewConfig creates new Config from JSON-file
-func NewConfig(fileName string) (*Config, error) {
+//NewTestConfig creates new Config from JSON-file if exists or from ENV
+func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
+	var config *Config
 
-	if _, err := os.Stat(fileName); os.IsNotExist(err) {
-		return NewConfigFromEnv("TEST")
+	if f, err := os.Open(fileName); os.IsNotExist(err) {
+		config, err = newConfigFromEnv(envPrefix)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		if err != nil {
+			return nil, err
+		}
+		defer f.Close()
+
+		bytes, err := ioutil.ReadAll(f)
+		if err != nil {
+			return nil, err
+		}
+
+		config, err = newConfigFromJSON(bytes)
+		if err != nil {
+			return nil, err
+		}
 	}
 
-	f, err := os.Open(fileName)
-	if err != nil {
-		return nil, err
-	}
-	defer f.Close()
-
-	bytes, err := ioutil.ReadAll(f)
-	if err != nil {
-		return nil, err
-	}
-
-	config, err := NewConfigFromJSON(bytes)
-	if err != nil {
+	if err := config.JwtConfig.Validate(); err != nil {
 		return nil, err
 	}
 
 	return config, nil
 }
 
-//NewConfigFromJSON creates new Config from JSON-bytes
-func NewConfigFromJSON(bytes []byte) (*Config, error) {
+func newConfigFromJSON(bytes []byte) (*Config, error) {
 	config := Config{
 		JwtConfig: *jwt.NewConfig("", ""),
 		APIConfig: *api.NewConfiguration(),
@@ -75,11 +81,11 @@ func NewConfigFromJSON(bytes []byte) (*Config, error) {
 	if err != nil {
 		return nil, err
 	}
+
 	return &config, nil
 }
 
-//NewConfigFromEnv creates new Config from Environment
-func NewConfigFromEnv(prefix string) (*Config, error) {
+func newConfigFromEnv(prefix string) (*Config, error) {
 	pConfig := &Config{
 		JwtConfig: *jwt.NewConfig("", ""),
 		APIConfig: *api.NewConfiguration(),

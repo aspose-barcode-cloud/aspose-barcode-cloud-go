@@ -9,8 +9,14 @@ import (
 )
 
 func TestWrongFormat(t *testing.T) {
-	_, _, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(
-		NewAuthContextForTests(),
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	_, _, err = client.BarcodeApi.GetBarcodeGenerate(
+		authCtx,
 		string(barcode.EncodeBarcodeTypeCode128),
 		"text",
 		&barcode.BarcodeApiGetBarcodeGenerateOpts{

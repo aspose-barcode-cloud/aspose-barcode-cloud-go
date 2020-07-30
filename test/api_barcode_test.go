@@ -11,7 +11,13 @@ import (
 )
 
 func TestGetBarcodeGenerate(t *testing.T) {
-	imgData, response, err := NewClientForTests().BarcodeApi.GetBarcodeGenerate(NewAuthContextForTests(), string(barcode.EncodeBarcodeTypeCode128), "Go SDK", nil)
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	imgData, response, err := client.BarcodeApi.GetBarcodeGenerate(authCtx, string(barcode.EncodeBarcodeTypeCode128), "Go SDK", nil)
 	require.Nil(t, err)
 	require.Equal(t, 200, response.StatusCode)
 
@@ -22,8 +28,11 @@ func TestGetBarcodeGenerate(t *testing.T) {
 func TestGetBarcodeRecognize(t *testing.T) {
 	uploadedFilename := "TestGetBarcodeRecognize.png"
 
-	client := NewClientForTests()
-	ctx := NewAuthContextForTests()
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	ctx, err := NewAuthContextForTests()
+	require.Nil(t, err)
 
 	uploadTestFile(ctx, t, client, uploadedFilename)
 
@@ -41,6 +50,12 @@ func TestGetBarcodeRecognize(t *testing.T) {
 }
 
 func TestPostBarcodeRecognizeFromUrlOrContent_File(t *testing.T) {
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
 	fileName := "../testdata/pdf417Sample.png"
 
 	file, err := os.Open(fileName)
@@ -51,7 +66,7 @@ func TestPostBarcodeRecognizeFromUrlOrContent_File(t *testing.T) {
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
 	}
-	recognized, _, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewAuthContextForTests(), &optionals)
+	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
 	require.Nil(t, err)
 	require.Equal(t, 1, len(recognized.Barcodes))
 
@@ -63,6 +78,12 @@ func TestPostBarcodeRecognizeFromUrlOrContent_File(t *testing.T) {
 }
 
 func TestPostBarcodeRecognizeFromUrlOrContent_Bytes(t *testing.T) {
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
 	fileName := "../testdata/pdf417Sample.png"
 
 	bytes := readFileContent(t, fileName)
@@ -71,7 +92,7 @@ func TestPostBarcodeRecognizeFromUrlOrContent_Bytes(t *testing.T) {
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(bytes),
 	}
-	recognized, _, err := NewClientForTests().BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(NewAuthContextForTests(), &optionals)
+	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
 	require.Nil(t, err)
 	require.Equal(t, 1, len(recognized.Barcodes))
 
@@ -83,8 +104,14 @@ func TestPostBarcodeRecognizeFromUrlOrContent_Bytes(t *testing.T) {
 }
 
 func TestPostGenerateMultiple(t *testing.T) {
-	imgData, response, err := NewClientForTests().BarcodeApi.PostGenerateMultiple(
-		NewAuthContextForTests(),
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	imgData, response, err := client.BarcodeApi.PostGenerateMultiple(
+		authCtx,
 		barcode.GeneratorParamsList{
 			BarcodeBuilders: []barcode.GeneratorParams{{
 				TypeOfBarcode: barcode.EncodeBarcodeTypeCode128,
@@ -110,8 +137,14 @@ func TestPostGenerateMultiple(t *testing.T) {
 }
 
 func TestPutBarcodeGenerateFile(t *testing.T) {
-	genImgInfo, _, err := NewClientForTests().BarcodeApi.PutBarcodeGenerateFile(
-		NewAuthContextForTests(),
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	genImgInfo, _, err := client.BarcodeApi.PutBarcodeGenerateFile(
+		authCtx,
 		"TestPutBarcodeGenerateFile.png",
 		string(barcode.EncodeBarcodeTypeCode128),
 		"Go SDK",
@@ -129,8 +162,10 @@ func TestPutBarcodeGenerateFile(t *testing.T) {
 func TestPutBarcodeRecognizeFromBody(t *testing.T) {
 	uploadedFilename := "TestPutBarcodeRecognizeFromBody.png"
 
-	client := NewClientForTests()
-	ctx := NewAuthContextForTests()
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+	ctx, err := NewAuthContextForTests()
+	require.Nil(t, err)
 
 	uploadTestFile(ctx, t, client, uploadedFilename)
 
@@ -152,8 +187,14 @@ func TestPutBarcodeRecognizeFromBody(t *testing.T) {
 }
 
 func TestPutGenerateMultiple(t *testing.T) {
-	genImgInfo, _, err := NewClientForTests().BarcodeApi.PutGenerateMultiple(
-		NewAuthContextForTests(),
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	genImgInfo, _, err := client.BarcodeApi.PutGenerateMultiple(
+		authCtx,
 		"TestPutBarcodeGenerateFile.png",
 		barcode.GeneratorParamsList{
 			BarcodeBuilders: []barcode.GeneratorParams{{
