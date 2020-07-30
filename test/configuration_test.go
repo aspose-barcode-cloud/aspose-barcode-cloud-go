@@ -15,7 +15,7 @@ func TestNewConfigurationBasePath(t *testing.T) {
 }
 
 func TestNewConfigurationUserAgent(t *testing.T) {
-	want := "Aspose-Barcode-SDK/0.2006.1/go"
+	want := "Aspose-Barcode-SDK/0.2008.0/go"
 	if got := api.NewConfiguration().UserAgent; got != want {
 		t.Errorf("NewConfiguration().UserAgent = %s; want %s", got, want)
 	}

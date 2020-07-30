@@ -417,7 +417,7 @@ type FileApiUploadFileOpts struct {
 /*
  * UploadFile -  Upload file
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
+ * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext  If the content is multipart and path does not contains the file name it tries to get them from filename parameter  from Content-Disposition header.
  * @param file File to upload
  * @param optional nil or *FileApiUploadFileOpts - Optional Parameters:
      * @param "StorageName" (optional.String) -  Storage name
