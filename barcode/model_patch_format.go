@@ -24,17 +24,14 @@
 
 package barcode
 
-// DataMatrixEncodeMode :
-type DataMatrixEncodeMode string
+// PatchFormat :
+type PatchFormat string
 
-// List of DataMatrixEncodeMode
+// List of PatchFormat
 const (
-	DataMatrixEncodeModeAuto    DataMatrixEncodeMode = "Auto"
-	DataMatrixEncodeModeASCII   DataMatrixEncodeMode = "ASCII"
-	DataMatrixEncodeModeFull    DataMatrixEncodeMode = "Full"
-	DataMatrixEncodeModeCustom  DataMatrixEncodeMode = "Custom"
-	DataMatrixEncodeModeC40     DataMatrixEncodeMode = "C40"
-	DataMatrixEncodeModeText    DataMatrixEncodeMode = "Text"
-	DataMatrixEncodeModeEDIFACT DataMatrixEncodeMode = "EDIFACT"
-	DataMatrixEncodeModeANSIX12 DataMatrixEncodeMode = "ANSIX12"
+	PatchFormatPatchOnly           PatchFormat = "PatchOnly"
+	PatchFormatA4                  PatchFormat = "A4"
+	PatchFormatA4_LANDSCAPE        PatchFormat = "A4_LANDSCAPE"
+	PatchFormatUS_Letter           PatchFormat = "US_Letter"
+	PatchFormatUS_Letter_LANDSCAPE PatchFormat = "US_Letter_LANDSCAPE"
 )

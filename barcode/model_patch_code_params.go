@@ -24,17 +24,10 @@
 
 package barcode
 
-// DataMatrixEncodeMode :
-type DataMatrixEncodeMode string
-
-// List of DataMatrixEncodeMode
-const (
-	DataMatrixEncodeModeAuto    DataMatrixEncodeMode = "Auto"
-	DataMatrixEncodeModeASCII   DataMatrixEncodeMode = "ASCII"
-	DataMatrixEncodeModeFull    DataMatrixEncodeMode = "Full"
-	DataMatrixEncodeModeCustom  DataMatrixEncodeMode = "Custom"
-	DataMatrixEncodeModeC40     DataMatrixEncodeMode = "C40"
-	DataMatrixEncodeModeText    DataMatrixEncodeMode = "Text"
-	DataMatrixEncodeModeEDIFACT DataMatrixEncodeMode = "EDIFACT"
-	DataMatrixEncodeModeANSIX12 DataMatrixEncodeMode = "ANSIX12"
-)
+//PatchCodeParams - PatchCode parameters.
+type PatchCodeParams struct {
+	// Specifies codetext for an extra QR barcode, when PatchCode is generated in page mode.
+	ExtraBarcodeText string `json:"ExtraBarcodeText,omitempty"`
+	// PatchCode format. Choose PatchOnly to generate single PatchCode. Use page format to generate Patch page with PatchCodes as borders. Default value: PatchFormat.PatchOnly
+	PatchFormat PatchFormat `json:"PatchFormat,omitempty"`
+}

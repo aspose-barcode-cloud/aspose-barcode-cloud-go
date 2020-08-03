@@ -126,4 +126,6 @@ type GeneratorParams struct {
 	Postal PostalParams `json:"Postal,omitempty"`
 	// QR params.
 	QR QrParams `json:"QR,omitempty"`
+	// PatchCode params.
+	PatchCode PatchCodeParams `json:"PatchCode,omitempty"`
 }

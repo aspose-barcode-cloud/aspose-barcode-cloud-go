@@ -22,8 +22,8 @@ Generate barcode.
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **type_** | **string** | Type of barcode to generate.  |
- **text** | **string** | Text to encode.  |
+ **type_** | **string** | Type of barcode to generate. |
+ **text** | **string** | Text to encode. |
  **optional** | ***BarcodeApiGetBarcodeGenerateOpts** | optional parameters | nil if no parameters
 
 ### GetBarcodeGenerate Optional Parameters
@@ -36,19 +36,19 @@ Name | Type | Description  | Notes
 
  **TwoDDisplayText** | **optional.String** | Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode |
  **TextLocation** | **optional.String** | Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below. |
- **TextAlignment** | **optional.String** | Text alignment.  |
+ **TextAlignment** | **optional.String** | Text alignment. |
  **TextColor** | **optional.String** | Specify the displaying CodeText&#39;s Color. Default value: Color.Black. |
  **FontSizeMode** | **optional.String** | Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto. |
  **Resolution** | **optional.Float64** | Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi. |
- **ResolutionX** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead.  |
- **ResolutionY** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead.  |
+ **ResolutionX** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead. |
+ **ResolutionY** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead. |
  **DimensionX** | **optional.Float64** | The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation. |
  **TextSpace** | **optional.Float64** | Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon. |
- **Units** | **optional.String** | Common Units for all measuring in query. Default units: pixel.  |
+ **Units** | **optional.String** | Common Units for all measuring in query. Default units: pixel. |
  **SizeMode** | **optional.String** | Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None. |
- **BarHeight** | **optional.Float64** | Height of the barcode in given units. Default units: pixel.  |
- **ImageHeight** | **optional.Float64** | Height of the barcode image in given units. Default units: pixel.  |
- **ImageWidth** | **optional.Float64** | Width of the barcode image in given units. Default units: pixel.  |
+ **BarHeight** | **optional.Float64** | Height of the barcode in given units. Default units: pixel. |
+ **ImageHeight** | **optional.Float64** | Height of the barcode image in given units. Default units: pixel. |
+ **ImageWidth** | **optional.Float64** | Width of the barcode image in given units. Default units: pixel. |
  **RotationAngle** | **optional.Float64** | BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0. |
  **BackColor** | **optional.String** | Background color of the barcode image. Default value: Color.White. |
  **BarColor** | **optional.String** | Bars color. Default value: Color.Black. |
@@ -56,10 +56,10 @@ Name | Type | Description  | Notes
  **BorderWidth** | **optional.Float64** | Border width. Default value: 0. Ignored if Visible is set to false. |
  **BorderDashStyle** | **optional.String** | Border dash style. Default value: BorderDashStyle.Solid. |
  **BorderVisible** | **optional.Bool** | Border visibility. If false than parameter Width is always ignored (0). Default value: false. |
- **EnableChecksum** | **optional.String** | Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology  |
+ **EnableChecksum** | **optional.String** | Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology |
  **EnableEscape** | **optional.Bool** | Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR. |
  **FilledBars** | **optional.Bool** | Value indicating whether bars are filled. Only for 1D barcodes. Default value: true. |
- **AlwaysShowChecksum** | **optional.Bool** | Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.  |
+ **AlwaysShowChecksum** | **optional.Bool** | Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes. |
  **WideNarrowRatio** | **optional.Float64** | Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard |
  **ValidateText** | **optional.Bool** | Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect. |
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
@@ -92,16 +92,16 @@ Optional parameters are passed through a pointer to a BarcodeApiGetBarcodeRecogn
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 
- **Type_** | **optional.String** | The type of barcode to read.  |
- **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies  |
+ **Type_** | **optional.String** | The type of barcode to read. |
+ **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
  **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
  **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
- **RectX** | **optional.Int32** | Set X for area for recognition.  |
- **RectY** | **optional.Int32** | Set Y for area for recognition.  |
- **RectWidth** | **optional.Int32** | Set Width of area for recognition.  |
- **RectHeight** | **optional.Int32** | Set Height of area for recognition.  |
- **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done.  |
- **Timeout** | **optional.Int32** | Timeout of recognition process.  |
+ **RectX** | **optional.Int32** | Set X for area for recognition. |
+ **RectY** | **optional.Int32** | Set Y for area for recognition. |
+ **RectWidth** | **optional.Int32** | Set Width of area for recognition. |
+ **RectHeight** | **optional.Int32** | Set Height of area for recognition. |
+ **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done. |
+ **Timeout** | **optional.Int32** | Timeout of recognition process. |
  **MedianSmoothingWindowSize** | **optional.Int32** | Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set. |
  **AllowMedianSmoothing** | **optional.Bool** | Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes. |
  **AllowComplexBackground** | **optional.Bool** | Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode. |
@@ -117,10 +117,10 @@ Name | Type | Description  | Notes
  **AllowRegularImage** | **optional.Bool** | Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is. |
  **AllowSaltAndPepperFiltering** | **optional.Bool** | Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots. |
  **AllowWhiteSpotsRemoving** | **optional.Bool** | Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering. |
- **RegionLikelihoodThresholdPercent** | **optional.Float64** | Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
- **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
- **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
- **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
+ **RegionLikelihoodThresholdPercent** | **optional.Float64** | Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
+ **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
+ **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
+ **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **RectangleRegion** | **optional.String** |  |
  **Storage** | **optional.String** | The image storage. |
@@ -150,16 +150,16 @@ Optional parameters are passed through a pointer to a BarcodeApiPostBarcodeRecog
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
- **Type_** | **optional.String** | The type of barcode to read.  |
- **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies  |
+ **Type_** | **optional.String** | The type of barcode to read. |
+ **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
  **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
  **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
- **RectX** | **optional.Int32** | Set X for area for recognition.  |
- **RectY** | **optional.Int32** | Set Y for area for recognition.  |
- **RectWidth** | **optional.Int32** | Set Width of area for recognition.  |
- **RectHeight** | **optional.Int32** | Set Height of area for recognition.  |
- **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done.  |
- **Timeout** | **optional.Int32** | Timeout of recognition process.  |
+ **RectX** | **optional.Int32** | Set X for area for recognition. |
+ **RectY** | **optional.Int32** | Set Y for area for recognition. |
+ **RectWidth** | **optional.Int32** | Set Width of area for recognition. |
+ **RectHeight** | **optional.Int32** | Set Height of area for recognition. |
+ **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done. |
+ **Timeout** | **optional.Int32** | Timeout of recognition process. |
  **MedianSmoothingWindowSize** | **optional.Int32** | Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set. |
  **AllowMedianSmoothing** | **optional.Bool** | Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes. |
  **AllowComplexBackground** | **optional.Bool** | Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode. |
@@ -175,10 +175,10 @@ Name | Type | Description  | Notes
  **AllowRegularImage** | **optional.Bool** | Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is. |
  **AllowSaltAndPepperFiltering** | **optional.Bool** | Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots. |
  **AllowWhiteSpotsRemoving** | **optional.Bool** | Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering. |
- **RegionLikelihoodThresholdPercent** | **optional.Float64** | Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
- **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
- **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
- **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
+ **RegionLikelihoodThresholdPercent** | **optional.Float64** | Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. |
+ **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
+ **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
+ **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **RectangleRegion** | **optional.String** |  |
  **Url** | **optional.String** | The image file url. |
@@ -229,8 +229,8 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **name** | **string** | The image file name. |
- **type_** | **string** | Type of barcode to generate.  |
- **text** | **string** | Text to encode.  |
+ **type_** | **string** | Type of barcode to generate. |
+ **text** | **string** | Text to encode. |
  **optional** | ***BarcodeApiPutBarcodeGenerateFileOpts** | optional parameters | nil if no parameters
 
 ### PutBarcodeGenerateFile Optional Parameters
@@ -244,19 +244,19 @@ Name | Type | Description  | Notes
 
  **TwoDDisplayText** | **optional.String** | Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode |
  **TextLocation** | **optional.String** | Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below. |
- **TextAlignment** | **optional.String** | Text alignment.  |
+ **TextAlignment** | **optional.String** | Text alignment. |
  **TextColor** | **optional.String** | Specify the displaying CodeText&#39;s Color. Default value: Color.Black. |
  **FontSizeMode** | **optional.String** | Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto. |
  **Resolution** | **optional.Float64** | Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi. |
- **ResolutionX** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead.  |
- **ResolutionY** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead.  |
+ **ResolutionX** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead. |
+ **ResolutionY** | **optional.Float64** | DEPRECATED: Use &#39;Resolution&#39; instead. |
  **DimensionX** | **optional.Float64** | The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation. |
  **TextSpace** | **optional.Float64** | Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon. |
- **Units** | **optional.String** | Common Units for all measuring in query. Default units: pixel.  |
+ **Units** | **optional.String** | Common Units for all measuring in query. Default units: pixel. |
  **SizeMode** | **optional.String** | Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None. |
- **BarHeight** | **optional.Float64** | Height of the barcode in given units. Default units: pixel.  |
- **ImageHeight** | **optional.Float64** | Height of the barcode image in given units. Default units: pixel.  |
- **ImageWidth** | **optional.Float64** | Width of the barcode image in given units. Default units: pixel.  |
+ **BarHeight** | **optional.Float64** | Height of the barcode in given units. Default units: pixel. |
+ **ImageHeight** | **optional.Float64** | Height of the barcode image in given units. Default units: pixel. |
+ **ImageWidth** | **optional.Float64** | Width of the barcode image in given units. Default units: pixel. |
  **RotationAngle** | **optional.Float64** | BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0. |
  **BackColor** | **optional.String** | Background color of the barcode image. Default value: Color.White. |
  **BarColor** | **optional.String** | Bars color. Default value: Color.Black. |
@@ -264,10 +264,10 @@ Name | Type | Description  | Notes
  **BorderWidth** | **optional.Float64** | Border width. Default value: 0. Ignored if Visible is set to false. |
  **BorderDashStyle** | **optional.String** | Border dash style. Default value: BorderDashStyle.Solid. |
  **BorderVisible** | **optional.Bool** | Border visibility. If false than parameter Width is always ignored (0). Default value: false. |
- **EnableChecksum** | **optional.String** | Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology  |
+ **EnableChecksum** | **optional.String** | Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology |
  **EnableEscape** | **optional.Bool** | Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR. |
  **FilledBars** | **optional.Bool** | Value indicating whether bars are filled. Only for 1D barcodes. Default value: true. |
- **AlwaysShowChecksum** | **optional.Bool** | Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.  |
+ **AlwaysShowChecksum** | **optional.Bool** | Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes. |
  **WideNarrowRatio** | **optional.Float64** | Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard |
  **ValidateText** | **optional.Bool** | Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect. |
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
