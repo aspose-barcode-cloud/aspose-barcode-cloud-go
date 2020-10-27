@@ -3,6 +3,7 @@ all: format test
 
 .PHONY: format
 format:
+	./scripts/fix_api_error.sh
 	./scripts/fmt.sh
 	./scripts/docs_format.sh
 

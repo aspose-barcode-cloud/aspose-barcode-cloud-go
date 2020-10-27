@@ -34,5 +34,5 @@ type ApiError struct {
 	Message     string    `json:"Message,omitempty"`
 	Description string    `json:"Description,omitempty"`
 	DateTime    time.Time `json:"DateTime,omitempty"`
-	InnerError  ApiError  `json:"InnerError,omitempty"`
+	InnerError  *ApiError `json:"InnerError,omitempty"`
 }
