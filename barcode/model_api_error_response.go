@@ -24,8 +24,8 @@
 
 package barcode
 
-//BarCodeErrorResponse - BarCodeErrorResponse
-type BarCodeErrorResponse struct {
-	// Error
-	Error ModelError `json:"Error,omitempty"`
+//ApiErrorResponse -
+type ApiErrorResponse struct {
+	RequestId string   `json:"RequestId,omitempty"`
+	Error     ApiError `json:"Error,omitempty"`
 }

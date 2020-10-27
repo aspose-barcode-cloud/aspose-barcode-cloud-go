@@ -84,6 +84,8 @@ type ReaderParams struct {
 	Similarity float64 `json:"Similarity,omitempty"`
 	// Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
 	SkipDiagonalSearch bool `json:"SkipDiagonalSearch,omitempty"`
+	// Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
+	ReadTinyBarcodes bool `json:"ReadTinyBarcodes,omitempty"`
 	// Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
 	AustralianPostEncodingTable CustomerInformationInterpretingType `json:"AustralianPostEncodingTable,omitempty"`
 }

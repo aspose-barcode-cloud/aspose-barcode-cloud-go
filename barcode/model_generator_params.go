@@ -98,6 +98,8 @@ type GeneratorParams struct {
 	SupplementData string `json:"SupplementData,omitempty"`
 	// Space between main the BarCode and supplement BarCode.
 	SupplementSpace float64 `json:"SupplementSpace,omitempty"`
+	// Bars reduction value that is used to compensate ink spread while printing.
+	BarWidthReduction float64 `json:"BarWidthReduction,omitempty"`
 	// AustralianPost params.
 	AustralianPost AustralianPostParams `json:"AustralianPost,omitempty"`
 	// Aztec params.
