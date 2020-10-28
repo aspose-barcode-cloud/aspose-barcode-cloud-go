@@ -1,5 +1,5 @@
 .PHONY: all
-all: format test
+all: release
 
 .PHONY: format
 format:
@@ -23,19 +23,23 @@ build:
 lint:
 	./scripts/lint.sh
 
-.PHONY: tidy
-tidy:
-	./scripts/tidy.sh
-
 .PHONY: update_packages
 update_packages:
 	./scripts/update_packages.sh
 
+.PHONY: tidy
+tidy:
+	./scripts/tidy.sh
+
+.PHONY: clean-gosum
+clean-gosum:
+	./scripts/clean-go.sum.sh
+
 .PHONY: update
-update: update_packages tidy
+update: update_packages tidy clean-gosum
 
 .PHONY: release
-release: format vet lint update_packages tidy build test
+release: format vet lint update_packages tidy build test clean-gosum
 
 .PHONY: ci
 ci: build test

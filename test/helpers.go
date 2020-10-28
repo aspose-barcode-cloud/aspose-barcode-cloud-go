@@ -12,7 +12,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+//TestConfigurationFile with configuration
 var TestConfigurationFile = "configuration.json"
+
+//TestEnvPrefix for environment variables
 var TestEnvPrefix = "TEST"
 
 //TestFolder Aspose.Storage folder for test files
