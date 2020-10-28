@@ -1,7 +1,7 @@
 # Aspose.BarCode Cloud SDK for Go
 
 - API version: 3.0
-- SDK version: 0.2008.0
+- SDK version: 0.2010.0
 
 [Aspose.BarCode for Cloud](https://products.aspose.cloud/barcode/cloud) is a REST API for Linear, 2D and postal barcode generation and recognition in the cloud. API recognizes and generates barcode images in a variety of formats. Barcode REST API allows to specify barcode image attributes like image width, height, border style and output image format in order to customize the generation process. Developers can also specify the barcode type and text attributes such as text location and font styles in order to suit the application requirements.
 
@@ -21,7 +21,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2008.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2010.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -155,7 +155,7 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 
 - [**Website**](https://www.aspose.cloud)
 - [**Product Home**](https://products.aspose.cloud/barcode/cloud)
-- [**Documentation**](https://docs.aspose.cloud/display/barcodecloud/Home)
+- [**Documentation**](https://docs.aspose.cloud/barcode/)
 - [**Free Support Forum**](https://forum.aspose.cloud/c/barcode)
 - [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
 - [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose-barcode-product-family/)
@@ -190,12 +190,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+- [ApiError](docs/ApiError.md)
+- [ApiErrorResponse](docs/ApiErrorResponse.md)
 - [AustralianPostParams](docs/AustralianPostParams.md)
 - [AutoSizeMode](docs/AutoSizeMode.md)
 - [AvailableGraphicsUnit](docs/AvailableGraphicsUnit.md)
 - [AztecParams](docs/AztecParams.md)
 - [AztecSymbolMode](docs/AztecSymbolMode.md)
-- [BarCodeErrorResponse](docs/BarCodeErrorResponse.md)
 - [BarcodeResponse](docs/BarcodeResponse.md)
 - [BarcodeResponseList](docs/BarcodeResponseList.md)
 - [BorderDashStyle](docs/BorderDashStyle.md)

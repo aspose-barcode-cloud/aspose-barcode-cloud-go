@@ -64,6 +64,7 @@ Name | Type | Description  | Notes
  **ValidateText** | **optional.Bool** | Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect. |
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
  **SupplementSpace** | **optional.Float64** | Space between main the BarCode and supplement BarCode. |
+ **BarWidthReduction** | **optional.Float64** | Bars reduction value that is used to compensate ink spread while printing. |
  **Format** | **optional.String** | Result image format. |
 
 ### GetBarcodeGenerate Return type
@@ -121,6 +122,7 @@ Name | Type | Description  | Notes
  **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
  **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
  **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
+ **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **RectangleRegion** | **optional.String** |  |
  **Storage** | **optional.String** | The image storage. |
@@ -179,6 +181,7 @@ Name | Type | Description  | Notes
  **ScanWindowSizes** | **optional.Interface of []int32** | Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. |
  **Similarity** | **optional.Float64** | Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] |
  **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
+ **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **RectangleRegion** | **optional.String** |  |
  **Url** | **optional.String** | The image file url. |
@@ -272,6 +275,7 @@ Name | Type | Description  | Notes
  **ValidateText** | **optional.Bool** | Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect. |
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
  **SupplementSpace** | **optional.Float64** | Space between main the BarCode and supplement BarCode. |
+ **BarWidthReduction** | **optional.Float64** | Bars reduction value that is used to compensate ink spread while printing. |
  **Storage** | **optional.String** | Image&#39;s storage. |
  **Folder** | **optional.String** | Image&#39;s folder. |
  **Format** | **optional.String** | The image format. |

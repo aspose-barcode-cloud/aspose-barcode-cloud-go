@@ -29,6 +29,7 @@ type EciEncodings string
 
 // List of ECIEncodings
 const (
+	EciEncodingsNONE        EciEncodings = "NONE"
 	EciEncodingsISO_8859_1  EciEncodings = "ISO_8859_1"
 	EciEncodingsISO_8859_2  EciEncodings = "ISO_8859_2"
 	EciEncodingsISO_8859_3  EciEncodings = "ISO_8859_3"

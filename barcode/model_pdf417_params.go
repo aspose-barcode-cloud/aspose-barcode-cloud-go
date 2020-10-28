@@ -46,4 +46,8 @@ type Pdf417Params struct {
 	Rows int32 `json:"Rows,omitempty"`
 	// Whether Pdf417 symbology type of BarCode is truncated (to reduce space).
 	Truncate bool `json:"Truncate,omitempty"`
+	// Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings.
+	Pdf417ECIEncoding EciEncodings `json:"Pdf417ECIEncoding,omitempty"`
+	// Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
+	IsReaderInitialization bool `json:"IsReaderInitialization,omitempty"`
 }
