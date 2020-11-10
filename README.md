@@ -1,17 +1,17 @@
 # Aspose.BarCode Cloud SDK for Go
 
 - API version: 3.0
-- SDK version: 0.2010.0
+- SDK version: 0.2011.0
 
 [Aspose.BarCode for Cloud](https://products.aspose.cloud/barcode/cloud) is a REST API for Linear, 2D and postal barcode generation and recognition in the cloud. API recognizes and generates barcode images in a variety of formats. Barcode REST API allows to specify barcode image attributes like image width, height, border style and output image format in order to customize the generation process. Developers can also specify the barcode type and text attributes such as text location and font styles in order to suit the application requirements.
 
 This repository contains Aspose.BarCode Cloud SDK for Go source code. This SDK allows you to work with Aspose.BarCode for Cloud REST APIs in your Go applications quickly and easily.
 
-To use these SDKs, you will need App SID and App Key which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
+To use these SDKs, you will need Client Id and Client Secret which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/applications) (free registration in Aspose Cloud is required for this).
 
 ## Prerequisites
 
-To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create App Key and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/#/apps). There is a free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
+To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Aspose Cloud](https://www.aspose.cloud/) and lookup/create Client Secret and SID at [Cloud Dashboard](https://dashboard.aspose.cloud/applications). There is a free quota available. For more details, see [Aspose Cloud Pricing](https://purchase.aspose.cloud/pricing).
 
 ## Installation
 
@@ -21,7 +21,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2010.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2011.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -51,8 +51,8 @@ import (
 
 func main() {
     jwtConf := jwt.NewConfig(
-        "App SID from https://dashboard.aspose.cloud/#/apps",
-        "App Key from https://dashboard.aspose.cloud/#/apps",
+        "Client Id from https://dashboard.aspose.cloud/applications",
+        "Client Secret from https://dashboard.aspose.cloud/applications",
     )
     fileName := "testdata/generated.png"
 
@@ -103,8 +103,8 @@ import (
 
 func main() {
     jwtConf := jwt.NewConfig(
-        "App SID from https://dashboard.aspose.cloud/#/apps",
-        "App Key from https://dashboard.aspose.cloud/#/apps",
+        "Client Id from https://dashboard.aspose.cloud/applications",
+        "Client Secret from https://dashboard.aspose.cloud/applications",
     )
     fileName := "testdata/pdf417Sample.png"
 

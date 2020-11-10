@@ -1,7 +1,7 @@
 {
   "jwt": {
-    "clientId": "App SID from https://dashboard.aspose.cloud/#/apps",
-    "clientSecret": "App Key from https://dashboard.aspose.cloud/#/apps",
+    "clientId": "Client Id from https://dashboard.aspose.cloud/applications",
+    "clientSecret": "Client Secret from https://dashboard.aspose.cloud/applications",
     "tokenUrl": "https://api.aspose.cloud/connect/token"
   },
   "api": {
