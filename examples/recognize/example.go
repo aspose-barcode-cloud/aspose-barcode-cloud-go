@@ -11,8 +11,8 @@ import (
 
 func main() {
 	jwtConf := jwt.NewConfig(
-		"App SID from https://dashboard.aspose.cloud/#/apps",
-		"App Key from https://dashboard.aspose.cloud/#/apps",
+		"Client Id from https://dashboard.aspose.cloud/applications",
+		"Client Secret from https://dashboard.aspose.cloud/applications",
 	)
 	fileName := "testdata/pdf417Sample.png"
 
