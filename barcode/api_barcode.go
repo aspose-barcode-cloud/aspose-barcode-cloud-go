@@ -50,6 +50,7 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
 	TextAlignment      optional.String
 	TextColor          optional.String
 	FontSizeMode       optional.String
+	NoWrap             optional.Bool
 	Resolution         optional.Float64
 	ResolutionX        optional.Float64
 	ResolutionY        optional.Float64
@@ -90,6 +91,7 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
      * @param "TextAlignment" (optional.String) -  Text alignment.
      * @param "TextColor" (optional.String) -  Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param "FontSizeMode" (optional.String) -  Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
+     * @param "NoWrap" (optional.Bool) -  Specify word wraps (line breaks) within text. Default value: false.
      * @param "Resolution" (optional.Float64) -  Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
@@ -152,6 +154,9 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 	}
 	if optionals != nil && optionals.FontSizeMode.IsSet() {
 		queryParams.Add("FontSizeMode", parameterToString(optionals.FontSizeMode.Value(), ""))
+	}
+	if optionals != nil && optionals.NoWrap.IsSet() {
+		queryParams.Add("NoWrap", parameterToString(optionals.NoWrap.Value(), ""))
 	}
 	if optionals != nil && optionals.Resolution.IsSet() {
 		queryParams.Add("Resolution", parameterToString(optionals.Resolution.Value(), ""))
@@ -950,6 +955,7 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
 	TextAlignment      optional.String
 	TextColor          optional.String
 	FontSizeMode       optional.String
+	NoWrap             optional.Bool
 	Resolution         optional.Float64
 	ResolutionX        optional.Float64
 	ResolutionY        optional.Float64
@@ -993,6 +999,7 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
      * @param "TextAlignment" (optional.String) -  Text alignment.
      * @param "TextColor" (optional.String) -  Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param "FontSizeMode" (optional.String) -  Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
+     * @param "NoWrap" (optional.Bool) -  Specify word wraps (line breaks) within text. Default value: false.
      * @param "Resolution" (optional.Float64) -  Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      * @param "ResolutionX" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param "ResolutionY" (optional.Float64) -  DEPRECATED: Use &#39;Resolution&#39; instead.
@@ -1058,6 +1065,9 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 	}
 	if optionals != nil && optionals.FontSizeMode.IsSet() {
 		queryParams.Add("FontSizeMode", parameterToString(optionals.FontSizeMode.Value(), ""))
+	}
+	if optionals != nil && optionals.NoWrap.IsSet() {
+		queryParams.Add("NoWrap", parameterToString(optionals.NoWrap.Value(), ""))
 	}
 	if optionals != nil && optionals.Resolution.IsSet() {
 		queryParams.Add("Resolution", parameterToString(optionals.Resolution.Value(), ""))

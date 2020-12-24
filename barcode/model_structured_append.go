@@ -24,16 +24,12 @@
 
 package barcode
 
-//DataBarParams - Databar parameters.
-type DataBarParams struct {
-	// Height/Width ratio of 2D BarCode module. Used for DataBar stacked.
-	AspectRatio float64 `json:"AspectRatio,omitempty"`
-	// Columns count.
-	Columns int32 `json:"Columns,omitempty"`
-	// Rows count.
-	Rows int32 `json:"Rows,omitempty"`
-	// Enables flag of 2D composite component with DataBar barcode
-	Is2DCompositeComponent bool `json:"Is2DCompositeComponent,omitempty"`
-	// If this flag is set, it allows only GS1 encoding standard for Databar barcode types
-	IsAllowOnlyGS1Encoding bool `json:"IsAllowOnlyGS1Encoding,omitempty"`
+//StructuredAppend - QR structured append parameters.
+type StructuredAppend struct {
+	// The index of the QR structured append mode barcode. Index starts from 0.
+	SequenceIndicator int32 `json:"SequenceIndicator,omitempty"`
+	// Gets or sets the QR structured append mode barcodes quantity. Max value is 16.
+	TotalCount int32 `json:"TotalCount,omitempty"`
+	// Gets or sets the QR structured append mode parity data.
+	ParityByte int32 `json:"ParityByte,omitempty"`
 }

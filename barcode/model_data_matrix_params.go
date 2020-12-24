@@ -38,4 +38,6 @@ type DataMatrixParams struct {
 	DataMatrixEncodeMode DataMatrixEncodeMode `json:"DataMatrixEncodeMode,omitempty"`
 	// Rows count.
 	Rows int32 `json:"Rows,omitempty"`
+	// Macro Characters 05 and 06 values are used to obtain more compact encoding in special modes. Can be used only with DataMatrixEccType.Ecc200 or DataMatrixEccType.EccAuto. Cannot be used with EncodeTypes.GS1DataMatrix Default value: MacroCharacters.None.
+	MacroCharacters MacroCharacter `json:"MacroCharacters,omitempty"`
 }

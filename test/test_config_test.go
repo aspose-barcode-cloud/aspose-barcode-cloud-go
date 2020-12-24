@@ -3,13 +3,14 @@ package test
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"testing"
+
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"os"
-	"testing"
 )
 
 func TestNewTestConfigFromFile(t *testing.T) {
@@ -55,7 +56,7 @@ func TestNewConfigFromEnvDefaults(t *testing.T) {
 
 	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
 	assert.Equal(t, "", config.APIConfig.Host)
-	assert.Equal(t, "Aspose-Barcode-SDK/0.2011.0/go", config.APIConfig.UserAgent)
+	assert.Equal(t, "Aspose-Barcode-SDK/0.2012.0/go", config.APIConfig.UserAgent)
 }
 
 func TestNewConfigFromEnvValues(t *testing.T) {
@@ -77,7 +78,7 @@ func TestNewConfigFromEnvValues(t *testing.T) {
 
 	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
 	assert.Equal(t, "", config.APIConfig.Host)
-	assert.Equal(t, "Aspose-Barcode-SDK/0.2011.0/go", config.APIConfig.UserAgent)
+	assert.Equal(t, "Aspose-Barcode-SDK/0.2012.0/go", config.APIConfig.UserAgent)
 }
 
 func TestConfigMarshal(t *testing.T) {
