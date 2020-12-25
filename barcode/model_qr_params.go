@@ -40,4 +40,6 @@ type QrParams struct {
 	ErrorLevel QrErrorLevel `json:"ErrorLevel,omitempty"`
 	// Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto.
 	Version QrVersion `json:"Version,omitempty"`
+	// QR structured append parameters.
+	StructuredAppend StructuredAppend `json:"StructuredAppend,omitempty"`
 }

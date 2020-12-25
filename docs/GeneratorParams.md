@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **TextColor** | **string** | Specify the displaying CodeText&#39;s Color. Default value: Color.Black. | [optional] [default to null]
 **Font** | [***FontParams**](FontParams.md) | Specify the displaying Text&#39;s font. Default value: Arial 5pt regular. Ignored if FontSizeMode is set to FontSizeMode.Auto. | [optional] [default to null]
 **FontSizeMode** | [***FontMode**](FontMode.md) | Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto. | [optional] [default to null]
+**NoWrap** | **bool** | Specify word wraps (line breaks) within text. Default value: false. | [optional] [default to null]
 **Resolution** | **float64** | Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi. | [optional] [default to null]
 **ResolutionX** | **float64** | DEPRECATED: Use &#39;Resolution&#39; instead. | [optional] [default to null]
 **ResolutionY** | **float64** | DEPRECATED: Use &#39;Resolution&#39; instead. | [optional] [default to null]

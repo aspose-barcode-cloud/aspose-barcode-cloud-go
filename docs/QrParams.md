@@ -11,5 +11,6 @@ Name | Type | Description | Notes
 **EncodeMode** | [***QrEncodeMode**](QrEncodeMode.md) | QR symbology type of BarCode&#39;s encoding mode. Default value: QREncodeMode.Auto. | [optional] [default to null]
 **ErrorLevel** | [***QrErrorLevel**](QrErrorLevel.md) | Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel. | [optional] [default to null]
 **Version** | [***QrVersion**](QrVersion.md) | Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto. | [optional] [default to null]
+**StructuredAppend** | [***StructuredAppend**](StructuredAppend.md) | QR structured append parameters. | [optional] [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

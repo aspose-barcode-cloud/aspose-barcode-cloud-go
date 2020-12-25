@@ -1,7 +1,7 @@
 # Aspose.BarCode Cloud SDK for Go
 
 - API version: 3.0
-- SDK version: 0.2011.0
+- SDK version: 0.2012.0
 
 [Aspose.BarCode for Cloud](https://products.aspose.cloud/barcode/cloud) is a REST API for Linear, 2D and postal barcode generation and recognition in the cloud. API recognizes and generates barcode images in a variety of formats. Barcode REST API allows to specify barcode image attributes like image width, height, border style and output image format in order to customize the generation process. Developers can also specify the barcode type and text attributes such as text location and font styles in order to suit the application requirements.
 
@@ -21,7 +21,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2011.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2012.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -231,6 +231,7 @@ Class | Method | HTTP request | Description
 - [GeneratorParamsList](docs/GeneratorParamsList.md)
 - [Itf14BorderType](docs/Itf14BorderType.md)
 - [ItfParams](docs/ItfParams.md)
+- [MacroCharacter](docs/MacroCharacter.md)
 - [MaxiCodeParams](docs/MaxiCodeParams.md)
 - [ModelError](docs/ModelError.md)
 - [ObjectExist](docs/ObjectExist.md)
@@ -252,6 +253,7 @@ Class | Method | HTTP request | Description
 - [ResultImageInfo](docs/ResultImageInfo.md)
 - [StorageExist](docs/StorageExist.md)
 - [StorageFile](docs/StorageFile.md)
+- [StructuredAppend](docs/StructuredAppend.md)
 - [TextAlignment](docs/TextAlignment.md)
 - [FileVersion](docs/FileVersion.md)
 

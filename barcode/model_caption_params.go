@@ -38,4 +38,6 @@ type CaptionParams struct {
 	Font FontParams `json:"Font,omitempty"`
 	// Padding.
 	Padding Padding `json:"Padding,omitempty"`
+	// Specify word wraps (line breaks) within text. Default value: false.
+	NoWrap bool `json:"NoWrap,omitempty"`
 }

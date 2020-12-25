@@ -42,6 +42,8 @@ type GeneratorParams struct {
 	Font FontParams `json:"Font,omitempty"`
 	// Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
 	FontSizeMode FontMode `json:"FontSizeMode,omitempty"`
+	// Specify word wraps (line breaks) within text. Default value: false.
+	NoWrap bool `json:"NoWrap,omitempty"`
 	// Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
 	Resolution float64 `json:"Resolution,omitempty"`
 	// DEPRECATED: Use 'Resolution' instead.
