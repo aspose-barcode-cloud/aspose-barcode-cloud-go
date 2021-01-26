@@ -341,6 +341,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
 	AllowRegularImage                 optional.Bool
 	AllowSaltAndPepperFiltering       optional.Bool
 	AllowWhiteSpotsRemoving           optional.Bool
+	CheckMore1DVariants               optional.Bool
 	RegionLikelihoodThresholdPercent  optional.Float64
 	ScanWindowSizes                   optional.Interface
 	Similarity                        optional.Float64
@@ -382,6 +383,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "AllowRegularImage" (optional.Bool) -  Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param "AllowSaltAndPepperFiltering" (optional.Bool) -  Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param "AllowWhiteSpotsRemoving" (optional.Bool) -  Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
+     * @param "CheckMore1DVariants" (optional.Bool) -  Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
      * @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
@@ -485,6 +487,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 	}
 	if optionals != nil && optionals.AllowWhiteSpotsRemoving.IsSet() {
 		queryParams.Add("AllowWhiteSpotsRemoving", parameterToString(optionals.AllowWhiteSpotsRemoving.Value(), ""))
+	}
+	if optionals != nil && optionals.CheckMore1DVariants.IsSet() {
+		queryParams.Add("CheckMore1DVariants", parameterToString(optionals.CheckMore1DVariants.Value(), ""))
 	}
 	if optionals != nil && optionals.RegionLikelihoodThresholdPercent.IsSet() {
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
@@ -604,6 +609,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 	AllowRegularImage                 optional.Bool
 	AllowSaltAndPepperFiltering       optional.Bool
 	AllowWhiteSpotsRemoving           optional.Bool
+	CheckMore1DVariants               optional.Bool
 	RegionLikelihoodThresholdPercent  optional.Float64
 	ScanWindowSizes                   optional.Interface
 	Similarity                        optional.Float64
@@ -644,6 +650,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "AllowRegularImage" (optional.Bool) -  Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param "AllowSaltAndPepperFiltering" (optional.Bool) -  Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param "AllowWhiteSpotsRemoving" (optional.Bool) -  Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
+     * @param "CheckMore1DVariants" (optional.Bool) -  Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
      * @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
@@ -746,6 +753,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	}
 	if optionals != nil && optionals.AllowWhiteSpotsRemoving.IsSet() {
 		queryParams.Add("AllowWhiteSpotsRemoving", parameterToString(optionals.AllowWhiteSpotsRemoving.Value(), ""))
+	}
+	if optionals != nil && optionals.CheckMore1DVariants.IsSet() {
+		queryParams.Add("CheckMore1DVariants", parameterToString(optionals.CheckMore1DVariants.Value(), ""))
 	}
 	if optionals != nil && optionals.RegionLikelihoodThresholdPercent.IsSet() {
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
