@@ -76,6 +76,8 @@ type ReaderParams struct {
 	AllowSaltAndPepperFiltering bool `json:"AllowSaltAndPepperFiltering,omitempty"`
 	// Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
 	AllowWhiteSpotsRemoving bool `json:"AllowWhiteSpotsRemoving,omitempty"`
+	// Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
+	CheckMore1DVariants bool `json:"CheckMore1DVariants,omitempty"`
 	// Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
 	RegionLikelihoodThresholdPercent float64 `json:"RegionLikelihoodThresholdPercent,omitempty"`
 	// Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.

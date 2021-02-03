@@ -24,6 +24,10 @@
 
 package barcode
 
+import (
+	"time"
+)
+
 //Pdf417Params - PDF417 parameters.
 type Pdf417Params struct {
 	// Height/Width ratio of 2D BarCode module.
@@ -50,4 +54,18 @@ type Pdf417Params struct {
 	Pdf417ECIEncoding EciEncodings `json:"Pdf417ECIEncoding,omitempty"`
 	// Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
 	IsReaderInitialization bool `json:"IsReaderInitialization,omitempty"`
+	// Macro Pdf417 barcode time stamp
+	MacroTimeStamp time.Time `json:"MacroTimeStamp,omitempty"`
+	// Macro Pdf417 barcode sender name
+	MacroSender string `json:"MacroSender,omitempty"`
+	// Macro Pdf417 file size. The file size field contains the size in bytes of the entire source file
+	MacroFileSize int32 `json:"MacroFileSize,omitempty"`
+	// Macro Pdf417 barcode checksum. The checksum field contains the value of the 16-bit (2 bytes) CRC checksum using the CCITT-16 polynomial
+	MacroChecksum int32 `json:"MacroChecksum,omitempty"`
+	// Macro Pdf417 barcode file name
+	MacroFileName string `json:"MacroFileName,omitempty"`
+	// Macro Pdf417 barcode addressee name
+	MacroAddressee string `json:"MacroAddressee,omitempty"`
+	// Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
+	MacroECIEncoding EciEncodings `json:"MacroECIEncoding,omitempty"`
 }
