@@ -68,4 +68,6 @@ type Pdf417Params struct {
 	MacroAddressee string `json:"MacroAddressee,omitempty"`
 	// Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
 	MacroECIEncoding EciEncodings `json:"MacroECIEncoding,omitempty"`
+	// Function codeword for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
+	Code128Emulation Code128Emulation `json:"Code128Emulation,omitempty"`
 }
