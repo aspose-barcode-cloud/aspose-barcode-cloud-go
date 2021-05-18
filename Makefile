@@ -35,11 +35,18 @@ tidy:
 clean-gosum:
 	./scripts/clean-go.sum.sh
 
+.PHONY: clean-gomod
+clean-gomod:
+	./scripts/clean-go.mod.sh
+
 .PHONY: update
-update: update_packages tidy clean-gosum
+update: update_packages tidy clean-gomod clean-gosum
 
 .PHONY: release
-release: format vet lint update_packages tidy build test clean-gosum
+release: format vet lint update_packages tidy build test clean-gomod clean-gosum
+
+.PHONY: after-gen
+after-gen: format clean-gomod clean-gosum
 
 .PHONY: ci
 ci: build test

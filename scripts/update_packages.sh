@@ -2,4 +2,4 @@
 
 set -euo pipefail
 
-go get -u
+go list -m -u all
