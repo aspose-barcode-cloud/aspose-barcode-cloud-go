@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/github/license/aspose-barcode-cloud/aspose-barcode-cloud-go)](LICENSE)
 [![Go](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml/badge.svg)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml)
-[![Go Reference](https://pkg.go.dev/badge/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go.svg)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
 - SDK version: 0.2103.0
