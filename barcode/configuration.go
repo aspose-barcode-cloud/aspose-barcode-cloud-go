@@ -78,7 +78,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.aspose.cloud/v3.0",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Aspose-Barcode-SDK/0.2103.0/go",
+		UserAgent:     "Aspose-Barcode-SDK/0.2106.0/go",
 	}
 	return cfg
 }
