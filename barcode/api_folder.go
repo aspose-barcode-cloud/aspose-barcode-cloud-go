@@ -91,7 +91,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -169,7 +169,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -252,7 +252,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -331,7 +331,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -435,7 +435,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header

@@ -248,7 +248,7 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"image/png", "image/bmp", "image/gif", "image/jpeg", "image/svg+xml", "image/tiff"}
 
 	// set Accept header
@@ -527,7 +527,7 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -782,7 +782,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		queryParams.Add("url", parameterToString(optionals.Url.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"multipart/form-data", "application/octet-stream"}
+	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/octet-stream"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -790,7 +790,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -801,13 +801,15 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 
 	if optionals != nil && optionals.Image.IsSet() {
 		if requestFile, fileOk := optionals.Image.Value().(*os.File); fileOk {
+			fileName = requestFile.Name()
 			var err error
-			postBody, err = ioutil.ReadAll(requestFile)
+			fileBytes, err = ioutil.ReadAll(requestFile)
 			if err != nil {
 				return returnValue, nil, err
 			}
 		} else if requestBytes, bytesOK := optionals.Image.Value().([]byte); bytesOK {
-			postBody = requestBytes
+			fileName = "Image"
+			fileBytes = requestBytes
 		} else {
 			return returnValue, nil, reportError("image should be *os.File or []byte")
 		}
@@ -901,7 +903,7 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"image/png", "image/bmp", "image/gif", "image/jpeg", "image/svg+xml", "image/tiff"}
 
 	// set Accept header
@@ -1167,7 +1169,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 		queryParams.Add("format", parameterToString(optionals.Format.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"application/json", "application/xml", "multipart/form-data"}
+	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/json", "application/xml"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -1175,7 +1177,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -1295,7 +1297,7 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -1406,7 +1408,7 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
