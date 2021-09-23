@@ -83,7 +83,7 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -181,7 +181,7 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -284,7 +284,7 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -372,7 +372,7 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header

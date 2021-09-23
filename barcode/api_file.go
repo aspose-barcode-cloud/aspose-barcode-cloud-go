@@ -97,7 +97,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -180,7 +180,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -264,7 +264,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"multipart/form-data"}
 
 	// set Accept header
@@ -373,7 +373,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -453,7 +453,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 		headerParams["Content-Type"] = httpContentType
 	}
 
-	// to determine the Accept header
+	// to determine Accept header
 	acceptChoices := []string{"application/json"}
 
 	// set Accept header
@@ -463,8 +463,9 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	}
 	requestFile := file
 	if requestFile != nil {
+		fileName = requestFile.Name()
 		var err error
-		postBody, err = ioutil.ReadAll(requestFile)
+		fileBytes, err = ioutil.ReadAll(requestFile)
 		if err != nil {
 			return returnValue, nil, err
 		}
