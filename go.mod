@@ -4,7 +4,8 @@ go 1.11
 
 require (
 	github.com/antihax/optional v1.0.0
-	github.com/google/uuid v1.2.0
-	github.com/stretchr/testify v1.7.0
-	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
+	github.com/google/uuid v1.3.0
+	// Do not upgrade Testify to >=1.7.0. It breaks Go 1.11 compatibility: "module requires Go 1.13"
+	github.com/stretchr/testify v1.6.1
+	golang.org/x/oauth2 v0.0.0-20210819190943-2bc19b11175f
 )
