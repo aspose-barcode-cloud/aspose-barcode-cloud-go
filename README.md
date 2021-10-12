@@ -1,11 +1,14 @@
 # Aspose.BarCode Cloud SDK for Go
 
+| WARNING: **Update SDK to version >= 0.2109.0**: All SDK version < 0.2109.0 will stop working soon! |
+| -------------------------------------------------------------------------------------------------- |
+
 [![License](https://img.shields.io/github/license/aspose-barcode-cloud/aspose-barcode-cloud-go)](LICENSE)
 [![Go](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml/badge.svg)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
-- SDK version: 0.2109.0
+- SDK version: 0.2110.0
 
 ## Demo applications
 
@@ -31,7 +34,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2109.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2110.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )

@@ -78,6 +78,8 @@ type ReaderParams struct {
 	AllowWhiteSpotsRemoving bool `json:"AllowWhiteSpotsRemoving,omitempty"`
 	// Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
 	CheckMore1DVariants bool `json:"CheckMore1DVariants,omitempty"`
+	// Allows engine for 1D barcodes to quickly recognize middle slice of an image and return result without using any time-consuming algorithms. Default value: False.
+	FastScanOnly bool `json:"FastScanOnly,omitempty"`
 	// Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
 	RegionLikelihoodThresholdPercent float64 `json:"RegionLikelihoodThresholdPercent,omitempty"`
 	// Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
@@ -90,4 +92,6 @@ type ReaderParams struct {
 	ReadTinyBarcodes bool `json:"ReadTinyBarcodes,omitempty"`
 	// Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
 	AustralianPostEncodingTable CustomerInformationInterpretingType `json:"AustralianPostEncodingTable,omitempty"`
+	// The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
+	IgnoreEndingFillingPatternsForCTable bool `json:"IgnoreEndingFillingPatternsForCTable,omitempty"`
 }

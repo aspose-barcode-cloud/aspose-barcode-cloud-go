@@ -316,41 +316,43 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 
 //BarcodeApiGetBarcodeRecognizeOpts - Optional Parameters for BarcodeApiGetBarcodeRecognize
 type BarcodeApiGetBarcodeRecognizeOpts struct {
-	Type_                             optional.String
-	ChecksumValidation                optional.String
-	DetectEncoding                    optional.Bool
-	Preset                            optional.String
-	RectX                             optional.Int32
-	RectY                             optional.Int32
-	RectWidth                         optional.Int32
-	RectHeight                        optional.Int32
-	StripFNC                          optional.Bool
-	Timeout                           optional.Int32
-	MedianSmoothingWindowSize         optional.Int32
-	AllowMedianSmoothing              optional.Bool
-	AllowComplexBackground            optional.Bool
-	AllowDatamatrixIndustrialBarcodes optional.Bool
-	AllowDecreasedImage               optional.Bool
-	AllowDetectScanGap                optional.Bool
-	AllowIncorrectBarcodes            optional.Bool
-	AllowInvertImage                  optional.Bool
-	AllowMicroWhiteSpotsRemoving      optional.Bool
-	AllowOneDFastBarcodesDetector     optional.Bool
-	AllowOneDWipedBarsRestoration     optional.Bool
-	AllowQRMicroQrRestoration         optional.Bool
-	AllowRegularImage                 optional.Bool
-	AllowSaltAndPepperFiltering       optional.Bool
-	AllowWhiteSpotsRemoving           optional.Bool
-	CheckMore1DVariants               optional.Bool
-	RegionLikelihoodThresholdPercent  optional.Float64
-	ScanWindowSizes                   optional.Interface
-	Similarity                        optional.Float64
-	SkipDiagonalSearch                optional.Bool
-	ReadTinyBarcodes                  optional.Bool
-	AustralianPostEncodingTable       optional.String
-	RectangleRegion                   optional.String
-	Storage                           optional.String
-	Folder                            optional.String
+	Type_                                optional.String
+	ChecksumValidation                   optional.String
+	DetectEncoding                       optional.Bool
+	Preset                               optional.String
+	RectX                                optional.Int32
+	RectY                                optional.Int32
+	RectWidth                            optional.Int32
+	RectHeight                           optional.Int32
+	StripFNC                             optional.Bool
+	Timeout                              optional.Int32
+	MedianSmoothingWindowSize            optional.Int32
+	AllowMedianSmoothing                 optional.Bool
+	AllowComplexBackground               optional.Bool
+	AllowDatamatrixIndustrialBarcodes    optional.Bool
+	AllowDecreasedImage                  optional.Bool
+	AllowDetectScanGap                   optional.Bool
+	AllowIncorrectBarcodes               optional.Bool
+	AllowInvertImage                     optional.Bool
+	AllowMicroWhiteSpotsRemoving         optional.Bool
+	AllowOneDFastBarcodesDetector        optional.Bool
+	AllowOneDWipedBarsRestoration        optional.Bool
+	AllowQRMicroQrRestoration            optional.Bool
+	AllowRegularImage                    optional.Bool
+	AllowSaltAndPepperFiltering          optional.Bool
+	AllowWhiteSpotsRemoving              optional.Bool
+	CheckMore1DVariants                  optional.Bool
+	FastScanOnly                         optional.Bool
+	RegionLikelihoodThresholdPercent     optional.Float64
+	ScanWindowSizes                      optional.Interface
+	Similarity                           optional.Float64
+	SkipDiagonalSearch                   optional.Bool
+	ReadTinyBarcodes                     optional.Bool
+	AustralianPostEncodingTable          optional.String
+	IgnoreEndingFillingPatternsForCTable optional.Bool
+	RectangleRegion                      optional.String
+	Storage                              optional.String
+	Folder                               optional.String
 }
 
 /*
@@ -384,12 +386,14 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "AllowSaltAndPepperFiltering" (optional.Bool) -  Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param "AllowWhiteSpotsRemoving" (optional.Bool) -  Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
      * @param "CheckMore1DVariants" (optional.Bool) -  Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
+     * @param "FastScanOnly" (optional.Bool) -  Allows engine for 1D barcodes to quickly recognize middle slice of an image and return result without using any time-consuming algorithms. Default value: False.
      * @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
@@ -491,6 +495,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 	if optionals != nil && optionals.CheckMore1DVariants.IsSet() {
 		queryParams.Add("CheckMore1DVariants", parameterToString(optionals.CheckMore1DVariants.Value(), ""))
 	}
+	if optionals != nil && optionals.FastScanOnly.IsSet() {
+		queryParams.Add("FastScanOnly", parameterToString(optionals.FastScanOnly.Value(), ""))
+	}
 	if optionals != nil && optionals.RegionLikelihoodThresholdPercent.IsSet() {
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
 	}
@@ -508,6 +515,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 	}
 	if optionals != nil && optionals.AustralianPostEncodingTable.IsSet() {
 		queryParams.Add("AustralianPostEncodingTable", parameterToString(optionals.AustralianPostEncodingTable.Value(), ""))
+	}
+	if optionals != nil && optionals.IgnoreEndingFillingPatternsForCTable.IsSet() {
+		queryParams.Add("IgnoreEndingFillingPatternsForCTable", parameterToString(optionals.IgnoreEndingFillingPatternsForCTable.Value(), ""))
 	}
 	if optionals != nil && optionals.RectangleRegion.IsSet() {
 		queryParams.Add("RectangleRegion", parameterToString(optionals.RectangleRegion.Value(), ""))
@@ -584,41 +594,43 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 
 //BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters for BarcodeApiPostBarcodeRecognizeFromUrlOrContent
 type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
-	Type_                             optional.String
-	ChecksumValidation                optional.String
-	DetectEncoding                    optional.Bool
-	Preset                            optional.String
-	RectX                             optional.Int32
-	RectY                             optional.Int32
-	RectWidth                         optional.Int32
-	RectHeight                        optional.Int32
-	StripFNC                          optional.Bool
-	Timeout                           optional.Int32
-	MedianSmoothingWindowSize         optional.Int32
-	AllowMedianSmoothing              optional.Bool
-	AllowComplexBackground            optional.Bool
-	AllowDatamatrixIndustrialBarcodes optional.Bool
-	AllowDecreasedImage               optional.Bool
-	AllowDetectScanGap                optional.Bool
-	AllowIncorrectBarcodes            optional.Bool
-	AllowInvertImage                  optional.Bool
-	AllowMicroWhiteSpotsRemoving      optional.Bool
-	AllowOneDFastBarcodesDetector     optional.Bool
-	AllowOneDWipedBarsRestoration     optional.Bool
-	AllowQRMicroQrRestoration         optional.Bool
-	AllowRegularImage                 optional.Bool
-	AllowSaltAndPepperFiltering       optional.Bool
-	AllowWhiteSpotsRemoving           optional.Bool
-	CheckMore1DVariants               optional.Bool
-	RegionLikelihoodThresholdPercent  optional.Float64
-	ScanWindowSizes                   optional.Interface
-	Similarity                        optional.Float64
-	SkipDiagonalSearch                optional.Bool
-	ReadTinyBarcodes                  optional.Bool
-	AustralianPostEncodingTable       optional.String
-	RectangleRegion                   optional.String
-	Url                               optional.String
-	Image                             optional.Interface
+	Type_                                optional.String
+	ChecksumValidation                   optional.String
+	DetectEncoding                       optional.Bool
+	Preset                               optional.String
+	RectX                                optional.Int32
+	RectY                                optional.Int32
+	RectWidth                            optional.Int32
+	RectHeight                           optional.Int32
+	StripFNC                             optional.Bool
+	Timeout                              optional.Int32
+	MedianSmoothingWindowSize            optional.Int32
+	AllowMedianSmoothing                 optional.Bool
+	AllowComplexBackground               optional.Bool
+	AllowDatamatrixIndustrialBarcodes    optional.Bool
+	AllowDecreasedImage                  optional.Bool
+	AllowDetectScanGap                   optional.Bool
+	AllowIncorrectBarcodes               optional.Bool
+	AllowInvertImage                     optional.Bool
+	AllowMicroWhiteSpotsRemoving         optional.Bool
+	AllowOneDFastBarcodesDetector        optional.Bool
+	AllowOneDWipedBarsRestoration        optional.Bool
+	AllowQRMicroQrRestoration            optional.Bool
+	AllowRegularImage                    optional.Bool
+	AllowSaltAndPepperFiltering          optional.Bool
+	AllowWhiteSpotsRemoving              optional.Bool
+	CheckMore1DVariants                  optional.Bool
+	FastScanOnly                         optional.Bool
+	RegionLikelihoodThresholdPercent     optional.Float64
+	ScanWindowSizes                      optional.Interface
+	Similarity                           optional.Float64
+	SkipDiagonalSearch                   optional.Bool
+	ReadTinyBarcodes                     optional.Bool
+	AustralianPostEncodingTable          optional.String
+	IgnoreEndingFillingPatternsForCTable optional.Bool
+	RectangleRegion                      optional.String
+	Url                                  optional.String
+	Image                                optional.Interface
 }
 
 /*
@@ -651,12 +663,14 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "AllowSaltAndPepperFiltering" (optional.Bool) -  Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param "AllowWhiteSpotsRemoving" (optional.Bool) -  Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
      * @param "CheckMore1DVariants" (optional.Bool) -  Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
+     * @param "FastScanOnly" (optional.Bool) -  Allows engine for 1D barcodes to quickly recognize middle slice of an image and return result without using any time-consuming algorithms. Default value: False.
      * @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data
@@ -757,6 +771,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	if optionals != nil && optionals.CheckMore1DVariants.IsSet() {
 		queryParams.Add("CheckMore1DVariants", parameterToString(optionals.CheckMore1DVariants.Value(), ""))
 	}
+	if optionals != nil && optionals.FastScanOnly.IsSet() {
+		queryParams.Add("FastScanOnly", parameterToString(optionals.FastScanOnly.Value(), ""))
+	}
 	if optionals != nil && optionals.RegionLikelihoodThresholdPercent.IsSet() {
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
 	}
@@ -775,6 +792,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	if optionals != nil && optionals.AustralianPostEncodingTable.IsSet() {
 		queryParams.Add("AustralianPostEncodingTable", parameterToString(optionals.AustralianPostEncodingTable.Value(), ""))
 	}
+	if optionals != nil && optionals.IgnoreEndingFillingPatternsForCTable.IsSet() {
+		queryParams.Add("IgnoreEndingFillingPatternsForCTable", parameterToString(optionals.IgnoreEndingFillingPatternsForCTable.Value(), ""))
+	}
 	if optionals != nil && optionals.RectangleRegion.IsSet() {
 		queryParams.Add("RectangleRegion", parameterToString(optionals.RectangleRegion.Value(), ""))
 	}
@@ -782,7 +802,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		queryParams.Add("url", parameterToString(optionals.Url.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/octet-stream"}
+	contentTypeChoices := []string{"multipart/form-data", "application/octet-stream"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -1169,7 +1189,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 		queryParams.Add("format", parameterToString(optionals.Format.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/json", "application/xml"}
+	contentTypeChoices := []string{"application/json", "application/xml", "multipart/form-data"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
