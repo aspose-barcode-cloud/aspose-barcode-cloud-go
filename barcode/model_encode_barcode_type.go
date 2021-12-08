@@ -95,4 +95,5 @@ const (
 	EncodeBarcodeTypeUpcaGs1DatabarCoupon          EncodeBarcodeType = "UpcaGs1DatabarCoupon"
 	EncodeBarcodeTypeCodablockF                    EncodeBarcodeType = "CodablockF"
 	EncodeBarcodeTypeGS1CodablockF                 EncodeBarcodeType = "GS1CodablockF"
+	EncodeBarcodeTypeMailmark                      EncodeBarcodeType = "Mailmark"
 )
