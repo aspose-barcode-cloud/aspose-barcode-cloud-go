@@ -96,4 +96,5 @@ const (
 	DecodeBarcodeTypeDotCode                       DecodeBarcodeType = "DotCode"
 	DecodeBarcodeTypeDutchKIX                      DecodeBarcodeType = "DutchKIX"
 	DecodeBarcodeTypeCodablockF                    DecodeBarcodeType = "CodablockF"
+	DecodeBarcodeTypeMailmark                      DecodeBarcodeType = "Mailmark"
 )
