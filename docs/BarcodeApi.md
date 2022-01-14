@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
  **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
- **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;. |
+ **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;. |
  **RectangleRegion** | **optional.String** |  |
  **Storage** | **optional.String** | The image storage. |
  **Folder** | **optional.String** | The image folder. |
@@ -189,7 +189,7 @@ Name | Type | Description  | Notes
  **SkipDiagonalSearch** | **optional.Bool** | Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. |
  **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
- **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;. |
+ **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;. |
  **RectangleRegion** | **optional.String** |  |
  **Url** | **optional.String** | The image file url. |
  **Image** | **optional.Interface of *os.File** | Image data |

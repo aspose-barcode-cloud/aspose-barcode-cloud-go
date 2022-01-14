@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2021 Aspose Pty Ltd
+ * Copyright (c) 2022 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -393,7 +393,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
@@ -670,7 +670,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data
@@ -802,7 +802,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		queryParams.Add("url", parameterToString(optionals.Url.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"multipart/form-data", "application/octet-stream"}
+	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/octet-stream"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -1189,7 +1189,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 		queryParams.Add("format", parameterToString(optionals.Format.Value(), ""))
 	}
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"application/json", "application/xml", "multipart/form-data"}
+	contentTypeChoices := []string{"multipart/form-data", "application/x-www-form-urlencoded", "application/json", "application/xml"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
