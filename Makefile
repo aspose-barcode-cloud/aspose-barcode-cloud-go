@@ -40,13 +40,13 @@ clean-gomod:
 	./scripts/clean-go.mod.sh
 
 .PHONY: update
-update: update_packages tidy clean-gosum clean-gomod
+update: update_packages tidy clean-gosum
 
 .PHONY: release
-release: format vet lint update_packages tidy build test clean-gosum clean-gomod
+release: format vet lint update_packages tidy build test clean-gosum
 
 .PHONY: after-gen
-after-gen: format clean-gosum clean-gomod
+after-gen: format clean-gosum
 
 .PHONY: ci
 ci: build test
