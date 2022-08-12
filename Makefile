@@ -1,6 +1,10 @@
 .PHONY: all
 all: release
 
+.PHONY: init
+init:
+	go get -v -t -d ./...
+
 .PHONY: format
 format:
 	./scripts/fix_api_error.sh
