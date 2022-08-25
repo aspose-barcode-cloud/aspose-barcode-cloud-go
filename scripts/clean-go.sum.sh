@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 go_sum_file="go.sum"
@@ -21,10 +20,10 @@ do
         if [[ ${mod_line} == //* ]]; then
             continue
         fi
-        echo "${mod_line}"
-        without_indirect=$(sed "s/ \/\/ indirect//g" <<< "${mod_line}")
-        echo "\"${without_indirect}\""
-        grep -iF "${without_indirect}" "${go_sum_file}" >> "${new_go_sum_file}"
+        echo "Go mod line: ${mod_line}"
+        strip_indirect=$(sed "s/ \/\/ indirect//g" <<< "${mod_line}")
+        echo "Searching in go.sum: \"${strip_indirect}\""
+        grep -iF "${strip_indirect}" "${go_sum_file}" >> "${new_go_sum_file}"
     fi
 done < "go.mod"
 

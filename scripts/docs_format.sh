@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 format_md_file () {

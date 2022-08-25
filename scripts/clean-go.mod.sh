@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 go_mod_file="go.mod"
