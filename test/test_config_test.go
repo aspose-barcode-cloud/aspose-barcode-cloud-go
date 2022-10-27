@@ -56,7 +56,7 @@ func TestNewConfigFromEnvDefaults(t *testing.T) {
 
 	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
 	assert.Equal(t, "", config.APIConfig.Host)
-	assert.Equal(t, "Aspose-Barcode-SDK/0.2209.0/go", config.APIConfig.UserAgent)
+	assert.Equal(t, "Aspose-Barcode-SDK/0.2210.0/go", config.APIConfig.UserAgent)
 }
 
 func TestNewConfigFromEnvValues(t *testing.T) {
