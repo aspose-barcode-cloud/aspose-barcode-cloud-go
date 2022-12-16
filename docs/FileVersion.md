@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **Name** | **string** | File or folder name. | [optional] [default to null]
 **IsFolder** | **bool** | True if it is a folder. | [default to null]
 **ModifiedDate** | **time.Time** | File or folder last modified DateTime. | [optional] [default to null]

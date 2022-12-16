@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **BarcodeValue** | **string** | Barcode data. | [optional] [default to null]
 **Type_** | **string** | Type of the barcode. | [optional] [default to null]
 **Region** | [**[]RegionPoint**](RegionPoint.md) | Region with barcode. | [optional] [default to null]

@@ -28,6 +28,6 @@ package barcode
 type DotCodeParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
-	// Mask of Dotcode barcode. Default value: -1.
+	// DEPRECATED: DotCodeMask is now calculated automatically
 	DotCodeMask int32 `json:"DotCodeMask,omitempty"`
 }

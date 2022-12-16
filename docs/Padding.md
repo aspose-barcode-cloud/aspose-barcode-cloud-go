@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **Left** | **float64** | Left padding. | [optional] [default to null]
 **Right** | **float64** | Right padding. | [optional] [default to null]
 **Top** | **float64** | Top padding. | [optional] [default to null]

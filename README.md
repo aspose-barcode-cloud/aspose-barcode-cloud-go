@@ -5,7 +5,7 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
-- SDK version: 0.2211.0
+- SDK version: 0.2212.0
 
 ## Demo applications
 
@@ -33,7 +33,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2211.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2212.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -177,7 +177,7 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 All URIs are relative to *<https://api.aspose.cloud/v3.0>*
 
 Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
+----- | ------ | ------------ | -----------
 *BarcodeApi* | [**GetBarcodeGenerate**](docs/BarcodeApi.md#getbarcodegenerate) | **Get** /barcode/generate | Generate barcode.
 *BarcodeApi* | [**GetBarcodeRecognize**](docs/BarcodeApi.md#getbarcoderecognize) | **Get** /barcode/{name}/recognize | Recognize barcode from a file on server.
 *BarcodeApi* | [**PostBarcodeRecognizeFromUrlOrContent**](docs/BarcodeApi.md#postbarcoderecognizefromurlorcontent) | **Post** /barcode/recognize | Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
