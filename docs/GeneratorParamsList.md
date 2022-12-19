@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **BarcodeBuilders** | [**[]GeneratorParams**](GeneratorParams.md) | List of barcode generators | [optional] [default to null]
 **XStep** | **int32** | Shift step according to X axis | [default to null]
 **YStep** | **int32** | Shift step according to Y axis | [default to null]

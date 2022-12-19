@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **TypeOfBarcode** | [***EncodeBarcodeType**](EncodeBarcodeType.md) | Type of barcode to generate. | [default to null]
 **Text** | **string** | Text to encode. | [default to null]
 **TwoDDisplayText** | **string** | Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional] [default to null]

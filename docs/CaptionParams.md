@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **Text** | **string** | Caption text. | [optional] [default to null]
 **Alignment** | [***TextAlignment**](TextAlignment.md) | Text alignment. | [optional] [default to null]
 **Color** | **string** | Text color. | [optional] [default to null]

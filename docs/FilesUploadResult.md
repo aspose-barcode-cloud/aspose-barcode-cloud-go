@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **Uploaded** | **[]string** | List of uploaded file names | [optional] [default to null]
 **Errors** | [**[]ModelError**](ModelError.md) | List of errors. | [optional] [default to null]
 

@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **UsedSize** | **int64** | Application used disc space. | [default to null]
 **TotalSize** | **int64** | Total disc space. | [default to null]
 

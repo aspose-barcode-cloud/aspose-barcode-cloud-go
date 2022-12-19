@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **AspectRatio** | **float64** | Height/Width ratio of 2D BarCode module | [optional] [default to null]
 **TextEncoding** | **string** | Encoding of codetext. | [optional] [default to null]
 **Columns** | **int32** | Columns count. | [optional] [default to null]

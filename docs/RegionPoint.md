@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **X** | **int32** | X-coordinate | [default to null]
 **Y** | **int32** | Y-coordinate | [default to null]
 

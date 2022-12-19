@@ -3,7 +3,7 @@
 ## Properties
 
 Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
+---- | ---- | ----------- | -----
 **Family** | **string** | Font family. | [optional] [default to null]
 **Size** | **float64** | Font size in units. | [optional] [default to null]
 **Style** | [***FontStyle**](FontStyle.md) | Font style. | [optional] [default to null]
