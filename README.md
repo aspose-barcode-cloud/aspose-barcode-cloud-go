@@ -5,7 +5,7 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
-- SDK version: 0.2212.0
+- SDK version: 0.2301.0
 
 ## Demo applications
 
@@ -33,7 +33,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2212.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v0.2301.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -229,6 +229,7 @@ Class | Method | HTTP request | Description
 - [DataMatrixParams](docs/DataMatrixParams.md)
 - [DecodeBarcodeType](docs/DecodeBarcodeType.md)
 - [DiscUsage](docs/DiscUsage.md)
+- [DotCodeEncodeMode](docs/DotCodeEncodeMode.md)
 - [DotCodeParams](docs/DotCodeParams.md)
 - [EciEncodings](docs/EciEncodings.md)
 - [EnableChecksum](docs/EnableChecksum.md)
@@ -245,6 +246,7 @@ Class | Method | HTTP request | Description
 - [Itf14BorderType](docs/Itf14BorderType.md)
 - [ItfParams](docs/ItfParams.md)
 - [MacroCharacter](docs/MacroCharacter.md)
+- [MaxiCodeEncodeMode](docs/MaxiCodeEncodeMode.md)
 - [MaxiCodeMode](docs/MaxiCodeMode.md)
 - [MaxiCodeParams](docs/MaxiCodeParams.md)
 - [ModelError](docs/ModelError.md)

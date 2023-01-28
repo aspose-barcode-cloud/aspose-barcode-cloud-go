@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2022 Aspose Pty Ltd
+ * Copyright (c) 2023 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -96,4 +96,5 @@ const (
 	EncodeBarcodeTypeCodablockF                    EncodeBarcodeType = "CodablockF"
 	EncodeBarcodeTypeGS1CodablockF                 EncodeBarcodeType = "GS1CodablockF"
 	EncodeBarcodeTypeMailmark                      EncodeBarcodeType = "Mailmark"
+	EncodeBarcodeTypeGS1DotCode                    EncodeBarcodeType = "GS1DotCode"
 )

@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2022 Aspose Pty Ltd
+ * Copyright (c) 2023 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -97,4 +97,15 @@ const (
 	DecodeBarcodeTypeDutchKIX                      DecodeBarcodeType = "DutchKIX"
 	DecodeBarcodeTypeCodablockF                    DecodeBarcodeType = "CodablockF"
 	DecodeBarcodeTypeMailmark                      DecodeBarcodeType = "Mailmark"
+	DecodeBarcodeTypeGS1DotCode                    DecodeBarcodeType = "GS1DotCode"
+	DecodeBarcodeTypeHIBCCode39LIC                 DecodeBarcodeType = "HIBCCode39LIC"
+	DecodeBarcodeTypeHIBCCode128LIC                DecodeBarcodeType = "HIBCCode128LIC"
+	DecodeBarcodeTypeHIBCAztecLIC                  DecodeBarcodeType = "HIBCAztecLIC"
+	DecodeBarcodeTypeHIBCDataMatrixLIC             DecodeBarcodeType = "HIBCDataMatrixLIC"
+	DecodeBarcodeTypeHIBCQRLIC                     DecodeBarcodeType = "HIBCQRLIC"
+	DecodeBarcodeTypeHIBCCode39PAS                 DecodeBarcodeType = "HIBCCode39PAS"
+	DecodeBarcodeTypeHIBCCode128PAS                DecodeBarcodeType = "HIBCCode128PAS"
+	DecodeBarcodeTypeHIBCAztecPAS                  DecodeBarcodeType = "HIBCAztecPAS"
+	DecodeBarcodeTypeHIBCDataMatrixPAS             DecodeBarcodeType = "HIBCDataMatrixPAS"
+	DecodeBarcodeTypeHIBCQRPAS                     DecodeBarcodeType = "HIBCQRPAS"
 )
