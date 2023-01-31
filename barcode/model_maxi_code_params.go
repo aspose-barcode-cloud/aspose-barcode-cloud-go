@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2022 Aspose Pty Ltd
+ * Copyright (c) 2023 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,8 @@ package barcode
 type MaxiCodeParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
-	// Encoding mode for MaxiCode barcodes.
+	// Mode for MaxiCode barcodes.
 	Mode MaxiCodeMode `json:"Mode,omitempty"`
+	// Encoding mode for MaxiCode barcodes.
+	EncodeMode MaxiCodeEncodeMode `json:"EncodeMode,omitempty"`
 }
