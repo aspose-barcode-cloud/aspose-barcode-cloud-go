@@ -44,7 +44,7 @@ type ReaderParams struct {
 	RectHeight int32 `json:"RectHeight,omitempty"`
 	// Value indicating whether FNC symbol strip must be done.
 	StripFNC bool `json:"StripFNC,omitempty"`
-	// Timeout of recognition process.
+	// Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
 	Timeout int32 `json:"Timeout,omitempty"`
 	// Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
 	MedianSmoothingWindowSize int32 `json:"MedianSmoothingWindowSize,omitempty"`
@@ -92,6 +92,6 @@ type ReaderParams struct {
 	ReadTinyBarcodes bool `json:"ReadTinyBarcodes,omitempty"`
 	// Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
 	AustralianPostEncodingTable CustomerInformationInterpretingType `json:"AustralianPostEncodingTable,omitempty"`
-	// The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
+	// The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \"333\" of filling patterns is decoded as letter \"z\".
 	IgnoreEndingFillingPatternsForCTable bool `json:"IgnoreEndingFillingPatternsForCTable,omitempty"`
 }
