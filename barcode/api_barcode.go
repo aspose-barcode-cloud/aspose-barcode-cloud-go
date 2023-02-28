@@ -369,7 +369,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -393,7 +393,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
@@ -634,7 +634,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 }
 
 /*
- * PostBarcodeRecognizeFromUrlOrContent -  Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
+ * PostBarcodeRecognizeFromUrlOrContent -  Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image with content-type \&quot;application/octet-stream\&quot;. An image can also be passed as a form field.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters:
      * @param "Type_" (optional.String) -  The type of barcode to read.
@@ -646,7 +646,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -670,7 +670,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \&quot;333\&quot; of filling paterns is decoded as letter \&quot;z\&quot;.
+     * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;.
      * @param "RectangleRegion" (optional.String) -
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data

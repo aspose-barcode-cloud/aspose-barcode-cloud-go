@@ -11,10 +11,6 @@ format:
 	./scripts/fmt.sh
 	./scripts/docs_format.sh
 
-.PHONY: vet
-vet:
-	./scripts/vet.sh
-
 .PHONY: test
 test:
 	./scripts/test.sh
@@ -25,7 +21,7 @@ build:
 
 .PHONY: lint
 lint:
-	./scripts/lint.sh
+	./scripts/vet.sh
 
 .PHONY: update_packages
 update_packages:
@@ -47,10 +43,10 @@ clean-gomod:
 update: update_packages tidy clean-gosum
 
 .PHONY: release
-release: format vet lint update_packages tidy build test clean-gosum
+release: format lint update_packages tidy build test clean-gosum
 
 .PHONY: after-gen
-after-gen: format clean-gosum
+after-gen: init format clean-gosum
 
 .PHONY: ci
 ci: build test
