@@ -282,8 +282,9 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -571,8 +572,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -860,8 +862,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -959,8 +962,9 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1231,8 +1235,9 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1353,8 +1358,9 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1464,8 +1470,9 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {

@@ -123,8 +123,9 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -206,8 +207,9 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -298,8 +300,9 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -399,8 +402,9 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -496,8 +500,9 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {

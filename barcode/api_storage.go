@@ -117,8 +117,9 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -215,8 +216,9 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -318,8 +320,9 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -406,8 +409,9 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
