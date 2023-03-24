@@ -44,7 +44,7 @@ type ReaderParams struct {
 	RectHeight int32 `json:"RectHeight,omitempty"`
 	// Value indicating whether FNC symbol strip must be done.
 	StripFNC bool `json:"StripFNC,omitempty"`
-	// Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
+	// Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 60_000 (1 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
 	Timeout int32 `json:"Timeout,omitempty"`
 	// Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
 	MedianSmoothingWindowSize int32 `json:"MedianSmoothingWindowSize,omitempty"`
