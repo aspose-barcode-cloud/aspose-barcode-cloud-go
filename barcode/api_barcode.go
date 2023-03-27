@@ -282,8 +282,9 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -369,7 +370,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 60_000 (1 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -571,8 +572,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -646,7 +648,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
+     * @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 60_000 (1 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
      * @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -860,8 +862,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -959,8 +962,9 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1231,8 +1235,9 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1353,8 +1358,9 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -1464,8 +1470,9 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {

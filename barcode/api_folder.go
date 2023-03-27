@@ -117,8 +117,9 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -195,8 +196,9 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -278,8 +280,9 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr
@@ -365,8 +368,9 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		if httpResponse.StatusCode == 200 {
@@ -461,8 +465,9 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 
 	if httpResponse.StatusCode >= 300 {
 		newErr := GenericAPIError{
-			error: httpResponse.Status,
-			text:  string(responseBody),
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
 		}
 
 		return httpResponse, newErr

@@ -423,9 +423,10 @@ func detectContentType(body interface{}) string {
 
 // GenericAPIError Provides access to the body, error and model on returned errors.
 type GenericAPIError struct {
-	error string
-	text  string
-	model interface{}
+	error      string
+	text       string
+	model      interface{}
+	StatusCode int
 }
 
 // Error returns non-empty string if there was an error.
