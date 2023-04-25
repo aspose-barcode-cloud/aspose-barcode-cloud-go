@@ -102,6 +102,8 @@ type GeneratorParams struct {
 	SupplementSpace float64 `json:"SupplementSpace,omitempty"`
 	// Bars reduction value that is used to compensate ink spread while printing.
 	BarWidthReduction float64 `json:"BarWidthReduction,omitempty"`
+	// Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+	UseAntiAlias bool `json:"UseAntiAlias,omitempty"`
 	// AustralianPost params.
 	AustralianPost AustralianPostParams `json:"AustralianPost,omitempty"`
 	// Aztec params.

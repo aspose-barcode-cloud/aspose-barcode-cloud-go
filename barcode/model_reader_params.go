@@ -34,9 +34,9 @@ type ReaderParams struct {
 	DetectEncoding bool `json:"DetectEncoding,omitempty"`
 	// Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
 	Preset PresetType `json:"Preset,omitempty"`
-	// Set X for area for recognition.
+	// Set X of top left corner of area for recognition.
 	RectX int32 `json:"RectX,omitempty"`
-	// Set Y for area for recognition.
+	// Set Y of top left corner of area for recognition.
 	RectY int32 `json:"RectY,omitempty"`
 	// Set Width of area for recognition.
 	RectWidth int32 `json:"RectWidth,omitempty"`

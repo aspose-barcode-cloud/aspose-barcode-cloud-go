@@ -66,6 +66,7 @@ Name | Type | Description  | Notes
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
  **SupplementSpace** | **optional.Float64** | Space between main the BarCode and supplement BarCode. |
  **BarWidthReduction** | **optional.Float64** | Bars reduction value that is used to compensate ink spread while printing. |
+ **UseAntiAlias** | **optional.Bool** | Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing. |
  **Format** | **optional.String** | Result image format. |
 
 ### GetBarcodeGenerate Return type
@@ -98,8 +99,8 @@ Name | Type | Description  | Notes
  **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
  **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
  **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
- **RectX** | **optional.Int32** | Set X for area for recognition. |
- **RectY** | **optional.Int32** | Set Y for area for recognition. |
+ **RectX** | **optional.Int32** | Set X of top left corner of area for recognition. |
+ **RectY** | **optional.Int32** | Set Y of top left corner of area for recognition. |
  **RectWidth** | **optional.Int32** | Set Width of area for recognition. |
  **RectHeight** | **optional.Int32** | Set Height of area for recognition. |
  **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done. |
@@ -128,7 +129,6 @@ Name | Type | Description  | Notes
  **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;. |
- **RectangleRegion** | **optional.String** |  |
  **Storage** | **optional.String** | The image storage. |
  **Folder** | **optional.String** | The image folder. |
 
@@ -160,8 +160,8 @@ Name | Type | Description  | Notes
  **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
  **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
  **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
- **RectX** | **optional.Int32** | Set X for area for recognition. |
- **RectY** | **optional.Int32** | Set Y for area for recognition. |
+ **RectX** | **optional.Int32** | Set X of top left corner of area for recognition. |
+ **RectY** | **optional.Int32** | Set Y of top left corner of area for recognition. |
  **RectWidth** | **optional.Int32** | Set Width of area for recognition. |
  **RectHeight** | **optional.Int32** | Set Height of area for recognition. |
  **StripFNC** | **optional.Bool** | Value indicating whether FNC symbol strip must be done. |
@@ -190,7 +190,6 @@ Name | Type | Description  | Notes
  **ReadTinyBarcodes** | **optional.Bool** | Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. |
  **AustralianPostEncodingTable** | **optional.String** | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. |
  **IgnoreEndingFillingPatternsForCTable** | **optional.Bool** | The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;. |
- **RectangleRegion** | **optional.String** |  |
  **Url** | **optional.String** | The image file url. |
  **Image** | **optional.Interface of *os.File** | Image data |
 
@@ -284,6 +283,7 @@ Name | Type | Description  | Notes
  **SupplementData** | **optional.String** | Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. |
  **SupplementSpace** | **optional.Float64** | Space between main the BarCode and supplement BarCode. |
  **BarWidthReduction** | **optional.Float64** | Bars reduction value that is used to compensate ink spread while printing. |
+ **UseAntiAlias** | **optional.Bool** | Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing. |
  **Storage** | **optional.String** | Image&#39;s storage. |
  **Folder** | **optional.String** | Image&#39;s folder. |
  **Format** | **optional.String** | The image format. |
