@@ -32,7 +32,7 @@ tidy:
 	./scripts/tidy.sh
 
 .PHONY: clean-gosum
-clean-gosum:
+clean-gosum: clean-gomod
 	./scripts/clean-go.sum.sh
 
 .PHONY: clean-gomod
