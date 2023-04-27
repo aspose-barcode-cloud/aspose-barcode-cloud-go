@@ -77,6 +77,7 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
 	SupplementData     optional.String
 	SupplementSpace    optional.Float64
 	BarWidthReduction  optional.Float64
+	UseAntiAlias       optional.Bool
 	Format             optional.String
 }
 
@@ -118,6 +119,7 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
      * @param "SupplementData" (optional.String) -  Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param "SupplementSpace" (optional.Float64) -  Space between main the BarCode and supplement BarCode.
      * @param "BarWidthReduction" (optional.Float64) -  Bars reduction value that is used to compensate ink spread while printing.
+     * @param "UseAntiAlias" (optional.Bool) -  Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
      * @param "Format" (optional.String) -  Result image format.
 
  * @return []byte
@@ -236,6 +238,9 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 	if optionals != nil && optionals.BarWidthReduction.IsSet() {
 		queryParams.Add("BarWidthReduction", parameterToString(optionals.BarWidthReduction.Value(), ""))
 	}
+	if optionals != nil && optionals.UseAntiAlias.IsSet() {
+		queryParams.Add("UseAntiAlias", parameterToString(optionals.UseAntiAlias.Value(), ""))
+	}
 	if optionals != nil && optionals.Format.IsSet() {
 		queryParams.Add("format", parameterToString(optionals.Format.Value(), ""))
 	}
@@ -351,7 +356,6 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
 	ReadTinyBarcodes                     optional.Bool
 	AustralianPostEncodingTable          optional.String
 	IgnoreEndingFillingPatternsForCTable optional.Bool
-	RectangleRegion                      optional.String
 	Storage                              optional.String
 	Folder                               optional.String
 }
@@ -365,8 +369,8 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
      * @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param "RectX" (optional.Int32) -  Set X for area for recognition.
-     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.
+     * @param "RectX" (optional.Int32) -  Set X of top left corner of area for recognition.
+     * @param "RectY" (optional.Int32) -  Set Y of top left corner of area for recognition.
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
@@ -395,7 +399,6 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;.
-     * @param "RectangleRegion" (optional.String) -
      * @param "Storage" (optional.String) -  The image storage.
      * @param "Folder" (optional.String) -  The image folder.
 
@@ -520,9 +523,6 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 	if optionals != nil && optionals.IgnoreEndingFillingPatternsForCTable.IsSet() {
 		queryParams.Add("IgnoreEndingFillingPatternsForCTable", parameterToString(optionals.IgnoreEndingFillingPatternsForCTable.Value(), ""))
 	}
-	if optionals != nil && optionals.RectangleRegion.IsSet() {
-		queryParams.Add("RectangleRegion", parameterToString(optionals.RectangleRegion.Value(), ""))
-	}
 	if optionals != nil && optionals.Storage.IsSet() {
 		queryParams.Add("storage", parameterToString(optionals.Storage.Value(), ""))
 	}
@@ -630,7 +630,6 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 	ReadTinyBarcodes                     optional.Bool
 	AustralianPostEncodingTable          optional.String
 	IgnoreEndingFillingPatternsForCTable optional.Bool
-	RectangleRegion                      optional.String
 	Url                                  optional.String
 	Image                                optional.Interface
 }
@@ -643,8 +642,8 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
      * @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param "RectX" (optional.Int32) -  Set X for area for recognition.
-     * @param "RectY" (optional.Int32) -  Set Y for area for recognition.
+     * @param "RectX" (optional.Int32) -  Set X of top left corner of area for recognition.
+     * @param "RectY" (optional.Int32) -  Set Y of top left corner of area for recognition.
      * @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
      * @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
      * @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
@@ -673,7 +672,6 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
      * @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param "IgnoreEndingFillingPatternsForCTable" (optional.Bool) -  The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;.
-     * @param "RectangleRegion" (optional.String) -
      * @param "Url" (optional.String) -  The image file url.
      * @param "Image" (optional.Interface of *os.File) -  Image data
 
@@ -796,9 +794,6 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 	}
 	if optionals != nil && optionals.IgnoreEndingFillingPatternsForCTable.IsSet() {
 		queryParams.Add("IgnoreEndingFillingPatternsForCTable", parameterToString(optionals.IgnoreEndingFillingPatternsForCTable.Value(), ""))
-	}
-	if optionals != nil && optionals.RectangleRegion.IsSet() {
-		queryParams.Add("RectangleRegion", parameterToString(optionals.RectangleRegion.Value(), ""))
 	}
 	if optionals != nil && optionals.Url.IsSet() {
 		queryParams.Add("url", parameterToString(optionals.Url.Value(), ""))
@@ -1018,6 +1013,7 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
 	SupplementData     optional.String
 	SupplementSpace    optional.Float64
 	BarWidthReduction  optional.Float64
+	UseAntiAlias       optional.Bool
 	Storage            optional.String
 	Folder             optional.String
 	Format             optional.String
@@ -1062,6 +1058,7 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
      * @param "SupplementData" (optional.String) -  Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param "SupplementSpace" (optional.Float64) -  Space between main the BarCode and supplement BarCode.
      * @param "BarWidthReduction" (optional.Float64) -  Bars reduction value that is used to compensate ink spread while printing.
+     * @param "UseAntiAlias" (optional.Bool) -  Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
      * @param "Storage" (optional.String) -  Image&#39;s storage.
      * @param "Folder" (optional.String) -  Image&#39;s folder.
      * @param "Format" (optional.String) -  The image format.
@@ -1182,6 +1179,9 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 	}
 	if optionals != nil && optionals.BarWidthReduction.IsSet() {
 		queryParams.Add("BarWidthReduction", parameterToString(optionals.BarWidthReduction.Value(), ""))
+	}
+	if optionals != nil && optionals.UseAntiAlias.IsSet() {
+		queryParams.Add("UseAntiAlias", parameterToString(optionals.UseAntiAlias.Value(), ""))
 	}
 	if optionals != nil && optionals.Storage.IsSet() {
 		queryParams.Add("storage", parameterToString(optionals.Storage.Value(), ""))
