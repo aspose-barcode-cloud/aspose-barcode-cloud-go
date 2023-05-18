@@ -134,4 +134,6 @@ type GeneratorParams struct {
 	QR QrParams `json:"QR,omitempty"`
 	// PatchCode params.
 	PatchCode PatchCodeParams `json:"PatchCode,omitempty"`
+	// Code128 params.
+	Code128 Code128Params `json:"Code128,omitempty"`
 }
