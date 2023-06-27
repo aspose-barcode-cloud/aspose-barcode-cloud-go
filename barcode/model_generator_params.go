@@ -136,4 +136,6 @@ type GeneratorParams struct {
 	PatchCode PatchCodeParams `json:"PatchCode,omitempty"`
 	// Code128 params.
 	Code128 Code128Params `json:"Code128,omitempty"`
+	// HanXin params.
+	HanXin HanXinParams `json:"HanXin,omitempty"`
 }
