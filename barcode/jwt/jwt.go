@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-//Config - JWT auth configuration
+// Config - JWT auth configuration
 type Config struct {
 	ClientID     string `json:"clientId"`
 	ClientSecret string `json:"clientSecret"`
@@ -19,7 +19,7 @@ type Config struct {
 	AccessToken  string `json:"accessToken"`
 }
 
-//NewConfig creates new Config
+// NewConfig creates new Config
 func NewConfig(clientID string, clientSecret string) *Config {
 	config := Config{
 		ClientID:     clientID,

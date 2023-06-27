@@ -24,7 +24,7 @@
 
 package barcode
 
-//Code16KParams - Code16K parameters.
+// Code16KParams - Code16K parameters.
 type Code16KParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

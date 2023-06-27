@@ -24,7 +24,7 @@
 
 package barcode
 
-//RegionPoint - Wrapper around Drawing.Point for proper specification.
+// RegionPoint - Wrapper around Drawing.Point for proper specification.
 type RegionPoint struct {
 	// X-coordinate
 	X int32 `json:"X"`

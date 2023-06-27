@@ -24,7 +24,7 @@
 
 package barcode
 
-//PatchCodeParams - PatchCode parameters.
+// PatchCodeParams - PatchCode parameters.
 type PatchCodeParams struct {
 	// Specifies codetext for an extra QR barcode, when PatchCode is generated in page mode.
 	ExtraBarcodeText string `json:"ExtraBarcodeText,omitempty"`

@@ -39,21 +39,21 @@ var (
 	_ context.Context
 )
 
-//StorageApiService -
+// StorageApiService -
 type StorageApiService service
 
-//StorageApiGetDiscUsageOpts - Optional Parameters for StorageApiGetDiscUsage
+// StorageApiGetDiscUsageOpts - Optional Parameters for StorageApiGetDiscUsage
 type StorageApiGetDiscUsageOpts struct {
 	StorageName optional.String
 }
 
 /*
- * GetDiscUsage -  Get disc usage
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param optional nil or *StorageApiGetDiscUsageOpts - Optional Parameters:
-     * @param "StorageName" (optional.String) -  Storage name
+* GetDiscUsage -  Get disc usage
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param optional nil or *StorageApiGetDiscUsageOpts - Optional Parameters:
+  - @param "StorageName" (optional.String) -  Storage name
 
- * @return DiscUsage
+* @return DiscUsage
 */
 func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *StorageApiGetDiscUsageOpts) (DiscUsage, *http.Response, error) {
 	var (
@@ -139,19 +139,19 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 	return returnValue, httpResponse, err
 }
 
-//StorageApiGetFileVersionsOpts - Optional Parameters for StorageApiGetFileVersions
+// StorageApiGetFileVersionsOpts - Optional Parameters for StorageApiGetFileVersions
 type StorageApiGetFileVersionsOpts struct {
 	StorageName optional.String
 }
 
 /*
- * GetFileVersions -  Get file versions
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param path File path e.g. &#39;/file.ext&#39;
- * @param optional nil or *StorageApiGetFileVersionsOpts - Optional Parameters:
-     * @param "StorageName" (optional.String) -  Storage name
+* GetFileVersions -  Get file versions
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param path File path e.g. &#39;/file.ext&#39;
+* @param optional nil or *StorageApiGetFileVersionsOpts - Optional Parameters:
+  - @param "StorageName" (optional.String) -  Storage name
 
- * @return FileVersions
+* @return FileVersions
 */
 func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, optionals *StorageApiGetFileVersionsOpts) (FileVersions, *http.Response, error) {
 	var (
@@ -238,21 +238,21 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 	return returnValue, httpResponse, err
 }
 
-//StorageApiObjectExistsOpts - Optional Parameters for StorageApiObjectExists
+// StorageApiObjectExistsOpts - Optional Parameters for StorageApiObjectExists
 type StorageApiObjectExistsOpts struct {
 	StorageName optional.String
 	VersionId   optional.String
 }
 
 /*
- * ObjectExists -  Check if file or folder exists
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
- * @param optional nil or *StorageApiObjectExistsOpts - Optional Parameters:
-     * @param "StorageName" (optional.String) -  Storage name
-     * @param "VersionId" (optional.String) -  File version ID
+* ObjectExists -  Check if file or folder exists
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
+* @param optional nil or *StorageApiObjectExistsOpts - Optional Parameters:
+  - @param "StorageName" (optional.String) -  Storage name
+  - @param "VersionId" (optional.String) -  File version ID
 
- * @return ObjectExist
+* @return ObjectExist
 */
 func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optionals *StorageApiObjectExistsOpts) (ObjectExist, *http.Response, error) {
 	var (
@@ -343,11 +343,11 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 }
 
 /*
- * StorageExists -  Check if storage exists
- * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param storageName Storage name
+* StorageExists -  Check if storage exists
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param storageName Storage name
 
- * @return StorageExist
+* @return StorageExist
  */
 func (a *StorageApiService) StorageExists(ctx context.Context, storageName string) (StorageExist, *http.Response, error) {
 	var (

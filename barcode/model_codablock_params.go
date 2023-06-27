@@ -24,7 +24,7 @@
 
 package barcode
 
-//CodablockParams - Codablock parameters.
+// CodablockParams - Codablock parameters.
 type CodablockParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

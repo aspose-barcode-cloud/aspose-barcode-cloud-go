@@ -24,7 +24,7 @@
 
 package barcode
 
-//GeneratorParamsList - Represents list of barcode generators
+// GeneratorParamsList - Represents list of barcode generators
 type GeneratorParamsList struct {
 	// List of barcode generators
 	BarcodeBuilders []GeneratorParams `json:"BarcodeBuilders,omitempty"`

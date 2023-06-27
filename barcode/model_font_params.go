@@ -24,7 +24,7 @@
 
 package barcode
 
-//FontParams - Font.
+// FontParams - Font.
 type FontParams struct {
 	// Font family.
 	Family string `json:"Family,omitempty"`

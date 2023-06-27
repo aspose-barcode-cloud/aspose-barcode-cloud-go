@@ -24,7 +24,7 @@
 
 package barcode
 
-//MaxiCodeParams - MaxiCode parameters.
+// MaxiCodeParams - MaxiCode parameters.
 type MaxiCodeParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

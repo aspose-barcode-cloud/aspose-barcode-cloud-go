@@ -24,7 +24,7 @@
 
 package barcode
 
-//GeneratorParams - Represents extended BarcodeGenerator params.
+// GeneratorParams - Represents extended BarcodeGenerator params.
 type GeneratorParams struct {
 	// Type of barcode to generate.
 	TypeOfBarcode EncodeBarcodeType `json:"TypeOfBarcode"`

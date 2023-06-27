@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-//Pdf417Params - PDF417 parameters.
+// Pdf417Params - PDF417 parameters.
 type Pdf417Params struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`
