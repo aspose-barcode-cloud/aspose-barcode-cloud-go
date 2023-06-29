@@ -24,7 +24,7 @@
 
 package barcode
 
-//DataMatrixParams - DataMatrix parameters.
+// DataMatrixParams - DataMatrix parameters.
 type DataMatrixParams struct {
 	// Height/Width ratio of 2D BarCode module
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

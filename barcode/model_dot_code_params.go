@@ -24,7 +24,7 @@
 
 package barcode
 
-//DotCodeParams - DotCode parameters.
+// DotCodeParams - DotCode parameters.
 type DotCodeParams struct {
 	// Height/Width ratio of 2D BarCode module.
 	AspectRatio float64 `json:"AspectRatio,omitempty"`

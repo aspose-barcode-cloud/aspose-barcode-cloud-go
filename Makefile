@@ -27,10 +27,6 @@ lint:
 update_packages:
 	./scripts/update_packages.sh
 
-.PHONY: tidy
-tidy:
-	./scripts/tidy.sh
-
 .PHONY: clean-gosum
 clean-gosum: clean-gomod
 	./scripts/clean-go.sum.sh
@@ -38,15 +34,16 @@ clean-gosum: clean-gomod
 .PHONY: clean-gomod
 clean-gomod:
 	./scripts/clean-go.mod.sh
+	./scripts/tidy.sh
 
 .PHONY: update
-update: update_packages tidy clean-gosum
+update: update_packages clean-gomod
 
 .PHONY: release
-release: format lint update_packages tidy build test clean-gosum
+release: format lint update_packages clean-gomod build test
 
 .PHONY: after-gen
-after-gen: init format clean-gosum
+after-gen: init format clean-gomod
 
 .PHONY: ci
 ci: build test

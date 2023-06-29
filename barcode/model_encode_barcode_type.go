@@ -97,4 +97,6 @@ const (
 	EncodeBarcodeTypeGS1CodablockF                 EncodeBarcodeType = "GS1CodablockF"
 	EncodeBarcodeTypeMailmark                      EncodeBarcodeType = "Mailmark"
 	EncodeBarcodeTypeGS1DotCode                    EncodeBarcodeType = "GS1DotCode"
+	EncodeBarcodeTypeHanXin                        EncodeBarcodeType = "HanXin"
+	EncodeBarcodeTypeGS1HanXin                     EncodeBarcodeType = "GS1HanXin"
 )

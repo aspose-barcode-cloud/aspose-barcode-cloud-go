@@ -24,7 +24,7 @@
 
 package barcode
 
-//StructuredAppend - QR structured append parameters.
+// StructuredAppend - QR structured append parameters.
 type StructuredAppend struct {
 	// The index of the QR structured append mode barcode. Index starts from 0.
 	SequenceIndicator int32 `json:"SequenceIndicator,omitempty"`

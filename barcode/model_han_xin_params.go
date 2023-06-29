@@ -24,24 +24,14 @@
 
 package barcode
 
-import (
-	"time"
-)
-
-// FileVersion -
-type FileVersion struct {
-	// File or folder name.
-	Name string `json:"Name,omitempty"`
-	// True if it is a folder.
-	IsFolder bool `json:"IsFolder"`
-	// File or folder last modified DateTime.
-	ModifiedDate time.Time `json:"ModifiedDate,omitempty"`
-	// File or folder size.
-	Size int64 `json:"Size"`
-	// File or folder path.
-	Path string `json:"Path,omitempty"`
-	// File Version ID.
-	VersionId string `json:"VersionId,omitempty"`
-	// Specifies whether the file is (true) or is not (false) the latest version of an file.
-	IsLatest bool `json:"IsLatest"`
+// HanXinParams - HanXin params.
+type HanXinParams struct {
+	// Encoding mode for XanXin barcodes. Default value: HanXinEncodeMode.Auto.
+	EncodeMode HanXinEncodeMode `json:"EncodeMode,omitempty"`
+	// Allowed Han Xin error correction levels from L1 to L4. Default value: HanXinErrorLevel.L1.
+	ErrorLevel HanXinErrorLevel `json:"ErrorLevel,omitempty"`
+	// Allowed Han Xin versions, Auto and Version01 - Version84. Default value: HanXinVersion.Auto.
+	Version HanXinVersion `json:"Version,omitempty"`
+	// Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings. Default value: ECIEncodings.ISO_8859_1
+	ECIEncoding EciEncodings `json:"ECIEncoding,omitempty"`
 }

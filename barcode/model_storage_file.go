@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-//StorageFile - File or folder information
+// StorageFile - File or folder information
 type StorageFile struct {
 	// File or folder name.
 	Name string `json:"Name,omitempty"`

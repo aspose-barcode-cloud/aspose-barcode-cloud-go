@@ -24,7 +24,7 @@
 
 package barcode
 
-//AustralianPostParams - AustralianPost barcode parameters.
+// AustralianPostParams - AustralianPost barcode parameters.
 type AustralianPostParams struct {
 	// Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other\"
 	EncodingTable CustomerInformationInterpretingType `json:"EncodingTable,omitempty"`

@@ -12,17 +12,17 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-//TestConfigurationFile with configuration
+// TestConfigurationFile with configuration
 var TestConfigurationFile = "configuration.json"
 
-//TestEnvPrefix for environment variables
+// TestEnvPrefix for environment variables
 var TestEnvPrefix = "TEST"
 
-//TestFolder Aspose.Storage folder for test files
-//noinspection GoNameStartsWithPackageName
+// TestFolder Aspose.Storage folder for test files
+// noinspection GoNameStartsWithPackageName
 var TestFolder = fmt.Sprintf("BarcodeTests/%s", uuid.New())
 
-//NewClientForTests creates new Client with TestConfig
+// NewClientForTests creates new Client with TestConfig
 func NewClientForTests() (*barcode.APIClient, error) {
 	testConfig, err := NewTestConfig(TestConfigurationFile, TestEnvPrefix)
 	if err != nil {
@@ -32,7 +32,7 @@ func NewClientForTests() (*barcode.APIClient, error) {
 	return barcode.NewAPIClient(&testConfig.APIConfig), nil
 }
 
-//NewAuthContextForTests context for testing
+// NewAuthContextForTests context for testing
 func NewAuthContextForTests() (context.Context, error) {
 	testConfig, err := NewTestConfig(TestConfigurationFile, TestEnvPrefix)
 	if err != nil {

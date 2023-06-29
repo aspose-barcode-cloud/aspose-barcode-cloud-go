@@ -33,13 +33,13 @@ func camelToUpperSnake(str string) string {
 	return builder.String()
 }
 
-//Config is Configuration
+// Config is Configuration
 type Config struct {
 	JwtConfig jwt.Config        `json:"jwt"`
 	APIConfig api.Configuration `json:"api"`
 }
 
-//NewTestConfig creates new Config from JSON-file if exists or from ENV
+// NewTestConfig creates new Config from JSON-file if exists or from ENV
 func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
 	var config *Config
 

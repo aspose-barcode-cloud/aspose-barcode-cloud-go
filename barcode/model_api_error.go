@@ -28,7 +28,7 @@ import (
 	"time"
 )
 
-//ApiError -
+// ApiError -
 type ApiError struct {
 	Code        string    `json:"Code,omitempty"`
 	Message     string    `json:"Message,omitempty"`
