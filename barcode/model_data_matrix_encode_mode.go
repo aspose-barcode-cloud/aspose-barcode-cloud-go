@@ -24,7 +24,7 @@
 
 package barcode
 
-// DataMatrixEncodeMode :
+// DataMatrixEncodeMode : DataMatrix encoder's encoding mode, default to Auto
 type DataMatrixEncodeMode string
 
 // List of DataMatrixEncodeMode

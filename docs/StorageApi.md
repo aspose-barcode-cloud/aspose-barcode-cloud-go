@@ -27,7 +27,7 @@ Optional parameters are passed through a pointer to a StorageApiGetDiscUsageOpts
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
- **StorageName** | **optional.String** | Storage name |
+**StorageName** | **optional.String** | Storage name |
 
 ### GetDiscUsage Return type
 
@@ -54,8 +54,7 @@ Optional parameters are passed through a pointer to a StorageApiGetFileVersionsO
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
+**StorageName** | **optional.String** | Storage name |
 
 ### GetFileVersions Return type
 
@@ -82,9 +81,8 @@ Optional parameters are passed through a pointer to a StorageApiObjectExistsOpts
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
- **VersionId** | **optional.String** | File version ID |
+**StorageName** | **optional.String** | Storage name |
+**VersionId** | **optional.String** | File version ID |
 
 ### ObjectExists Return type
 
