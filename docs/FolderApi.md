@@ -30,10 +30,8 @@ Optional parameters are passed through a pointer to a FolderApiCopyFolderOpts st
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
-
- **SrcStorageName** | **optional.String** | Source storage name |
- **DestStorageName** | **optional.String** | Destination storage name |
+**SrcStorageName** | **optional.String** | Source storage name |
+**DestStorageName** | **optional.String** | Destination storage name |
 
 ### CopyFolder Return type
 
@@ -60,8 +58,7 @@ Optional parameters are passed through a pointer to a FolderApiCreateFolderOpts 
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
+**StorageName** | **optional.String** | Storage name |
 
 ### CreateFolder Return type
 
@@ -88,9 +85,8 @@ Optional parameters are passed through a pointer to a FolderApiDeleteFolderOpts 
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
- **Recursive** | **optional.Bool** | Enable to delete folders, subfolders and files | [default to false]
+**StorageName** | **optional.String** | Storage name |
+**Recursive** | **optional.Bool** | Enable to delete folders, subfolders and files | [default to false]
 
 ### DeleteFolder Return type
 
@@ -117,8 +113,7 @@ Optional parameters are passed through a pointer to a FolderApiGetFilesListOpts 
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
+**StorageName** | **optional.String** | Storage name |
 
 ### GetFilesList Return type
 
@@ -146,10 +141,8 @@ Optional parameters are passed through a pointer to a FolderApiMoveFolderOpts st
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
-
- **SrcStorageName** | **optional.String** | Source storage name |
- **DestStorageName** | **optional.String** | Destination storage name |
+**SrcStorageName** | **optional.String** | Source storage name |
+**DestStorageName** | **optional.String** | Destination storage name |
 
 ### MoveFolder Return type
 

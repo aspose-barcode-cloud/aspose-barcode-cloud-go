@@ -30,11 +30,9 @@ Optional parameters are passed through a pointer to a FileApiCopyFileOpts struct
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
-
- **SrcStorageName** | **optional.String** | Source storage name |
- **DestStorageName** | **optional.String** | Destination storage name |
- **VersionId** | **optional.String** | File version ID to copy |
+**SrcStorageName** | **optional.String** | Source storage name |
+**DestStorageName** | **optional.String** | Destination storage name |
+**VersionId** | **optional.String** | File version ID to copy |
 
 ### CopyFile Return type
 
@@ -61,9 +59,8 @@ Optional parameters are passed through a pointer to a FileApiDeleteFileOpts stru
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
- **VersionId** | **optional.String** | File version ID to delete |
+**StorageName** | **optional.String** | Storage name |
+**VersionId** | **optional.String** | File version ID to delete |
 
 ### DeleteFile Return type
 
@@ -90,9 +87,8 @@ Optional parameters are passed through a pointer to a FileApiDownloadFileOpts st
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
- **StorageName** | **optional.String** | Storage name |
- **VersionId** | **optional.String** | File version ID to download |
+**StorageName** | **optional.String** | Storage name |
+**VersionId** | **optional.String** | File version ID to download |
 
 ### DownloadFile Return type
 
@@ -120,11 +116,9 @@ Optional parameters are passed through a pointer to a FileApiMoveFileOpts struct
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
-
- **SrcStorageName** | **optional.String** | Source storage name |
- **DestStorageName** | **optional.String** | Destination storage name |
- **VersionId** | **optional.String** | File version ID to move |
+**SrcStorageName** | **optional.String** | Source storage name |
+**DestStorageName** | **optional.String** | Destination storage name |
+**VersionId** | **optional.String** | File version ID to move |
 
 ### MoveFile Return type
 
@@ -152,9 +146,7 @@ Optional parameters are passed through a pointer to a FileApiUploadFileOpts stru
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-
-
- **StorageName** | **optional.String** | Storage name |
+**StorageName** | **optional.String** | Storage name |
 
 ### UploadFile Return type
 
