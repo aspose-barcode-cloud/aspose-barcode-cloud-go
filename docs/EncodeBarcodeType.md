@@ -1,8 +1,77 @@
 # EncodeBarcodeType
 
-## Properties
+See EncodeTypes
 
-Name | Type | Description | Notes
----- | ---- | ----------- | -----
+## Allowable values
+* **EncodeBarcodeTypeCodabar**
+* EncodeBarcodeTypeCode11
+* EncodeBarcodeTypeCode39Standard
+* EncodeBarcodeTypeCode39Extended
+* EncodeBarcodeTypeCode93Standard
+* EncodeBarcodeTypeCode93Extended
+* EncodeBarcodeTypeCode128
+* EncodeBarcodeTypeGS1Code128
+* EncodeBarcodeTypeEAN8
+* EncodeBarcodeTypeEAN13
+* EncodeBarcodeTypeEAN14
+* EncodeBarcodeTypeSCC14
+* EncodeBarcodeTypeSSCC18
+* EncodeBarcodeTypeUPCA
+* EncodeBarcodeTypeUPCE
+* EncodeBarcodeTypeISBN
+* EncodeBarcodeTypeISSN
+* EncodeBarcodeTypeISMN
+* EncodeBarcodeTypeStandard2of5
+* EncodeBarcodeTypeInterleaved2of5
+* EncodeBarcodeTypeMatrix2of5
+* EncodeBarcodeTypeItalianPost25
+* EncodeBarcodeTypeIATA2of5
+* EncodeBarcodeTypeITF14
+* EncodeBarcodeTypeITF6
+* EncodeBarcodeTypeMSI
+* EncodeBarcodeTypeVIN
+* EncodeBarcodeTypeDeutschePostIdentcode
+* EncodeBarcodeTypeDeutschePostLeitcode
+* EncodeBarcodeTypeOPC
+* EncodeBarcodeTypePZN
+* EncodeBarcodeTypeCode16K
+* EncodeBarcodeTypePharmacode
+* EncodeBarcodeTypeDataMatrix
+* EncodeBarcodeTypeQR
+* EncodeBarcodeTypeAztec
+* EncodeBarcodeTypePdf417
+* EncodeBarcodeTypeMacroPdf417
+* EncodeBarcodeTypeAustraliaPost
+* EncodeBarcodeTypePostnet
+* EncodeBarcodeTypePlanet
+* EncodeBarcodeTypeOneCode
+* EncodeBarcodeTypeRM4SCC
+* EncodeBarcodeTypeDatabarOmniDirectional
+* EncodeBarcodeTypeDatabarTruncated
+* EncodeBarcodeTypeDatabarLimited
+* EncodeBarcodeTypeDatabarExpanded
+* EncodeBarcodeTypeSingaporePost
+* EncodeBarcodeTypeGS1DataMatrix
+* EncodeBarcodeTypeAustralianPosteParcel
+* EncodeBarcodeTypeSwissPostParcel
+* EncodeBarcodeTypePatchCode
+* EncodeBarcodeTypeDatabarExpandedStacked
+* EncodeBarcodeTypeDatabarStacked
+* EncodeBarcodeTypeDatabarStackedOmniDirectional
+* EncodeBarcodeTypeMicroPdf417
+* EncodeBarcodeTypeGS1QR
+* EncodeBarcodeTypeMaxiCode
+* EncodeBarcodeTypeCode32
+* EncodeBarcodeTypeDataLogic2of5
+* EncodeBarcodeTypeDotCode
+* EncodeBarcodeTypeDutchKIX
+* EncodeBarcodeTypeUpcaGs1Code128Coupon
+* EncodeBarcodeTypeUpcaGs1DatabarCoupon
+* EncodeBarcodeTypeCodablockF
+* EncodeBarcodeTypeGS1CodablockF
+* EncodeBarcodeTypeMailmark
+* EncodeBarcodeTypeGS1DotCode
+* EncodeBarcodeTypeHanXin
+* EncodeBarcodeTypeGS1HanXin
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

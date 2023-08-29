@@ -1,8 +1,13 @@
 # PresetType
 
-## Properties
+See QualitySettings allows to configure recognition quality and speed manually.
 
-Name | Type | Description | Notes
----- | ---- | ----------- | -----
+## Allowable values
+* **PresetTypeHighPerformance**
+* PresetTypeNormalQuality
+* PresetTypeHighQualityDetection
+* PresetTypeMaxQualityDetection
+* PresetTypeHighQuality
+* PresetTypeMaxBarCodes
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

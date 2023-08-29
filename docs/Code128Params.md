@@ -1,5 +1,7 @@
 # Code128Params
 
+Code128 params.
+
 ## Properties
 
 Name | Type | Description | Notes

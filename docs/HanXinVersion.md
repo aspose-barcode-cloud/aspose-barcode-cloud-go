@@ -1,8 +1,92 @@
 # HanXinVersion
 
-## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | -----
+
+## Allowable values
+* **HanXinVersionAuto**
+* HanXinVersionVersion01
+* HanXinVersionVersion02
+* HanXinVersionVersion03
+* HanXinVersionVersion04
+* HanXinVersionVersion05
+* HanXinVersionVersion06
+* HanXinVersionVersion07
+* HanXinVersionVersion08
+* HanXinVersionVersion09
+* HanXinVersionVersion10
+* HanXinVersionVersion11
+* HanXinVersionVersion12
+* HanXinVersionVersion13
+* HanXinVersionVersion14
+* HanXinVersionVersion15
+* HanXinVersionVersion16
+* HanXinVersionVersion17
+* HanXinVersionVersion18
+* HanXinVersionVersion19
+* HanXinVersionVersion20
+* HanXinVersionVersion21
+* HanXinVersionVersion22
+* HanXinVersionVersion23
+* HanXinVersionVersion24
+* HanXinVersionVersion25
+* HanXinVersionVersion26
+* HanXinVersionVersion27
+* HanXinVersionVersion28
+* HanXinVersionVersion29
+* HanXinVersionVersion30
+* HanXinVersionVersion31
+* HanXinVersionVersion32
+* HanXinVersionVersion33
+* HanXinVersionVersion34
+* HanXinVersionVersion35
+* HanXinVersionVersion36
+* HanXinVersionVersion37
+* HanXinVersionVersion38
+* HanXinVersionVersion39
+* HanXinVersionVersion40
+* HanXinVersionVersion41
+* HanXinVersionVersion42
+* HanXinVersionVersion43
+* HanXinVersionVersion44
+* HanXinVersionVersion45
+* HanXinVersionVersion46
+* HanXinVersionVersion47
+* HanXinVersionVersion48
+* HanXinVersionVersion49
+* HanXinVersionVersion50
+* HanXinVersionVersion51
+* HanXinVersionVersion52
+* HanXinVersionVersion53
+* HanXinVersionVersion54
+* HanXinVersionVersion55
+* HanXinVersionVersion56
+* HanXinVersionVersion57
+* HanXinVersionVersion58
+* HanXinVersionVersion59
+* HanXinVersionVersion60
+* HanXinVersionVersion61
+* HanXinVersionVersion62
+* HanXinVersionVersion63
+* HanXinVersionVersion64
+* HanXinVersionVersion65
+* HanXinVersionVersion66
+* HanXinVersionVersion67
+* HanXinVersionVersion68
+* HanXinVersionVersion69
+* HanXinVersionVersion70
+* HanXinVersionVersion71
+* HanXinVersionVersion72
+* HanXinVersionVersion73
+* HanXinVersionVersion74
+* HanXinVersionVersion75
+* HanXinVersionVersion76
+* HanXinVersionVersion77
+* HanXinVersionVersion78
+* HanXinVersionVersion79
+* HanXinVersionVersion80
+* HanXinVersionVersion81
+* HanXinVersionVersion82
+* HanXinVersionVersion83
+* HanXinVersionVersion84
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

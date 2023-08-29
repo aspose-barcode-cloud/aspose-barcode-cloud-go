@@ -1,5 +1,7 @@
 # AustralianPostParams
 
+AustralianPost barcode parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

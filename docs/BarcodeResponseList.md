@@ -1,5 +1,7 @@
 # BarcodeResponseList
 
+Represents information about barcode list.
+
 ## Properties
 
 Name | Type | Description | Notes

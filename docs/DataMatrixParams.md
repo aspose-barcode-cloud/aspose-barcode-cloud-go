@@ -1,5 +1,7 @@
 # DataMatrixParams
 
+DataMatrix parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

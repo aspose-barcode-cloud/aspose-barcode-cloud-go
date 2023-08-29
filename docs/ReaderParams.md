@@ -1,5 +1,7 @@
 # ReaderParams
 
+Represents BarcodeReader object.
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # FilesUploadResult
 
+File upload result
+
 ## Properties
 
 Name | Type | Description | Notes

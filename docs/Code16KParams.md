@@ -1,5 +1,7 @@
 # Code16KParams
 
+Code16K parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

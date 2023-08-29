@@ -1,5 +1,7 @@
 # DotCodeParams
 
+DotCode parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

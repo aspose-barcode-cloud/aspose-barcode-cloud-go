@@ -1,5 +1,7 @@
 # CouponParams
 
+Coupon parameters. Used for UpcaGs1DatabarCoupon, UpcaGs1Code128Coupon.
+
 ## Properties
 
 Name | Type | Description | Notes

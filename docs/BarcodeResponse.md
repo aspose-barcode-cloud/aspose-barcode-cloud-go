@@ -1,5 +1,7 @@
 # BarcodeResponse
 
+Represents information about barcode.
+
 ## Properties
 
 Name | Type | Description | Notes

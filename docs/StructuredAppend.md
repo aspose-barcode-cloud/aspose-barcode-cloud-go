@@ -1,5 +1,7 @@
 # StructuredAppend
 
+QR structured append parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

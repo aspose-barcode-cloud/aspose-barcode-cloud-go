@@ -1,5 +1,7 @@
 # CodabarParams
 
+Codabar parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

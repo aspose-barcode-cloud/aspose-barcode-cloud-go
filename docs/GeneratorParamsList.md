@@ -1,5 +1,7 @@
 # GeneratorParamsList
 
+Represents list of barcode generators
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # QrParams
 
+QR parameters.
+
 ## Properties
 
 Name | Type | Description | Notes
