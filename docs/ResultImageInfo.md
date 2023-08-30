@@ -1,5 +1,7 @@
 # ResultImageInfo
 
+Created image info.
+
 ## Properties
 
 Name | Type | Description | Notes

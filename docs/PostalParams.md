@@ -1,5 +1,7 @@
 # PostalParams
 
+Postal parameters. Used for Postnet, Planet.
+
 ## Properties
 
 Name | Type | Description | Notes

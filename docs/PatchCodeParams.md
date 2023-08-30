@@ -1,5 +1,7 @@
 # PatchCodeParams
 
+PatchCode parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

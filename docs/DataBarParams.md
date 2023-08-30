@@ -1,5 +1,7 @@
 # DataBarParams
 
+Databar parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

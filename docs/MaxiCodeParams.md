@@ -1,5 +1,7 @@
 # MaxiCodeParams
 
+MaxiCode parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

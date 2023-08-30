@@ -1,8 +1,12 @@
 # FontStyle
 
-## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | -----
+
+## Allowable values
+* **FontStyleRegular**
+* FontStyleBold
+* FontStyleItalic
+* FontStyleUnderline
+* FontStyleStrikeout
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,5 +1,7 @@
 # Pdf417Params
 
+PDF417 parameters.
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # CaptionParams
 
+Caption
+
 ## Properties
 
 Name | Type | Description | Notes

@@ -1,5 +1,7 @@
 # Padding
 
+Padding around barcode.
+
 ## Properties
 
 Name | Type | Description | Notes

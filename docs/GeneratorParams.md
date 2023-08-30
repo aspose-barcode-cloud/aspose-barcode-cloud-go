@@ -1,5 +1,7 @@
 # GeneratorParams
 
+Represents extended BarcodeGenerator params.
+
 ## Properties
 
 Name | Type | Description | Notes

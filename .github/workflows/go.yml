@@ -7,15 +7,22 @@ on:
     branches: [ main ]
 
 jobs:
-
-  build:
-    name: Build
+  test:
+    name: Test
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # See go.mod for oldest supported version
+        # And https://go.dev/dl/ for updates
+        # https://github.com/actions/setup-go/#using-stableoldstable-aliases
+        go-version: ['1.13', 'oldstable', 'stable']
+    continue-on-error: true
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v4
         with:
-          go-version: '1.13'
+          go-version: ${{ matrix.go-version }}
           cache-dependency-path: go.sum
 
       - name: Get dependencies

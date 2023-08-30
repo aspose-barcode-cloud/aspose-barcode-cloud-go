@@ -1,5 +1,7 @@
 # RegionPoint
 
+Wrapper around Drawing.Point for proper specification.
+
 ## Properties
 
 Name | Type | Description | Notes

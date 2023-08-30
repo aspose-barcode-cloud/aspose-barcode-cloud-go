@@ -1,5 +1,7 @@
 # AztecParams
 
+Aztec parameters.
+
 ## Properties
 
 Name | Type | Description | Notes
