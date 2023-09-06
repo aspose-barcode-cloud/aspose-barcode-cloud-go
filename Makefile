@@ -23,6 +23,10 @@ build:
 lint:
 	./scripts/lint.sh
 
+.PHONY: staticcheck
+staticcheck:
+	~/go/bin/staticcheck ./barcode
+
 .PHONY: update_packages
 update_packages:
 	./scripts/update_packages.sh
