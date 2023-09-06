@@ -7,5 +7,5 @@ require (
 	github.com/google/uuid v1.3.1
 	// Keep testify version v1.8.2 for go 1.13 compatibility
 	github.com/stretchr/testify v1.8.2
-	golang.org/x/oauth2 v0.11.0
+	golang.org/x/oauth2 v0.12.0
 )
