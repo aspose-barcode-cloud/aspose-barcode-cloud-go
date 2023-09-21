@@ -84,5 +84,7 @@ See DecodeType
 * DecodeBarcodeTypeHIBCQRPAS
 * DecodeBarcodeTypeHanXin
 * DecodeBarcodeTypeGS1HanXin
+* DecodeBarcodeTypeGS1Aztec
+* DecodeBarcodeTypeGS1CompositeBar
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

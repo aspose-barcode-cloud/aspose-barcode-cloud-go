@@ -7,7 +7,7 @@ QR parameters.
 Name | Type | Description | Notes
 ---- | ---- | ----------- | -----
 **AspectRatio** | **float64** | Height/Width ratio of 2D BarCode module. | [optional] [default to null]
-**TextEncoding** | **string** | Encoding of codetext. | [optional] [default to null]
+**TextEncoding** | **string** | DEPRECATED: This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext. | [optional] [default to null]
 **EncodeType** | [***QrEncodeType**](QrEncodeType.md) | QR / MicroQR selector mode. Select ForceQR for standard QR symbols, Auto for MicroQR. | [optional] [default to null]
 **ECIEncoding** | [***EciEncodings**](EciEncodings.md) | Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings. | [optional] [default to null]
 **EncodeMode** | [***QrEncodeMode**](QrEncodeMode.md) | QR symbology type of BarCode&#39;s encoding mode. Default value: QREncodeMode.Auto. | [optional] [default to null]

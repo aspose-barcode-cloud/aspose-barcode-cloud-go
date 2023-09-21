@@ -110,4 +110,6 @@ const (
 	DecodeBarcodeTypeHIBCQRPAS                     DecodeBarcodeType = "HIBCQRPAS"
 	DecodeBarcodeTypeHanXin                        DecodeBarcodeType = "HanXin"
 	DecodeBarcodeTypeGS1HanXin                     DecodeBarcodeType = "GS1HanXin"
+	DecodeBarcodeTypeGS1Aztec                      DecodeBarcodeType = "GS1Aztec"
+	DecodeBarcodeTypeGS1CompositeBar               DecodeBarcodeType = "GS1CompositeBar"
 )

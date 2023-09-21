@@ -99,4 +99,5 @@ const (
 	EncodeBarcodeTypeGS1DotCode                    EncodeBarcodeType = "GS1DotCode"
 	EncodeBarcodeTypeHanXin                        EncodeBarcodeType = "HanXin"
 	EncodeBarcodeTypeGS1HanXin                     EncodeBarcodeType = "GS1HanXin"
+	EncodeBarcodeTypeGS1Aztec                      EncodeBarcodeType = "GS1Aztec"
 )
