@@ -44,6 +44,13 @@ import (
 	"golang.org/x/oauth2"
 )
 
+const (
+	PACKAGE_VERSION         = "0.2309.0"
+	PACKAGE_NAME            = "go sdk"
+	X_ASPOSE_CLIENT         = "x-aspose-client"
+	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"
+)
+
 var (
 	jsonCheck = regexp.MustCompile("(?i:(?:application|text)/json)")
 	xmlCheck  = regexp.MustCompile("(?i:(?:application|text)/xml)")
@@ -117,7 +124,7 @@ func selectHeaderAccept(accepts []string) string {
 // contains is a case insensitive match, finding needle in a haystack
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
-		if strings.ToLower(a) == strings.ToLower(needle) {
+		if strings.EqualFold(a, needle) {
 			return true
 		}
 	}
@@ -282,6 +289,8 @@ func (c *APIClient) prepareRequest(
 
 	// Add the user agent to the request.
 	httpReq.Header.Add("User-Agent", c.cfg.UserAgent)
+	httpReq.Header.Add(X_ASPOSE_CLIENT, PACKAGE_NAME)
+	httpReq.Header.Add(X_ASPOSE_CLIENT_VERSION, PACKAGE_VERSION)
 
 	if ctx != nil {
 		// add context to the request
