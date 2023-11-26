@@ -375,7 +375,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
   - @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
   - @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
   - @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-  - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 60_000 (1 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
+  - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 30_000 (1/2 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
   - @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
   - @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
   - @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -653,7 +653,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
   - @param "RectWidth" (optional.Int32) -  Set Width of area for recognition.
   - @param "RectHeight" (optional.Int32) -  Set Height of area for recognition.
   - @param "StripFNC" (optional.Bool) -  Value indicating whether FNC symbol strip must be done.
-  - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 60_000 (1 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
+  - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). Maximum value is 30_000 (1/2 minute). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
   - @param "MedianSmoothingWindowSize" (optional.Int32) -  Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
   - @param "AllowMedianSmoothing" (optional.Bool) -  Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
   - @param "AllowComplexBackground" (optional.Bool) -  Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
