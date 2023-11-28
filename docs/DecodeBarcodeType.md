@@ -86,5 +86,6 @@ See DecodeType
 * DecodeBarcodeTypeGS1HanXin
 * DecodeBarcodeTypeGS1Aztec
 * DecodeBarcodeTypeGS1CompositeBar
+* DecodeBarcodeTypeGS1MicroPdf417
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

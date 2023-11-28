@@ -100,4 +100,5 @@ const (
 	EncodeBarcodeTypeHanXin                        EncodeBarcodeType = "HanXin"
 	EncodeBarcodeTypeGS1HanXin                     EncodeBarcodeType = "GS1HanXin"
 	EncodeBarcodeTypeGS1Aztec                      EncodeBarcodeType = "GS1Aztec"
+	EncodeBarcodeTypeGS1MicroPdf417                EncodeBarcodeType = "GS1MicroPdf417"
 )
