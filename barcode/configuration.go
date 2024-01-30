@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2023 Aspose Pty Ltd
+ * Copyright (c) 2024 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -78,7 +78,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.aspose.cloud/v3.0",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Aspose-Barcode-SDK/0.2312.0/go",
+		UserAgent:     "Aspose-Barcode-SDK/1.2401.0/go",
 	}
 	return cfg
 }

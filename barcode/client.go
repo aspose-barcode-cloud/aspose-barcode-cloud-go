@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2023 Aspose Pty Ltd
+ * Copyright (c) 2024 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ import (
 )
 
 const (
-	PACKAGE_VERSION         = "0.2312.0"
+	PACKAGE_VERSION         = "1.2401.0"
 	PACKAGE_NAME            = "go sdk"
 	X_ASPOSE_CLIENT         = "x-aspose-client"
 	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"

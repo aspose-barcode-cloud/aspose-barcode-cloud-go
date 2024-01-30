@@ -1,7 +1,7 @@
 /*
  * MIT License
 
- * Copyright (c) 2023 Aspose Pty Ltd
+ * Copyright (c) 2024 Aspose Pty Ltd
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -113,4 +113,5 @@ const (
 	DecodeBarcodeTypeGS1Aztec                      DecodeBarcodeType = "GS1Aztec"
 	DecodeBarcodeTypeGS1CompositeBar               DecodeBarcodeType = "GS1CompositeBar"
 	DecodeBarcodeTypeGS1MicroPdf417                DecodeBarcodeType = "GS1MicroPdf417"
+	DecodeBarcodeTypemostCommonlyUsed              DecodeBarcodeType = "mostCommonlyUsed"
 )

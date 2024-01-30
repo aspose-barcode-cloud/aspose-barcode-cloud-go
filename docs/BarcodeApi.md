@@ -93,6 +93,7 @@ Optional parameters are passed through a pointer to a BarcodeApiGetBarcodeRecogn
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 **Type_** | **optional.String** | The type of barcode to read. |
+**Types** | **optional.Interface of []DecodeBarcodeType** | Multiple barcode types to read. |
 **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
 **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
 **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
@@ -155,6 +156,7 @@ Optional parameters are passed through a pointer to a BarcodeApiPostBarcodeRecog
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 **Type_** | **optional.String** | The type of barcode to read. |
+**Types** | **optional.Interface of []DecodeBarcodeType** | Multiple barcode types to read. |
 **ChecksumValidation** | **optional.String** | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies |
 **DetectEncoding** | **optional.Bool** | A flag which force engine to detect codetext encoding for Unicode. |
 **Preset** | **optional.String** | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. |
