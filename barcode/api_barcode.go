@@ -323,6 +323,7 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 // BarcodeApiGetBarcodeRecognizeOpts - Optional Parameters for BarcodeApiGetBarcodeRecognize
 type BarcodeApiGetBarcodeRecognizeOpts struct {
 	Type_                                optional.String
+	Types                                optional.Interface
 	ChecksumValidation                   optional.String
 	DetectEncoding                       optional.Bool
 	Preset                               optional.String
@@ -367,6 +368,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
 * @param name The image file name.
 * @param optional nil or *BarcodeApiGetBarcodeRecognizeOpts - Optional Parameters:
   - @param "Type_" (optional.String) -  The type of barcode to read.
+  - @param "Types" (optional.Interface of []DecodeBarcodeType) -  Multiple barcode types to read.
   - @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
   - @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
   - @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
@@ -425,6 +427,9 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 
 	if optionals != nil && optionals.Type_.IsSet() {
 		queryParams.Add("Type", parameterToString(optionals.Type_.Value(), ""))
+	}
+	if optionals != nil && optionals.Types.IsSet() {
+		queryParams.Add("Types", parameterToString(optionals.Types.Value(), "multi"))
 	}
 	if optionals != nil && optionals.ChecksumValidation.IsSet() {
 		queryParams.Add("ChecksumValidation", parameterToString(optionals.ChecksumValidation.Value(), ""))
@@ -602,6 +607,7 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 // BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters for BarcodeApiPostBarcodeRecognizeFromUrlOrContent
 type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 	Type_                                optional.String
+	Types                                optional.Interface
 	ChecksumValidation                   optional.String
 	DetectEncoding                       optional.Bool
 	Preset                               optional.String
@@ -645,6 +651,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param optional nil or *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts - Optional Parameters:
   - @param "Type_" (optional.String) -  The type of barcode to read.
+  - @param "Types" (optional.Interface of []DecodeBarcodeType) -  Multiple barcode types to read.
   - @param "ChecksumValidation" (optional.String) -  Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
   - @param "DetectEncoding" (optional.Bool) -  A flag which force engine to detect codetext encoding for Unicode.
   - @param "Preset" (optional.String) -  Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
@@ -702,6 +709,9 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 
 	if optionals != nil && optionals.Type_.IsSet() {
 		queryParams.Add("Type", parameterToString(optionals.Type_.Value(), ""))
+	}
+	if optionals != nil && optionals.Types.IsSet() {
+		queryParams.Add("Types", parameterToString(optionals.Types.Value(), "multi"))
 	}
 	if optionals != nil && optionals.ChecksumValidation.IsSet() {
 		queryParams.Add("ChecksumValidation", parameterToString(optionals.ChecksumValidation.Value(), ""))

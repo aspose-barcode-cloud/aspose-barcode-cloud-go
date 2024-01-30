@@ -113,4 +113,5 @@ const (
 	DecodeBarcodeTypeGS1Aztec                      DecodeBarcodeType = "GS1Aztec"
 	DecodeBarcodeTypeGS1CompositeBar               DecodeBarcodeType = "GS1CompositeBar"
 	DecodeBarcodeTypeGS1MicroPdf417                DecodeBarcodeType = "GS1MicroPdf417"
+	DecodeBarcodeTypemostCommonlyUsed              DecodeBarcodeType = "mostCommonlyUsed"
 )
