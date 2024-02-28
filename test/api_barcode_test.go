@@ -1,6 +1,7 @@
 package test
 
 import (
+	"errors"
 	"os"
 	"testing"
 
@@ -39,6 +40,10 @@ func TestGetBarcodeRecognize(t *testing.T) {
 	recognized, _, err := client.BarcodeApi.GetBarcodeRecognize(ctx, uploadedFilename, &barcode.BarcodeApiGetBarcodeRecognizeOpts{
 		Folder: optional.NewString(TestFolder),
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
+		Types: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+			barcode.DecodeBarcodeTypePdf417,
+		}),
 	})
 	require.Nil(t, err)
 	require.Equal(t, 1, len(recognized.Barcodes))
@@ -60,11 +65,17 @@ func TestPostBarcodeRecognizeFromUrlOrContent_File(t *testing.T) {
 
 	file, err := os.Open(fileName)
 	require.Nil(t, err)
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
 	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(file),
+		Types: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+			barcode.DecodeBarcodeTypePdf417,
+		}),
 	}
 	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
 	require.Nil(t, err)
@@ -88,10 +99,11 @@ func TestPostBarcodeRecognizeFromUrlOrContent_File_with_Timeout(t *testing.T) {
 
 	file, err := os.Open(fileName)
 	require.Nil(t, err)
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
 	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-		Preset:  optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:   optional.NewInterface(file),
 		Timeout: optional.NewInt32(1),
 	}
@@ -100,7 +112,8 @@ func TestPostBarcodeRecognizeFromUrlOrContent_File_with_Timeout(t *testing.T) {
 
 	require.Error(t, err)
 	require.IsType(t, err, barcode.GenericAPIError{})
-	apiError := err.(barcode.GenericAPIError)
+	var apiError barcode.GenericAPIError
+	errors.As(err, &apiError)
 	assert.Equal(t, 408, apiError.StatusCode)
 	assert.Equal(t, "408 Request Timeout", apiError.Error())
 }
@@ -119,6 +132,10 @@ func TestPostBarcodeRecognizeFromUrlOrContent_Bytes(t *testing.T) {
 	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
 		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
 		Image:  optional.NewInterface(bytes),
+		Types: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+			barcode.DecodeBarcodeTypePdf417,
+		}),
 	}
 	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(authCtx, &optionals)
 	require.Nil(t, err)
@@ -199,6 +216,10 @@ func TestPutBarcodeRecognizeFromBody(t *testing.T) {
 
 	recognized, _, err := client.BarcodeApi.PutBarcodeRecognizeFromBody(ctx, uploadedFilename, barcode.ReaderParams{
 		Preset: barcode.PresetTypeHighPerformance,
+		Types: []barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+			barcode.DecodeBarcodeTypePdf417,
+		},
 	},
 		&barcode.BarcodeApiPutBarcodeRecognizeFromBodyOpts{
 			Folder: optional.NewString(TestFolder),

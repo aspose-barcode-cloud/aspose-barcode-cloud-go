@@ -32,6 +32,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"reflect"
 	"strings"
 )
 
@@ -429,7 +430,11 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 		queryParams.Add("Type", parameterToString(optionals.Type_.Value(), ""))
 	}
 	if optionals != nil && optionals.Types.IsSet() {
-		queryParams.Add("Types", parameterToString(optionals.Types.Value(), "multi"))
+		values := reflect.ValueOf(optionals.Types.Value())
+		for i := 0; i < values.Len(); i++ {
+			item := values.Index(i)
+			queryParams.Add("Types", parameterToString(item, ""))
+		}
 	}
 	if optionals != nil && optionals.ChecksumValidation.IsSet() {
 		queryParams.Add("ChecksumValidation", parameterToString(optionals.ChecksumValidation.Value(), ""))
@@ -516,7 +521,11 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
 	}
 	if optionals != nil && optionals.ScanWindowSizes.IsSet() {
-		queryParams.Add("ScanWindowSizes", parameterToString(optionals.ScanWindowSizes.Value(), "multi"))
+		values := reflect.ValueOf(optionals.ScanWindowSizes.Value())
+		for i := 0; i < values.Len(); i++ {
+			item := values.Index(i)
+			queryParams.Add("ScanWindowSizes", parameterToString(item, ""))
+		}
 	}
 	if optionals != nil && optionals.Similarity.IsSet() {
 		queryParams.Add("Similarity", parameterToString(optionals.Similarity.Value(), ""))
@@ -711,7 +720,11 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		queryParams.Add("Type", parameterToString(optionals.Type_.Value(), ""))
 	}
 	if optionals != nil && optionals.Types.IsSet() {
-		queryParams.Add("Types", parameterToString(optionals.Types.Value(), "multi"))
+		values := reflect.ValueOf(optionals.Types.Value())
+		for i := 0; i < values.Len(); i++ {
+			item := values.Index(i)
+			queryParams.Add("Types", parameterToString(item, ""))
+		}
 	}
 	if optionals != nil && optionals.ChecksumValidation.IsSet() {
 		queryParams.Add("ChecksumValidation", parameterToString(optionals.ChecksumValidation.Value(), ""))
@@ -798,7 +811,11 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		queryParams.Add("RegionLikelihoodThresholdPercent", parameterToString(optionals.RegionLikelihoodThresholdPercent.Value(), ""))
 	}
 	if optionals != nil && optionals.ScanWindowSizes.IsSet() {
-		queryParams.Add("ScanWindowSizes", parameterToString(optionals.ScanWindowSizes.Value(), "multi"))
+		values := reflect.ValueOf(optionals.ScanWindowSizes.Value())
+		for i := 0; i < values.Len(); i++ {
+			item := values.Index(i)
+			queryParams.Add("ScanWindowSizes", parameterToString(item, ""))
+		}
 	}
 	if optionals != nil && optionals.Similarity.IsSet() {
 		queryParams.Add("Similarity", parameterToString(optionals.Similarity.Value(), ""))
