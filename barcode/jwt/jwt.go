@@ -4,11 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/oauth2"
 	"io"
 	"io/ioutil"
 	"net/url"
 	"time"
+
+	"golang.org/x/oauth2"
 )
 
 // Config - JWT auth configuration

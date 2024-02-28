@@ -2,11 +2,12 @@ package test
 
 import (
 	"context"
+	"testing"
+	"time"
+
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	"time"
 )
 
 func TestTokenSource(t *testing.T) {
