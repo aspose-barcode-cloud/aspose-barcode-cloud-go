@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
-	"os"
 )
 
 func main() {
@@ -33,7 +34,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer out.Close()
+	defer func(out *os.File) {
+		_ = out.Close()
+	}(out)
 
 	written, err := out.Write(data)
 	if err != nil {

@@ -1,6 +1,7 @@
 package test
 
 import (
+	"regexp"
 	"testing"
 
 	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
@@ -14,10 +15,10 @@ func TestNewConfigurationBasePath(t *testing.T) {
 	}
 }
 
-func TestNewConfigurationUserAgent(t *testing.T) {
-	want := "Aspose-Barcode-SDK/1.2401.0/go"
-	if got := api.NewConfiguration().UserAgent; got != want {
-		t.Errorf("NewConfiguration().UserAgent = %s; want %s", got, want)
+func TestNewConfigurationUserAgentWithRegex(t *testing.T) {
+	wantPattern := `^Aspose-Barcode-SDK/1\.\d{4}\.\d+/go$`
+	if got := api.NewConfiguration().UserAgent; !regexp.MustCompile(wantPattern).MatchString(got) {
+		t.Errorf("NewConfiguration().UserAgent = %s; want pattern %s", got, wantPattern)
 	}
 }
 

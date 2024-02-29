@@ -15,12 +15,12 @@ jobs:
         # See go.mod for oldest supported version
         # And https://go.dev/dl/ for updates
         # https://github.com/actions/setup-go/#using-stableoldstable-aliases
-        go-version: ['1.13', 'oldstable', 'stable']
+        go-version: [ '1.17', 'oldstable', 'stable' ]
     continue-on-error: true
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
           cache-dependency-path: go.sum

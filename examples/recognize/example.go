@@ -3,10 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
+
 	"github.com/antihax/optional"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
-	"os"
 )
 
 func main() {
@@ -20,7 +21,9 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 	authCtx := context.WithValue(context.Background(),

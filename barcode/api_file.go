@@ -27,12 +27,13 @@ package barcode
 import (
 	"context"
 	"fmt"
-	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/antihax/optional"
 )
 
 // Linger please

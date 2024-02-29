@@ -1,11 +1,12 @@
 package test
 
 import (
+	"testing"
+
 	"github.com/antihax/optional"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
 )
 
 func TestWrongFormat(t *testing.T) {
