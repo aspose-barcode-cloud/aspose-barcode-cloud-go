@@ -3,13 +3,12 @@ all: release
 
 .PHONY: init
 init:
-	go get -v -t -d ./...
-	go install golang.org/x/tools/cmd/goimports@v0.16.0
+	./scripts/init.sh
 
 .PHONY: format
 format:
 	./scripts/fix_api_error.sh
-	$$(go env GOPATH)/bin/goimports -w .
+	./scripts/format.sh
 	./scripts/docs_format.sh
 
 .PHONY: test
@@ -22,7 +21,7 @@ build:
 
 .PHONY: lint
 lint:
-	./scripts/vet.sh
+	./scripts/lint.sh
 
 .PHONY: update_packages
 update_packages:
