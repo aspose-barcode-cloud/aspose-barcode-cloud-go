@@ -5,7 +5,7 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
-- SDK version: 1.2402.0
+- SDK version: 1.2403.0
 
 ## Demo applications
 
@@ -33,7 +33,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v1.2402.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v1.2403.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -56,6 +56,7 @@ package main
 import (
     "context"
     "fmt"
+    "github.com/antihax/optional"
     "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
     "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
     "os"
@@ -74,10 +75,14 @@ func main() {
 
     client := barcode.NewAPIClient(barcode.NewConfiguration())
 
+    opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
+        TextLocation: optional.NewString("None"),
+    }
+
     data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
         string(barcode.EncodeBarcodeTypeQR),
         "Go SDK example",
-        nil)
+        opts)
     if err != nil {
         panic(err)
     }

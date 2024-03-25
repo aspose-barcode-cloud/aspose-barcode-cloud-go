@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/antihax/optional"
+
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
@@ -14,7 +16,7 @@ func main() {
 		"Client Id from https://dashboard.aspose.cloud/applications",
 		"Client Secret from https://dashboard.aspose.cloud/applications",
 	)
-	fileName := "testdata/generated.png"
+	fileName := "../../testdata/generated.png"
 
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
@@ -22,10 +24,14 @@ func main() {
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
+	opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
+		TextLocation: optional.NewString("None"),
+	}
+
 	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
 		string(barcode.EncodeBarcodeTypeQR),
 		"Go SDK example",
-		nil)
+		opts)
 	if err != nil {
 		panic(err)
 	}
