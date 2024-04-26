@@ -267,3 +267,32 @@ func TestPutGenerateMultiple(t *testing.T) {
 	assert.Greater(t, genImgInfo.ImageWidth, int32(0))
 	assert.Greater(t, genImgInfo.ImageHeight, int32(0))
 }
+
+func TestScanBarcode(t *testing.T) {
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	fileName := "../testdata/qr_and_code128.png"
+
+	imageFile, err := os.Open(fileName)
+	require.Nil(t, err)
+
+	optionals := barcode.BarcodeApiScanBarcodeOpts{
+		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+			barcode.DecodeBarcodeTypePdf417,
+		}),
+	}
+	recognized, _, err := client.BarcodeApi.ScanBarcode(authCtx, imageFile, &optionals)
+	require.Nil(t, err)
+	require.Equal(t, 1, len(recognized.Barcodes))
+
+	assert.Equal(t, string(barcode.DecodeBarcodeTypePdf417), recognized.Barcodes[0].Type)
+	assert.Equal(t, "Aspose.BarCode for Cloud Sample", recognized.Barcodes[0].BarcodeValue)
+	require.Greater(t, len(recognized.Barcodes[0].Region), 0)
+	assert.Greater(t, recognized.Barcodes[0].Region[0].X, int32(0))
+	assert.Greater(t, recognized.Barcodes[0].Region[0].Y, int32(0))
+}

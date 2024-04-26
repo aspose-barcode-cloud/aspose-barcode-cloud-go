@@ -3,7 +3,7 @@ package barcode
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -90,7 +90,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -172,7 +172,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -257,7 +257,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -365,7 +365,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -440,7 +440,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	if requestFile != nil {
 		fileName = requestFile.Name()
 		var err error
-		fileBytes, err = ioutil.ReadAll(requestFile)
+		fileBytes, err = io.ReadAll(io.Reader(requestFile))
 		if err != nil {
 			return returnValue, nil, err
 		}
@@ -455,7 +455,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err

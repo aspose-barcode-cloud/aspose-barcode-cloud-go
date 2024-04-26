@@ -3,7 +3,7 @@ package barcode
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -249,7 +249,7 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -552,7 +552,7 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -834,7 +834,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		if requestFile, fileOk := optionals.Image.Value().(*os.File); fileOk {
 			fileName = requestFile.Name()
 			var err error
-			fileBytes, err = ioutil.ReadAll(requestFile)
+			fileBytes, err = io.ReadAll(io.Reader(requestFile))
 			if err != nil {
 				return returnValue, nil, err
 			}
@@ -855,7 +855,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -955,7 +955,7 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -1233,7 +1233,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -1356,7 +1356,7 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -1468,7 +1468,7 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -1491,6 +1491,129 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 
 		if httpResponse.StatusCode == 200 {
 			var v ResultImageInfo
+			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
+		}
+
+		if httpResponse.StatusCode == 400 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
+		}
+
+		return returnValue, httpResponse, newErr
+	}
+
+	return returnValue, httpResponse, err
+}
+
+// BarcodeApiScanBarcodeOpts - Optional Parameters for BarcodeApiScanBarcode
+type BarcodeApiScanBarcodeOpts struct {
+	DecodeTypes optional.Interface
+	Timeout     optional.Int32
+}
+
+/*
+* ScanBarcode -  Quickly scan a barcode from an image.
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param imageFile Image as file
+* @param optional nil or *BarcodeApiScanBarcodeOpts - Optional Parameters:
+  - @param "DecodeTypes" (optional.Interface of []DecodeBarcodeType) -  Types of barcode to recognize
+  - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds.  Default value is 15_000 (15 seconds).  Maximum value is 30_000 (1/2 minute).  In case of a timeout RequestTimeout (408) status will be returned.  Try reducing the image size to avoid timeout.
+
+* @return BarcodeResponseList
+*/
+func (a *BarcodeApiService) ScanBarcode(ctx context.Context, imageFile *os.File, optionals *BarcodeApiScanBarcodeOpts) (BarcodeResponseList, *http.Response, error) {
+	var (
+		httpMethod  = strings.ToUpper("Post")
+		postBody    interface{}
+		fileName    string
+		fileBytes   []byte
+		returnValue BarcodeResponseList
+	)
+
+	// create path and map variables
+	requestPath := a.client.cfg.BasePath + "/barcode/scan"
+
+	headerParams := make(map[string]string)
+	queryParams := url.Values{}
+	formParams := url.Values{}
+
+	// to determine the Content-Type header
+	contentTypeChoices := []string{"multipart/form-data"}
+
+	// set Content-Type header
+	httpContentType := selectHeaderContentType(contentTypeChoices)
+	if httpContentType != "" {
+		headerParams["Content-Type"] = httpContentType
+	}
+
+	// to determine Accept header
+	acceptChoices := []string{"application/json"}
+
+	// set Accept header
+	httpHeaderAccept := selectHeaderAccept(acceptChoices)
+	if httpHeaderAccept != "" {
+		headerParams["Accept"] = httpHeaderAccept
+	}
+	requestFile := imageFile
+	if requestFile != nil {
+		fileName = requestFile.Name()
+		var err error
+		fileBytes, err = io.ReadAll(io.Reader(requestFile))
+		if err != nil {
+			return returnValue, nil, err
+		}
+	}
+	if optionals != nil && optionals.DecodeTypes.IsSet() {
+		formParams.Add("decodeTypes", parameterToString(optionals.DecodeTypes.Value(), "multi"))
+	}
+	if optionals != nil && optionals.Timeout.IsSet() {
+		formParams.Add("timeout", parameterToString(optionals.Timeout.Value(), ""))
+	}
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	if err != nil {
+		return returnValue, nil, err
+	}
+
+	httpResponse, err := a.client.callAPI(r)
+	if err != nil || httpResponse == nil {
+		return returnValue, httpResponse, err
+	}
+
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
+	httpResponse.Body.Close()
+	if err != nil {
+		return returnValue, httpResponse, err
+	}
+
+	if httpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&returnValue, responseBody, httpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return returnValue, httpResponse, err
+		}
+	}
+
+	if httpResponse.StatusCode >= 300 {
+		newErr := GenericAPIError{
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
+		}
+
+		if httpResponse.StatusCode == 200 {
+			var v BarcodeResponseList
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

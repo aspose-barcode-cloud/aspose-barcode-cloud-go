@@ -3,7 +3,7 @@ package barcode
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -84,7 +84,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -161,7 +161,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -243,7 +243,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -323,7 +323,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -426,7 +426,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err

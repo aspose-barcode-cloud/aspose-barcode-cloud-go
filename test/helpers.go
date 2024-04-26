@@ -3,7 +3,7 @@ package test
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"testing"
 
@@ -56,7 +56,7 @@ func uploadTestFile(ctx context.Context, t *testing.T, client *barcode.APIClient
 func readFileContent(t *testing.T, fileName string) []byte {
 	file, err := os.Open(fileName)
 	require.Nil(t, err)
-	bytes, err := ioutil.ReadAll(file)
+	bytes, err := io.ReadAll(io.Reader(file))
 	require.Nil(t, err)
 	file.Close()
 	return bytes

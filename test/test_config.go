@@ -3,7 +3,7 @@ package test
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"reflect"
 	"strings"
@@ -54,7 +54,7 @@ func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
 		}
 		defer f.Close()
 
-		bytes, err := ioutil.ReadAll(f)
+		bytes, err := io.ReadAll(io.Reader(f))
 		if err != nil {
 			return nil, err
 		}

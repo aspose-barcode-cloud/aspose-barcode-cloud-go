@@ -3,7 +3,7 @@ package barcode
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -78,7 +78,7 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -177,7 +177,7 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -281,7 +281,7 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -370,7 +370,7 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
