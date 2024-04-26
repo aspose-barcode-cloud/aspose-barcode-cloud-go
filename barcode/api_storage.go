@@ -34,11 +34,12 @@ type StorageApiGetDiscUsageOpts struct {
 */
 func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *StorageApiGetDiscUsageOpts) (DiscUsage, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue DiscUsage
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   DiscUsage
 	)
 
 	// create path and map variables
@@ -68,7 +69,7 @@ func (a *StorageApiService) GetDiscUsage(ctx context.Context, optionals *Storage
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -132,11 +133,12 @@ type StorageApiGetFileVersionsOpts struct {
 */
 func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, optionals *StorageApiGetFileVersionsOpts) (FileVersions, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue FileVersions
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   FileVersions
 	)
 
 	// create path and map variables
@@ -167,7 +169,7 @@ func (a *StorageApiService) GetFileVersions(ctx context.Context, path string, op
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -233,11 +235,12 @@ type StorageApiObjectExistsOpts struct {
 */
 func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optionals *StorageApiObjectExistsOpts) (ObjectExist, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue ObjectExist
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   ObjectExist
 	)
 
 	// create path and map variables
@@ -271,7 +274,7 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -328,11 +331,12 @@ func (a *StorageApiService) ObjectExists(ctx context.Context, path string, optio
  */
 func (a *StorageApiService) StorageExists(ctx context.Context, storageName string) (StorageExist, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue StorageExist
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   StorageExist
 	)
 
 	// create path and map variables
@@ -360,7 +364,7 @@ func (a *StorageApiService) StorageExists(ctx context.Context, storageName strin
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}

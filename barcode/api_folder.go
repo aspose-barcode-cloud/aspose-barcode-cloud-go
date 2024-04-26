@@ -36,10 +36,11 @@ type FolderApiCopyFolderOpts struct {
 */
 func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiCopyFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -74,7 +75,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -117,10 +118,11 @@ type FolderApiCreateFolderOpts struct {
 */
 func (a *FolderApiService) CreateFolder(ctx context.Context, path string, optionals *FolderApiCreateFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -151,7 +153,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -196,10 +198,11 @@ type FolderApiDeleteFolderOpts struct {
 */
 func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, optionals *FolderApiDeleteFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Delete")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Delete")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -233,7 +236,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -278,11 +281,12 @@ type FolderApiGetFilesListOpts struct {
 */
 func (a *FolderApiService) GetFilesList(ctx context.Context, path string, optionals *FolderApiGetFilesListOpts) (FilesList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue FilesList
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   FilesList
 	)
 
 	// create path and map variables
@@ -313,7 +317,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -378,10 +382,11 @@ type FolderApiMoveFolderOpts struct {
 */
 func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiMoveFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -416,7 +421,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}

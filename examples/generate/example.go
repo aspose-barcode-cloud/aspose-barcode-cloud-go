@@ -25,7 +25,7 @@ func main() {
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
-		TextLocation: optional.NewString("None"),
+		TextLocation: optional.NewString(string(barcode.CodeLocationNone)),
 	}
 
 	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,

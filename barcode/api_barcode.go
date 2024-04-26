@@ -104,11 +104,12 @@ type BarcodeApiGetBarcodeGenerateOpts struct {
 */
 func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string, text string, optionals *BarcodeApiGetBarcodeGenerateOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue []byte
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   []byte
 	)
 
 	// create path and map variables
@@ -239,7 +240,7 @@ func (a *BarcodeApiService) GetBarcodeGenerate(ctx context.Context, type_ string
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -376,7 +377,7 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
   - @param "AllowAdditionalRestorations" (optional.Bool) -  Allows engine using additional image restorations to recognize corrupted barcodes. At this time, it is used only in MicroPdf417 barcode type. Default value: False.
   - @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
   - @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
-  - @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+  - @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
   - @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
   - @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
   - @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
@@ -388,11 +389,12 @@ type BarcodeApiGetBarcodeRecognizeOpts struct {
 */
 func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string, optionals *BarcodeApiGetBarcodeRecognizeOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue BarcodeResponseList
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   BarcodeResponseList
 	)
 
 	// create path and map variables
@@ -542,7 +544,7 @@ func (a *BarcodeApiService) GetBarcodeRecognize(ctx context.Context, name string
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -667,7 +669,7 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
   - @param "AllowAdditionalRestorations" (optional.Bool) -  Allows engine using additional image restorations to recognize corrupted barcodes. At this time, it is used only in MicroPdf417 barcode type. Default value: False.
   - @param "RegionLikelihoodThresholdPercent" (optional.Float64) -  Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
   - @param "ScanWindowSizes" (optional.Interface of []int32) -  Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
-  - @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+  - @param "Similarity" (optional.Float64) -  Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
   - @param "SkipDiagonalSearch" (optional.Bool) -  Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
   - @param "ReadTinyBarcodes" (optional.Bool) -  Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
   - @param "AustralianPostEncodingTable" (optional.String) -  Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
@@ -679,11 +681,12 @@ type BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts struct {
 */
 func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Context, optionals *BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Post")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue BarcodeResponseList
+		httpMethod    = strings.ToUpper("Post")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   BarcodeResponseList
 	)
 
 	// create path and map variables
@@ -845,7 +848,7 @@ func (a *BarcodeApiService) PostBarcodeRecognizeFromUrlOrContent(ctx context.Con
 			return returnValue, nil, reportError("image should be *os.File or []byte")
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -909,11 +912,12 @@ type BarcodeApiPostGenerateMultipleOpts struct {
 */
 func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPostGenerateMultipleOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Post")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue []byte
+		httpMethod    = strings.ToUpper("Post")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   []byte
 	)
 
 	// create path and map variables
@@ -945,7 +949,7 @@ func (a *BarcodeApiService) PostGenerateMultiple(ctx context.Context, generatorP
 	}
 	// body params
 	postBody = &generatorParamsList
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -1081,11 +1085,12 @@ type BarcodeApiPutBarcodeGenerateFileOpts struct {
 */
 func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name string, type_ string, text string, optionals *BarcodeApiPutBarcodeGenerateFileOpts) (ResultImageInfo, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Put")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue ResultImageInfo
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   ResultImageInfo
 	)
 
 	// create path and map variables
@@ -1223,7 +1228,7 @@ func (a *BarcodeApiService) PutBarcodeGenerateFile(ctx context.Context, name str
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -1303,11 +1308,12 @@ type BarcodeApiPutBarcodeRecognizeFromBodyOpts struct {
 */
 func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, name string, readerParams ReaderParams, optionals *BarcodeApiPutBarcodeRecognizeFromBodyOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Put")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue BarcodeResponseList
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   BarcodeResponseList
 	)
 
 	// create path and map variables
@@ -1346,7 +1352,7 @@ func (a *BarcodeApiService) PutBarcodeRecognizeFromBody(ctx context.Context, nam
 	}
 	// body params
 	postBody = &readerParams
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -1415,11 +1421,12 @@ type BarcodeApiPutGenerateMultipleOpts struct {
 */
 func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string, generatorParamsList GeneratorParamsList, optionals *BarcodeApiPutGenerateMultipleOpts) (ResultImageInfo, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Put")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue ResultImageInfo
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   ResultImageInfo
 	)
 
 	// create path and map variables
@@ -1458,7 +1465,7 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 	}
 	// body params
 	postBody = &generatorParamsList
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -1535,11 +1542,12 @@ type BarcodeApiScanBarcodeOpts struct {
 */
 func (a *BarcodeApiService) ScanBarcode(ctx context.Context, imageFile *os.File, optionals *BarcodeApiScanBarcodeOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Post")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue BarcodeResponseList
+		httpMethod    = strings.ToUpper("Post")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   BarcodeResponseList
 	)
 
 	// create path and map variables
@@ -1569,6 +1577,7 @@ func (a *BarcodeApiService) ScanBarcode(ctx context.Context, imageFile *os.File,
 	requestFile := imageFile
 	if requestFile != nil {
 		fileName = requestFile.Name()
+		fileFieldName = "imageFile"
 		var err error
 		fileBytes, err = io.ReadAll(io.Reader(requestFile))
 		if err != nil {
@@ -1576,12 +1585,16 @@ func (a *BarcodeApiService) ScanBarcode(ctx context.Context, imageFile *os.File,
 		}
 	}
 	if optionals != nil && optionals.DecodeTypes.IsSet() {
-		formParams.Add("decodeTypes", parameterToString(optionals.DecodeTypes.Value(), "multi"))
+		values := reflect.ValueOf(optionals.DecodeTypes.Value())
+		for i := 0; i < values.Len(); i++ {
+			item := values.Index(i)
+			formParams.Add("decodeTypes", parameterToString(item, ""))
+		}
 	}
 	if optionals != nil && optionals.Timeout.IsSet() {
 		formParams.Add("timeout", parameterToString(optionals.Timeout.Value(), ""))
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}

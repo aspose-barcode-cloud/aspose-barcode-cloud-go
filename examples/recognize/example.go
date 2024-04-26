@@ -15,28 +15,30 @@ func main() {
 		"Client Id from https://dashboard.aspose.cloud/applications",
 		"Client Secret from https://dashboard.aspose.cloud/applications",
 	)
-	fileName := "testdata/pdf417Sample.png"
+	fileName := "testdata/generated.png"
 
-	file, err := os.Open(fileName)
+	imageFile, err := os.Open(fileName)
 	if err != nil {
 		panic(err)
 	}
 	defer func(file *os.File) {
 		_ = file.Close()
-	}(file)
+	}(imageFile)
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
 
-	optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-		Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
-		Image:  optional.NewInterface(file),
+	optionals := barcode.BarcodeApiScanBarcodeOpts{
+		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+		}),
 	}
 
-	recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(
+	recognized, _, err := client.BarcodeApi.ScanBarcode(
 		authCtx,
+		imageFile,
 		&optionals)
 	if err != nil {
 		panic(err)

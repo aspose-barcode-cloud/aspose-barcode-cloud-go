@@ -39,10 +39,11 @@ type FileApiCopyFileOpts struct {
 */
 func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiCopyFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -80,7 +81,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -125,10 +126,11 @@ type FileApiDeleteFileOpts struct {
 */
 func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals *FileApiDeleteFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Delete")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Delete")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -162,7 +164,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -209,11 +211,12 @@ type FileApiDownloadFileOpts struct {
 */
 func (a *FileApiService) DownloadFile(ctx context.Context, path string, optionals *FileApiDownloadFileOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue []byte
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   []byte
 	)
 
 	// create path and map variables
@@ -247,7 +250,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -314,10 +317,11 @@ type FileApiMoveFileOpts struct {
 */
 func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiMoveFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -355,7 +359,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -401,11 +405,12 @@ type FileApiUploadFileOpts struct {
 */
 func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.File, optionals *FileApiUploadFileOpts) (FilesUploadResult, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Put")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue FilesUploadResult
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   FilesUploadResult
 	)
 
 	// create path and map variables
@@ -439,13 +444,14 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	requestFile := file
 	if requestFile != nil {
 		fileName = requestFile.Name()
+		fileFieldName = "File"
 		var err error
 		fileBytes, err = io.ReadAll(io.Reader(requestFile))
 		if err != nil {
 			return returnValue, nil, err
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}

@@ -148,6 +148,7 @@ func (c *APIClient) prepareRequest(
 	queryParams netUrl.Values,
 	formParams netUrl.Values,
 	fileName string,
+	fileFieldName string,
 	fileBytes []byte) (httpReq *http.Request, err error) {
 
 	var body *bytes.Buffer
@@ -192,7 +193,7 @@ func (c *APIClient) prepareRequest(
 		if len(fileBytes) > 0 && fileName != "" {
 			w.Boundary()
 			//_, fileNm := filepath.Split(fileName)
-			part, err := w.CreateFormFile("file", filepath.Base(fileName))
+			part, err := w.CreateFormFile(fileFieldName, filepath.Base(fileName))
 			if err != nil {
 				return nil, err
 			}

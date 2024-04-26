@@ -282,17 +282,23 @@ func TestScanBarcode(t *testing.T) {
 
 	optionals := barcode.BarcodeApiScanBarcodeOpts{
 		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeCode128,
 			barcode.DecodeBarcodeTypeQR,
-			barcode.DecodeBarcodeTypePdf417,
 		}),
 	}
 	recognized, _, err := client.BarcodeApi.ScanBarcode(authCtx, imageFile, &optionals)
 	require.Nil(t, err)
-	require.Equal(t, 1, len(recognized.Barcodes))
+	require.Equal(t, 2, len(recognized.Barcodes))
 
-	assert.Equal(t, string(barcode.DecodeBarcodeTypePdf417), recognized.Barcodes[0].Type)
-	assert.Equal(t, "Aspose.BarCode for Cloud Sample", recognized.Barcodes[0].BarcodeValue)
+	assert.Equal(t, string(barcode.DecodeBarcodeTypeQR), recognized.Barcodes[0].Type)
+	assert.Equal(t, "QR text", recognized.Barcodes[0].BarcodeValue)
 	require.Greater(t, len(recognized.Barcodes[0].Region), 0)
 	assert.Greater(t, recognized.Barcodes[0].Region[0].X, int32(0))
 	assert.Greater(t, recognized.Barcodes[0].Region[0].Y, int32(0))
+
+	assert.Equal(t, string(barcode.DecodeBarcodeTypeCode128), recognized.Barcodes[1].Type)
+	assert.Equal(t, "Code128 text", recognized.Barcodes[1].BarcodeValue)
+	require.Greater(t, len(recognized.Barcodes[1].Region), 0)
+	assert.Greater(t, recognized.Barcodes[1].Region[0].X, int32(0))
+	assert.Greater(t, recognized.Barcodes[1].Region[0].Y, int32(0))
 }
