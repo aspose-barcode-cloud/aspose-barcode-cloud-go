@@ -1,33 +1,9 @@
-/*
- * MIT License
-
- * Copyright (c) 2024 Aspose Pty Ltd
-
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
-
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
-
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package barcode
 
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -60,10 +36,11 @@ type FolderApiCopyFolderOpts struct {
 */
 func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiCopyFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -98,7 +75,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -108,7 +85,7 @@ func (a *FolderApiService) CopyFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -141,10 +118,11 @@ type FolderApiCreateFolderOpts struct {
 */
 func (a *FolderApiService) CreateFolder(ctx context.Context, path string, optionals *FolderApiCreateFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -175,7 +153,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -185,7 +163,7 @@ func (a *FolderApiService) CreateFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -220,10 +198,11 @@ type FolderApiDeleteFolderOpts struct {
 */
 func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, optionals *FolderApiDeleteFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Delete")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Delete")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -257,7 +236,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -267,7 +246,7 @@ func (a *FolderApiService) DeleteFolder(ctx context.Context, path string, option
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -302,11 +281,12 @@ type FolderApiGetFilesListOpts struct {
 */
 func (a *FolderApiService) GetFilesList(ctx context.Context, path string, optionals *FolderApiGetFilesListOpts) (FilesList, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue FilesList
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   FilesList
 	)
 
 	// create path and map variables
@@ -337,7 +317,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -347,7 +327,7 @@ func (a *FolderApiService) GetFilesList(ctx context.Context, path string, option
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -402,10 +382,11 @@ type FolderApiMoveFolderOpts struct {
 */
 func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destPath string, optionals *FolderApiMoveFolderOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -440,7 +421,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -450,7 +431,7 @@ func (a *FolderApiService) MoveFolder(ctx context.Context, srcPath string, destP
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err

@@ -1,33 +1,9 @@
-/*
- * MIT License
-
- * Copyright (c) 2024 Aspose Pty Ltd
-
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
-
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
-
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
 package barcode
 
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
@@ -63,10 +39,11 @@ type FileApiCopyFileOpts struct {
 */
 func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiCopyFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -104,7 +81,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -114,7 +91,7 @@ func (a *FileApiService) CopyFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -149,10 +126,11 @@ type FileApiDeleteFileOpts struct {
 */
 func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals *FileApiDeleteFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Delete")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Delete")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -186,7 +164,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -196,7 +174,7 @@ func (a *FileApiService) DeleteFile(ctx context.Context, path string, optionals 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -233,11 +211,12 @@ type FileApiDownloadFileOpts struct {
 */
 func (a *FileApiService) DownloadFile(ctx context.Context, path string, optionals *FileApiDownloadFileOpts) ([]byte, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Get")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue []byte
+		httpMethod    = strings.ToUpper("Get")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   []byte
 	)
 
 	// create path and map variables
@@ -271,7 +250,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -281,7 +260,7 @@ func (a *FileApiService) DownloadFile(ctx context.Context, path string, optional
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err
@@ -338,10 +317,11 @@ type FileApiMoveFileOpts struct {
 */
 func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath string, optionals *FileApiMoveFileOpts) (*http.Response, error) {
 	var (
-		httpMethod = strings.ToUpper("Put")
-		postBody   interface{}
-		fileName   string
-		fileBytes  []byte
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
 	)
 
 	// create path and map variables
@@ -379,7 +359,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return nil, err
 	}
@@ -389,7 +369,7 @@ func (a *FileApiService) MoveFile(ctx context.Context, srcPath string, destPath 
 		return httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return httpResponse, err
@@ -425,11 +405,12 @@ type FileApiUploadFileOpts struct {
 */
 func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.File, optionals *FileApiUploadFileOpts) (FilesUploadResult, *http.Response, error) {
 	var (
-		httpMethod  = strings.ToUpper("Put")
-		postBody    interface{}
-		fileName    string
-		fileBytes   []byte
-		returnValue FilesUploadResult
+		httpMethod    = strings.ToUpper("Put")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   FilesUploadResult
 	)
 
 	// create path and map variables
@@ -463,13 +444,14 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 	requestFile := file
 	if requestFile != nil {
 		fileName = requestFile.Name()
+		fileFieldName = "File"
 		var err error
-		fileBytes, err = ioutil.ReadAll(requestFile)
+		fileBytes, err = io.ReadAll(io.Reader(requestFile))
 		if err != nil {
 			return returnValue, nil, err
 		}
 	}
-	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileBytes)
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
 		return returnValue, nil, err
 	}
@@ -479,7 +461,7 @@ func (a *FileApiService) UploadFile(ctx context.Context, path string, file *os.F
 		return returnValue, httpResponse, err
 	}
 
-	responseBody, err := ioutil.ReadAll(httpResponse.Body)
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
 	httpResponse.Body.Close()
 	if err != nil {
 		return returnValue, httpResponse, err

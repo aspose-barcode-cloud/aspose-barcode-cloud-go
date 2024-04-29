@@ -267,3 +267,38 @@ func TestPutGenerateMultiple(t *testing.T) {
 	assert.Greater(t, genImgInfo.ImageWidth, int32(0))
 	assert.Greater(t, genImgInfo.ImageHeight, int32(0))
 }
+
+func TestScanBarcode(t *testing.T) {
+	authCtx, err := NewAuthContextForTests()
+	require.Nil(t, err)
+
+	client, err := NewClientForTests()
+	require.Nil(t, err)
+
+	fileName := "../testdata/qr_and_code128.png"
+
+	imageFile, err := os.Open(fileName)
+	require.Nil(t, err)
+
+	optionals := barcode.BarcodeApiScanBarcodeOpts{
+		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeCode128,
+			barcode.DecodeBarcodeTypeQR,
+		}),
+	}
+	recognized, _, err := client.BarcodeApi.ScanBarcode(authCtx, imageFile, &optionals)
+	require.Nil(t, err)
+	require.Equal(t, 2, len(recognized.Barcodes))
+
+	assert.Equal(t, string(barcode.DecodeBarcodeTypeQR), recognized.Barcodes[0].Type)
+	assert.Equal(t, "QR text", recognized.Barcodes[0].BarcodeValue)
+	require.Greater(t, len(recognized.Barcodes[0].Region), 0)
+	assert.Greater(t, recognized.Barcodes[0].Region[0].X, int32(0))
+	assert.Greater(t, recognized.Barcodes[0].Region[0].Y, int32(0))
+
+	assert.Equal(t, string(barcode.DecodeBarcodeTypeCode128), recognized.Barcodes[1].Type)
+	assert.Equal(t, "Code128 text", recognized.Barcodes[1].BarcodeValue)
+	require.Greater(t, len(recognized.Barcodes[1].Region), 0)
+	assert.Greater(t, recognized.Barcodes[1].Region[0].X, int32(0))
+	assert.Greater(t, recognized.Barcodes[1].Region[0].Y, int32(0))
+}
