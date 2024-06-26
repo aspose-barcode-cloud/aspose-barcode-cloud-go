@@ -43,7 +43,11 @@ update: update_packages clean-gomod
 release: format lint update_packages clean-gomod build test
 
 .PHONY: after-gen
-after-gen: init format clean-gomod
+after-gen: init format insert-examples clean-gomod
+
+.PHONY: insert-examples
+insert-examples:
+	./scripts/insert-examples.bash
 
 .PHONY: ci
 ci: build test
