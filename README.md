@@ -5,7 +5,7 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 3.0
-- SDK version: 1.2405.0
+- SDK version: 1.2406.0
 
 ## Demo applications
 
@@ -33,7 +33,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v1.2405.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v1.2406.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -54,108 +54,119 @@ The examples below show how you can generate QR barcode and save it into a local
 package main
 
 import (
-    "context"
-    "fmt"
-    "github.com/antihax/optional"
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
-    "os"
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/antihax/optional"
+
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
 
 func main() {
-    jwtConf := jwt.NewConfig(
-        "Client Id from https://dashboard.aspose.cloud/applications",
-        "Client Secret from https://dashboard.aspose.cloud/applications",
-    )
-    fileName := "testdata/generated.png"
+	jwtConf := jwt.NewConfig(
+		"Client Id from https://dashboard.aspose.cloud/applications",
+		"Client Secret from https://dashboard.aspose.cloud/applications",
+	)
+	fileName := "testdata/generated.png"
 
-    authCtx := context.WithValue(context.Background(),
-        barcode.ContextJWT,
-        jwtConf.TokenSource(context.Background()))
+	authCtx := context.WithValue(context.Background(),
+		barcode.ContextJWT,
+		jwtConf.TokenSource(context.Background()))
 
-    client := barcode.NewAPIClient(barcode.NewConfiguration())
+	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-    opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
-        TextLocation: optional.NewString("None"),
-    }
+	opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
+		TextLocation: optional.NewString(string(barcode.CodeLocationNone)),
+	}
 
-    data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
-        string(barcode.EncodeBarcodeTypeQR),
-        "Go SDK example",
-        opts)
-    if err != nil {
-        panic(err)
-    }
+	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
+		string(barcode.EncodeBarcodeTypeQR),
+		"Go SDK example",
+		opts)
+	if err != nil {
+		panic(err)
+	}
 
-    out, err := os.Create(fileName)
-    if err != nil {
-        panic(err)
-    }
-    defer out.Close()
+	out, err := os.Create(fileName)
+	if err != nil {
+		panic(err)
+	}
+	defer func(out *os.File) {
+		_ = out.Close()
+	}(out)
 
-    written, err := out.Write(data)
-    if err != nil {
-        panic(err)
-    }
+	written, err := out.Write(data)
+	if err != nil {
+		panic(err)
+	}
 
-    fmt.Printf("Written %d bytes to file %s\n", written, fileName)
+	fmt.Printf("Written %d bytes to file %s\n", written, fileName)
 }
+
 ```
 
 ### Recognize a barcode on image
 
-The examples below show how you can recognize barcode text and type on the image using **barcode**:
+The examples below show how you can scan barcode text and type on the image using **barcode**:
 
 ```go
 package main
 
 import (
-    "context"
-    "fmt"
-    "github.com/antihax/optional"
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
-    "os"
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/antihax/optional"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
 
 func main() {
-    jwtConf := jwt.NewConfig(
-        "Client Id from https://dashboard.aspose.cloud/applications",
-        "Client Secret from https://dashboard.aspose.cloud/applications",
-    )
-    fileName := "testdata/pdf417Sample.png"
+	jwtConf := jwt.NewConfig(
+		"Client Id from https://dashboard.aspose.cloud/applications",
+		"Client Secret from https://dashboard.aspose.cloud/applications",
+	)
+	fileName := "testdata/generated.png"
 
-    file, err := os.Open(fileName)
-    if err != nil {
-        panic(err)
-    }
-    defer file.Close()
+	imageFile, err := os.Open(fileName)
+	if err != nil {
+		panic(err)
+	}
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(imageFile)
 
-    client := barcode.NewAPIClient(barcode.NewConfiguration())
-    authCtx := context.WithValue(context.Background(),
-        barcode.ContextJWT,
-        jwtConf.TokenSource(context.Background()))
+	client := barcode.NewAPIClient(barcode.NewConfiguration())
+	authCtx := context.WithValue(context.Background(),
+		barcode.ContextJWT,
+		jwtConf.TokenSource(context.Background()))
 
-    optionals := barcode.BarcodeApiPostBarcodeRecognizeFromUrlOrContentOpts{
-        Preset: optional.NewString(string(barcode.PresetTypeHighPerformance)),
-        Image:  optional.NewInterface(file),
-    }
+	optionals := barcode.BarcodeApiScanBarcodeOpts{
+		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
+			barcode.DecodeBarcodeTypeQR,
+		}),
+	}
 
-    recognized, _, err := client.BarcodeApi.PostBarcodeRecognizeFromUrlOrContent(
-        authCtx,
-        &optionals)
-    if err != nil {
-        panic(err)
-    }
+	recognized, _, err := client.BarcodeApi.ScanBarcode(
+		authCtx,
+		imageFile,
+		&optionals)
+	if err != nil {
+		panic(err)
+	}
 
-    if len(recognized.Barcodes) == 0 {
-        fmt.Printf("No barcodes in %s", fileName)
-    }
+	if len(recognized.Barcodes) == 0 {
+		fmt.Printf("No barcodes in %s", fileName)
+	}
 
-    for i, oneBarcode := range recognized.Barcodes {
-        fmt.Printf("Recognized #%d: %s %s", i+1, oneBarcode.Type, oneBarcode.BarcodeValue)
-    }
+	for i, oneBarcode := range recognized.Barcodes {
+		fmt.Printf("Recognized #%d: %s %s", i+1, oneBarcode.Type, oneBarcode.BarcodeValue)
+	}
 }
+
 ```
 
 ## Dependencies

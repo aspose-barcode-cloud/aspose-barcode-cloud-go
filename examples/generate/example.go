@@ -16,7 +16,7 @@ func main() {
 		"Client Id from https://dashboard.aspose.cloud/applications",
 		"Client Secret from https://dashboard.aspose.cloud/applications",
 	)
-	fileName := "../../testdata/generated.png"
+	fileName := "testdata/generated.png"
 
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
