@@ -1,8 +1,8 @@
 # TextAlignment
 
 ## Allowable values
-* **TextAlignment&quot;Left&quot;**
-* TextAlignment&quot;Center&quot;
-* TextAlignment&quot;Right&quot;
+* **TextAlignmentLeft**
+* TextAlignmentCenter
+* TextAlignmentRight
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

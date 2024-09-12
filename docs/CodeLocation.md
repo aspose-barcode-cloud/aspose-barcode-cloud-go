@@ -1,8 +1,8 @@
 # CodeLocation
 
 ## Allowable values
-* **CodeLocation&quot;Below&quot;**
-* CodeLocation&quot;Above&quot;
-* CodeLocation&quot;None&quot;
+* **CodeLocationBelow**
+* CodeLocationAbove
+* CodeLocationNone
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

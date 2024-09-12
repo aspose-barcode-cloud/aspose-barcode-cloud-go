@@ -3,8 +3,8 @@
 Recognition mode.
 
 ## Allowable values
-* **RecognitionMode&quot;Fast&quot;**
-* RecognitionMode&quot;Normal&quot;
-* RecognitionMode&quot;Excellent&quot;
+* **RecognitionModeFast**
+* RecognitionModeNormal
+* RecognitionModeExcellent
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
