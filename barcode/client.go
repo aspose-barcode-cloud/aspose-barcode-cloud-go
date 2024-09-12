@@ -21,7 +21,7 @@ import (
 )
 
 const (
-	PACKAGE_VERSION         = "1.2408.0"
+	PACKAGE_VERSION         = "1.2407.0"
 	PACKAGE_NAME            = "go sdk"
 	X_ASPOSE_CLIENT         = "x-aspose-client"
 	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"
@@ -32,7 +32,7 @@ var (
 	xmlCheck  = regexp.MustCompile("(?i:(?:application|text)/xml)")
 )
 
-// APIClient manages communication with the Aspose.Barcode Cloud API Reference API v3.0
+// APIClient manages communication with the Aspose.BarCode.Cloud v4.0 specification API v4.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -40,13 +40,11 @@ type APIClient struct {
 
 	// API Services
 
-	BarcodeApi *BarcodeApiService
+	GenerateAPI *GenerateAPIService
 
-	FileApi *FileApiService
+	RecognizeAPI *RecognizeAPIService
 
-	FolderApi *FolderApiService
-
-	StorageApi *StorageApiService
+	ScanAPI *ScanAPIService
 }
 
 type service struct {
@@ -65,10 +63,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BarcodeApi = (*BarcodeApiService)(&c.common)
-	c.FileApi = (*FileApiService)(&c.common)
-	c.FolderApi = (*FolderApiService)(&c.common)
-	c.StorageApi = (*StorageApiService)(&c.common)
+	c.GenerateAPI = (*GenerateAPIService)(&c.common)
+	c.RecognizeAPI = (*RecognizeAPIService)(&c.common)
+	c.ScanAPI = (*ScanAPIService)(&c.common)
 
 	return c
 }

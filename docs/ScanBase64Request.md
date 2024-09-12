@@ -1,12 +1,11 @@
-# ApiErrorResponse
+# ScanBase64Request
 
-ApiError Response
+Scan barcode request.
 
 ## Properties
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | -----
-**RequestId** | **NullableString** | Gets or sets request Id. | [optional]
-**Error** | [***ApiError**](ApiError.md) |  | [optional]
+**FileBase64** | **string** | Barcode image bytes encoded as base-64. |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,9 +6,9 @@ Represents information about barcode.
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | -----
-**BarcodeValue** | **string** | Barcode data. | [optional] [default to null]
-**Type_** | **string** | Type of the barcode. | [optional] [default to null]
-**Region** | [**[]RegionPoint**](RegionPoint.md) | Region with barcode. | [optional] [default to null]
-**Checksum** | **string** | Checksum of barcode. | [optional] [default to null]
+**BarcodeValue** | **NullableString** | Barcode data. | [optional]
+**Type** | **NullableString** | Type of the barcode. | [optional]
+**Region** | [**[]RegionPoint**](RegionPoint.md) | Region with barcode. | [optional]
+**Checksum** | **NullableString** | Checksum of barcode. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

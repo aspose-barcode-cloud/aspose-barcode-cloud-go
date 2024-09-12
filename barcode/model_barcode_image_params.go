@@ -1,0 +1,23 @@
+package barcode
+
+// BarcodeImageParams - Barcode image optional parameters
+type BarcodeImageParams struct {
+	ImageFormat AvailableBarCodeImageFormat `json:"imageFormat,omitempty"`
+	// Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
+	TwoDDisplayText NullableString `json:"twoDDisplayText,omitempty"`
+	TextLocation    CodeLocation   `json:"textLocation,omitempty"`
+	TextAlignment   TextAlignment  `json:"textAlignment,omitempty"`
+	// Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+	ForegroundColor NullableString `json:"foregroundColor,omitempty"`
+	// Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+	BackgroundColor NullableString        `json:"backgroundColor,omitempty"`
+	Units           AvailableGraphicsUnit `json:"units,omitempty"`
+	// Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
+	Resolution NullableFloat32 `json:"resolution,omitempty"`
+	// Height of the barcode image in given units. Default units: pixel.
+	ImageHeight NullableFloat32 `json:"imageHeight,omitempty"`
+	// Width of the barcode image in given units. Default units: pixel.
+	ImageWidth NullableFloat32 `json:"imageWidth,omitempty"`
+	// BarCode image rotation angle, measured in degree, e.g. RotationAngle = 0 or RotationAngle = 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
+	RotationAngle NullableInt32 `json:"rotationAngle,omitempty"`
+}
