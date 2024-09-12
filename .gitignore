@@ -15,3 +15,5 @@
 # vendor/
 /test/configuration*.json
 !/test/configuration.example.json
+snippets_test/
+

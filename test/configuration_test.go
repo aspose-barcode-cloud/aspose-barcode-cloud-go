@@ -9,7 +9,7 @@ import (
 )
 
 func TestNewConfigurationBasePath(t *testing.T) {
-	want := "https://api.aspose.cloud/v3.0"
+	want := "https://api.aspose.cloud/v4.0"
 	if got := api.NewConfiguration().BasePath; got != want {
 		t.Errorf("NewConfiguration().BasePath = %s; want %s", got, want)
 	}

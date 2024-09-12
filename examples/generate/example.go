@@ -24,12 +24,12 @@ func main() {
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-	opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
-		TextLocation: optional.NewString(string(barcode.CodeLocationNone)),
+	opts := &barcode.GenerateAPIGenerateOpts{
+		TextLocation: optional.NewInterface(barcode.CodeLocationNone),
 	}
 
-	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
-		string(barcode.EncodeBarcodeTypeQR),
+	data, _, err := client.GenerateAPI.Generate(authCtx,
+		barcode.EncodeBarcodeTypeQR,
 		"Go SDK example",
 		opts)
 	if err != nil {
