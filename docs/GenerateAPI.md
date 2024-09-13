@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## BarcodeGenerateBarcodeTypeGet
 
-> *os.File BarcodeGenerateBarcodeTypeGet(ctx, barcodeType, dataType, data, optional)
+> *os.File BarcodeGenerateBarcodeTypeGet(ctx, barcodeType, data, optional)
 Generate barcode using GET request with parameters in route and query string.
 
 ### BarcodeGenerateBarcodeTypeGet Required Parameters
@@ -19,7 +19,6 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **barcodeType** | [**EncodeBarcodeType**](.md) | Type of barcode to generate. |
- **dataType** | [**EncodeDataType**](.md) | Type of data to encode. |
  **data** | **string** | String represents data to encode |
  **optional** | ***GenerateAPIBarcodeGenerateBarcodeTypeGetOpts** | optional parameters | nil if no parameters
 
@@ -29,6 +28,7 @@ Optional parameters are passed through a pointer to a GenerateAPIBarcodeGenerate
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
+**DataType** | [**optional.Interface of EncodeDataType**](.md) | Type of data to encode.  Default value:  EncodeDataType.StringData. |
 **ImageFormat** | [**optional.Interface of AvailableBarCodeImageFormat**](.md) | Barcode output image format.  Default value: png |
 **TwoDDisplayText** | **optional.** | Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode |
 **TextLocation** | [**optional.Interface of CodeLocation**](.md) | Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. |
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 ## BarcodeGenerateFormPost
 
-> *os.File BarcodeGenerateFormPost(ctx, barcodeType, dataType, data, optional)
+> *os.File BarcodeGenerateFormPost(ctx, barcodeType, data, optional)
 Generate barcode using POST request with parameters in url ecncoded form.
 
 ### BarcodeGenerateFormPost Required Parameters
@@ -76,7 +76,6 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **barcodeType** | [**EncodeBarcodeType**](EncodeBarcodeType.md) |  |
- **dataType** | [**EncodeDataType**](EncodeDataType.md) |  |
  **data** | **string** | String represents data to encode |
  **optional** | ***GenerateAPIBarcodeGenerateFormPostOpts** | optional parameters | nil if no parameters
 
@@ -86,6 +85,7 @@ Optional parameters are passed through a pointer to a GenerateAPIBarcodeGenerate
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
+**DataType** | [**optional.Interface of EncodeDataType**](EncodeDataType.md) |  |
 **ImageFormat** | [**optional.Interface of AvailableBarCodeImageFormat**](AvailableBarCodeImageFormat.md) |  |
 **TwoDDisplayText** | **optional.** | Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode |
 **TextLocation** | [**optional.Interface of CodeLocation**](CodeLocation.md) |  |

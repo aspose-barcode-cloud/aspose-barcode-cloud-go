@@ -5,7 +5,7 @@ type RecognitionImageKind string
 
 // List of RecognitionImageKind
 const (
-	RecognitionImageKindPhoto           RecognitionImageKind = Photo
-	RecognitionImageKindScannedDocument RecognitionImageKind = ScannedDocument
-	RecognitionImageKindClearImage      RecognitionImageKind = ClearImage
+	RecognitionImageKindPhoto           RecognitionImageKind = "Photo"
+	RecognitionImageKindScannedDocument RecognitionImageKind = "ScannedDocument"
+	RecognitionImageKindClearImage      RecognitionImageKind = "ClearImage"
 )

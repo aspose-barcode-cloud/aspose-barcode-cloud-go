@@ -30,14 +30,14 @@ type RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts struct {
 * BarcodeRecognizeBarcodeTypeGet -  Recognize barcode from file on server using GET requests with parameters in route and query string.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType Type of barcode to recognize
-* @param url Url to barcode image
+* @param fileUrl Url to barcode image
 * @param optional nil or *RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts - Optional Parameters:
   - @param "RecognitionMode" (optional.Interface of RecognitionMode) -  Recognition mode
   - @param "ImageKind" (optional.Interface of RecognitionImageKind) -  Image kind
 
 * @return BarcodeResponseList
 */
-func (a *RecognizeAPIService) BarcodeRecognizeBarcodeTypeGet(ctx context.Context, barcodeType DecodeBarcodeType, url string, optionals *RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts) (BarcodeResponseList, *http.Response, error) {
+func (a *RecognizeAPIService) BarcodeRecognizeBarcodeTypeGet(ctx context.Context, barcodeType DecodeBarcodeType, fileUrl string, optionals *RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts) (BarcodeResponseList, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Get")
 		postBody      interface{}
@@ -55,7 +55,7 @@ func (a *RecognizeAPIService) BarcodeRecognizeBarcodeTypeGet(ctx context.Context
 	queryParams := url.Values{}
 	formParams := url.Values{}
 
-	queryParams.Add("url", parameterToString(url, ""))
+	queryParams.Add("fileUrl", parameterToString(fileUrl, ""))
 	if optionals != nil && optionals.RecognitionMode.IsSet() {
 		queryParams.Add("recognitionMode", parameterToString(optionals.RecognitionMode.Value(), ""))
 	}

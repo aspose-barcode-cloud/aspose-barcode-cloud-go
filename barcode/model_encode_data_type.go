@@ -5,7 +5,7 @@ type EncodeDataType string
 
 // List of EncodeDataType
 const (
-	EncodeDataTypeStringData  EncodeDataType = StringData
-	EncodeDataTypeBase64Bytes EncodeDataType = Base64Bytes
-	EncodeDataTypeHexBytes    EncodeDataType = HexBytes
+	EncodeDataTypeStringData  EncodeDataType = "StringData"
+	EncodeDataTypeBase64Bytes EncodeDataType = "Base64Bytes"
+	EncodeDataTypeHexBytes    EncodeDataType = "HexBytes"
 )

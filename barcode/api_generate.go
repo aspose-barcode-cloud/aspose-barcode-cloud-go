@@ -22,41 +22,42 @@ type GenerateAPIService service
 
 // GenerateAPIBarcodeGenerateBarcodeTypeGetOpts - Optional Parameters for GenerateAPIBarcodeGenerateBarcodeTypeGet
 type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
+	DataType        optional.Interface
 	ImageFormat     optional.Interface
-	TwoDDisplayText optional.string
+	TwoDDisplayText optional.String
 	TextLocation    optional.Interface
 	TextAlignment   optional.Interface
-	ForegroundColor optional.string
-	BackgroundColor optional.string
+	ForegroundColor optional.String
+	BackgroundColor optional.String
 	Units           optional.Interface
-	Resolution      optional.float32
-	ImageHeight     optional.float32
-	ImageWidth      optional.float32
-	RotationAngle   optional.int32
+	Resolution      optional.Float32
+	ImageHeight     optional.Float32
+	ImageWidth      optional.Float32
+	RotationAngle   optional.Int32
 }
 
 /*
 * BarcodeGenerateBarcodeTypeGet -  Generate barcode using GET request with parameters in route and query string.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType Type of barcode to generate.
-* @param dataType Type of data to encode.
 * @param data String represents data to encode
 * @param optional nil or *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts - Optional Parameters:
+  - @param "DataType" (optional.Interface of EncodeDataType) -  Type of data to encode.  Default value:  EncodeDataType.StringData.
   - @param "ImageFormat" (optional.Interface of AvailableBarCodeImageFormat) -  Barcode output image format.  Default value: png
-  - @param "TwoDDisplayText" (optional.string) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
+  - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
   - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below.
   - @param "TextAlignment" (optional.Interface of TextAlignment) -  Text alignment.  Default value: TextAligment.Left
-  - @param "ForegroundColor" (optional.string) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
-  - @param "BackgroundColor" (optional.string) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
   - @param "Units" (optional.Interface of AvailableGraphicsUnit) -  Common Units for all measuring in query. Default units: pixel.
-  - @param "Resolution" (optional.float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
-  - @param "ImageHeight" (optional.float32) -  Height of the barcode image in given units. Default units: pixel.
-  - @param "ImageWidth" (optional.float32) -  Width of the barcode image in given units. Default units: pixel.
-  - @param "RotationAngle" (optional.int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
+  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
+  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
+  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.
+  - @param "RotationAngle" (optional.Int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
 
 * @return []byte
 */
-func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, barcodeType EncodeBarcodeType, dataType EncodeDataType, data string, optionals *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Get")
 		postBody      interface{}
@@ -74,7 +75,9 @@ func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, 
 	queryParams := url.Values{}
 	formParams := url.Values{}
 
-	queryParams.Add("DataType", parameterToString(dataType, ""))
+	if optionals != nil && optionals.DataType.IsSet() {
+		queryParams.Add("DataType", parameterToString(optionals.DataType.Value(), ""))
+	}
 	queryParams.Add("Data", parameterToString(data, ""))
 	if optionals != nil && optionals.ImageFormat.IsSet() {
 		queryParams.Add("ImageFormat", parameterToString(optionals.ImageFormat.Value(), ""))
@@ -311,41 +314,42 @@ func (a *GenerateAPIService) BarcodeGenerateBodyPost(ctx context.Context, genera
 
 // GenerateAPIBarcodeGenerateFormPostOpts - Optional Parameters for GenerateAPIBarcodeGenerateFormPost
 type GenerateAPIBarcodeGenerateFormPostOpts struct {
+	DataType        optional.Interface
 	ImageFormat     optional.Interface
-	TwoDDisplayText optional.string
+	TwoDDisplayText optional.String
 	TextLocation    optional.Interface
 	TextAlignment   optional.Interface
-	ForegroundColor optional.string
-	BackgroundColor optional.string
+	ForegroundColor optional.String
+	BackgroundColor optional.String
 	Units           optional.Interface
-	Resolution      optional.float32
-	ImageHeight     optional.float32
-	ImageWidth      optional.float32
-	RotationAngle   optional.int32
+	Resolution      optional.Float32
+	ImageHeight     optional.Float32
+	ImageWidth      optional.Float32
+	RotationAngle   optional.Int32
 }
 
 /*
 * BarcodeGenerateFormPost -  Generate barcode using POST request with parameters in url ecncoded form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType
-* @param dataType
 * @param data String represents data to encode
 * @param optional nil or *GenerateAPIBarcodeGenerateFormPostOpts - Optional Parameters:
+  - @param "DataType" (optional.Interface of EncodeDataType) -
   - @param "ImageFormat" (optional.Interface of AvailableBarCodeImageFormat) -
-  - @param "TwoDDisplayText" (optional.string) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
+  - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
   - @param "TextLocation" (optional.Interface of CodeLocation) -
   - @param "TextAlignment" (optional.Interface of TextAlignment) -
-  - @param "ForegroundColor" (optional.string) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
-  - @param "BackgroundColor" (optional.string) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
   - @param "Units" (optional.Interface of AvailableGraphicsUnit) -
-  - @param "Resolution" (optional.float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
-  - @param "ImageHeight" (optional.float32) -  Height of the barcode image in given units. Default units: pixel.
-  - @param "ImageWidth" (optional.float32) -  Width of the barcode image in given units. Default units: pixel.
-  - @param "RotationAngle" (optional.int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
+  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
+  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
+  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.
+  - @param "RotationAngle" (optional.Int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
 
 * @return []byte
 */
-func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcodeType EncodeBarcodeType, dataType EncodeDataType, data string, optionals *GenerateAPIBarcodeGenerateFormPostOpts) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateFormPostOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Post")
 		postBody      interface{}
@@ -380,7 +384,9 @@ func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcod
 		headerParams["Accept"] = httpHeaderAccept
 	}
 	formParams.Add("barcodeType", parameterToString(barcodeType, ""))
-	formParams.Add("DataType", parameterToString(dataType, ""))
+	if optionals != nil && optionals.DataType.IsSet() {
+		formParams.Add("DataType", parameterToString(optionals.DataType.Value(), ""))
+	}
 	formParams.Add("Data", parameterToString(data, ""))
 	if optionals != nil && optionals.ImageFormat.IsSet() {
 		formParams.Add("ImageFormat", parameterToString(optionals.ImageFormat.Value(), ""))

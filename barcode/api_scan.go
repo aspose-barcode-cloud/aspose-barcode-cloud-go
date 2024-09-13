@@ -254,11 +254,11 @@ func (a *ScanAPIService) BarcodeScanFormPost(ctx context.Context, file *os.File)
 /*
 * BarcodeScanGet -  Scan barcode from file on server using GET requests with parameter in query string.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param url Url to barcode image
+* @param fileUrl Url to barcode image
 
 * @return BarcodeResponseList
  */
-func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, url string) (BarcodeResponseList, *http.Response, error) {
+func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, fileUrl string) (BarcodeResponseList, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Get")
 		postBody      interface{}
@@ -275,7 +275,7 @@ func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, url string) (Barcod
 	queryParams := url.Values{}
 	formParams := url.Values{}
 
-	queryParams.Add("url", parameterToString(url, ""))
+	queryParams.Add("fileUrl", parameterToString(fileUrl, ""))
 	// to determine the Content-Type header
 	contentTypeChoices := []string{}
 

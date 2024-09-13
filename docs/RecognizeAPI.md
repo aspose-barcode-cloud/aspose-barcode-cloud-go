@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 ## BarcodeRecognizeBarcodeTypeGet
 
-> BarcodeResponseList BarcodeRecognizeBarcodeTypeGet(ctx, barcodeType, url, optional)
+> BarcodeResponseList BarcodeRecognizeBarcodeTypeGet(ctx, barcodeType, fileUrl, optional)
 Recognize barcode from file on server using GET requests with parameters in route and query string.
 
 ### BarcodeRecognizeBarcodeTypeGet Required Parameters
@@ -19,7 +19,7 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **barcodeType** | [**DecodeBarcodeType**](.md) | Type of barcode to recognize |
- **url** | **string** | Url to barcode image |
+ **fileUrl** | **string** | Url to barcode image |
  **optional** | ***RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts** | optional parameters | nil if no parameters
 
 ### BarcodeRecognizeBarcodeTypeGet Optional Parameters

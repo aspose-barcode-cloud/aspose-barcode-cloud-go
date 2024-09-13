@@ -77,12 +77,12 @@ func main() {
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-	opts := &barcode.BarcodeApiGetBarcodeGenerateOpts{
-		TextLocation: optional.NewString(string(barcode.CodeLocationNone)),
+	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+		TextLocation: optional.NewInterface(barcode.CodeLocationNone),
 	}
 
-	data, _, err := client.BarcodeApi.GetBarcodeGenerate(authCtx,
-		string(barcode.EncodeBarcodeTypeQR),
+	data, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx,
+		barcode.EncodeBarcodeTypeQR,
 		"Go SDK example",
 		opts)
 	if err != nil {
@@ -119,7 +119,6 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/antihax/optional"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
@@ -144,16 +143,9 @@ func main() {
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
 
-	optionals := barcode.BarcodeApiScanBarcodeOpts{
-		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
-			barcode.DecodeBarcodeTypeQR,
-		}),
-	}
-
-	recognized, _, err := client.BarcodeApi.ScanBarcode(
+	recognized, _, err := client.ScanAPI.BarcodeScanFormPost(
 		authCtx,
-		imageFile,
-		&optionals)
+		imageFile)
 	if err != nil {
 		panic(err)
 	}

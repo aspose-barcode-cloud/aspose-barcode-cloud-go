@@ -46,7 +46,7 @@ Name | Type | Description  | Notes
 
 ## BarcodeScanGet
 
-> BarcodeResponseList BarcodeScanGet(ctx, url)
+> BarcodeResponseList BarcodeScanGet(ctx, fileUrl)
 Scan barcode from file on server using GET requests with parameter in query string.
 
 ### BarcodeScanGet Required Parameters
@@ -54,7 +54,7 @@ Scan barcode from file on server using GET requests with parameter in query stri
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **url** | **string** | Url to barcode image |
+ **fileUrl** | **string** | Url to barcode image |
 
 ### BarcodeScanGet Return type
 
