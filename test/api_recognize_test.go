@@ -7,23 +7,17 @@ import (
 	"path/filepath"
 	"testing"
 
-	
 	"github.com/antihax/optional"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
-var (
-	testDataFolderPath string
-)
-
-
 func TestBarcodeRecognizeBarcodeTypeGet(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
-	
+
 	opts := &barcode.RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts{}
 
 	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeBarcodeTypeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
@@ -45,9 +39,9 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 
 	encodedString := base64.StdEncoding.EncodeToString(fileContent)
 	request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{ barcode.DecodeBarcodeTypePdf417 },
-		FileBase64: encodedString,
-		ImageKind:   barcode.RecognitionImageKindClearImage,
+		BarcodeTypes:    []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypePdf417},
+		FileBase64:      encodedString,
+		ImageKind:       barcode.RecognitionImageKindClearImage,
 		RecognitionMode: barcode.RecognitionModeFast,
 	}
 
@@ -73,7 +67,7 @@ func TestBarcodeRecognizeFormPost(t *testing.T) {
 	defer file.Close()
 
 	opts := &barcode.RecognizeAPIBarcodeRecognizeFormPostOpts{
-		ImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
+		ImageKind:       optional.NewInterface(barcode.RecognitionImageKindClearImage),
 		RecognitionMode: optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 

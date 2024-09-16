@@ -12,7 +12,6 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-
 func TestBarcodeScanFormPost(t *testing.T) {
 	apiClient, authCtx := setup(t)
 

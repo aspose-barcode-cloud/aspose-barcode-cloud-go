@@ -4,8 +4,8 @@ import (
 	"context"
 	"io"
 	"os"
-	"testing"
 	"path/filepath"
+	"testing"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/stretchr/testify/require"
@@ -19,13 +19,12 @@ var TestEnvPrefix = "TEST"
 
 //Test data folder
 
-
 func GetTestDataFolder() string {
 	currentPath, err := os.Getwd()
 	if err != nil {
 		return ""
 	}
-	return filepath.Join(currentPath, "..","testdata")
+	return filepath.Join(currentPath, "..", "testdata")
 }
 
 // NewClientForTests creates new Client with TestConfig
@@ -48,7 +47,7 @@ func NewAuthContextForTests() (context.Context, error) {
 	return context.WithValue(context.Background(), barcode.ContextJWT, testConfig.JwtConfig.TokenSource(context.Background())), nil
 }
 
-func setup(t *testing.T) (*barcode.APIClient, context.Context){
+func setup(t *testing.T) (*barcode.APIClient, context.Context) {
 	// Initialize Auth context and Client
 	authCtx, err := NewAuthContextForTests()
 	require.Nil(t, err)
@@ -57,7 +56,6 @@ func setup(t *testing.T) (*barcode.APIClient, context.Context){
 	require.Nil(t, err)
 	return client, authCtx
 }
-
 
 func readFileContent(t *testing.T, fileName string) []byte {
 	file, err := os.Open(fileName)
