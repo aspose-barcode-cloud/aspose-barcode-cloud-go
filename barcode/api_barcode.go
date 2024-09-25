@@ -1516,8 +1516,9 @@ func (a *BarcodeApiService) PutGenerateMultiple(ctx context.Context, name string
 
 // BarcodeApiScanBarcodeOpts - Optional Parameters for BarcodeApiScanBarcode
 type BarcodeApiScanBarcodeOpts struct {
-	DecodeTypes optional.Interface
-	Timeout     optional.Int32
+	DecodeTypes        optional.Interface
+	Timeout            optional.Int32
+	ChecksumValidation optional.String
 }
 
 /*
@@ -1527,6 +1528,7 @@ type BarcodeApiScanBarcodeOpts struct {
 * @param optional nil or *BarcodeApiScanBarcodeOpts - Optional Parameters:
   - @param "DecodeTypes" (optional.Interface of []DecodeBarcodeType) -  Types of barcode to recognize
   - @param "Timeout" (optional.Int32) -  Timeout of recognition process in milliseconds.  Default value is 15_000 (15 seconds).  Maximum value is 30_000 (1/2 minute).  In case of a timeout RequestTimeout (408) status will be returned.  Try reducing the image size to avoid timeout.
+  - @param "ChecksumValidation" (optional.String) -  Checksum validation setting. Default is ON.
 
 * @return BarcodeResponseList
 */
@@ -1583,6 +1585,9 @@ func (a *BarcodeApiService) ScanBarcode(ctx context.Context, imageFile *os.File,
 	}
 	if optionals != nil && optionals.Timeout.IsSet() {
 		formParams.Add("timeout", parameterToString(optionals.Timeout.Value(), ""))
+	}
+	if optionals != nil && optionals.ChecksumValidation.IsSet() {
+		formParams.Add("checksumValidation", parameterToString(optionals.ChecksumValidation.Value(), ""))
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
