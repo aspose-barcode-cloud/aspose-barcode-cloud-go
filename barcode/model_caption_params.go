@@ -6,7 +6,7 @@ type CaptionParams struct {
 	Text string `json:"Text,omitempty"`
 	// Text alignment.
 	Alignment TextAlignment `json:"Alignment,omitempty"`
-	// Text color.
+	// Text color.   Default value: black   Use named colors like: red, green, blue   Or HTML colors like: #FF0000, #00FF00, #0000FF
 	Color string `json:"Color,omitempty"`
 	// Is caption visible.
 	Visible bool `json:"Visible,omitempty"`
