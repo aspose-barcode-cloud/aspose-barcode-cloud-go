@@ -12,7 +12,7 @@ type GeneratorParams struct {
 	TextLocation CodeLocation `json:"TextLocation,omitempty"`
 	// Text alignment.
 	TextAlignment TextAlignment `json:"TextAlignment,omitempty"`
-	// Specify the displaying CodeText's Color. Default value: Color.Black.
+	// Specify the displaying CodeText's Color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
 	TextColor string `json:"TextColor,omitempty"`
 	// Specify the displaying Text's font. Default value: Arial 5pt regular. Ignored if FontSizeMode is set to FontSizeMode.Auto.
 	Font FontParams `json:"Font,omitempty"`
@@ -48,11 +48,11 @@ type GeneratorParams struct {
 	CaptionAbove CaptionParams `json:"CaptionAbove,omitempty"`
 	// Additional caption below barcode.
 	CaptionBelow CaptionParams `json:"CaptionBelow,omitempty"`
-	// Background color of the barcode image. Default value: Color.White.
+	// Background color of the barcode image. Default value: white. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
 	BackColor string `json:"BackColor,omitempty"`
-	// Bars color. Default value: Color.Black.
+	// Bars color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
 	BarColor string `json:"BarColor,omitempty"`
-	// Border color. Default value: Color.Black.
+	// Border color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
 	BorderColor string `json:"BorderColor,omitempty"`
 	// Border width. Default value: 0. Ignored if Visible is set to false.
 	BorderWidth float64 `json:"BorderWidth,omitempty"`
@@ -110,7 +110,7 @@ type GeneratorParams struct {
 	QR QrParams `json:"QR,omitempty"`
 	// PatchCode params.
 	PatchCode PatchCodeParams `json:"PatchCode,omitempty"`
-	// Code128 params.
+	// Code128 parameters
 	Code128 Code128Params `json:"Code128,omitempty"`
 	// HanXin params.
 	HanXin HanXinParams `json:"HanXin,omitempty"`
