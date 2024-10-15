@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **barcodeType** | [**DecodeBarcodeType**](DecodeBarcodeType.md) |  |
- **file** | ***os.File*****os.File** |  |
+ **file** | ***os.File*****os.File** | Barcode image file |
  **optional** | ***RecognizeAPIBarcodeRecognizeFormPostOpts** | optional parameters | nil if no parameters
 
 ### BarcodeRecognizeFormPost Optional Parameters

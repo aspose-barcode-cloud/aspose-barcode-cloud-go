@@ -133,7 +133,7 @@ func (a *ScanAPIService) BarcodeScanBodyPost(ctx context.Context, scanBase64Requ
 /*
 * BarcodeScanFormPost -  Scan barcode from file in request body using POST requests with parameter in multipart form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param file
+* @param file Barcode image file
 
 * @return BarcodeResponseList
  */

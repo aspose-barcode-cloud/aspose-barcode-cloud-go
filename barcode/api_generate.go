@@ -47,8 +47,8 @@ type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
   - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
   - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below.
   - @param "TextAlignment" (optional.Interface of TextAlignment) -  Text alignment.  Default value: TextAligment.Left
-  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
-  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
   - @param "Units" (optional.Interface of AvailableGraphicsUnit) -  Common Units for all measuring in query. Default units: pixel.
   - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
   - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
@@ -339,8 +339,8 @@ type GenerateAPIBarcodeGenerateFormPostOpts struct {
   - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
   - @param "TextLocation" (optional.Interface of CodeLocation) -
   - @param "TextAlignment" (optional.Interface of TextAlignment) -
-  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
-  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
   - @param "Units" (optional.Interface of AvailableGraphicsUnit) -
   - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
   - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
@@ -367,7 +367,7 @@ func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcod
 	formParams := url.Values{}
 
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"application/x-www-form-urlencoded"}
+	contentTypeChoices := []string{"multipart/form-data"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)

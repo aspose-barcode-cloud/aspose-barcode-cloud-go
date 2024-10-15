@@ -36,7 +36,7 @@ Scan barcode from file in request body using POST requests with parameter in mul
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **file** | ***os.File*****os.File** |  |
+ **file** | ***os.File*****os.File** | Barcode image file |
 
 ### BarcodeScanFormPost Return type
 

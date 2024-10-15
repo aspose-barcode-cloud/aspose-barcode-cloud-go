@@ -272,7 +272,7 @@ type RecognizeAPIBarcodeRecognizeFormPostOpts struct {
 * BarcodeRecognizeFormPost -  Recognize barcode from file in request body using POST requests with parameters in multipart form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType
-* @param file
+* @param file Barcode image file
 * @param optional nil or *RecognizeAPIBarcodeRecognizeFormPostOpts - Optional Parameters:
   - @param "RecognitionMode" (optional.Interface of RecognitionMode) -
   - @param "ImageKind" (optional.Interface of RecognitionImageKind) -

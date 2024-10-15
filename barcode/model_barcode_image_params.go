@@ -7,9 +7,9 @@ type BarcodeImageParams struct {
 	TwoDDisplayText string        `json:"twoDDisplayText,omitempty"`
 	TextLocation    CodeLocation  `json:"textLocation,omitempty"`
 	TextAlignment   TextAlignment `json:"textAlignment,omitempty"`
-	// Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+	// Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
 	ForegroundColor string `json:"foregroundColor,omitempty"`
-	// Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+	// Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
 	BackgroundColor string                `json:"backgroundColor,omitempty"`
 	Units           AvailableGraphicsUnit `json:"units,omitempty"`
 	// Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.

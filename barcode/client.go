@@ -11,7 +11,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	netUrl "net/url"
-	"os"
 	"path/filepath"
 	"reflect"
 	"regexp"
@@ -174,19 +173,15 @@ func (c *APIClient) prepareRequest(
 
 		for k, v := range formParams {
 			for _, iv := range v {
-				if strings.HasPrefix(k, "@") { // file
-					err = addFile(w, k[1:], iv)
-					if err != nil {
-						return nil, err
-					}
-				} else { // form value
-					err = w.WriteField(k, iv)
-					if err != nil {
-						return nil, err
-					}
+				// form value
+				err = w.WriteField(k, iv)
+				if err != nil {
+					return nil, err
 				}
 			}
+			w.Boundary()
 		}
+
 		if len(fileBytes) > 0 && fileName != "" {
 			w.Boundary()
 			//_, fileNm := filepath.Split(fileName)
@@ -198,9 +193,9 @@ func (c *APIClient) prepareRequest(
 			if err != nil {
 				return nil, err
 			}
-			// Set the Boundary in the Content-Type
-			headerParams["Content-Type"] = w.FormDataContentType()
 		}
+
+		headerParams["Content-Type"] = w.FormDataContentType()
 
 		// Set Content-Length
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
@@ -208,16 +203,6 @@ func (c *APIClient) prepareRequest(
 		if err != nil {
 			return nil, err
 		}
-	}
-
-	if strings.HasPrefix(headerParams["Content-Type"], "application/x-www-form-urlencoded") && len(formParams) > 0 {
-		if body != nil {
-			return nil, errors.New("cannot specify postBody and x-www-form-urlencoded form at the same time")
-		}
-		body = &bytes.Buffer{}
-		body.WriteString(formParams.Encode())
-		// Set Content-Length
-		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 	}
 
 	// Setup path and query parameters
@@ -330,23 +315,6 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	}
 
 	return errors.New("undefined response type")
-}
-
-// Add a file to the multipart request
-func addFile(w *multipart.Writer, fieldName, path string) error {
-	file, err := os.Open(path)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
-	if err != nil {
-		return err
-	}
-	_, err = io.Copy(part, file)
-
-	return err
 }
 
 // Set request body from an interface{}
