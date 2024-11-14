@@ -1,8 +1,11 @@
-# TextAlignment
+# GraphicsUnit
+
+Subset of Aspose.Drawing.GraphicsUnit.
 
 ## Allowable values
-* **TextAlignmentLeft**
-* TextAlignmentCenter
-* TextAlignmentRight
+* **GraphicsUnitPixel**
+* GraphicsUnitPoint
+* GraphicsUnitInch
+* GraphicsUnitMillimeter
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

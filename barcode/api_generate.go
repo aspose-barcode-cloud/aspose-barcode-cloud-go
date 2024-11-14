@@ -24,9 +24,7 @@ type GenerateAPIService service
 type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
 	DataType        optional.Interface
 	ImageFormat     optional.Interface
-	TwoDDisplayText optional.String
 	TextLocation    optional.Interface
-	TextAlignment   optional.Interface
 	ForegroundColor optional.String
 	BackgroundColor optional.String
 	Units           optional.Interface
@@ -43,16 +41,14 @@ type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
 * @param data String represents data to encode
 * @param optional nil or *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts - Optional Parameters:
   - @param "DataType" (optional.Interface of EncodeDataType) -  Type of data to encode.  Default value:  EncodeDataType.StringData.
-  - @param "ImageFormat" (optional.Interface of AvailableBarCodeImageFormat) -  Barcode output image format.  Default value: png
-  - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
+  - @param "ImageFormat" (optional.Interface of BarcodeImageFormat) -  Barcode output image format.  Default value: png
   - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below.
-  - @param "TextAlignment" (optional.Interface of TextAlignment) -  Text alignment.  Default value: TextAligment.Left
-  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
-  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
-  - @param "Units" (optional.Interface of AvailableGraphicsUnit) -  Common Units for all measuring in query. Default units: pixel.
-  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
-  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
-  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White.
+  - @param "Units" (optional.Interface of GraphicsUnit) -  Common Units for all measuring in query. Default units: pixel.
+  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot.
+  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
+  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
   - @param "RotationAngle" (optional.Int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
 
 * @return []byte
@@ -76,41 +72,35 @@ func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, 
 	formParams := url.Values{}
 
 	if optionals != nil && optionals.DataType.IsSet() {
-		queryParams.Add("DataType", parameterToString(optionals.DataType.Value(), ""))
+		queryParams.Add("dataType", parameterToString(optionals.DataType.Value(), ""))
 	}
-	queryParams.Add("Data", parameterToString(data, ""))
+	queryParams.Add("data", parameterToString(data, ""))
 	if optionals != nil && optionals.ImageFormat.IsSet() {
-		queryParams.Add("ImageFormat", parameterToString(optionals.ImageFormat.Value(), ""))
-	}
-	if optionals != nil && optionals.TwoDDisplayText.IsSet() {
-		queryParams.Add("TwoDDisplayText", parameterToString(optionals.TwoDDisplayText.Value(), ""))
+		queryParams.Add("imageFormat", parameterToString(optionals.ImageFormat.Value(), ""))
 	}
 	if optionals != nil && optionals.TextLocation.IsSet() {
-		queryParams.Add("TextLocation", parameterToString(optionals.TextLocation.Value(), ""))
-	}
-	if optionals != nil && optionals.TextAlignment.IsSet() {
-		queryParams.Add("TextAlignment", parameterToString(optionals.TextAlignment.Value(), ""))
+		queryParams.Add("textLocation", parameterToString(optionals.TextLocation.Value(), ""))
 	}
 	if optionals != nil && optionals.ForegroundColor.IsSet() {
-		queryParams.Add("ForegroundColor", parameterToString(optionals.ForegroundColor.Value(), ""))
+		queryParams.Add("foregroundColor", parameterToString(optionals.ForegroundColor.Value(), ""))
 	}
 	if optionals != nil && optionals.BackgroundColor.IsSet() {
-		queryParams.Add("BackgroundColor", parameterToString(optionals.BackgroundColor.Value(), ""))
+		queryParams.Add("backgroundColor", parameterToString(optionals.BackgroundColor.Value(), ""))
 	}
 	if optionals != nil && optionals.Units.IsSet() {
-		queryParams.Add("Units", parameterToString(optionals.Units.Value(), ""))
+		queryParams.Add("units", parameterToString(optionals.Units.Value(), ""))
 	}
 	if optionals != nil && optionals.Resolution.IsSet() {
-		queryParams.Add("Resolution", parameterToString(optionals.Resolution.Value(), ""))
+		queryParams.Add("resolution", parameterToString(optionals.Resolution.Value(), ""))
 	}
 	if optionals != nil && optionals.ImageHeight.IsSet() {
-		queryParams.Add("ImageHeight", parameterToString(optionals.ImageHeight.Value(), ""))
+		queryParams.Add("imageHeight", parameterToString(optionals.ImageHeight.Value(), ""))
 	}
 	if optionals != nil && optionals.ImageWidth.IsSet() {
-		queryParams.Add("ImageWidth", parameterToString(optionals.ImageWidth.Value(), ""))
+		queryParams.Add("imageWidth", parameterToString(optionals.ImageWidth.Value(), ""))
 	}
 	if optionals != nil && optionals.RotationAngle.IsSet() {
-		queryParams.Add("RotationAngle", parameterToString(optionals.RotationAngle.Value(), ""))
+		queryParams.Add("rotationAngle", parameterToString(optionals.RotationAngle.Value(), ""))
 	}
 	// to determine the Content-Type header
 	contentTypeChoices := []string{}
@@ -312,13 +302,11 @@ func (a *GenerateAPIService) BarcodeGenerateBodyPost(ctx context.Context, genera
 	return returnValue, httpResponse, err
 }
 
-// GenerateAPIBarcodeGenerateFormPostOpts - Optional Parameters for GenerateAPIBarcodeGenerateFormPost
-type GenerateAPIBarcodeGenerateFormPostOpts struct {
+// GenerateAPIBarcodeGenerateMultipartPostOpts - Optional Parameters for GenerateAPIBarcodeGenerateMultipartPost
+type GenerateAPIBarcodeGenerateMultipartPostOpts struct {
 	DataType        optional.Interface
 	ImageFormat     optional.Interface
-	TwoDDisplayText optional.String
 	TextLocation    optional.Interface
-	TextAlignment   optional.Interface
 	ForegroundColor optional.String
 	BackgroundColor optional.String
 	Units           optional.Interface
@@ -329,27 +317,25 @@ type GenerateAPIBarcodeGenerateFormPostOpts struct {
 }
 
 /*
-* BarcodeGenerateFormPost -  Generate barcode using POST request with parameters in url ecncoded form.
+* BarcodeGenerateMultipartPost -  Generate barcode using POST request with parameters in multipart form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType
 * @param data String represents data to encode
-* @param optional nil or *GenerateAPIBarcodeGenerateFormPostOpts - Optional Parameters:
+* @param optional nil or *GenerateAPIBarcodeGenerateMultipartPostOpts - Optional Parameters:
   - @param "DataType" (optional.Interface of EncodeDataType) -
-  - @param "ImageFormat" (optional.Interface of AvailableBarCodeImageFormat) -
-  - @param "TwoDDisplayText" (optional.String) -  Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
+  - @param "ImageFormat" (optional.Interface of BarcodeImageFormat) -
   - @param "TextLocation" (optional.Interface of CodeLocation) -
-  - @param "TextAlignment" (optional.Interface of TextAlignment) -
-  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
-  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
-  - @param "Units" (optional.Interface of AvailableGraphicsUnit) -
-  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
-  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.
-  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.
+  - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
+  - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White.
+  - @param "Units" (optional.Interface of GraphicsUnit) -
+  - @param "Resolution" (optional.Float32) -  Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot.
+  - @param "ImageHeight" (optional.Float32) -  Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
+  - @param "ImageWidth" (optional.Float32) -  Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
   - @param "RotationAngle" (optional.Int32) -  BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0.
 
 * @return []byte
 */
-func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateFormPostOpts) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) BarcodeGenerateMultipartPost(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateMultipartPostOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Post")
 		postBody      interface{}
@@ -360,7 +346,7 @@ func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcod
 	)
 
 	// create path and map variables
-	requestPath := a.client.cfg.BasePath + "/barcode/generate-form"
+	requestPath := a.client.cfg.BasePath + "/barcode/generate-multipart"
 
 	headerParams := make(map[string]string)
 	queryParams := url.Values{}
@@ -385,41 +371,35 @@ func (a *GenerateAPIService) BarcodeGenerateFormPost(ctx context.Context, barcod
 	}
 	formParams.Add("barcodeType", parameterToString(barcodeType, ""))
 	if optionals != nil && optionals.DataType.IsSet() {
-		formParams.Add("DataType", parameterToString(optionals.DataType.Value(), ""))
+		formParams.Add("dataType", parameterToString(optionals.DataType.Value(), ""))
 	}
-	formParams.Add("Data", parameterToString(data, ""))
+	formParams.Add("data", parameterToString(data, ""))
 	if optionals != nil && optionals.ImageFormat.IsSet() {
-		formParams.Add("ImageFormat", parameterToString(optionals.ImageFormat.Value(), ""))
-	}
-	if optionals != nil && optionals.TwoDDisplayText.IsSet() {
-		formParams.Add("TwoDDisplayText", parameterToString(optionals.TwoDDisplayText.Value(), ""))
+		formParams.Add("imageFormat", parameterToString(optionals.ImageFormat.Value(), ""))
 	}
 	if optionals != nil && optionals.TextLocation.IsSet() {
-		formParams.Add("TextLocation", parameterToString(optionals.TextLocation.Value(), ""))
-	}
-	if optionals != nil && optionals.TextAlignment.IsSet() {
-		formParams.Add("TextAlignment", parameterToString(optionals.TextAlignment.Value(), ""))
+		formParams.Add("textLocation", parameterToString(optionals.TextLocation.Value(), ""))
 	}
 	if optionals != nil && optionals.ForegroundColor.IsSet() {
-		formParams.Add("ForegroundColor", parameterToString(optionals.ForegroundColor.Value(), ""))
+		formParams.Add("foregroundColor", parameterToString(optionals.ForegroundColor.Value(), ""))
 	}
 	if optionals != nil && optionals.BackgroundColor.IsSet() {
-		formParams.Add("BackgroundColor", parameterToString(optionals.BackgroundColor.Value(), ""))
+		formParams.Add("backgroundColor", parameterToString(optionals.BackgroundColor.Value(), ""))
 	}
 	if optionals != nil && optionals.Units.IsSet() {
-		formParams.Add("Units", parameterToString(optionals.Units.Value(), ""))
+		formParams.Add("units", parameterToString(optionals.Units.Value(), ""))
 	}
 	if optionals != nil && optionals.Resolution.IsSet() {
-		formParams.Add("Resolution", parameterToString(optionals.Resolution.Value(), ""))
+		formParams.Add("resolution", parameterToString(optionals.Resolution.Value(), ""))
 	}
 	if optionals != nil && optionals.ImageHeight.IsSet() {
-		formParams.Add("ImageHeight", parameterToString(optionals.ImageHeight.Value(), ""))
+		formParams.Add("imageHeight", parameterToString(optionals.ImageHeight.Value(), ""))
 	}
 	if optionals != nil && optionals.ImageWidth.IsSet() {
-		formParams.Add("ImageWidth", parameterToString(optionals.ImageWidth.Value(), ""))
+		formParams.Add("imageWidth", parameterToString(optionals.ImageWidth.Value(), ""))
 	}
 	if optionals != nil && optionals.RotationAngle.IsSet() {
-		formParams.Add("RotationAngle", parameterToString(optionals.RotationAngle.Value(), ""))
+		formParams.Add("rotationAngle", parameterToString(optionals.RotationAngle.Value(), ""))
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {

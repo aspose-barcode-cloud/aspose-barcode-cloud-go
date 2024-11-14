@@ -5,8 +5,8 @@ All URIs are relative to *<https://barcode.qa.aspose.cloud/v4.0>*
 Method | HTTP request | Description
 ------ | ------------ | -----------
 [**BarcodeScanBodyPost**](ScanAPI.md#BarcodeScanBodyPost) | **Post** /barcode/scan-body | Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
-[**BarcodeScanFormPost**](ScanAPI.md#BarcodeScanFormPost) | **Post** /barcode/scan-form | Scan barcode from file in request body using POST requests with parameter in multipart form.
 [**BarcodeScanGet**](ScanAPI.md#BarcodeScanGet) | **Get** /barcode/scan | Scan barcode from file on server using GET requests with parameter in query string.
+[**BarcodeScanMultipartPost**](ScanAPI.md#BarcodeScanMultipartPost) | **Post** /barcode/scan-multipart | Scan barcode from file in request body using POST requests with parameter in multipart form.
 
 ## BarcodeScanBodyPost
 
@@ -26,24 +26,6 @@ Name | Type | Description  | Notes
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## BarcodeScanFormPost
-
-> BarcodeResponseList BarcodeScanFormPost(ctx, file)
-Scan barcode from file in request body using POST requests with parameter in multipart form.
-
-### BarcodeScanFormPost Required Parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **file** | ***os.File*****os.File** | Barcode image file |
-
-### BarcodeScanFormPost Return type
-
-[**BarcodeResponseList**](BarcodeResponseList.md)
-
-[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 ## BarcodeScanGet
 
 > BarcodeResponseList BarcodeScanGet(ctx, fileUrl)
@@ -57,6 +39,24 @@ Name | Type | Description  | Notes
  **fileUrl** | **string** | Url to barcode image |
 
 ### BarcodeScanGet Return type
+
+[**BarcodeResponseList**](BarcodeResponseList.md)
+
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## BarcodeScanMultipartPost
+
+> BarcodeResponseList BarcodeScanMultipartPost(ctx, file)
+Scan barcode from file in request body using POST requests with parameter in multipart form.
+
+### BarcodeScanMultipartPost Required Parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **file** | ***os.File*****os.File** | Barcode image file |
+
+### BarcodeScanMultipartPost Return type
 
 [**BarcodeResponseList**](BarcodeResponseList.md)
 

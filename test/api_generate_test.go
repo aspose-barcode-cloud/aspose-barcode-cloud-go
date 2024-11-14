@@ -27,7 +27,7 @@ func TestBarcodeGenerateBodyPost(t *testing.T) {
 
 	// Test case for barcodeGenerateBodyPost
 	imageParams := barcode.BarcodeImageParams{
-		ImageFormat: barcode.AvailableBarCodeImageFormatJpeg,
+		ImageFormat: barcode.BarcodeImageFormatJpeg,
 	}
 
 	encodeData := barcode.EncodeData{
@@ -51,15 +51,15 @@ func TestBarcodeGenerateBodyPost(t *testing.T) {
 
 }
 
-func TestBarcodeGenerateFormPost(t *testing.T) {
+func TestBarcodeGenerateMultipartPost(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
-	// Test case for barcodeGenerateFormPost
-	opts := &barcode.GenerateAPIBarcodeGenerateFormPostOpts{
+	// Test case for barcodeGenerateMultipartPost
+	opts := &barcode.GenerateAPIBarcodeGenerateMultipartPostOpts{
 		DataType: optional.NewInterface(barcode.EncodeDataTypeHexBytes),
 	}
 
-	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateFormPost(authCtx, barcode.EncodeBarcodeTypeQR, "54657374", opts)
+	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateMultipartPost(authCtx, barcode.EncodeBarcodeTypeQR, "54657374", opts)
 	require.Nil(t, err)
 	require.NotNil(t, fileBytes)
 

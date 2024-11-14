@@ -131,15 +131,15 @@ func (a *ScanAPIService) BarcodeScanBodyPost(ctx context.Context, scanBase64Requ
 }
 
 /*
-* BarcodeScanFormPost -  Scan barcode from file in request body using POST requests with parameter in multipart form.
+* BarcodeScanGet -  Scan barcode from file on server using GET requests with parameter in query string.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param file Barcode image file
+* @param fileUrl Url to barcode image
 
 * @return BarcodeResponseList
  */
-func (a *ScanAPIService) BarcodeScanFormPost(ctx context.Context, file *os.File) (BarcodeResponseList, *http.Response, error) {
+func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, fileUrl string) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod    = strings.ToUpper("Post")
+		httpMethod    = strings.ToUpper("Get")
 		postBody      interface{}
 		fileName      string
 		fileFieldName string
@@ -148,14 +148,15 @@ func (a *ScanAPIService) BarcodeScanFormPost(ctx context.Context, file *os.File)
 	)
 
 	// create path and map variables
-	requestPath := a.client.cfg.BasePath + "/barcode/scan-form"
+	requestPath := a.client.cfg.BasePath + "/barcode/scan"
 
 	headerParams := make(map[string]string)
 	queryParams := url.Values{}
 	formParams := url.Values{}
 
+	queryParams.Add("fileUrl", parameterToString(fileUrl, ""))
 	// to determine the Content-Type header
-	contentTypeChoices := []string{"multipart/form-data"}
+	contentTypeChoices := []string{}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -170,16 +171,6 @@ func (a *ScanAPIService) BarcodeScanFormPost(ctx context.Context, file *os.File)
 	httpHeaderAccept := selectHeaderAccept(acceptChoices)
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
-	}
-	requestFile := file
-	if requestFile != nil {
-		fileName = requestFile.Name()
-		fileFieldName = "file"
-		var err error
-		fileBytes, err = io.ReadAll(io.Reader(requestFile))
-		if err != nil {
-			return returnValue, nil, err
-		}
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {
@@ -252,15 +243,15 @@ func (a *ScanAPIService) BarcodeScanFormPost(ctx context.Context, file *os.File)
 }
 
 /*
-* BarcodeScanGet -  Scan barcode from file on server using GET requests with parameter in query string.
+* BarcodeScanMultipartPost -  Scan barcode from file in request body using POST requests with parameter in multipart form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param fileUrl Url to barcode image
+* @param file Barcode image file
 
 * @return BarcodeResponseList
  */
-func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, fileUrl string) (BarcodeResponseList, *http.Response, error) {
+func (a *ScanAPIService) BarcodeScanMultipartPost(ctx context.Context, file *os.File) (BarcodeResponseList, *http.Response, error) {
 	var (
-		httpMethod    = strings.ToUpper("Get")
+		httpMethod    = strings.ToUpper("Post")
 		postBody      interface{}
 		fileName      string
 		fileFieldName string
@@ -269,15 +260,14 @@ func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, fileUrl string) (Ba
 	)
 
 	// create path and map variables
-	requestPath := a.client.cfg.BasePath + "/barcode/scan"
+	requestPath := a.client.cfg.BasePath + "/barcode/scan-multipart"
 
 	headerParams := make(map[string]string)
 	queryParams := url.Values{}
 	formParams := url.Values{}
 
-	queryParams.Add("fileUrl", parameterToString(fileUrl, ""))
 	// to determine the Content-Type header
-	contentTypeChoices := []string{}
+	contentTypeChoices := []string{"multipart/form-data"}
 
 	// set Content-Type header
 	httpContentType := selectHeaderContentType(contentTypeChoices)
@@ -292,6 +282,16 @@ func (a *ScanAPIService) BarcodeScanGet(ctx context.Context, fileUrl string) (Ba
 	httpHeaderAccept := selectHeaderAccept(acceptChoices)
 	if httpHeaderAccept != "" {
 		headerParams["Accept"] = httpHeaderAccept
+	}
+	requestFile := file
+	if requestFile != nil {
+		fileName = requestFile.Name()
+		fileFieldName = "file"
+		var err error
+		fileBytes, err = io.ReadAll(io.Reader(requestFile))
+		if err != nil {
+			return returnValue, nil, err
+		}
 	}
 	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
 	if err != nil {

@@ -18,9 +18,9 @@ func TestBarcodeRecognizeBarcodeTypeGet(t *testing.T) {
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts{}
+	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
 
-	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeBarcodeTypeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
+	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
 	require.Nil(t, err)
 	require.NotNil(t, response)
 
@@ -41,7 +41,7 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 	request := barcode.RecognizeBase64Request{
 		BarcodeTypes:    []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypePdf417},
 		FileBase64:      encodedString,
-		ImageKind:       barcode.RecognitionImageKindClearImage,
+		RecognitionImageKind:       barcode.RecognitionImageKindClearImage,
 		RecognitionMode: barcode.RecognitionModeFast,
 	}
 
@@ -58,7 +58,7 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 	assert.True(t, barcode.Region[0].Y > 0)
 }
 
-func TestBarcodeRecognizeFormPost(t *testing.T) {
+func TestBarcodeRecognizeMultipartPost(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "ManyTypes.png")
@@ -66,12 +66,12 @@ func TestBarcodeRecognizeFormPost(t *testing.T) {
 	require.Nil(t, err)
 	defer file.Close()
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeFormPostOpts{
-		ImageKind:       optional.NewInterface(barcode.RecognitionImageKindClearImage),
+	opts := &barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+		RecognitionImageKind:       optional.NewInterface(barcode.RecognitionImageKindClearImage),
 		RecognitionMode: optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 
-	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeFormPost(authCtx, barcode.DecodeBarcodeTypemostCommonlyUsed, file, opts)
+	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file, opts)
 	require.Nil(t, err)
 	require.NotNil(t, response)
 

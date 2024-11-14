@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBarcodeScanFormPost(t *testing.T) {
+func TestBarcodeScanMultipartPost(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "pdf417Sample.png")
@@ -20,7 +20,7 @@ func TestBarcodeScanFormPost(t *testing.T) {
 	require.Nil(t, err)
 	defer file.Close()
 
-	scanResponse, _, err := apiClient.ScanAPI.BarcodeScanFormPost(authCtx, file)
+	scanResponse, _, err := apiClient.ScanAPI.BarcodeScanMultipartPost(authCtx, file)
 	require.Nil(t, err)
 	require.NotNil(t, scanResponse)
 

@@ -29,7 +29,7 @@ func main() {
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
 
-	recognized, _, err := client.ScanAPI.BarcodeScanFormPost(
+	recognized, _, err := client.ScanAPI.BarcodeScanMultipartPost(
 		authCtx,
 		imageFile)
 	if err != nil {

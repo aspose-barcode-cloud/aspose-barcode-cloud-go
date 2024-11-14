@@ -6,7 +6,7 @@ ApiError Response
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | -----
-**RequestId** | **NullableString** | Gets or sets request Id. | [optional]
-**Error** | [***ApiError**](ApiError.md) |  | [optional]
+**RequestId** | **NullableString** | Gets or sets request Id. |
+**Error** | [***ApiError**](ApiError.md) |  |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

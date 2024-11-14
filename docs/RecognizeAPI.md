@@ -4,38 +4,9 @@ All URIs are relative to *<https://barcode.qa.aspose.cloud/v4.0>*
 
 Method | HTTP request | Description
 ------ | ------------ | -----------
-[**BarcodeRecognizeBarcodeTypeGet**](RecognizeAPI.md#BarcodeRecognizeBarcodeTypeGet) | **Get** /barcode/recognize/{barcodeType} | Recognize barcode from file on server using GET requests with parameters in route and query string.
 [**BarcodeRecognizeBodyPost**](RecognizeAPI.md#BarcodeRecognizeBodyPost) | **Post** /barcode/recognize-body | Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
-[**BarcodeRecognizeFormPost**](RecognizeAPI.md#BarcodeRecognizeFormPost) | **Post** /barcode/recognize-form | Recognize barcode from file in request body using POST requests with parameters in multipart form.
-
-## BarcodeRecognizeBarcodeTypeGet
-
-> BarcodeResponseList BarcodeRecognizeBarcodeTypeGet(ctx, barcodeType, fileUrl, optional)
-Recognize barcode from file on server using GET requests with parameters in route and query string.
-
-### BarcodeRecognizeBarcodeTypeGet Required Parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **barcodeType** | [**DecodeBarcodeType**](.md) | Type of barcode to recognize |
- **fileUrl** | **string** | Url to barcode image |
- **optional** | ***RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts** | optional parameters | nil if no parameters
-
-### BarcodeRecognizeBarcodeTypeGet Optional Parameters
-
-Optional parameters are passed through a pointer to a RecognizeAPIBarcodeRecognizeBarcodeTypeGetOpts struct
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
-**RecognitionMode** | [**optional.Interface of RecognitionMode**](.md) | Recognition mode |
-**ImageKind** | [**optional.Interface of RecognitionImageKind**](.md) | Image kind |
-
-### BarcodeRecognizeBarcodeTypeGet Return type
-
-[**BarcodeResponseList**](BarcodeResponseList.md)
-
-[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[**BarcodeRecognizeGet**](RecognizeAPI.md#BarcodeRecognizeGet) | **Get** /barcode/recognize | Recognize barcode from file on server using GET requests with parameters in route and query string.
+[**BarcodeRecognizeMultipartPost**](RecognizeAPI.md#BarcodeRecognizeMultipartPost) | **Post** /barcode/recognize-multipart | Recognize barcode from file in request body using POST requests with parameters in multipart form.
 
 ## BarcodeRecognizeBodyPost
 
@@ -55,30 +26,59 @@ Name | Type | Description  | Notes
 
 [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-## BarcodeRecognizeFormPost
+## BarcodeRecognizeGet
 
-> BarcodeResponseList BarcodeRecognizeFormPost(ctx, barcodeType, file, optional)
+> BarcodeResponseList BarcodeRecognizeGet(ctx, barcodeType, fileUrl, optional)
+Recognize barcode from file on server using GET requests with parameters in route and query string.
+
+### BarcodeRecognizeGet Required Parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **barcodeType** | [**DecodeBarcodeType**](.md) | Type of barcode to recognize |
+ **fileUrl** | **string** | Url to barcode image |
+ **optional** | ***RecognizeAPIBarcodeRecognizeGetOpts** | optional parameters | nil if no parameters
+
+### BarcodeRecognizeGet Optional Parameters
+
+Optional parameters are passed through a pointer to a RecognizeAPIBarcodeRecognizeGetOpts struct
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+**RecognitionMode** | [**optional.Interface of RecognitionMode**](.md) | Recognition mode |
+**RecognitionImageKind** | [**optional.Interface of RecognitionImageKind**](.md) | Image kind for recognition |
+
+### BarcodeRecognizeGet Return type
+
+[**BarcodeResponseList**](BarcodeResponseList.md)
+
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## BarcodeRecognizeMultipartPost
+
+> BarcodeResponseList BarcodeRecognizeMultipartPost(ctx, barcodeType, file, optional)
 Recognize barcode from file in request body using POST requests with parameters in multipart form.
 
-### BarcodeRecognizeFormPost Required Parameters
+### BarcodeRecognizeMultipartPost Required Parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
  **barcodeType** | [**DecodeBarcodeType**](DecodeBarcodeType.md) |  |
  **file** | ***os.File*****os.File** | Barcode image file |
- **optional** | ***RecognizeAPIBarcodeRecognizeFormPostOpts** | optional parameters | nil if no parameters
+ **optional** | ***RecognizeAPIBarcodeRecognizeMultipartPostOpts** | optional parameters | nil if no parameters
 
-### BarcodeRecognizeFormPost Optional Parameters
+### BarcodeRecognizeMultipartPost Optional Parameters
 
-Optional parameters are passed through a pointer to a RecognizeAPIBarcodeRecognizeFormPostOpts struct
+Optional parameters are passed through a pointer to a RecognizeAPIBarcodeRecognizeMultipartPostOpts struct
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 **RecognitionMode** | [**optional.Interface of RecognitionMode**](RecognitionMode.md) |  |
-**ImageKind** | [**optional.Interface of RecognitionImageKind**](RecognitionImageKind.md) |  |
+**RecognitionImageKind** | [**optional.Interface of RecognitionImageKind**](RecognitionImageKind.md) |  |
 
-### BarcodeRecognizeFormPost Return type
+### BarcodeRecognizeMultipartPost Return type
 
 [**BarcodeResponseList**](BarcodeResponseList.md)
 
