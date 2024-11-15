@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBarcodeRecognizeBarcodeTypeGet(t *testing.T) {
+func TestBarcodeRecognizeGet(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
@@ -39,10 +39,10 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 
 	encodedString := base64.StdEncoding.EncodeToString(fileContent)
 	request := barcode.RecognizeBase64Request{
-		BarcodeTypes:    []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypePdf417},
-		FileBase64:      encodedString,
-		RecognitionImageKind:       barcode.RecognitionImageKindClearImage,
-		RecognitionMode: barcode.RecognitionModeFast,
+		BarcodeTypes:         []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypePdf417},
+		FileBase64:           encodedString,
+		RecognitionImageKind: barcode.RecognitionImageKindClearImage,
+		RecognitionMode:      barcode.RecognitionModeFast,
 	}
 
 	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, request)
@@ -67,8 +67,8 @@ func TestBarcodeRecognizeMultipartPost(t *testing.T) {
 	defer file.Close()
 
 	opts := &barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
-		RecognitionImageKind:       optional.NewInterface(barcode.RecognitionImageKindClearImage),
-		RecognitionMode: optional.NewInterface(barcode.RecognitionModeNormal),
+		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
+		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 
 	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file, opts)
