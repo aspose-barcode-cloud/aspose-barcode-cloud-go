@@ -5,6 +5,8 @@ import (
 	"encoding/base64"
 	"fmt"
 	"io/ioutil"
+	"path/filepath"
+	"os"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -43,7 +45,7 @@ func main() {
 		return
 	}
 
-	fileName := "../../../testdata/qr_and_code128.png"
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr_and_code128.png"))
 
 	imageBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {

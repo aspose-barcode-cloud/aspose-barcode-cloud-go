@@ -28,7 +28,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -41,17 +41,9 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "Code128.jpeg")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "Code128.jpeg"))
 
-	generateParams := barcode.GenerateParams{
-		BarcodeType: barcode.EncodeBarcodeTypeCode128,
-		EncodeData: barcode.EncodeData{
-			Data:     "Aspose.BarCode.Cloud",
-			DataType: barcode.EncodeDataTypeStringData,
-		},
-	}
-
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeCode128, "Aspose.BarCode.Cloud", nil)
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

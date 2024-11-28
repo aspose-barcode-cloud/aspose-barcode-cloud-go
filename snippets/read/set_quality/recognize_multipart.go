@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"os"
+	"path/filepath"
+	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -42,31 +42,27 @@ func main() {
 		return
 	}
 
-	fileName := "../../../testdata/aztec.png"
+	fileName, err := filepath.Abs(filepath.Join("testdata", "aztec.png"))
 
-	imageBytes, err := ioutil.ReadFile(fileName)
+	file, err := os.Open(fileName)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	opts := &barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindScannedDocument),
+		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
+	}
+
+	response, _, err := client.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeAztec, file, opts)
 	if err != nil {
 		panic(err)
 	}
 
-	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
-
-	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeAztec},
-		FileBase64:   imageBase64,
-		RecognitionImageKind: barcode.RecognitionImageKindScannedDocument,
-	}
-
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
-	if err != nil {
-		panic(err)
-	}
-
-	if len(result.Barcodes) > 0 {
-		fmt.Printf("File '%s' recognized, result: '%s'\n",
-			fileName, result.Barcodes[0].BarcodeValue)
+	if len(response.Barcodes) > 0 {
+		fmt.Printf("File '%s' recognized with multipart post, result: '%s'\n", fileName, response.Barcodes[0].BarcodeValue)
 	} else {
-		fmt.Printf("File '%s' recognized, but no barcodes found.\n", fileName)
+		fmt.Printf("File '%s' recognized with multipart post, but no barcodes found.\n", fileName)
 	}
 }

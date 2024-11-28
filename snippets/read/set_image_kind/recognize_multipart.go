@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"os"
+	"github.com/antihax/optional"
+	"path/filepath"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -29,7 +29,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -42,27 +42,25 @@ func main() {
 		return
 	}
 
-	fileName := "../../../testdata/Pdf417.png"
-	imageBytes, err := ioutil.ReadFile(fileName)
+	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.png"))
+
+	file, err := os.Open(fileName)
 	if err != nil {
 		panic(err)
 	}
+	defer file.Close()
 
-	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
 
-	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeMostCommonlyUsed},
-		FileBase64:   imageBase64,
-	}
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
+	result, _, err := client.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file,
+		&barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+			RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindScannedDocument),
+		})
 	if err != nil {
 		panic(err)
 	}
 
 	if len(result.Barcodes) > 0 {
-		fmt.Printf("File '%s' recognized, result: '%s'\n",
-			fileName, result.Barcodes[0].BarcodeValue)
+		fmt.Printf("File '%s' recognized, result: '%s'\n", fileName, result.Barcodes[0].BarcodeValue)
 	} else {
 		fmt.Printf("File '%s' recognized, but no barcodes found.\n", fileName)
 	}

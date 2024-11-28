@@ -2,9 +2,7 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
@@ -42,23 +40,7 @@ func main() {
 		return
 	}
 
-	fileURL := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
-	imageBytes, err := ioutil.ReadFile(fileURL)
-	if err != nil {
-		panic(err)
-	}
-
-	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
-
-	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes:           []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeQR},
-		FileBase64:            imageBase64,
-		RecognitionMode:       barcode.RecognitionModeFast,
-		RecognitionImageKind:  barcode.RecognitionImageKindPhoto,
-	}
-
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
+	result, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png", nil)
 	if err != nil {
 		panic(err)
 	}
@@ -66,6 +48,6 @@ func main() {
 	if len(result.Barcodes) > 0 {
 		fmt.Printf("File recognized, result: '%s'\n", result.Barcodes[0].BarcodeValue)
 	} else {
-		fmt.Println("File recognized, but no barcodes found.")
+		fmt.Printf("File recognized, but no barcodes found.\n")
 	}
 }

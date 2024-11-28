@@ -41,7 +41,7 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "Pdf417.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.png"))
 
 	imageParams := barcode.BarcodeImageParams{
 		ImageFormat: barcode.BarcodeImageFormatPng,
@@ -52,8 +52,7 @@ func main() {
 	}
 
 	encodeData := barcode.EncodeData{
-		Data:     "Aspose.BarCode.Cloud",
-		DataType: barcode.EncodeDataTypeStringData,
+		Data: "Aspose.BarCode.Cloud",
 	}
 
 	generateParams := barcode.GenerateParams{

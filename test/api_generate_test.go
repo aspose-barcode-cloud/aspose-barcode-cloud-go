@@ -12,14 +12,16 @@ import (
 func TestBarcodeGenerateBarcodeTypeGet(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
-	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{}
+	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+		ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatSvg),
+	}
 
 	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeCode128, "Hello", opts)
 	require.Nil(t, err)
 	require.NotNil(t, fileBytes)
 
 	assert.True(t, len(fileBytes) > 0, "Content length is zero or negative")
-	assert.Contains(t, httpResponse.Header.Get("Content-Disposition"), "png")
+	assert.Contains(t, httpResponse.Header.Get("Content-Disposition"), "svg")
 }
 
 func TestBarcodeGenerateBodyPost(t *testing.T) {

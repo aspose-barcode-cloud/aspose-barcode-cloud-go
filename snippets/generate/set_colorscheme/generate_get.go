@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -28,7 +29,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -41,28 +42,19 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "qr.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
-	generateParams := barcode.GenerateParams{
-		BarcodeType: barcode.EncodeBarcodeTypeQR,
-		EncodeData: barcode.EncodeData{
-			Data:     "https://products.aspose.cloud/barcode/family/",
-			DataType: barcode.EncodeDataTypeStringData,
-		},
-		BarcodeImageParams: barcode.BarcodeImageParams{
-			ForegroundColor: "#00008B",
-			BackgroundColor: "#D3D3D3",
-			ImageFormat:     barcode.BarcodeImageFormatPng,
-		},
-	}
-
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	response, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeQR, "https://products.aspose.cloud/barcode/family/", &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+		ForegroundColor: optional.NewString("DarkBlue"),
+		BackgroundColor: optional.NewString("LightGray"),
+		ImageFormat:    optional.NewInterface(barcode.BarcodeImageFormatPng),
+	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return
 	}
 
-	err = os.WriteFile(fileName, fileBytes, 0644)
+	err = os.WriteFile(fileName, response, 0644)
 	if err != nil {
 		fmt.Printf("Error saving barcode to file: %v\n", err)
 		return

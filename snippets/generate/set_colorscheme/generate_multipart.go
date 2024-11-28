@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -41,26 +42,15 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "Code39.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "..", "Code39.png"))
 
-	imageParams := barcode.BarcodeImageParams{
-		ForegroundColor: "Green",
-		BackgroundColor: "Yellow",
-		ImageFormat:     barcode.BarcodeImageFormatGif,
-	}
-
-	encodeData := barcode.EncodeData{
-		Data:     "Aspose",
-		DataType: barcode.EncodeDataTypeStringData,
-	}
-
-	generateParams := barcode.GenerateParams{
-		BarcodeType:        barcode.EncodeBarcodeTypeCode39,
-		EncodeData:         encodeData,
-		BarcodeImageParams: imageParams,
-	}
-
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateMultipartPost(authCtx, 
+		barcode.EncodeBarcodeTypeCode39,  "Aspose", 
+		&barcode.GenerateAPIBarcodeGenerateMultipartPostOpts{
+		ImageFormat:   optional.NewInterface(barcode.BarcodeImageFormatGif),
+		ForegroundColor: optional.NewString("#008000"),
+		BackgroundColor: optional.NewString("#FFFF00"),
+	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

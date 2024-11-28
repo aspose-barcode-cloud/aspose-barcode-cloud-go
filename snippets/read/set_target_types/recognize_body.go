@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -42,7 +43,7 @@ func main() {
 		return
 	}
 
-	fileName := "../../../testdata/multi-types.png"
+	fileName, err := filepath.Abs(filepath.Join("testdata", "ManyTypes.png"))
 
 	imageBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -52,7 +53,7 @@ func main() {
 	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
 
 	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeQR, barcode.DecodeBarcodeTypePDF417},
+		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeQR, barcode.DecodeBarcodeTypePdf417},
 		FileBase64:   imageBase64,
 	}
 

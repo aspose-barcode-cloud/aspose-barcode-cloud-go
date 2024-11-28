@@ -41,7 +41,7 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "Pdf417.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.png"))
 
 	imageParams := barcode.BarcodeImageParams{
 		ForegroundColor: "#FF5733",

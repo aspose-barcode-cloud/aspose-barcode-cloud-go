@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"path/filepath"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -42,7 +43,7 @@ func main() {
 		return
 	}
 
-	fileName := "../../../testdata/qr_and_code128.png"
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr_and_code128.png"))
 
 	imageBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {
@@ -51,19 +52,11 @@ func main() {
 
 	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
 
-	base64Request := barcode.RecognizeBase64Request{
-		FileBase64:                imageBase64,
-		RecognitionImageKind:      barcode.RecognitionImageKindScannedDocument,
+	base64Request := barcode.ScanBase64Request{
+		FileBase64: imageBase64,
 	}
 
-	authCtx := context.WithValue(context.Background(),
-		barcode.ContextJWT,
-		jwt.NewConfig(
-			"Client Id from https://dashboard.aspose.cloud/applications",
-			"Client Secret from https://dashboard.aspose.cloud/applications",
-		).TokenSource(context.Background()))
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
+	result, _, err := client.ScanAPI.BarcodeScanBodyPost(authCtx, base64Request)
 	if err != nil {
 		panic(err)
 	}

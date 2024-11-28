@@ -41,17 +41,9 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "qr.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
-	generateParams := barcode.GenerateParams{
-		BarcodeType: barcode.EncodeBarcodeTypeQR,
-		EncodeData: barcode.EncodeData{
-			Data:     "Aspose.BarCode.Cloud",
-			DataType: barcode.EncodeDataTypeStringData,
-		},
-	}
-
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeQR, "Aspose.BarCode.Cloud", nil)
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

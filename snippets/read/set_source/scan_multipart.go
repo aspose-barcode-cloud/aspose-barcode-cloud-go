@@ -2,9 +2,7 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 
@@ -30,7 +28,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -43,31 +41,24 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join("../../../testdata", "qr.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
-	imageBytes, err := ioutil.ReadFile(fileName)
+	file, err := os.Open(fileName)
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	response, _, err := client.ScanAPI.BarcodeScanMultipartPost(authCtx, file)
 	if err != nil {
 		panic(err)
 	}
 
-	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
-
-	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeAztec, barcode.DecodeBarcodeTypeQR},
-		FileBase64:   imageBase64,
-		RecognitionImageKind: barcode.RecognitionImageKindScannedDocument,
-	}
-
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
-	if err != nil {
-		panic(err)
-	}
-
-	if len(result.Barcodes) > 0 {
+	if len(response.Barcodes) > 0 {
 		fmt.Printf("File '%s' recognized, results: value: '%s', type: %s\n",
-			fileName, result.Barcodes[0].BarcodeValue, result.Barcodes[0].Type)
+			fileName, response.Barcodes[0].BarcodeValue, response.Barcodes[0].Type)
 	} else {
 		fmt.Printf("File '%s' recognized, but no barcodes found.\n", fileName)
 	}
+
 }

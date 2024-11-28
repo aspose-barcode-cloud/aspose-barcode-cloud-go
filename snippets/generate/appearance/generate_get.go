@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -34,6 +35,27 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	return client, authCtx, nil
 }
 
+func BarcodeGenerateBarcodeTypeGet(client *barcode.APIClient, authCtx context.Context) error {
+	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
+
+	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+		ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatPng),
+	}
+
+	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeQR, "Aspose.BarCode.Cloud", opts)
+	if err != nil {
+		return fmt.Errorf("error generating barcode: %v", err)
+	}
+
+	err = os.WriteFile(fileName, fileBytes, 0644)
+	if err != nil {
+		return fmt.Errorf("error saving barcode to file: %v", err)
+	}
+
+	fmt.Printf("File '%s' generated.\n", fileName)
+	return nil
+}
+
 func main() {
 	client, authCtx, err := makeConfiguration()
 	if err != nil {
@@ -41,40 +63,9 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "qr.png")
-
-	imageParams := barcode.BarcodeImageParams{
-		ForegroundColor: "Black",
-		BackgroundColor: "White",
-		ImageFormat:     barcode.BarcodeImageFormatPng,
-		ImageHeight:     200,
-		ImageWidth:      200,
-		Resolution:      300,
-		TextLocation:    barcode.CodeLocationBelow,
-	}
-
-	encodeData := barcode.EncodeData{
-		Data:     "Aspose.BarCode.Cloud",
-		DataType: barcode.EncodeDataTypeStringData,
-	}
-
-	generateParams := barcode.GenerateParams{
-		BarcodeType:        barcode.EncodeBarcodeTypeQrcode,
-		EncodeData:         encodeData,
-		BarcodeImageParams: imageParams,
-	}
-
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	err = BarcodeGenerateBarcodeTypeGet(client, authCtx)
 	if err != nil {
-		fmt.Printf("Error generating barcode: %v\n", err)
+		fmt.Printf("Error: %v\n", err)
 		return
 	}
-
-	err = os.WriteFile(fileName, fileBytes, 0644)
-	if err != nil {
-		fmt.Printf("Error saving barcode to file: %v\n", err)
-		return
-	}
-
-	fmt.Printf("File '%s' generated.\n", fileName)
 }

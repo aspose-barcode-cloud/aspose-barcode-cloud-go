@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"os"
+
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
@@ -27,35 +27,26 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
 }
 
-func main() {
+func BarcodeRecognizeGet() {
 	client, authCtx, err := makeConfiguration()
 	if err != nil {
 		fmt.Printf("Error setting up configuration: %v\n", err)
 		return
 	}
 
-	barCodeImageUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
-	
-	imageBytes, err := ioutil.ReadFile(barCodeImageUrl)
+	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
+	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
+
+	result, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
 	if err != nil {
-	  panic(err)
-	}
-	imageBase64 := base64.StdEncoding.EncodeToString(imageBytes)
-
-	base64Request := barcode.RecognizeBase64Request{
-		FileBase64:   imageBase64,
-	}
-
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
-	if err != nil {
-		panic(err)
+		fmt.Printf("Error recognizing barcode: %v\n", err)
+		return
 	}
 
 	if len(result.Barcodes) > 0 {
@@ -63,4 +54,8 @@ func main() {
 	} else {
 		fmt.Println("No barcodes recognized.")
 	}
+}
+
+func main() {
+	BarcodeRecognizeGet()
 }

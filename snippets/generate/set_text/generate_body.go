@@ -41,7 +41,7 @@ func main() {
 		return
 	}
 
-	fileName := filepath.Join(filepath.Dir("."), "..", "..", "..", "..", "Pdf417.png")
+	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.png"))
 
 	encodeData := barcode.EncodeData{
 		Data:     "QXNwb3NlLkJhckNvZGUuQ2xvdWQ=",
@@ -49,7 +49,7 @@ func main() {
 	}
 
 	generateParams := barcode.GenerateParams{
-		BarcodeType: barcode.EncodeBarcodeTypePDF417,
+		BarcodeType: barcode.EncodeBarcodeTypePdf417,
 		EncodeData:  encodeData,
 	}
 

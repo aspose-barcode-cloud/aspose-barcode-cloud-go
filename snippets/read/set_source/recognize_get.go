@@ -2,24 +2,13 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
-	"io/ioutil"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
 )
 
 func makeConfiguration() (*barcode.APIClient, context.Context, error) {
-	jwtToken := os.Getenv("TEST_CONFIGURATION_JWT_TOKEN")
-	if jwtToken != "" {
-		config := barcode.NewConfiguration()
-		config.AddDefaultHeader("Authorization", "Bearer "+jwtToken)
-		client := barcode.NewAPIClient(config)
-		authCtx := context.Background()
-		return client, authCtx, nil
-	}
-
 	jwtConf := jwt.NewConfig(
 		"Client Id from https://dashboard.aspose.cloud/applications",
 		"Client Secret from https://dashboard.aspose.cloud/applications",
@@ -28,35 +17,26 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
 }
 
-func main() {
+func BarcodeRecognizeGet() {
 	client, authCtx, err := makeConfiguration()
 	if err != nil {
 		fmt.Printf("Error setting up configuration: %v\n", err)
 		return
 	}
 
-	fileURL := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
-	fileBytes, err := ioutil.ReadFile(fileURL)
+	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
+	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
+
+	result, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
 	if err != nil {
-		panic(err)
-	}
-
-	fileBase64 := base64.StdEncoding.EncodeToString(fileBytes)
-
-	base64Request := barcode.RecognizeBase64Request{
-		BarcodeTypes: []barcode.DecodeBarcodeType{barcode.DecodeBarcodeTypeQR},
-		FileBase64:   fileBase64,
-	}
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
-	if err != nil {
-		panic(err)
+		fmt.Printf("Error recognizing barcode: %v\n", err)
+		return
 	}
 
 	if len(result.Barcodes) > 0 {
@@ -64,4 +44,8 @@ func main() {
 	} else {
 		fmt.Println("No barcodes were recognized.")
 	}
+}
+
+func main() {
+	BarcodeRecognizeGet()
 }
