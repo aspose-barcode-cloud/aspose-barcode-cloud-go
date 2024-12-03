@@ -45,7 +45,7 @@ func main() {
 		return
 	}
 
-	fileName, err := filepath.Abs(filepath.Join("testdata", "qr_and_code128.png"))
+	fileName, err := filepath.Abs(filepath.Join("testdata", "ManyTypes.png"))
 
 	imageBytes, err := ioutil.ReadFile(fileName)
 	if err != nil {
