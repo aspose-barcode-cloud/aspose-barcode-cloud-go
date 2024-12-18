@@ -15,6 +15,7 @@ format:
 .PHONY: test
 test:
 	./scripts/test.sh
+	./scripts/run_snippets.sh
 
 .PHONY: build
 build:

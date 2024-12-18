@@ -33,7 +33,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	return client, authCtx, nil
 }
 
-func BarcodeRecognizeGet() {
+func Recognize() {
 	client, authCtx, err := makeConfiguration()
 	if err != nil {
 		fmt.Printf("Error setting up configuration: %v\n", err)
@@ -41,9 +41,9 @@ func BarcodeRecognizeGet() {
 	}
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
-	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
+	opts := &barcode.RecognizeAPIRecognizeOpts{}
 
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
+	result, _, err := client.RecognizeAPI.Recognize(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
 	if err != nil {
 		fmt.Printf("Error recognizing barcode: %v\n", err)
 		return
@@ -57,5 +57,5 @@ func BarcodeRecognizeGet() {
 }
 
 func main() {
-	BarcodeRecognizeGet()
+	Recognize()
 }

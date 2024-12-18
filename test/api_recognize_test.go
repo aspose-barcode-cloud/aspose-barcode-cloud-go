@@ -13,14 +13,14 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBarcodeRecognizeGet(t *testing.T) {
+func TestRecognize(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
+	opts := &barcode.RecognizeAPIRecognizeOpts{}
 
-	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
+	response, _, err := apiClient.RecognizeAPI.Recognize(authCtx, barcode.DecodeBarcodeTypeQR, fileUrl, opts)
 	require.Nil(t, err)
 	require.NotNil(t, response)
 
@@ -30,7 +30,7 @@ func TestBarcodeRecognizeGet(t *testing.T) {
 	assert.Equal(t, "http://en.m.wikipedia.org", barcode.BarcodeValue)
 }
 
-func TestBarcodeRecognizeBodyPost(t *testing.T) {
+func TestRecognizeBase64(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "pdf417Sample.png")
@@ -45,7 +45,7 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 		RecognitionMode:      barcode.RecognitionModeFast,
 	}
 
-	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, request)
+	response, _, err := apiClient.RecognizeAPI.RecognizeBase64(authCtx, request)
 	require.Nil(t, err)
 	require.NotNil(t, response)
 
@@ -58,7 +58,7 @@ func TestBarcodeRecognizeBodyPost(t *testing.T) {
 	assert.True(t, barcode.Region[0].Y > 0)
 }
 
-func TestBarcodeRecognizeMultipartPost(t *testing.T) {
+func TestRecognizeMultipart(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "ManyTypes.png")
@@ -66,12 +66,12 @@ func TestBarcodeRecognizeMultipartPost(t *testing.T) {
 	require.Nil(t, err)
 	defer file.Close()
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+	opts := &barcode.RecognizeAPIRecognizeMultipartOpts{
 		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
 		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 
-	response, _, err := apiClient.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file, opts)
+	response, _, err := apiClient.RecognizeAPI.RecognizeMultipart(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file, opts)
 	require.Nil(t, err)
 	require.NotNil(t, response)
 

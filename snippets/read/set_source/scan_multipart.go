@@ -49,7 +49,7 @@ func main() {
 	}
 	defer file.Close()
 
-	response, _, err := client.ScanAPI.BarcodeScanMultipartPost(authCtx, file)
+	response, _, err := client.ScanAPI.ScanMultipart(authCtx, file)
 	if err != nil {
 		panic(err)
 	}

@@ -53,7 +53,7 @@ func main() {
 		EncodeData:  encodeData,
 	}
 
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	fileBytes, _, err := client.GenerateAPI.GenerateBody(authCtx, generateParams)
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

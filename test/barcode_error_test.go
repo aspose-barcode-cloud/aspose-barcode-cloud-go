@@ -16,16 +16,16 @@ func TestWrongFormat(t *testing.T) {
 	client, err := NewClientForTests()
 	require.Nil(t, err)
 
-	_, _, err = client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(
+	_, _, err = client.GenerateAPI.Generate(
 		authCtx,
 		barcode.EncodeBarcodeTypeCode128,
 		"text",
-		&barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+		&barcode.GenerateAPIGenerateOpts{
 			ImageFormat: optional.NewInterface("wrong"),
 		},
 	)
 	require.NotNil(t, err)
 	apiError := err.(barcode.GenericAPIError)
 	model := apiError.Model().(barcode.ApiErrorResponse)
-	assert.Equal(t, "1. Field name: 'ImageFormat'. Errors: The value 'wrong' is not valid for ImageFormat.", model.Error.Message)
+	assert.Equal(t, "Error: Field name: 'ImageFormat' errors: The value 'wrong' is not valid for ImageFormat.", model.Error.Message)
 }

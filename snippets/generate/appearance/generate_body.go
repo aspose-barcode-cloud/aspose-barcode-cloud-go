@@ -28,7 +28,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -61,7 +61,7 @@ func main() {
 		BarcodeImageParams: imageParams,
 	}
 
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generateParams)
+	fileBytes, _, err := client.GenerateAPI.GenerateBody(authCtx, generateParams)
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

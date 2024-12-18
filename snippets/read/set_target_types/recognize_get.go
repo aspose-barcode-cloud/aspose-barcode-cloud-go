@@ -42,8 +42,8 @@ func main() {
 
 	fileUrl := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeGetOpts{}
-	response, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, fileUrl, opts)
+	opts := &barcode.RecognizeAPIRecognizeOpts{}
+	response, _, err := client.RecognizeAPI.Recognize(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, fileUrl, opts)
 
 	if err != nil {
 		panic(err)

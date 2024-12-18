@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
 	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
@@ -29,7 +30,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -50,12 +51,12 @@ func main() {
 	}
 	defer file.Close()
 
-	opts := &barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+	opts := &barcode.RecognizeAPIRecognizeMultipartOpts{
 		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindScannedDocument),
 		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 
-	response, _, err := client.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeAztec, file, opts)
+	response, _, err := client.RecognizeAPI.RecognizeMultipart(authCtx, barcode.DecodeBarcodeTypeAztec, file, opts)
 	if err != nil {
 		panic(err)
 	}

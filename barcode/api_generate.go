@@ -20,8 +20,8 @@ var (
 // GenerateAPIService -
 type GenerateAPIService service
 
-// GenerateAPIBarcodeGenerateBarcodeTypeGetOpts - Optional Parameters for GenerateAPIBarcodeGenerateBarcodeTypeGet
-type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
+// GenerateAPIGenerateOpts - Optional Parameters for GenerateAPIGenerate
+type GenerateAPIGenerateOpts struct {
 	DataType        optional.Interface
 	ImageFormat     optional.Interface
 	TextLocation    optional.Interface
@@ -35,12 +35,12 @@ type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
 }
 
 /*
-* BarcodeGenerateBarcodeTypeGet -  Generate barcode using GET request with parameters in route and query string.
+* Generate -  Generate barcode using GET request with parameters in route and query string.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType Type of barcode to generate.
 * @param data String represents data to encode
-* @param optional nil or *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts - Optional Parameters:
-  - @param "DataType" (optional.Interface of EncodeDataType) -  Type of data to encode.  Default value:  EncodeDataType.StringData.
+* @param optional nil or *GenerateAPIGenerateOpts - Optional Parameters:
+  - @param "DataType" (optional.Interface of EncodeDataType) -  Type of data to encode.  Default value: StringData.
   - @param "ImageFormat" (optional.Interface of BarcodeImageFormat) -  Barcode output image format.  Default value: png
   - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below.
   - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
@@ -53,7 +53,7 @@ type GenerateAPIBarcodeGenerateBarcodeTypeGetOpts struct {
 
 * @return []byte
 */
-func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateBarcodeTypeGetOpts) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) Generate(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIGenerateOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Get")
 		postBody      interface{}
@@ -190,13 +190,13 @@ func (a *GenerateAPIService) BarcodeGenerateBarcodeTypeGet(ctx context.Context, 
 }
 
 /*
-* BarcodeGenerateBodyPost -  Generate barcode using POST request with parameters in body in json or xml format.
+* GenerateBody -  Generate barcode using POST request with parameters in body in json or xml format.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param generateParams Parameters of generation
 
 * @return []byte
  */
-func (a *GenerateAPIService) BarcodeGenerateBodyPost(ctx context.Context, generateParams GenerateParams) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) GenerateBody(ctx context.Context, generateParams GenerateParams) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Post")
 		postBody      interface{}
@@ -302,8 +302,8 @@ func (a *GenerateAPIService) BarcodeGenerateBodyPost(ctx context.Context, genera
 	return returnValue, httpResponse, err
 }
 
-// GenerateAPIBarcodeGenerateMultipartPostOpts - Optional Parameters for GenerateAPIBarcodeGenerateMultipartPost
-type GenerateAPIBarcodeGenerateMultipartPostOpts struct {
+// GenerateAPIGenerateMultipartOpts - Optional Parameters for GenerateAPIGenerateMultipart
+type GenerateAPIGenerateMultipartOpts struct {
 	DataType        optional.Interface
 	ImageFormat     optional.Interface
 	TextLocation    optional.Interface
@@ -317,11 +317,11 @@ type GenerateAPIBarcodeGenerateMultipartPostOpts struct {
 }
 
 /*
-* BarcodeGenerateMultipartPost -  Generate barcode using POST request with parameters in multipart form.
+* GenerateMultipart -  Generate barcode using POST request with parameters in multipart form.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType
 * @param data String represents data to encode
-* @param optional nil or *GenerateAPIBarcodeGenerateMultipartPostOpts - Optional Parameters:
+* @param optional nil or *GenerateAPIGenerateMultipartOpts - Optional Parameters:
   - @param "DataType" (optional.Interface of EncodeDataType) -
   - @param "ImageFormat" (optional.Interface of BarcodeImageFormat) -
   - @param "TextLocation" (optional.Interface of CodeLocation) -
@@ -335,7 +335,7 @@ type GenerateAPIBarcodeGenerateMultipartPostOpts struct {
 
 * @return []byte
 */
-func (a *GenerateAPIService) BarcodeGenerateMultipartPost(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIBarcodeGenerateMultipartPostOpts) ([]byte, *http.Response, error) {
+func (a *GenerateAPIService) GenerateMultipart(ctx context.Context, barcodeType EncodeBarcodeType, data string, optionals *GenerateAPIGenerateMultipartOpts) ([]byte, *http.Response, error) {
 	var (
 		httpMethod    = strings.ToUpper("Post")
 		postBody      interface{}

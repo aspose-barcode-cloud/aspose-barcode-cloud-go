@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"github.com/antihax/optional"
 	"path/filepath"
+
+	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
@@ -50,9 +51,8 @@ func main() {
 	}
 	defer file.Close()
 
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file,
-		&barcode.RecognizeAPIBarcodeRecognizeMultipartPostOpts{
+	result, _, err := client.RecognizeAPI.RecognizeMultipart(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file,
+		&barcode.RecognizeAPIRecognizeMultipartOpts{
 			RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindScannedDocument),
 		})
 	if err != nil {

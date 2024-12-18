@@ -43,7 +43,7 @@ func main() {
 
 	fileName, err := filepath.Abs(filepath.Join("testdata", "Code128.jpeg"))
 
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeCode128, "Aspose.BarCode.Cloud", nil)
+	fileBytes, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeCode128, "Aspose.BarCode.Cloud", nil)
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
 		return

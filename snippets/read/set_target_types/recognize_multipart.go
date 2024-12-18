@@ -28,7 +28,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -48,8 +48,7 @@ func main() {
 		panic(err)
 	}
 
-
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeMultipartPost(authCtx, barcode.DecodeBarcodeTypePdf417, file, nil)
+	result, _, err := client.RecognizeAPI.RecognizeMultipart(authCtx, barcode.DecodeBarcodeTypePdf417, file, nil)
 	if err != nil {
 		panic(err)
 	}

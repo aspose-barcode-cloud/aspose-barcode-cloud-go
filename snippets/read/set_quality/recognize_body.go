@@ -30,7 +30,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -57,7 +57,7 @@ func main() {
 		FileBase64:   imageBase64,
 	}
 
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeBodyPost(authCtx, base64Request)
+	result, _, err := client.RecognizeAPI.RecognizeBase64(authCtx, base64Request)
 	if err != nil {
 		panic(err)
 	}

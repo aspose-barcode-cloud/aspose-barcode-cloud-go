@@ -4,15 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"net/http"
 	"log"
+	"net/http"
 )
 
 func main() {
 	clientID := "Client Id from https://dashboard.aspose.cloud/applications"
 	clientSecret := "Client Secret from https://dashboard.aspose.cloud/applications"
 
-	baseURL := "https://id-qa.aspose.cloud/"
+	baseURL := "https://id.aspose.cloud/"
 	endpoint := "connect/token"
 
 	payload := []byte(fmt.Sprintf(

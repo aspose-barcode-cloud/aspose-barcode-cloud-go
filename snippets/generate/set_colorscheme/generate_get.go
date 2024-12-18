@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
 	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
@@ -44,10 +45,10 @@ func main() {
 
 	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
-	response, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeQR, "https://products.aspose.cloud/barcode/family/", &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+	response, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "https://products.aspose.cloud/barcode/family/", &barcode.GenerateAPIGenerateOpts{
 		ForegroundColor: optional.NewString("DarkBlue"),
 		BackgroundColor: optional.NewString("LightGray"),
-		ImageFormat:    optional.NewInterface(barcode.BarcodeImageFormatPng),
+		ImageFormat:     optional.NewInterface(barcode.BarcodeImageFormatPng),
 	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)

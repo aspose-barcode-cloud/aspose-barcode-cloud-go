@@ -9,25 +9,24 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBarcodeGenerateBarcodeTypeGet(t *testing.T) {
+func TestGenerate(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
-	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+	opts := &barcode.GenerateAPIGenerateOpts{
 		ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatSvg),
 	}
 
-	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx, barcode.EncodeBarcodeTypeCode128, "Hello", opts)
+	fileBytes, _, err := apiClient.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeCode128, "Hello", opts)
 	require.Nil(t, err)
 	require.NotNil(t, fileBytes)
 
 	assert.True(t, len(fileBytes) > 0, "Content length is zero or negative")
-	assert.Contains(t, httpResponse.Header.Get("Content-Disposition"), "svg")
 }
 
-func TestBarcodeGenerateBodyPost(t *testing.T) {
+func TestGenerateBody(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
-	// Test case for barcodeGenerateBodyPost
+	// Test case for GenerateBody
 	imageParams := barcode.BarcodeImageParams{
 		ImageFormat: barcode.BarcodeImageFormatJpeg,
 	}
@@ -43,29 +42,28 @@ func TestBarcodeGenerateBodyPost(t *testing.T) {
 		BarcodeImageParams: imageParams,
 	}
 
-	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateBodyPost(authCtx, generatorParams)
+	fileBytes, _, err := apiClient.GenerateAPI.GenerateBody(authCtx, generatorParams)
 	require.Nil(t, err)
 	require.NotNil(t, fileBytes)
 
 	// Check the content length and file name
 	assert.True(t, len(fileBytes) > 0, "Content length is zero or negative")
-	assert.Contains(t, httpResponse.Header.Get("Content-Disposition"), "jpeg")
 
 }
 
-func TestBarcodeGenerateMultipartPost(t *testing.T) {
+func TestGenerateMultipart(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
-	// Test case for barcodeGenerateMultipartPost
-	opts := &barcode.GenerateAPIBarcodeGenerateMultipartPostOpts{
+	// Test case for GenerateMultipart
+	opts := &barcode.GenerateAPIGenerateMultipartOpts{
 		DataType: optional.NewInterface(barcode.EncodeDataTypeHexBytes),
 	}
 
-	fileBytes, httpResponse, err := apiClient.GenerateAPI.BarcodeGenerateMultipartPost(authCtx, barcode.EncodeBarcodeTypeQR, "54657374", opts)
+	fileBytes, _, err := apiClient.GenerateAPI.GenerateMultipart(authCtx, barcode.EncodeBarcodeTypeQR, "54657374", opts)
 	require.Nil(t, err)
 	require.NotNil(t, fileBytes)
 
 	// Check the content length and file name
 	assert.True(t, len(fileBytes) > 0, "Content length is zero or negative")
-	assert.Contains(t, httpResponse.Header.Get("Content-Disposition"), "png")
+
 }

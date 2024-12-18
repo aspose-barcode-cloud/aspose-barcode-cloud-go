@@ -77,11 +77,11 @@ func main() {
 
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
-	opts := &barcode.GenerateAPIBarcodeGenerateBarcodeTypeGetOpts{
+	opts := &barcode.GenerateAPIGenerateOpts{
 		TextLocation: optional.NewInterface(barcode.CodeLocationNone),
 	}
 
-	data, _, err := client.GenerateAPI.BarcodeGenerateBarcodeTypeGet(authCtx,
+	data, _, err := client.GenerateAPI.Generate(authCtx,
 		barcode.EncodeBarcodeTypeQR,
 		"Go SDK example",
 		opts)
@@ -143,7 +143,7 @@ func main() {
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
 
-	recognized, _, err := client.ScanAPI.BarcodeScanMultipartPost(
+	recognized, _, err := client.ScanAPI.ScanMultipart(
 		authCtx,
 		imageFile)
 	if err != nil {
@@ -182,19 +182,19 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *<https://barcode.qa.aspose.cloud/v4.0>*
+All URIs are relative to *<https://api.aspose.cloud/v4.0>*
 
 Class | Method | HTTP request | Description
 ----- | ------ | ------------ | -----------
-*GenerateAPI* | [**BarcodeGenerateBarcodeTypeGet**](docs/GenerateAPI.md#barcodegeneratebarcodetypeget) | **Get** /barcode/generate/{barcodeType} | Generate barcode using GET request with parameters in route and query string.
-*GenerateAPI* | [**BarcodeGenerateBodyPost**](docs/GenerateAPI.md#barcodegeneratebodypost) | **Post** /barcode/generate-body | Generate barcode using POST request with parameters in body in json or xml format.
-*GenerateAPI* | [**BarcodeGenerateMultipartPost**](docs/GenerateAPI.md#barcodegeneratemultipartpost) | **Post** /barcode/generate-multipart | Generate barcode using POST request with parameters in multipart form.
-*RecognizeAPI* | [**BarcodeRecognizeBodyPost**](docs/RecognizeAPI.md#barcoderecognizebodypost) | **Post** /barcode/recognize-body | Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
-*RecognizeAPI* | [**BarcodeRecognizeGet**](docs/RecognizeAPI.md#barcoderecognizeget) | **Get** /barcode/recognize | Recognize barcode from file on server using GET requests with parameters in route and query string.
-*RecognizeAPI* | [**BarcodeRecognizeMultipartPost**](docs/RecognizeAPI.md#barcoderecognizemultipartpost) | **Post** /barcode/recognize-multipart | Recognize barcode from file in request body using POST requests with parameters in multipart form.
-*ScanAPI* | [**BarcodeScanBodyPost**](docs/ScanAPI.md#barcodescanbodypost) | **Post** /barcode/scan-body | Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
-*ScanAPI* | [**BarcodeScanGet**](docs/ScanAPI.md#barcodescanget) | **Get** /barcode/scan | Scan barcode from file on server using GET requests with parameter in query string.
-*ScanAPI* | [**BarcodeScanMultipartPost**](docs/ScanAPI.md#barcodescanmultipartpost) | **Post** /barcode/scan-multipart | Scan barcode from file in request body using POST requests with parameter in multipart form.
+*GenerateAPI* | [**Generate**](docs/GenerateAPI.md#generate) | **Get** /barcode/generate/{barcodeType} | Generate barcode using GET request with parameters in route and query string.
+*GenerateAPI* | [**GenerateBody**](docs/GenerateAPI.md#generatebody) | **Post** /barcode/generate-body | Generate barcode using POST request with parameters in body in json or xml format.
+*GenerateAPI* | [**GenerateMultipart**](docs/GenerateAPI.md#generatemultipart) | **Post** /barcode/generate-multipart | Generate barcode using POST request with parameters in multipart form.
+*RecognizeAPI* | [**Recognize**](docs/RecognizeAPI.md#recognize) | **Get** /barcode/recognize | Recognize barcode from file on server using GET requests with parameters in route and query string.
+*RecognizeAPI* | [**RecognizeBase64**](docs/RecognizeAPI.md#recognizebase64) | **Post** /barcode/recognize-body | Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+*RecognizeAPI* | [**RecognizeMultipart**](docs/RecognizeAPI.md#recognizemultipart) | **Post** /barcode/recognize-multipart | Recognize barcode from file in request body using POST requests with parameters in multipart form.
+*ScanAPI* | [**Scan**](docs/ScanAPI.md#scan) | **Get** /barcode/scan | Scan barcode from file on server using GET requests with parameter in query string.
+*ScanAPI* | [**ScanBase64**](docs/ScanAPI.md#scanbase64) | **Post** /barcode/scan-body | Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+*ScanAPI* | [**ScanMultipart**](docs/ScanAPI.md#scanmultipart) | **Post** /barcode/scan-multipart | Scan barcode from file in request body using POST requests with parameter in multipart form.
 
 ## Documentation For Models
 

@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestBarcodeScanMultipartPost(t *testing.T) {
+func TestScanMultipart(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "pdf417Sample.png")
@@ -20,7 +20,7 @@ func TestBarcodeScanMultipartPost(t *testing.T) {
 	require.Nil(t, err)
 	defer file.Close()
 
-	scanResponse, _, err := apiClient.ScanAPI.BarcodeScanMultipartPost(authCtx, file)
+	scanResponse, _, err := apiClient.ScanAPI.ScanMultipart(authCtx, file)
 	require.Nil(t, err)
 	require.NotNil(t, scanResponse)
 
@@ -29,7 +29,7 @@ func TestBarcodeScanMultipartPost(t *testing.T) {
 	assert.Equal(t, "Aspose.BarCode for Cloud Sample", scanResponse.Barcodes[0].BarcodeValue)
 }
 
-func TestBarcodeScanBodyPost(t *testing.T) {
+func TestScanBase64(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "QR_and_Code128.png")
@@ -42,23 +42,23 @@ func TestBarcodeScanBodyPost(t *testing.T) {
 		FileBase64: encodedFile,
 	}
 
-	scanResponse, _, err := apiClient.ScanAPI.BarcodeScanBodyPost(authCtx, scanBase64Request)
+	scanResponse, _, err := apiClient.ScanAPI.ScanBase64(authCtx, scanBase64Request)
 	require.Nil(t, err)
 	require.NotNil(t, scanResponse)
 
 	assert.Equal(t, 2, len(scanResponse.Barcodes))
 	assert.Equal(t, string(barcode.DecodeBarcodeTypeQR), scanResponse.Barcodes[0].Type)
-	assert.Equal(t, "QR text", scanResponse.Barcodes[0].BarcodeValue)
+	assert.Equal(t, "Hello world!", scanResponse.Barcodes[0].BarcodeValue)
 	assert.Equal(t, string(barcode.DecodeBarcodeTypeCode128), scanResponse.Barcodes[1].Type)
-	assert.Equal(t, "Code128 text", scanResponse.Barcodes[1].BarcodeValue)
+	assert.Equal(t, "Hello world!", scanResponse.Barcodes[1].BarcodeValue)
 }
 
-func TestBarcodeScanGet(t *testing.T) {
+func TestScan(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	urlStr := "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
 
-	scanResponse, _, err := apiClient.ScanAPI.BarcodeScanGet(authCtx, urlStr)
+	scanResponse, _, err := apiClient.ScanAPI.Scan(authCtx, urlStr)
 	require.Nil(t, err)
 	require.NotNil(t, scanResponse)
 

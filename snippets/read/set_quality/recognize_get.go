@@ -27,7 +27,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -40,7 +40,7 @@ func main() {
 		return
 	}
 
-	result, _, err := client.RecognizeAPI.BarcodeRecognizeGet(authCtx, barcode.DecodeBarcodeTypeQR, "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png", nil)
+	result, _, err := client.RecognizeAPI.Recognize(authCtx, barcode.DecodeBarcodeTypeQR, "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png", nil)
 	if err != nil {
 		panic(err)
 	}

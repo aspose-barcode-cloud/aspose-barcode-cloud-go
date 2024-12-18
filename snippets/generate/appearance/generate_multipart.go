@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+
 	"github.com/antihax/optional"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
@@ -29,7 +30,7 @@ func makeConfiguration() (*barcode.APIClient, context.Context, error) {
 	authCtx := context.WithValue(context.Background(),
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
-	
+
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	return client, authCtx, nil
@@ -44,9 +45,9 @@ func main() {
 
 	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.svg"))
 
-	fileBytes, _, err := client.GenerateAPI.BarcodeGenerateMultipartPost(authCtx, barcode.EncodeBarcodeTypePdf417, "Aspose.BarCode.Cloud", &barcode.GenerateAPIBarcodeGenerateMultipartPostOpts{
-		TextLocation:  optional.NewInterface(barcode.CodeLocationAbove),
-		ImageFormat:   optional.NewInterface(barcode.BarcodeImageFormatSvg),
+	fileBytes, _, err := client.GenerateAPI.GenerateMultipart(authCtx, barcode.EncodeBarcodeTypePdf417, "Aspose.BarCode.Cloud", &barcode.GenerateAPIGenerateMultipartOpts{
+		TextLocation: optional.NewInterface(barcode.CodeLocationAbove),
+		ImageFormat:  optional.NewInterface(barcode.BarcodeImageFormatSvg),
 	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
