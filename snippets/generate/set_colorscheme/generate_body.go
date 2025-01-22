@@ -11,7 +11,7 @@ import (
 )
 
 func makeConfiguration() (*barcode.APIClient, context.Context, error) {
-	jwtToken := os.Getenv("TEST_CONFIGURATION_JWT_TOKEN")
+	jwtToken := os.Getenv("TEST_CONFIGURATION_ACCESS_TOKEN")
 	if jwtToken != "" {
 		config := barcode.NewConfiguration()
 		config.AddDefaultHeader("Authorization", "Bearer "+jwtToken)

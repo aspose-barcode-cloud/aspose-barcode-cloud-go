@@ -16,7 +16,7 @@ func TestNewConfigurationBasePath(t *testing.T) {
 }
 
 func TestNewConfigurationUserAgentWithRegex(t *testing.T) {
-	wantPattern := `^Aspose-Barcode-SDK/1\.\d{4}\.\d+/go$`
+	wantPattern := `^Aspose-Barcode-SDK/4\.\d{4}\.\d+/go$`
 	if got := api.NewConfiguration().UserAgent; !regexp.MustCompile(wantPattern).MatchString(got) {
 		t.Errorf("NewConfiguration().UserAgent = %s; want pattern %s", got, wantPattern)
 	}

@@ -29,6 +29,8 @@ jobs:
         run: make init
 
       - name: Build and Test
-        run: make ci
+        run: |
+         chmod +x scripts/*
+         make ci
         env:
-          TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
+          TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
