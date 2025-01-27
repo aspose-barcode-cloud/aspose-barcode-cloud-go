@@ -13,7 +13,7 @@ func main() {
 	clientID := "Client Id from https://dashboard.aspose.cloud/applications"
 	clientSecret := "Client Secret from https://dashboard.aspose.cloud/applications"
 
-	if strings.HasPrefix(clientID, "Client Id"){
+	if strings.HasPrefix(clientID, "Client Id") {
 		fmt.Println("clientID not configured. Skip this snippet test")
 		return
 	}

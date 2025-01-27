@@ -7,6 +7,11 @@
 - API version: 4.0
 - SDK version: 4.2501.0
 
+## SDK and API Version Compatibility:
+
+- SDK Version 4.2501.0 and Later: Starting from SDK version 25.1, all subsequent versions are compatible with API Version v4.0.
+- SDK Version 1.2412.0 and Earlier: These versions are compatible with API Version v3.0.
+
 ## Demo applications
 
 [Scan QR](https://products.aspose.app/barcode/scanqr) | [Generate Barcode](https://products.aspose.app/barcode/generate) | [Recognize Barcode](https://products.aspose.app/barcode/recognize)
