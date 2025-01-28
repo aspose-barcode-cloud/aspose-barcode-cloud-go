@@ -38,7 +38,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go@v4.2501.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4@v4.2501.0
     ```
 
 ### Using GOPATH (for Go < 1.11 )
@@ -46,7 +46,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command outside module directory
 
     ```shell script
-   go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode
+   go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode
    ```
 
 ## Sample usage
