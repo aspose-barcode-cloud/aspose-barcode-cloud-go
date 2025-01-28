@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

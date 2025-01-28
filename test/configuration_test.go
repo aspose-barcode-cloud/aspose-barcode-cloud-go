@@ -4,7 +4,7 @@ import (
 	"regexp"
 	"testing"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
 	"github.com/stretchr/testify/assert"
 )
 

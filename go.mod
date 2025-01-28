@@ -1,4 +1,4 @@
-module github.com/aspose-barcode-cloud/aspose-barcode-cloud-go
+module github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4
 
 go 1.17
 
