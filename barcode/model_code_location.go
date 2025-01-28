@@ -1,6 +1,5 @@
 package barcode
 
-// CodeLocation :
 type CodeLocation string
 
 // List of CodeLocation

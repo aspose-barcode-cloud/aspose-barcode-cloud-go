@@ -1,7 +1,8 @@
 package barcode
 
-// ApiErrorResponse -
+// ApiErrorResponse - ApiError Response
 type ApiErrorResponse struct {
-	RequestId string   `json:"RequestId,omitempty"`
-	Error     ApiError `json:"Error,omitempty"`
+	// Gets or sets request Id.
+	RequestId string   `json:"requestId"`
+	Error     ApiError `json:"error"`
 }

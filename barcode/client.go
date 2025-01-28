@@ -11,7 +11,6 @@ import (
 	"mime/multipart"
 	"net/http"
 	netUrl "net/url"
-	"os"
 	"path/filepath"
 	"reflect"
 	"regexp"
@@ -21,7 +20,7 @@ import (
 )
 
 const (
-	PACKAGE_VERSION         = "1.2412.0"
+	PACKAGE_VERSION         = "4.2501.0"
 	PACKAGE_NAME            = "go sdk"
 	X_ASPOSE_CLIENT         = "x-aspose-client"
 	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"
@@ -32,7 +31,7 @@ var (
 	xmlCheck  = regexp.MustCompile("(?i:(?:application|text)/xml)")
 )
 
-// APIClient manages communication with the Aspose.Barcode Cloud API Reference API v3.0
+// APIClient manages communication with the Aspose.BarCode.Cloud v4.0 specification API v4.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -40,13 +39,11 @@ type APIClient struct {
 
 	// API Services
 
-	BarcodeApi *BarcodeApiService
+	GenerateAPI *GenerateAPIService
 
-	FileApi *FileApiService
+	RecognizeAPI *RecognizeAPIService
 
-	FolderApi *FolderApiService
-
-	StorageApi *StorageApiService
+	ScanAPI *ScanAPIService
 }
 
 type service struct {
@@ -65,10 +62,9 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.BarcodeApi = (*BarcodeApiService)(&c.common)
-	c.FileApi = (*FileApiService)(&c.common)
-	c.FolderApi = (*FolderApiService)(&c.common)
-	c.StorageApi = (*StorageApiService)(&c.common)
+	c.GenerateAPI = (*GenerateAPIService)(&c.common)
+	c.RecognizeAPI = (*RecognizeAPIService)(&c.common)
+	c.ScanAPI = (*ScanAPIService)(&c.common)
 
 	return c
 }
@@ -177,19 +173,15 @@ func (c *APIClient) prepareRequest(
 
 		for k, v := range formParams {
 			for _, iv := range v {
-				if strings.HasPrefix(k, "@") { // file
-					err = addFile(w, k[1:], iv)
-					if err != nil {
-						return nil, err
-					}
-				} else { // form value
-					err = w.WriteField(k, iv)
-					if err != nil {
-						return nil, err
-					}
+				// form value
+				err = w.WriteField(k, iv)
+				if err != nil {
+					return nil, err
 				}
 			}
+			w.Boundary()
 		}
+
 		if len(fileBytes) > 0 && fileName != "" {
 			w.Boundary()
 			//_, fileNm := filepath.Split(fileName)
@@ -201,9 +193,9 @@ func (c *APIClient) prepareRequest(
 			if err != nil {
 				return nil, err
 			}
-			// Set the Boundary in the Content-Type
-			headerParams["Content-Type"] = w.FormDataContentType()
 		}
+
+		headerParams["Content-Type"] = w.FormDataContentType()
 
 		// Set Content-Length
 		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
@@ -211,16 +203,6 @@ func (c *APIClient) prepareRequest(
 		if err != nil {
 			return nil, err
 		}
-	}
-
-	if strings.HasPrefix(headerParams["Content-Type"], "application/x-www-form-urlencoded") && len(formParams) > 0 {
-		if body != nil {
-			return nil, errors.New("cannot specify postBody and x-www-form-urlencoded form at the same time")
-		}
-		body = &bytes.Buffer{}
-		body.WriteString(formParams.Encode())
-		// Set Content-Length
-		headerParams["Content-Length"] = fmt.Sprintf("%d", body.Len())
 	}
 
 	// Setup path and query parameters
@@ -333,28 +315,6 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	}
 
 	return errors.New("undefined response type")
-}
-
-// Add a file to the multipart request
-func addFile(w *multipart.Writer, fieldName, path string) error {
-	file, err := os.Open(path)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	part, err := w.CreateFormFile(fieldName, filepath.Base(path))
-	if err != nil {
-		return err
-	}
-	_, err = io.Copy(part, file)
-
-	return err
-}
-
-// Prevent trying to import "fmt"
-func reportError(format string, a ...interface{}) error {
-	return fmt.Errorf(format, a...)
 }
 
 // Set request body from an interface{}

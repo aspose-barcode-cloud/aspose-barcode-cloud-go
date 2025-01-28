@@ -1,7 +1,5 @@
 # CodeLocation
 
-
-
 ## Allowable values
 * **CodeLocationBelow**
 * CodeLocationAbove

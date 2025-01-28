@@ -1,10 +1,12 @@
 # ApiErrorResponse
 
+ApiError Response
+
 ## Properties
 
 Name | Type | Description | Notes
 ---- | ---- | ----------- | -----
-**RequestId** | **string** |  | [optional] [default to null]
-**Error_** | [***ApiError**](ApiError.md) |  | [optional] [default to null]
+**RequestId** | **NullableString** | Gets or sets request Id. |
+**Error** | [***ApiError**](ApiError.md) |  |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

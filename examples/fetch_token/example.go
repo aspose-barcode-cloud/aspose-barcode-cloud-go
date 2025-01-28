@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
 )
 
 func main() {

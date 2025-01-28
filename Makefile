@@ -8,12 +8,14 @@ init:
 .PHONY: format
 format:
 	./scripts/fix_api_error.sh
+	./scripts/fix_sctruct_types.sh
 	./scripts/format.sh
 	./scripts/docs_format.sh
 
 .PHONY: test
 test:
 	./scripts/test.sh
+	./scripts/run_snippets.sh
 
 .PHONY: build
 build:

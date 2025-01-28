@@ -6,8 +6,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -17,8 +17,8 @@ func TestNewTestConfigFromFile(t *testing.T) {
 	config, err := NewTestConfig("configuration.example.json", TestEnvPrefix)
 	require.Nil(t, err)
 
-	assert.Equal(t, "https://api.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
-	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
+	assert.Equal(t, "https://id.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
+	assert.Equal(t, "https://api.aspose.cloud/v4.0", config.APIConfig.BasePath)
 }
 
 func TestNewTestConfigFileNotExists(t *testing.T) {
@@ -52,9 +52,9 @@ func TestNewConfigFromEnvDefaults(t *testing.T) {
 
 	assert.Equal(t, "", config.JwtConfig.ClientID)
 	assert.Equal(t, "", config.JwtConfig.ClientSecret)
-	assert.Equal(t, "https://api.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
+	assert.Equal(t, "https://id.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
 
-	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
+	assert.Equal(t, "https://api.aspose.cloud/v4.0", config.APIConfig.BasePath)
 	assert.Equal(t, "", config.APIConfig.Host)
 }
 
@@ -73,9 +73,9 @@ func TestNewConfigFromEnvValues(t *testing.T) {
 
 	assert.Equal(t, "jwt client id", config.JwtConfig.ClientID)
 	assert.Equal(t, "jwt client secret", config.JwtConfig.ClientSecret)
-	assert.Equal(t, "https://api.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
+	assert.Equal(t, "https://id.aspose.cloud/connect/token", config.JwtConfig.TokenURL)
 
-	assert.Equal(t, "https://api.aspose.cloud/v3.0", config.APIConfig.BasePath)
+	assert.Equal(t, "https://api.aspose.cloud/v4.0", config.APIConfig.BasePath)
 	assert.Equal(t, "", config.APIConfig.Host)
 }
 

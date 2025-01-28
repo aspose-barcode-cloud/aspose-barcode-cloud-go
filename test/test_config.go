@@ -9,8 +9,8 @@ import (
 	"strings"
 	"unicode"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
 )
 
 func camelToUpperSnake(str string) string {

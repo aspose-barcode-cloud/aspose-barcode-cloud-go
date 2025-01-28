@@ -5,9 +5,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/antihax/optional"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode/jwt"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
 )
 
 func main() {
@@ -30,16 +29,9 @@ func main() {
 		barcode.ContextJWT,
 		jwtConf.TokenSource(context.Background()))
 
-	optionals := barcode.BarcodeApiScanBarcodeOpts{
-		DecodeTypes: optional.NewInterface([]barcode.DecodeBarcodeType{
-			barcode.DecodeBarcodeTypeQR,
-		}),
-	}
-
-	recognized, _, err := client.BarcodeApi.ScanBarcode(
+	recognized, _, err := client.ScanAPI.ScanMultipart(
 		authCtx,
-		imageFile,
-		&optionals)
+		imageFile)
 	if err != nil {
 		panic(err)
 	}

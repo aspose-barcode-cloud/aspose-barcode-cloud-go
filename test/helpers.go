@@ -2,13 +2,12 @@ package test
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"os"
+	"path/filepath"
 	"testing"
 
-	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
-	"github.com/google/uuid"
+	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
 	"github.com/stretchr/testify/require"
 )
 
@@ -18,9 +17,15 @@ var TestConfigurationFile = "configuration.json"
 // TestEnvPrefix for environment variables
 var TestEnvPrefix = "TEST"
 
-// TestFolder Aspose.Storage folder for test files
-// noinspection GoNameStartsWithPackageName
-var TestFolder = fmt.Sprintf("BarcodeTests/%s", uuid.New())
+//Test data folder
+
+func GetTestDataFolder() string {
+	currentPath, err := os.Getwd()
+	if err != nil {
+		return ""
+	}
+	return filepath.Join(currentPath, "..", "testdata")
+}
 
 // NewClientForTests creates new Client with TestConfig
 func NewClientForTests() (*barcode.APIClient, error) {
@@ -42,15 +47,14 @@ func NewAuthContextForTests() (context.Context, error) {
 	return context.WithValue(context.Background(), barcode.ContextJWT, testConfig.JwtConfig.TokenSource(context.Background())), nil
 }
 
-func uploadTestFile(ctx context.Context, t *testing.T, client *barcode.APIClient, uploadedFilename string) {
-	file, err := os.Open("../testdata/pdf417Sample.png")
+func setup(t *testing.T) (*barcode.APIClient, context.Context) {
+	// Initialize Auth context and Client
+	authCtx, err := NewAuthContextForTests()
 	require.Nil(t, err)
 
-	uploaded, _, err := client.FileApi.UploadFile(ctx, fmt.Sprintf("%s/%s", TestFolder, uploadedFilename), file, nil)
+	client, err := NewClientForTests()
 	require.Nil(t, err)
-	require.Empty(t, uploaded.Errors)
-	require.NotEmpty(t, uploaded.Uploaded)
-	require.Equal(t, uploadedFilename, uploaded.Uploaded[0])
+	return client, authCtx
 }
 
 func readFileContent(t *testing.T, fileName string) []byte {

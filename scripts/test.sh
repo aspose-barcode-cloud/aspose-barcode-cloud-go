@@ -1,4 +1,5 @@
 #!/bin/bash
 set -euo pipefail
 
-go test -v ./...
+#Run all tests except for snippets that have duplicate function names
+go test -v $(go list ./... | grep -v snippets)

@@ -24,7 +24,7 @@ func NewConfig(clientID string, clientSecret string) *Config {
 	config := Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
-		TokenURL:     "https://api.aspose.cloud/connect/token",
+		TokenURL:     "https://id.aspose.cloud/connect/token",
 	}
 
 	return &config

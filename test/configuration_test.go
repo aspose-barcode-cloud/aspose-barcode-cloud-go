@@ -4,19 +4,19 @@ import (
 	"regexp"
 	"testing"
 
-	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/barcode"
+	api "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestNewConfigurationBasePath(t *testing.T) {
-	want := "https://api.aspose.cloud/v3.0"
+	want := "https://api.aspose.cloud/v4.0"
 	if got := api.NewConfiguration().BasePath; got != want {
 		t.Errorf("NewConfiguration().BasePath = %s; want %s", got, want)
 	}
 }
 
 func TestNewConfigurationUserAgentWithRegex(t *testing.T) {
-	wantPattern := `^Aspose-Barcode-SDK/1\.\d{4}\.\d+/go$`
+	wantPattern := `^Aspose-Barcode-SDK/4\.\d{4}\.\d+/go$`
 	if got := api.NewConfiguration().UserAgent; !regexp.MustCompile(wantPattern).MatchString(got) {
 		t.Errorf("NewConfiguration().UserAgent = %s; want pattern %s", got, wantPattern)
 	}
