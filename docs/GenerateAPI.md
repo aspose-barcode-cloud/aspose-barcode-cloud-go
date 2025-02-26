@@ -30,7 +30,7 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
 **DataType** | [**optional.Interface of EncodeDataType**](.md) | Type of data to encode.  Default value: StringData. |
 **ImageFormat** | [**optional.Interface of BarcodeImageFormat**](.md) | Barcode output image format.  Default value: png |
-**TextLocation** | [**optional.Interface of CodeLocation**](.md) | Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. |
+**TextLocation** | [**optional.Interface of CodeLocation**](.md) | Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: Depends on BarcodeType. CodeLocation.Below for 1D Barcodes. CodeLocation.None for 2D Barcodes. |
 **ForegroundColor** | **optional.** | Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [default to &quot;Black&quot;]
 **BackgroundColor** | **optional.** | Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [default to &quot;White&quot;]
 **Units** | [**optional.Interface of GraphicsUnit**](.md) | Common Units for all measuring in query. Default units: pixel. |
