@@ -42,7 +42,7 @@ type GenerateAPIGenerateOpts struct {
 * @param optional nil or *GenerateAPIGenerateOpts - Optional Parameters:
   - @param "DataType" (optional.Interface of EncodeDataType) -  Type of data to encode.  Default value: StringData.
   - @param "ImageFormat" (optional.Interface of BarcodeImageFormat) -  Barcode output image format.  Default value: png
-  - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below.
+  - @param "TextLocation" (optional.Interface of CodeLocation) -  Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: Depends on BarcodeType. CodeLocation.Below for 1D Barcodes. CodeLocation.None for 2D Barcodes.
   - @param "ForegroundColor" (optional.String) -  Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
   - @param "BackgroundColor" (optional.String) -  Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White.
   - @param "Units" (optional.Interface of GraphicsUnit) -  Common Units for all measuring in query. Default units: pixel.

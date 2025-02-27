@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	PACKAGE_VERSION         = "4.2501.0"
+	PACKAGE_VERSION         = "4.2502.0"
 	PACKAGE_NAME            = "go sdk"
 	X_ASPOSE_CLIENT         = "x-aspose-client"
 	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"
