@@ -108,30 +108,7 @@ func (a *RecognizeAPIService) Recognize(ctx context.Context, barcodeType DecodeB
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -221,30 +198,7 @@ func (a *RecognizeAPIService) RecognizeBase64(ctx context.Context, recognizeBase
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -359,30 +313,7 @@ func (a *RecognizeAPIService) RecognizeMultipart(ctx context.Context, barcodeTyp
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {

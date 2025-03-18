@@ -89,30 +89,7 @@ func (a *ScanAPIService) Scan(ctx context.Context, fileUrl string) (BarcodeRespo
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -202,30 +179,7 @@ func (a *ScanAPIService) ScanBase64(ctx context.Context, scanBase64Request ScanB
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -323,30 +277,7 @@ func (a *ScanAPIService) ScanMultipart(ctx context.Context, file *os.File) (Barc
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v BarcodeResponseList
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
