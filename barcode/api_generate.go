@@ -6,7 +6,6 @@ import (
 	"io"
 	"net/http"
 	"net/url"
-	"os"
 	"strings"
 
 	"github.com/antihax/optional"
@@ -149,41 +148,7 @@ func (a *GenerateAPIService) Generate(ctx context.Context, barcodeType EncodeBar
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v *os.File
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 403 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -273,41 +238,7 @@ func (a *GenerateAPIService) GenerateBody(ctx context.Context, generateParams Ge
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v *os.File
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 403 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -453,41 +384,7 @@ func (a *GenerateAPIService) GenerateMultipart(ctx context.Context, barcodeType 
 			text:       string(responseBody),
 			StatusCode: httpResponse.StatusCode,
 		}
-
-		if httpResponse.StatusCode == 200 {
-			var v *os.File
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 401 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 403 {
-			var v ApiErrorResponse
-			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return returnValue, httpResponse, newErr
-			}
-			newErr.model = v
-			return returnValue, httpResponse, newErr
-		}
-
-		if httpResponse.StatusCode == 400 {
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
 			var v ApiErrorResponse
 			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
 			if err != nil {
