@@ -1,6 +1,6 @@
 module github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4
 
-go 1.17
+go 1.23
 
 require (
 	github.com/antihax/optional v1.0.0
