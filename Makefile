@@ -33,7 +33,7 @@ clean-gosum: clean-gomod
 
 .PHONY: clean-gomod
 clean-gomod:
-	./scripts/clean-go.mod.sh
+	# ./scripts/clean-go.mod.sh
 	./scripts/tidy.sh
 
 .PHONY: update
