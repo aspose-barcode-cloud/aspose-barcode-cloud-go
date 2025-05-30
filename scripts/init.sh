@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-go get -v -t -d ./...
+go get -v -t ./...
 # Versions compatible with Go 1.17
 go install golang.org/x/tools/cmd/goimports@v0.16.0
