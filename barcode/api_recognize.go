@@ -26,7 +26,7 @@ type RecognizeAPIRecognizeOpts struct {
 }
 
 /*
-* Recognize -  Recognize barcode from file on server using GET requests with parameters in route and query string.
+* Recognize -  Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use &#x60;recognize-body&#x60; or &#x60;recognize-multipart&#x60; endpoints instead.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param barcodeType Type of barcode to recognize
 * @param fileUrl Url to barcode image

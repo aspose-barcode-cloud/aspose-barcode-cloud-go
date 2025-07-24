@@ -18,7 +18,7 @@ var (
 type ScanAPIService service
 
 /*
-* Scan -  Scan barcode from file on server using GET requests with parameter in query string.
+* Scan -  Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use &#x60;scan-body&#x60; or &#x60;scan-multipart&#x60; endpoints instead.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param fileUrl Url to barcode image
 

@@ -4,14 +4,14 @@ All URIs are relative to *<https://api.aspose.cloud/v4.0>*
 
 Method | HTTP request | Description
 ------ | ------------ | -----------
-[**Scan**](ScanAPI.md#Scan) | **Get** /barcode/scan | Scan barcode from file on server using GET requests with parameter in query string.
+[**Scan**](ScanAPI.md#Scan) | **Get** /barcode/scan | Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use &#x60;scan-body&#x60; or &#x60;scan-multipart&#x60; endpoints instead.
 [**ScanBase64**](ScanAPI.md#ScanBase64) | **Post** /barcode/scan-body | Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
 [**ScanMultipart**](ScanAPI.md#ScanMultipart) | **Post** /barcode/scan-multipart | Scan barcode from file in request body using POST requests with parameter in multipart form.
 
 ## Scan
 
 > BarcodeResponseList Scan(ctx, fileUrl)
-Scan barcode from file on server using GET requests with parameter in query string.
+Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
 
 ### Scan Required Parameters
 
