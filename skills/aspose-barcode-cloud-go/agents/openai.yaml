@@ -1,0 +1,4 @@
+interface:
+  display_name: "Aspose.BarCode Cloud Go"
+  short_description: "Write Go barcode code with Aspose Cloud"
+  default_prompt: "Use $aspose-barcode-cloud-go to write or update Go code that generates, recognizes, or scans barcodes with Aspose.BarCode Cloud."

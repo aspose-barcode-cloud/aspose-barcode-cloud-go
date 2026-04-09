@@ -1,38 +1,22 @@
 ---
 name: aspose-barcode-cloud-go
-description: Write Go code that uses the Aspose.BarCode Cloud SDK for Go (module github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4) to generate, recognize, or scan barcodes (QR, Code128, DataMatrix, PDF417, EAN, UPC, Aztec, and 70+ other symbologies) via Aspose's cloud REST API. Use this skill whenever the user wants to generate a barcode image, read/decode/scan/recognize a barcode from an image or URL, work with QR codes in Go, or touches any import under `aspose-barcode-cloud-go` — even if they don't name the SDK explicitly. The SDK has several non-obvious idioms (the `/v4` import path, the `ContextJWT` auth pattern, the `antihax/optional` wrapper types, and the asymmetric `GenerateBody`/`RecognizeBase64`/`ScanBase64` naming) that are easy to get wrong from memory, so consult this skill instead of guessing.
+description: "Write or update Go code that uses the Aspose.BarCode Cloud SDK for Go (module `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4`) to generate, recognize, or scan barcodes through Aspose's cloud REST API. Use this skill whenever the user wants barcode work in Go, touches files under `submodules/go`, or mentions `GenerateAPI`, `RecognizeAPI`, `ScanAPI`, `GenerateParams`, `RecognizeBase64Request`, `ScanBase64Request`, `barcode.ContextJWT`, or `github.com/antihax/optional`. The Go SDK has several easy-to-miss idioms: the `/v4` import-path suffix, auth flowing through `context.Context` with `barcode.ContextJWT`, `optional.New*` wrappers only on `*Opts` structs, `GenerateBody` vs `RecognizeBase64` and `ScanBase64` naming, and GET recognize/scan methods requiring a public `fileUrl`, so consult this skill instead of guessing."
 ---
 
 # Aspose.BarCode Cloud SDK for Go
 
-The Aspose.BarCode Cloud SDK for Go is a thin Go wrapper over the Aspose.BarCode Cloud REST API. It lets you generate, recognize, and scan barcodes (linear, 2D, postal — QR, Code128, DataMatrix, PDF417, EAN13, UPC, Aztec, and ~70 more) by delegating to `https://api.aspose.cloud/v4.0`. All real work happens in the cloud; this SDK just handles auth, request shaping, and response parsing.
+The Go SDK is a thin generated client over the Aspose BarCode Cloud REST API. Most tasks come down to choosing the right API service (`GenerateAPI`, `RecognizeAPI`, or `ScanAPI`), choosing the right transport variant (GET, body/base64, or multipart), and wiring authentication through `context.Context` correctly.
 
-Because the SDK is generated from an OpenAPI spec, its surface has several unusual shapes that tend to trip people up when they write code from memory. This skill captures the idioms so you produce correct, compilable code on the first try.
+The module path includes a major-version suffix. Install and import `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4`, not the unsuffixed path.
 
-## When to use this skill
+## Quick start
 
-Consult this skill whenever the user asks for help:
-
-- Generating any barcode (QR, Code128, DataMatrix, Aztec, PDF417, EAN13, UPC, etc.) in Go.
-- Reading / recognizing / decoding / scanning a barcode from an image file, image bytes, or a URL in Go.
-- Setting up Aspose cloud authentication from Go.
-- Working with any code that imports `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go`.
-- Customizing barcode image appearance (size, colors, rotation, format) in Go.
-
-Even if the user does not name the SDK explicitly — for example, "I need to make a QR code for a URL in Go and save it as a PNG" — use this skill. There are very few well-maintained Go barcode SDKs that cover this many symbologies, and this one is what the user almost certainly wants if they are working in this repo or asking about Aspose.
-
-## Installation and setup
-
-The module path has a `/v4` major version suffix. Always include it in the `go get` command and in every import.
-
-```bash
-go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4@latest
-```
-
-The package also depends on `github.com/antihax/optional` for the "optional parameter" wrapper types. `go get` will pull it in transitively, but you must import it by hand whenever you set any optional field on an `*Opts` struct.
+Use these imports in most Go examples:
 
 ```go
 import (
+    "context"
+
     "github.com/antihax/optional"
 
     "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
@@ -40,19 +24,10 @@ import (
 )
 ```
 
-## Authentication
-
-The SDK authenticates against Aspose Cloud with a client-credentials OAuth2 flow. The user obtains a Client ID and Client Secret from [https://dashboard.aspose.cloud/applications](https://dashboard.aspose.cloud/applications). There is a free tier.
-
-There are two supported auth patterns. Prefer the first unless the user already has a pre-fetched bearer token.
-
-### Pattern 1 — `ContextJWT` (recommended, refreshes automatically)
-
-This is the canonical pattern used by every example and snippet in the repo. The trick is that authentication is threaded through `context.Context`, not through the client constructor. The SDK looks up a `TokenSource` under the opaque key `barcode.ContextJWT` on every request, refreshing the token as needed.
+Prefer one shared API client:
 
 ```go
-jwtConf := jwt.NewConfig(clientID, clientSecret) // TokenURL defaults to https://id.aspose.cloud/connect/token
-
+jwtConf := jwt.NewConfig(clientID, clientSecret)
 authCtx := context.WithValue(
     context.Background(),
     barcode.ContextJWT,
@@ -60,338 +35,142 @@ authCtx := context.WithValue(
 )
 
 client := barcode.NewAPIClient(barcode.NewConfiguration())
-
-// Pass authCtx to every API call.
-data, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "hello", nil)
 ```
 
-Do not try to set `Authorization` on the `Configuration` for this pattern — the SDK attaches the token itself when it sees `ContextJWT` in the request context.
+If the task is repo maintenance inside `submodules/go`, read `references/repo-workflow.md`. If the task needs the closest existing snippet, example, or test, read `references/snippet-map.md`.
 
-### Pattern 2 — Pre-fetched bearer token (e.g., from env var in tests/CI)
+## Authentication
 
-When the caller already has a bearer token (for example, from `TEST_JWT_ACCESS_TOKEN` in CI), skip the `jwt.Config` dance and put the token on the configuration's default headers. In this mode `authCtx` can be a plain `context.Background()`.
+Use one of these two patterns:
+
+1. Let the SDK fetch and refresh JWT tokens for you through `barcode.ContextJWT`.
+
+```go
+jwtConf := jwt.NewConfig(clientID, clientSecret)
+authCtx := context.WithValue(
+    context.Background(),
+    barcode.ContextJWT,
+    jwtConf.TokenSource(context.Background()),
+)
+
+client := barcode.NewAPIClient(barcode.NewConfiguration())
+```
+
+2. Inject a pre-fetched bearer token when snippets or CI already provide one.
 
 ```go
 config := barcode.NewConfiguration()
-config.AddDefaultHeader("Authorization", "Bearer "+preFetchedToken)
+config.AddDefaultHeader("Authorization", "Bearer "+token)
+
 client := barcode.NewAPIClient(config)
 authCtx := context.Background()
 ```
 
-Repository snippets and tests often use a helper that picks pattern 2 when `TEST_JWT_ACCESS_TOKEN` is set and falls back to pattern 1 otherwise. Mirror that when writing code that needs to run both locally and in CI.
+Inside this repo, snippet files often check `TEST_JWT_ACCESS_TOKEN` first and fall back to client credentials. Tests load `test/configuration.json` first, then build the same auth flow from `TEST_*` environment variables when the file is absent.
 
-## The three APIs at a glance
+## Choose the right API shape
 
-The SDK exposes three services through the `APIClient`:
+Pick the operation first:
 
-| Service         | What it does                                                 | Returns                  |
-|-----------------|--------------------------------------------------------------|--------------------------|
-| `GenerateAPI`   | Creates a barcode image from text/bytes                      | `[]byte` (raw image)     |
-| `RecognizeAPI`  | Decodes barcodes of one specific type from an image          | `BarcodeResponseList`    |
-| `ScanAPI`       | Auto-detects *any* barcodes in an image (simpler, fewer knobs) | `BarcodeResponseList`  |
+- `GenerateAPI`: create a barcode image.
+- `RecognizeAPI`: decode one or more expected barcode types and optionally tune recognition quality.
+- `ScanAPI`: auto-detect barcode types with the smallest API surface.
 
-Choose between `RecognizeAPI` and `ScanAPI` by asking: does the user know the barcode type in advance and want to tune recognition quality / image kind? Use `RecognizeAPI`. Otherwise, or when they just say "scan this image for barcodes", use `ScanAPI` — it takes no type parameter and has no recognition tuning knobs, so the code is shorter.
+Then pick the transport variant based on what the caller has:
 
-### The three transport variants
+- Public image URL: use `RecognizeAPI.Recognize` or `ScanAPI.Scan`. `fileUrl` must be a public URL, not a local path.
+- Local file on disk: use `RecognizeMultipart` or `ScanMultipart`.
+- Raw bytes already in memory: base64-encode them yourself and use `RecognizeBase64` or `ScanBase64`.
+- Short text plus query-style parameters for generation: use `Generate`.
+- Structured generate payload or longer data: use `GenerateBody`.
+- Multipart-form generation: use `GenerateMultipart` only when the caller explicitly needs that shape.
 
-Each service has three variants: `Get`, `Body` (a.k.a. `Base64` for recognize/scan), and `Multipart`. They differ in how the image or payload gets to the server, **not** in the operation they perform. Pick one by asking what the user has on hand:
+Key method names:
 
-| User has…                                                      | Variant                                  | Why                                                                                     |
-|----------------------------------------------------------------|------------------------------------------|-----------------------------------------------------------------------------------------|
-| A local file on disk and the ability to open an `*os.File`     | `…Multipart`                             | Simplest — just pass `*os.File`. No base64 step, no temporary buffers.                 |
-| Raw bytes already in memory                                    | `…Body` / `…Base64`                      | Wrap them in the relevant request struct; JSON body; no file needed.                    |
-| A public URL to the image (Generate: short text; Recognize: remote image) | `…Get`                        | Everything goes on the query string — no body. Useful when the data is tiny or remote.  |
+- `Generate`
+- `GenerateBody`
+- `GenerateMultipart`
+- `Recognize`
+- `RecognizeBase64`
+- `RecognizeMultipart`
+- `Scan`
+- `ScanBase64`
+- `ScanMultipart`
 
-A common point of confusion: **for `RecognizeAPI` and `ScanAPI`, the `Get` variant takes a `fileUrl` (a URL to an image hosted on the public internet)** — it does *not* upload a local file. If the user has a local file and no URL, use `Multipart` or `Base64`, not `Get`.
+## Non-obvious SDK rules
 
-The body-variant method names are asymmetric, and this is the single most common "I thought that function existed" mistake:
+1. The `/v4` suffix is mandatory in every import path. Omitting it breaks builds.
+2. Authentication usually flows through `context.Context` with `barcode.ContextJWT`, not through a special auth client type.
+3. `Generate` returns `[]byte`. Save the result with `os.WriteFile` or another writer.
+4. `RecognizeBase64` and `ScanBase64` expect a base64 string in the request model. The SDK does not encode raw bytes for you.
+5. `RecognizeBase64Request.BarcodeTypes` is a slice of `DecodeBarcodeType`, but `Recognize` and `RecognizeMultipart` take a single `DecodeBarcodeType`.
+6. `ScanAPI` does not take barcode types or recognition tuning knobs. Use it when the caller wants auto-detection.
+7. Optional-parameter structs (`*Opts`) use `optional.New*` wrappers. Body structs such as `GenerateParams`, `RecognizeBase64Request`, and `ScanBase64Request` use plain values.
+8. GET-based recognize and scan methods only work with remote files reachable by URL. For local files, use multipart or base64.
+9. Every recognize or scan result is a `BarcodeResponseList`. Iterate `result.Barcodes` and read `BarcodeValue`, `Type`, `Region`, and `Checksum`.
+10. API failures may come back as `barcode.GenericAPIError`; keep the returned `*http.Response` around when debugging status codes and response bodies.
 
-- `GenerateAPI.GenerateBody`  — yes, literally `GenerateBody`
-- `RecognizeAPI.RecognizeBase64` — **NOT** `RecognizeBody`
-- `ScanAPI.ScanBase64` — **NOT** `ScanBody`
+## Common patterns
 
-The reason is historical: the Recognize/Scan body variants require the image as a base64 string, so the SDK names them after that fact. When in doubt, use `go doc github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode` to check.
-
-## Generating a barcode
-
-Every generate call returns the raw image bytes as `[]byte`. Save them to a file with `os.WriteFile`. The image format defaults to PNG; pass `BarcodeImageFormatJpeg`, `BarcodeImageFormatSvg`, `BarcodeImageFormatTiff`, `BarcodeImageFormatGif`, or leave default for PNG.
-
-### Simple case — GET variant
-
-Use `Generate` when the payload is short enough to fit on a query string and you want minimum boilerplate. Optional parameters come through a `*GenerateAPIGenerateOpts` struct; wrap each value with the matching `optional.New*` constructor.
+Generate and save a QR code:
 
 ```go
 opts := &barcode.GenerateAPIGenerateOpts{
     ImageFormat:  optional.NewInterface(barcode.BarcodeImageFormatPng),
-    TextLocation: optional.NewInterface(barcode.CodeLocationBelow),
-    ImageWidth:   optional.NewFloat32(300),
-    ImageHeight:  optional.NewFloat32(300),
+    TextLocation: optional.NewInterface(barcode.CodeLocationNone),
 }
 
 imageBytes, _, err := client.GenerateAPI.Generate(
     authCtx,
     barcode.EncodeBarcodeTypeQR,
-    "https://example.com",
-    opts,
-)
-if err != nil {
-    return fmt.Errorf("generate: %w", err)
-}
-
-if err := os.WriteFile("qr.png", imageBytes, 0644); err != nil {
-    return fmt.Errorf("save: %w", err)
-}
-```
-
-Pass `nil` for `opts` when you don't need any optional params.
-
-### Rich case — POST Body variant
-
-When the user wants to pass multi-kilobyte data (e.g., a long URL, vCard, or base64-encoded binary), or when they want to send the appearance settings as a structured payload rather than query params, use `GenerateBody`. It takes a single `GenerateParams` struct.
-
-```go
-params := barcode.GenerateParams{
-    BarcodeType: barcode.EncodeBarcodeTypeCode128,
-    EncodeData: barcode.EncodeData{
-        Data:     "Aspose.BarCode.Cloud",
-        DataType: barcode.EncodeDataTypeStringData, // or Base64Bytes / HexBytes
-    },
-    BarcodeImageParams: barcode.BarcodeImageParams{
-        ImageFormat:     barcode.BarcodeImageFormatPng,
-        ForegroundColor: "#FF0000",
-        BackgroundColor: "#FFFF00",
-        ImageWidth:      400,
-        ImageHeight:     120,
-        Units:           barcode.GraphicsUnitPixel,
-        RotationAngle:   0,
-    },
-}
-
-imageBytes, _, err := client.GenerateAPI.GenerateBody(authCtx, params)
-```
-
-`BarcodeImageParams` is a plain value field on `GenerateParams`, not a pointer — leave it zero-valued if you don't need appearance customization. Colors accept either a named color from the .NET `System.Drawing.Color` set ("AliceBlue") or a hex ARGB value starting with `#` (`#FF0000`, `#80FF0000` with alpha).
-
-### Multipart variant
-
-`GenerateMultipart` posts the same parameters as form fields instead of JSON. Use it when some proxy or debugging setup requires multipart. Most code should prefer `Generate` or `GenerateBody`.
-
-## Recognizing a specific barcode type
-
-Use `RecognizeAPI` when the caller knows what type(s) of barcode to look for and wants to tune recognition (photo vs. scanned document, fast vs. accurate). Every recognize call returns a `BarcodeResponseList` with a `Barcodes` slice; iterate it and read `BarcodeValue`, `Type`, `Region`, and `Checksum`.
-
-### From a local file (`Multipart` — recommended for files on disk)
-
-```go
-file, err := os.Open("qr.png")
-if err != nil {
-    return err
-}
-defer file.Close()
-
-opts := &barcode.RecognizeAPIRecognizeMultipartOpts{
-    RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
-    RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
-}
-
-result, _, err := client.RecognizeAPI.RecognizeMultipart(
-    authCtx,
-    barcode.DecodeBarcodeTypeQR, // a SINGLE type for multipart/get
-    file,
+    "hello from Go",
     opts,
 )
 if err != nil {
     return err
 }
 
-for _, bc := range result.Barcodes {
-    fmt.Printf("type=%s value=%s\n", bc.Type, bc.BarcodeValue)
-}
+return os.WriteFile("qr.png", imageBytes, 0644)
 ```
 
-### From raw bytes already in memory (`Base64`)
-
-The body variant takes a `RecognizeBase64Request` struct. **You must base64-encode the bytes yourself** — the SDK does not do it. Note that `BarcodeTypes` is a slice here, not a single value: Base64 accepts multiple decode types in one call.
+Recognize specific barcode types from bytes already in memory:
 
 ```go
-imageBytes, err := os.ReadFile("qr.png")
-if err != nil {
-    return err
-}
-
 req := barcode.RecognizeBase64Request{
     BarcodeTypes: []barcode.DecodeBarcodeType{
         barcode.DecodeBarcodeTypeQR,
         barcode.DecodeBarcodeTypeCode128,
     },
-    FileBase64:           base64.StdEncoding.EncodeToString(imageBytes),
-    RecognitionMode:      barcode.RecognitionModeNormal,
-    RecognitionImageKind: barcode.RecognitionImageKindPhoto,
+    FileBase64: base64.StdEncoding.EncodeToString(imageBytes),
 }
 
 result, _, err := client.RecognizeAPI.RecognizeBase64(authCtx, req)
 ```
 
-`RecognitionMode` and `RecognitionImageKind` on the request struct are **not** wrapped in `optional.*` — they are plain string-backed types with `omitempty` JSON tags. Leave them zero-valued if not needed.
-
-### From a public image URL (`Get`)
+Auto-scan a local file without specifying the barcode type:
 
 ```go
-opts := &barcode.RecognizeAPIRecognizeOpts{}
-result, _, err := client.RecognizeAPI.Recognize(
-    authCtx,
-    barcode.DecodeBarcodeTypeQR,
-    "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png",
-    opts,
-)
-```
-
-## Scanning for any barcode (auto-detect)
-
-`ScanAPI` is the zero-configuration counterpart to `RecognizeAPI`: no type parameter, no recognition tuning, just "tell me what barcodes are in this image". Use it when the user says "scan this" or "what barcode is in this image" without specifying a type.
-
-```go
-file, err := os.Open("unknown_barcode.png")
+file, err := os.Open("unknown.png")
 if err != nil {
     return err
 }
 defer file.Close()
 
 result, _, err := client.ScanAPI.ScanMultipart(authCtx, file)
-if err != nil {
-    return err
-}
-
-if len(result.Barcodes) == 0 {
-    fmt.Println("no barcodes found")
-    return nil
-}
-for i, bc := range result.Barcodes {
-    fmt.Printf("#%d type=%s value=%s\n", i+1, bc.Type, bc.BarcodeValue)
-}
 ```
 
-Body variant: `ScanBase64` takes a `ScanBase64Request` containing just `FileBase64` (no types, no recognition options). GET variant: `Scan` takes just `fileUrl`.
+## Working in this repo
 
-## Key enums and types
+Read `references/repo-workflow.md` when the task changes SDK source, tests, snippets, module metadata, or generated code in `submodules/go`.
 
-These are string-backed types — prefer the generated constants over raw string literals so that typos become compile errors. The list below shows the most common members; run `go doc barcode EncodeBarcodeType` for the full set.
+Read `references/snippet-map.md` when the task needs the closest existing pattern for generate, recognize, scan, auth, or repo-test scenarios.
 
-- `barcode.EncodeBarcodeType` — what to generate. Common: `EncodeBarcodeTypeQR`, `EncodeBarcodeTypeCode128`, `EncodeBarcodeTypeCode39`, `EncodeBarcodeTypeDataMatrix`, `EncodeBarcodeTypePdf417`, `EncodeBarcodeTypeAztec`, `EncodeBarcodeTypeEAN13`, `EncodeBarcodeTypeEAN8`, `EncodeBarcodeTypeUPCA`, `EncodeBarcodeTypeUPCE`, `EncodeBarcodeTypeITF14`, `EncodeBarcodeTypeMaxiCode`, `EncodeBarcodeTypeHanXin`, `EncodeBarcodeTypeDotCode`, `EncodeBarcodeTypeMicroQR`.
-- `barcode.DecodeBarcodeType` — what to look for when recognizing. Same symbology names plus `DecodeBarcodeTypeMostCommonlyUsed` (a convenient catch-all for "try the usual suspects") and HIBC variants.
-- `barcode.EncodeDataType` — `EncodeDataTypeStringData` (default), `EncodeDataTypeBase64Bytes`, `EncodeDataTypeHexBytes`. Use non-default values when encoding binary payloads.
-- `barcode.BarcodeImageFormat` — `Png` (default), `Jpeg`, `Svg`, `Tiff`, `Gif`.
-- `barcode.CodeLocation` — `Below` (default for 1D), `Above`, `None` (default for 2D). Controls whether the human-readable text appears around the barcode.
-- `barcode.GraphicsUnit` — `Pixel` (default), `Point`, `Inch`, `Millimeter`. Unit system for `ImageWidth`, `ImageHeight`, `Resolution`.
-- `barcode.RecognitionMode` — `Fast`, `Normal`, `Excellent`. Speed/accuracy tradeoff for recognize endpoints.
-- `barcode.RecognitionImageKind` — `Photo`, `ScannedDocument`, `ClearImage`. Hint about what kind of input image the server is dealing with.
+## Final checklist
 
-## The `optional.*` wrapper idiom
-
-Any field on a `*Opts` struct typed as `optional.Interface`, `optional.String`, `optional.Float32`, or `optional.Int32` must be set using the matching constructor from `github.com/antihax/optional`:
-
-```go
-opts := &barcode.GenerateAPIGenerateOpts{
-    ImageFormat:     optional.NewInterface(barcode.BarcodeImageFormatJpeg),
-    ForegroundColor: optional.NewString("#FF0000"),
-    Resolution:      optional.NewFloat32(300),
-    RotationAngle:   optional.NewInt32(90),
-}
-```
-
-Do **not** assign raw values — e.g. `opts.ImageFormat = barcode.BarcodeImageFormatJpeg` will not compile because the field is `optional.Interface`, which is a struct with an unexported `value` field. The `optional.New*` constructors are the only way to build one.
-
-In contrast, fields on `GenerateParams`, `BarcodeImageParams`, `RecognizeBase64Request`, and `ScanBase64Request` (the Body-variant request structs) are **plain values**, not `optional.*` wrappers. Assign directly and leave unused fields zero — JSON `omitempty` takes care of not sending them.
-
-## Error handling
-
-Every API method returns `(result, *http.Response, error)`. The error may be a generic transport error (network, timeout) or a `barcode.GenericAPIError` for HTTP 4xx/5xx responses. The latter exposes `.Error()`, `.Text()` (response body), and `.Model()` (decoded `ApiErrorResponse`). The underlying `*http.Response` is also returned even on failure, so you can inspect `StatusCode` directly.
-
-```go
-imageBytes, httpResp, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "data", nil)
-if err != nil {
-    var apiErr barcode.GenericAPIError
-    if errors.As(err, &apiErr) {
-        return fmt.Errorf("aspose api %d: %s", apiErr.StatusCode, apiErr.Text())
-    }
-    if httpResp != nil {
-        return fmt.Errorf("aspose transport error (%d): %w", httpResp.StatusCode, err)
-    }
-    return fmt.Errorf("aspose transport error: %w", err)
-}
-```
-
-Do not discard the `*http.Response` when debugging — its status and headers are often the only clue when the body is empty.
-
-## A complete, minimal "generate-then-scan" template
-
-This is the smallest program that exercises both the generate and scan paths end-to-end. Use it as a starting point when the user says "I just want to see it work".
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
-    "github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode/jwt"
-)
-
-func main() {
-    clientID := os.Getenv("ASPOSE_CLIENT_ID")
-    clientSecret := os.Getenv("ASPOSE_CLIENT_SECRET")
-
-    jwtConf := jwt.NewConfig(clientID, clientSecret)
-    authCtx := context.WithValue(
-        context.Background(),
-        barcode.ContextJWT,
-        jwtConf.TokenSource(context.Background()),
-    )
-
-    client := barcode.NewAPIClient(barcode.NewConfiguration())
-
-    // 1. Generate a QR code and save it.
-    imageBytes, _, err := client.GenerateAPI.Generate(
-        authCtx,
-        barcode.EncodeBarcodeTypeQR,
-        "hello from Go",
-        nil,
-    )
-    if err != nil {
-        panic(fmt.Errorf("generate: %w", err))
-    }
-    if err := os.WriteFile("out.png", imageBytes, 0644); err != nil {
-        panic(err)
-    }
-
-    // 2. Scan it back using the auto-detect Scan API.
-    file, err := os.Open("out.png")
-    if err != nil {
-        panic(err)
-    }
-    defer file.Close()
-
-    result, _, err := client.ScanAPI.ScanMultipart(authCtx, file)
-    if err != nil {
-        panic(fmt.Errorf("scan: %w", err))
-    }
-
-    for _, bc := range result.Barcodes {
-        fmt.Printf("found %s: %q\n", bc.Type, bc.BarcodeValue)
-    }
-}
-```
-
-## Things to double-check before handing code back
-
-A short final checklist to run through before finalizing any code you generate with this skill:
-
-1. Every import of the `barcode` or `barcode/jwt` packages starts with `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/…`. The `/v4` suffix is mandatory — omitting it yields "no required module provides package" at build time.
-2. `barcode.ContextJWT` (not `ContextOAuth2`, not `ContextAccessToken`) is the key used with `jwt.NewConfig(...)`.
-3. Body-variant methods are named `GenerateBody`, `RecognizeBase64`, `ScanBase64` — **not** `RecognizeBody` or `ScanBody`.
-4. Optional-parameter structs (`*Opts`) use `optional.New*(...)`; request-body structs (`*Params`, `*Request`) use plain values.
-5. For `RecognizeBase64Request`, `BarcodeTypes` is a `[]DecodeBarcodeType` slice, not a single value.
-6. When reading results, iterate `result.Barcodes` and read `.BarcodeValue`, `.Type`, `.Region`, `.Checksum`. Don't expect a flat string — a single image can contain multiple barcodes.
-7. Client ID and Client Secret should be read from environment variables or a config file in production code — never hardcode them, even as placeholders that look like real values.
+1. Use the correct module path: `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/...`.
+2. Choose `GenerateAPI`, `RecognizeAPI`, or `ScanAPI` based on whether the caller is generating, recognizing known types, or auto-scanning unknown types.
+3. Use `barcode.ContextJWT` for the normal auth flow and keep pre-fetched-token handling consistent with the surrounding repo code.
+4. Pick GET only for public URLs, multipart for local files, and base64 request models for in-memory bytes.
+5. Use `optional.New*` only on `*Opts` structs, not on request-body structs.
+6. Treat generate responses as image bytes and recognize/scan responses as `result.Barcodes`.
+7. When changing the repo, validate with the submodule workflow in `references/repo-workflow.md`.
