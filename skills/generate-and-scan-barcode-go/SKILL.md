@@ -1,9 +1,9 @@
 ---
-name: aspose-barcode-cloud-go
+name: generate-and-scan-barcode-go
 description: "Write or update Go code that uses the Aspose.BarCode Cloud SDK for Go (module `github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4`) to generate, recognize, or scan barcodes through Aspose's cloud REST API. Use this skill whenever the user wants barcode work in Go, touches files under `submodules/go`, or mentions `GenerateAPI`, `RecognizeAPI`, `ScanAPI`, `GenerateParams`, `RecognizeBase64Request`, `ScanBase64Request`, `barcode.ContextJWT`, or `github.com/antihax/optional`. The Go SDK has several easy-to-miss idioms: the `/v4` import-path suffix, auth flowing through `context.Context` with `barcode.ContextJWT`, `optional.New*` wrappers only on `*Opts` structs, `GenerateBody` vs `RecognizeBase64` and `ScanBase64` naming, and GET recognize/scan methods requiring a public `fileUrl`, so consult this skill instead of guessing."
 ---
 
-# Aspose.BarCode Cloud SDK for Go
+# Generate and scan barcode in Go
 
 The Go SDK is a thin generated client over the Aspose BarCode Cloud REST API. Most tasks come down to choosing the right API service (`GenerateAPI`, `RecognizeAPI`, or `ScanAPI`), choosing the right transport variant (GET, body/base64, or multipart), and wiring authentication through `context.Context` correctly.
 

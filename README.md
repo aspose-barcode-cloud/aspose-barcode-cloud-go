@@ -29,7 +29,7 @@ To use these SDKs, you will need Client Id and Client Secret which can be looked
 
 ## AI Agent Skills
 
-This repository includes an AI-agent skill in [`skills/aspose-barcode-cloud-go/SKILL.md`](skills/aspose-barcode-cloud-go/SKILL.md). Point your coding agent to it when working with this SDK so it follows the repo workflow and SDK-specific API patterns.
+This repository includes an AI-agent skill in [`skills/generate-and-scan-barcode-go/SKILL.md`](skills/generate-and-scan-barcode-go/SKILL.md). Point your coding agent to it when working with this SDK so it follows the repo workflow and SDK-specific API patterns.
 
 ## Prerequisites
 
