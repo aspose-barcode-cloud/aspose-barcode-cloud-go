@@ -67,7 +67,7 @@ func TestRecognizeMultipart(t *testing.T) {
 	defer file.Close()
 
 	opts := &barcode.RecognizeAPIRecognizeMultipartOpts{
-		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
+		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindScannedDocument),
 		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
 	}
 
