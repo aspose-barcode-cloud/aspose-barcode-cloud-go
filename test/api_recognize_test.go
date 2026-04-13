@@ -68,7 +68,7 @@ func TestRecognizeMultipart(t *testing.T) {
 
 	opts := &barcode.RecognizeAPIRecognizeMultipartOpts{
 		RecognitionImageKind: optional.NewInterface(barcode.RecognitionImageKindClearImage),
-		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeNormal),
+		RecognitionMode:      optional.NewInterface(barcode.RecognitionModeFast),
 	}
 
 	response, _, err := apiClient.RecognizeAPI.RecognizeMultipart(authCtx, barcode.DecodeBarcodeTypeMostCommonlyUsed, file, opts)
