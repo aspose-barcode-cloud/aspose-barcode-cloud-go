@@ -44,8 +44,12 @@ update: update_packages clean-gomod
 .PHONY: release
 release: format lint update_packages clean-gomod build test
 
+.PHONY: format-doc
+format-doc:
+	sed -i -e '$${/^$$/d;}' "README.md"
+
 .PHONY: after-gen
-after-gen: init format insert-examples clean-gomod
+after-gen: init format insert-examples clean-gomod format-doc
 
 .PHONY: insert-examples
 insert-examples:
