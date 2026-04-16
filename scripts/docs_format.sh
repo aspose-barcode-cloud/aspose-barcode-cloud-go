@@ -7,6 +7,7 @@ format_md_file () {
 }
 
 format_md_file "README.md"
+sed -i -e '${/^$/d;}' "README.md"
 
 for filename in ./docs/*.md; do
   format_md_file "$filename"
