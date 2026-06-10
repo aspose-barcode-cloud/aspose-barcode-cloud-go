@@ -1,6 +1,6 @@
 package barcode
 
-// EncodeDataType : Types of data can be encoded to barcode
+// EncodeDataType : Types of data that can be encoded into a barcode.
 type EncodeDataType string
 
 // List of EncodeDataType

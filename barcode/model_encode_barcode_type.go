@@ -1,6 +1,6 @@
 package barcode
 
-// EncodeBarcodeType : See Aspose.BarCode.Generation.EncodeTypes
+// EncodeBarcodeType : See https://reference.aspose.com/barcode/net/aspose.barcode.generation/encodetypes/
 type EncodeBarcodeType string
 
 // List of EncodeBarcodeType
