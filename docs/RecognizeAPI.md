@@ -65,7 +65,7 @@ Recognize a barcode from a file in the request body using a POST request with mu
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
- **barcodeType** | [**DecodeBarcodeType**](DecodeBarcodeType.md) |  |
+ **barcodeType** | [**DecodeBarcodeType**](DecodeBarcodeType.md) | See https://reference.aspose.com/barcode/net/aspose.barcode.barcoderecognition/decodetype/ |
  **file** | ***os.File*****os.File** | Barcode image file. |
  **optional** | ***RecognizeAPIRecognizeMultipartOpts** | optional parameters | nil if no parameters
 
@@ -75,8 +75,8 @@ Optional parameters are passed through a pointer to a RecognizeAPIRecognizeMulti
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
-**RecognitionMode** | [**optional.Interface of RecognitionMode**](RecognitionMode.md) |  |
-**RecognitionImageKind** | [**optional.Interface of RecognitionImageKind**](RecognitionImageKind.md) |  |
+**RecognitionMode** | [**optional.Interface of RecognitionMode**](RecognitionMode.md) | Recognition mode. |
+**RecognitionImageKind** | [**optional.Interface of RecognitionImageKind**](RecognitionImageKind.md) | Image kind for recognition. |
 
 ### RecognizeMultipart Return type
 

@@ -2,13 +2,16 @@ package barcode
 
 // BarcodeImageParams - Optional barcode image parameters.
 type BarcodeImageParams struct {
-	ImageFormat  BarcodeImageFormat `json:"imageFormat,omitempty"`
-	TextLocation CodeLocation       `json:"textLocation,omitempty"`
+	// Barcode output image format. Default value: png.
+	ImageFormat BarcodeImageFormat `json:"imageFormat,omitempty"`
+	// Specify the displayed text location. Set to CodeLocation.None to hide CodeText. Default value depends on BarcodeType: CodeLocation.Below for 1D barcodes and CodeLocation.None for 2D barcodes.
+	TextLocation CodeLocation `json:"textLocation,omitempty"`
 	// Specify the display color for bars and content. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value starting with #. For example: AliceBlue or #FF000000. Default value: Black.
 	ForegroundColor string `json:"foregroundColor,omitempty"`
 	// Background color of the barcode image. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value starting with #. For example: AliceBlue or #FF000000. Default value: White.
-	BackgroundColor string       `json:"backgroundColor,omitempty"`
-	Units           GraphicsUnit `json:"units,omitempty"`
+	BackgroundColor string `json:"backgroundColor,omitempty"`
+	// Common units for all measurements. Default units: pixels.
+	Units GraphicsUnit `json:"units,omitempty"`
 	// Resolution of the barcode image. One value for both dimensions. Default value: 96 dpi. Decimal separator is a dot.
 	Resolution float32 `json:"resolution,omitempty"`
 	// Height of the barcode image in the specified units. Default units: pixels. Decimal separator is a dot.

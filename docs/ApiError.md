@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **Message** | **NullableString** | Gets or sets error message. |
 **Description** | **NullableString** | Gets or sets error description. | [optional]
 **DateTime** | **time.Time** | Gets or sets server datetime. | [optional]
-**InnerError** | [***ApiError**](ApiError.md) |  | [optional]
+**InnerError** | [***ApiError**](ApiError.md) | Gets or sets inner error. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

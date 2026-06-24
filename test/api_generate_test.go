@@ -13,7 +13,9 @@ func TestGenerate(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	opts := &barcode.GenerateAPIGenerateOpts{
-		ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatSvg),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			ImageFormat: barcode.BarcodeImageFormatSvg,
+		}),
 	}
 
 	fileBytes, _, err := apiClient.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeCode128, "Hello", opts)
