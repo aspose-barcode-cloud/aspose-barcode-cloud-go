@@ -40,7 +40,21 @@ func Generate(client *barcode.APIClient, authCtx context.Context) error {
 	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
 	opts := &barcode.GenerateAPIGenerateOpts{
-		ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatPng),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			ImageFormat:     barcode.BarcodeImageFormatPng,
+			ForegroundColor: "Black",
+			BackgroundColor: "White",
+			TextLocation:    barcode.CodeLocationBelow,
+			ImageHeight:     200,
+			ImageWidth:      200,
+			Resolution:      300,
+		}),
+		QrParams: optional.NewInterface(barcode.QrParams{
+			QrEncodeMode:  barcode.QREncodeModeAuto,
+			QrErrorLevel:  barcode.QRErrorLevelLevelM,
+			QrVersion:     barcode.QRVersionAuto,
+			QrAspectRatio: 1.0,
+		}),
 	}
 
 	fileBytes, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "Aspose.BarCode.Cloud", opts)

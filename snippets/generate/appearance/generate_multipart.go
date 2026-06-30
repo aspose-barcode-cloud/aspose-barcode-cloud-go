@@ -46,8 +46,15 @@ func main() {
 	fileName, err := filepath.Abs(filepath.Join("testdata", "Pdf417.svg"))
 
 	fileBytes, _, err := client.GenerateAPI.GenerateMultipart(authCtx, barcode.EncodeBarcodeTypePdf417, "Aspose.BarCode.Cloud", &barcode.GenerateAPIGenerateMultipartOpts{
-		TextLocation: optional.NewInterface(barcode.CodeLocationAbove),
-		ImageFormat:  optional.NewInterface(barcode.BarcodeImageFormatSvg),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			TextLocation: barcode.CodeLocationAbove,
+			ImageFormat:  barcode.BarcodeImageFormatSvg,
+		}),
+		Pdf417Params: optional.NewInterface(barcode.Pdf417Params{
+			Pdf417EncodeMode:  barcode.Pdf417EncodeModeAuto,
+			Pdf417ErrorLevel:  barcode.Pdf417ErrorLevelLevel2,
+			Pdf417AspectRatio: 2.0,
+		}),
 	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)

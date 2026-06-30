@@ -46,9 +46,11 @@ func main() {
 	fileName, err := filepath.Abs(filepath.Join("testdata", "qr.png"))
 
 	response, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "https://products.aspose.cloud/barcode/family/", &barcode.GenerateAPIGenerateOpts{
-		ForegroundColor: optional.NewString("DarkBlue"),
-		BackgroundColor: optional.NewString("LightGray"),
-		ImageFormat:     optional.NewInterface(barcode.BarcodeImageFormatPng),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			ForegroundColor: "DarkBlue",
+			BackgroundColor: "LightGray",
+			ImageFormat:     barcode.BarcodeImageFormatPng,
+		}),
 	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)
