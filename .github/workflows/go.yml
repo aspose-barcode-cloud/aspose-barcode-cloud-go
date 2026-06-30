@@ -34,3 +34,24 @@ jobs:
          make ci
         env:
           TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
+
+  coverage:
+    name: Library coverage
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache-dependency-path: go.sum
+
+      - name: Get dependencies
+        run: make init
+
+      - name: Check library coverage
+        run: |
+         chmod +x scripts/*
+         make coverage
+        env:
+          TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}

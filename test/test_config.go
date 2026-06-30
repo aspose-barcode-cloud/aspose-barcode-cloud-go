@@ -44,10 +44,7 @@ func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
 	var config *Config
 
 	if f, err := os.Open(fileName); os.IsNotExist(err) {
-		config, err = newConfigFromEnv(envPrefix)
-		if err != nil {
-			return nil, err
-		}
+		config = newDefaultConfig()
 	} else {
 		if err != nil {
 			return nil, err
@@ -65,6 +62,8 @@ func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
 		}
 	}
 
+	applyEnvToConfig(config, envPrefix)
+
 	if err := config.JwtConfig.Validate(); err != nil {
 		return nil, err
 	}
@@ -72,25 +71,31 @@ func NewTestConfig(fileName string, envPrefix string) (*Config, error) {
 	return config, nil
 }
 
-func newConfigFromJSON(bytes []byte) (*Config, error) {
-	config := Config{
+func newDefaultConfig() *Config {
+	return &Config{
 		JwtConfig: *jwt.NewConfig("", ""),
 		APIConfig: *api.NewConfiguration(),
 	}
-	err := json.Unmarshal(bytes, &config)
+}
+
+func newConfigFromJSON(bytes []byte) (*Config, error) {
+	config := newDefaultConfig()
+	err := json.Unmarshal(bytes, config)
 	if err != nil {
 		return nil, err
 	}
 
-	return &config, nil
+	return config, nil
 }
 
 func newConfigFromEnv(prefix string) (*Config, error) {
-	pConfig := &Config{
-		JwtConfig: *jwt.NewConfig("", ""),
-		APIConfig: *api.NewConfiguration(),
-	}
+	pConfig := newDefaultConfig()
+	applyEnvToConfig(pConfig, prefix)
 
+	return pConfig, nil
+}
+
+func applyEnvToConfig(pConfig *Config, prefix string) {
 	pRoot := reflect.ValueOf(pConfig)
 	root := pRoot.Elem()
 	typeOfRoot := root.Type()
@@ -114,6 +119,4 @@ func newConfigFromEnv(prefix string) (*Config, error) {
 			}
 		}
 	}
-
-	return pConfig, nil
 }
