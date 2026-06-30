@@ -224,11 +224,11 @@ type RecognizeAPIRecognizeMultipartOpts struct {
 /*
 * RecognizeMultipart -  Recognize a barcode from a file in the request body using a POST request with multipart form parameters.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param barcodeType
+* @param barcodeType See https://reference.aspose.com/barcode/net/aspose.barcode.barcoderecognition/decodetype/
 * @param file Barcode image file.
 * @param optional nil or *RecognizeAPIRecognizeMultipartOpts - Optional Parameters:
-  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -
-  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -
+  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -  Recognition mode.
+  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -  Image kind for recognition.
 
 * @return BarcodeResponseList
 */

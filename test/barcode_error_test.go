@@ -21,7 +21,9 @@ func TestWrongFormat(t *testing.T) {
 		barcode.EncodeBarcodeTypeCode128,
 		"text",
 		&barcode.GenerateAPIGenerateOpts{
-			ImageFormat: optional.NewInterface("wrong"),
+			BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+				ImageFormat: barcode.BarcodeImageFormat("wrong"),
+			}),
 		},
 	)
 	require.NotNil(t, err)
