@@ -26,13 +26,13 @@ type RecognizeAPIRecognizeOpts struct {
 }
 
 /*
-* Recognize -  Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use &#x60;recognize-body&#x60; or &#x60;recognize-multipart&#x60; endpoints instead.
+* Recognize -  Recognize a barcode from a file on an Internet server using a GET request with a query string parameter. For recognizing files from your hard drive, use &#x60;recognize-body&#x60; or &#x60;recognize-multipart&#x60; endpoints instead.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param barcodeType Type of barcode to recognize
-* @param fileUrl Url to barcode image
+* @param barcodeType Type of barcode to recognize.
+* @param fileUrl URL to the barcode image.
 * @param optional nil or *RecognizeAPIRecognizeOpts - Optional Parameters:
-  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -  Recognition mode
-  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -  Image kind for recognition
+  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -  Recognition mode.
+  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -  Image kind for recognition.
 
 * @return BarcodeResponseList
 */
@@ -126,9 +126,9 @@ func (a *RecognizeAPIService) Recognize(ctx context.Context, barcodeType DecodeB
 }
 
 /*
-* RecognizeBase64 -  Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+* RecognizeBase64 -  Recognize a barcode from a file in the request body using a POST request with JSON or XML body parameters.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param recognizeBase64Request Barcode recognition request
+* @param recognizeBase64Request Barcode recognition request.
 
 * @return BarcodeResponseList
  */
@@ -222,13 +222,13 @@ type RecognizeAPIRecognizeMultipartOpts struct {
 }
 
 /*
-* RecognizeMultipart -  Recognize barcode from file in request body using POST requests with parameters in multipart form.
+* RecognizeMultipart -  Recognize a barcode from a file in the request body using a POST request with multipart form parameters.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param barcodeType
-* @param file Barcode image file
+* @param barcodeType See https://reference.aspose.com/barcode/net/aspose.barcode.barcoderecognition/decodetype/
+* @param file Barcode image file.
 * @param optional nil or *RecognizeAPIRecognizeMultipartOpts - Optional Parameters:
-  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -
-  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -
+  - @param "RecognitionMode" (optional.Interface of RecognitionMode) -  Recognition mode.
+  - @param "RecognitionImageKind" (optional.Interface of RecognitionImageKind) -  Image kind for recognition.
 
 * @return BarcodeResponseList
 */

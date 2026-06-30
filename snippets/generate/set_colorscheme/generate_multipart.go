@@ -48,9 +48,11 @@ func main() {
 	fileBytes, _, err := client.GenerateAPI.GenerateMultipart(authCtx,
 		barcode.EncodeBarcodeTypeCode39, "Aspose",
 		&barcode.GenerateAPIGenerateMultipartOpts{
-			ImageFormat:     optional.NewInterface(barcode.BarcodeImageFormatGif),
-			ForegroundColor: optional.NewString("#008000"),
-			BackgroundColor: optional.NewString("#FFFF00"),
+			BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+				ImageFormat:     barcode.BarcodeImageFormatGif,
+				ForegroundColor: "#008000",
+				BackgroundColor: "#FFFF00",
+			}),
 		})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)

@@ -1,6 +1,6 @@
 package barcode
 
-// DecodeBarcodeType : See Aspose.BarCode.BarCodeRecognition.DecodeType
+// DecodeBarcodeType : See https://reference.aspose.com/barcode/net/aspose.barcode.barcoderecognition/decodetype/
 type DecodeBarcodeType string
 
 // List of DecodeBarcodeType

@@ -2,6 +2,8 @@ package test
 
 import (
 	"context"
+	"fmt"
+	"os"
 	"testing"
 	"time"
 
@@ -11,6 +13,10 @@ import (
 )
 
 func TestTokenSource(t *testing.T) {
+	if os.Getenv("GITHUB_ACTIONS") == "true" && os.Getenv(fmt.Sprintf("%s_JWT_ACCESS_TOKEN", TestEnvPrefix)) != "" {
+		t.Skip("token fetching is skipped in GitHub Actions because tests use a preissued access token")
+	}
+
 	testConfig, err := NewTestConfig(TestConfigurationFile, TestEnvPrefix)
 	require.Nil(t, err)
 

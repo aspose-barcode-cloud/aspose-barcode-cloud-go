@@ -17,6 +17,10 @@ test:
 	./scripts/test.sh
 	./scripts/run_snippets.sh
 
+.PHONY: coverage
+coverage:
+	bash ./scripts/coverage.sh
+
 .PHONY: build
 build:
 	./scripts/build.sh

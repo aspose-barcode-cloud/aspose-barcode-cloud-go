@@ -47,10 +47,13 @@ func main() {
 
 	fileBytes, _, err := client.GenerateAPI.Generate(authCtx, barcode.EncodeBarcodeTypeQR, "Aspose.BarCode.Cloud",
 		&barcode.GenerateAPIGenerateOpts{
-			ImageHeight: optional.NewFloat32(200),
-			ImageWidth:  optional.NewFloat32(200),
-			Resolution:  optional.NewFloat32(300),
-			ImageFormat: optional.NewInterface(barcode.BarcodeImageFormatPng),
+			BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+				ImageHeight: 200,
+				ImageWidth:  200,
+				Resolution:  300,
+				Units:       barcode.GraphicsUnitPixel,
+				ImageFormat: barcode.BarcodeImageFormatPng,
+			}),
 		})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)

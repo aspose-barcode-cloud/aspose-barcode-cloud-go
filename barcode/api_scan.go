@@ -18,9 +18,9 @@ var (
 type ScanAPIService service
 
 /*
-* Scan -  Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use &#x60;scan-body&#x60; or &#x60;scan-multipart&#x60; endpoints instead.
+* Scan -  Scan a barcode from a file on an Internet server using a GET request with a query string parameter. For scanning files from your hard drive, use &#x60;scan-body&#x60; or &#x60;scan-multipart&#x60; endpoints instead.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param fileUrl Url to barcode image
+* @param fileUrl URL to the barcode image.
 
 * @return BarcodeResponseList
  */
@@ -107,9 +107,9 @@ func (a *ScanAPIService) Scan(ctx context.Context, fileUrl string) (BarcodeRespo
 }
 
 /*
-* ScanBase64 -  Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+* ScanBase64 -  Scan a barcode from a file in the request body using a POST request with a JSON or XML body parameter.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param scanBase64Request Barcode scan request
+* @param scanBase64Request Barcode scan request.
 
 * @return BarcodeResponseList
  */
@@ -197,9 +197,9 @@ func (a *ScanAPIService) ScanBase64(ctx context.Context, scanBase64Request ScanB
 }
 
 /*
-* ScanMultipart -  Scan barcode from file in request body using POST requests with parameter in multipart form.
+* ScanMultipart -  Scan a barcode from a file in the request body using a POST request with a multipart form parameter.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-* @param file Barcode image file
+* @param file Barcode image file.
 
 * @return BarcodeResponseList
  */

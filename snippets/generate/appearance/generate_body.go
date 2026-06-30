@@ -41,7 +41,7 @@ func main() {
 		return
 	}
 
-	fileName, err := filepath.Abs(filepath.Join("testdata", "Code39.jpeg"))
+	fileName, err := filepath.Abs(filepath.Join("testdata", "QrCustom.jpeg"))
 
 	imageParams := barcode.BarcodeImageParams{
 		ForegroundColor: "#FF0000",
@@ -56,9 +56,15 @@ func main() {
 	}
 
 	generateParams := barcode.GenerateParams{
-		BarcodeType:        barcode.EncodeBarcodeTypeCode39,
+		BarcodeType:        barcode.EncodeBarcodeTypeQR,
 		EncodeData:         encodeData,
 		BarcodeImageParams: imageParams,
+		QrParams: barcode.QrParams{
+			QrEncodeMode:  barcode.QREncodeModeAuto,
+			QrErrorLevel:  barcode.QRErrorLevelLevelM,
+			QrVersion:     barcode.QRVersionAuto,
+			QrAspectRatio: 0.75,
+		},
 	}
 
 	fileBytes, _, err := client.GenerateAPI.GenerateBody(authCtx, generateParams)

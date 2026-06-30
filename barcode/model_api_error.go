@@ -13,6 +13,7 @@ type ApiError struct {
 	// Gets or sets error description.
 	Description string `json:"description,omitempty"`
 	// Gets or sets server datetime.
-	DateTime   time.Time `json:"dateTime,omitempty"`
+	DateTime time.Time `json:"dateTime,omitempty"`
+	// Gets or sets inner error.
 	InnerError *ApiError `json:"innerError,omitempty"`
 }

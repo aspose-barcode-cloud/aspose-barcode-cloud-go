@@ -1,6 +1,6 @@
 package barcode
 
-// GraphicsUnit : Subset of Aspose.Drawing.GraphicsUnit.
+// GraphicsUnit : Subset of https://reference.aspose.com/drawing/net/system.drawing/graphicsunit/
 type GraphicsUnit string
 
 // List of GraphicsUnit

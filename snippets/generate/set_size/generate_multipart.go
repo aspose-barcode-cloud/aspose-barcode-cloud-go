@@ -46,10 +46,12 @@ func main() {
 	fileName, err := filepath.Abs(filepath.Join("testdata", "aztec.png"))
 
 	fileBytes, _, err := client.GenerateAPI.GenerateMultipart(authCtx, barcode.EncodeBarcodeTypeAztec, "Aspose.BarCode.Cloud", &barcode.GenerateAPIGenerateMultipartOpts{
-		ImageHeight: optional.NewFloat32(200),
-		ImageWidth:  optional.NewFloat32(200),
-		Resolution:  optional.NewFloat32(150),
-		Units:       optional.NewInterface(barcode.GraphicsUnitPoint),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			ImageHeight: 200,
+			ImageWidth:  200,
+			Resolution:  150,
+			Units:       barcode.GraphicsUnitPoint,
+		}),
 	})
 	if err != nil {
 		fmt.Printf("Error generating barcode: %v\n", err)

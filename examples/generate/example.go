@@ -25,7 +25,15 @@ func main() {
 	client := barcode.NewAPIClient(barcode.NewConfiguration())
 
 	opts := &barcode.GenerateAPIGenerateOpts{
-		TextLocation: optional.NewInterface(barcode.CodeLocationNone),
+		BarcodeImageParams: optional.NewInterface(barcode.BarcodeImageParams{
+			TextLocation: barcode.CodeLocationNone,
+		}),
+		QrParams: optional.NewInterface(barcode.QrParams{
+			QrEncodeMode:  barcode.QREncodeModeAuto,
+			QrErrorLevel:  barcode.QRErrorLevelLevelM,
+			QrVersion:     barcode.QRVersionAuto,
+			QrAspectRatio: 0.75,
+		}),
 	}
 
 	data, _, err := client.GenerateAPI.Generate(authCtx,

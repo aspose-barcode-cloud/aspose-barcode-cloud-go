@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
@@ -26,11 +27,38 @@ func TestNewTestConfigFileNotExists(t *testing.T) {
 	err := os.Setenv(fmt.Sprintf("%s_JWT_ACCESS_TOKEN", uniqPrefix),
 		"jwt access token")
 	require.Nil(t, err)
+	t.Cleanup(func() {
+		require.NoError(t, os.Unsetenv(fmt.Sprintf("%s_JWT_ACCESS_TOKEN", uniqPrefix)))
+	})
 
 	config, err := NewTestConfig("not a file", uniqPrefix)
 	require.Nil(t, err)
 
 	assert.Equal(t, "jwt access token", config.JwtConfig.AccessToken)
+}
+
+func TestNewTestConfigEnvOverridesFile(t *testing.T) {
+	uniqPrefix := uuid.New().String()
+	configFile := filepath.Join(t.TempDir(), "configuration.json")
+	err := os.WriteFile(configFile, []byte(`{"jwt":{"clientId":"file id","clientSecret":"file secret"},"api":{"basePath":"https://file.example"}}`), 0600)
+	require.Nil(t, err)
+
+	err = os.Setenv(fmt.Sprintf("%s_JWT_ACCESS_TOKEN", uniqPrefix), "env access token")
+	require.Nil(t, err)
+	err = os.Setenv(fmt.Sprintf("%s_API_BASE_PATH", uniqPrefix), "https://env.example")
+	require.Nil(t, err)
+	t.Cleanup(func() {
+		require.NoError(t, os.Unsetenv(fmt.Sprintf("%s_JWT_ACCESS_TOKEN", uniqPrefix)))
+		require.NoError(t, os.Unsetenv(fmt.Sprintf("%s_API_BASE_PATH", uniqPrefix)))
+	})
+
+	config, err := NewTestConfig(configFile, uniqPrefix)
+	require.Nil(t, err)
+
+	assert.Equal(t, "file id", config.JwtConfig.ClientID)
+	assert.Equal(t, "file secret", config.JwtConfig.ClientSecret)
+	assert.Equal(t, "env access token", config.JwtConfig.AccessToken)
+	assert.Equal(t, "https://env.example", config.APIConfig.BasePath)
 }
 
 func TestNewConfigFromJson(t *testing.T) {
@@ -67,6 +95,10 @@ func TestNewConfigFromEnvValues(t *testing.T) {
 	err = os.Setenv(fmt.Sprintf("%s_JWT_CLIENT_SECRET", uniqPrefix),
 		"jwt client secret")
 	require.Nil(t, err)
+	t.Cleanup(func() {
+		require.NoError(t, os.Unsetenv(fmt.Sprintf("%s_JWT_CLIENT_ID", uniqPrefix)))
+		require.NoError(t, os.Unsetenv(fmt.Sprintf("%s_JWT_CLIENT_SECRET", uniqPrefix)))
+	})
 
 	config, err := newConfigFromEnv(uniqPrefix)
 	require.Nil(t, err)
