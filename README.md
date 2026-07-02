@@ -1,8 +1,8 @@
 # Aspose.BarCode Cloud SDK for Go
 
 [![License](https://img.shields.io/github/license/aspose-barcode-cloud/aspose-barcode-cloud-go)](LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)](https://goreportcard.com/report/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
-[![Go](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml)
+[![Go Reference](https://pkg.go.dev/badge/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4.svg)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4)
+[![Go](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml/badge.svg?branch=v4)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 4.0
