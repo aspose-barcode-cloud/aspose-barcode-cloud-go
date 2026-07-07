@@ -8,6 +8,7 @@ import (
 	"testing"
 
 	"github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4/barcode"
+	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
@@ -64,4 +65,18 @@ func readFileContent(t *testing.T, fileName string) []byte {
 	require.Nil(t, err)
 	file.Close()
 	return bytes
+}
+
+// requireAPIError asserts that err is a barcode.GenericAPIError with a 4xx/5xx
+// status and a non-empty body, and returns it for further inspection.
+func requireAPIError(t *testing.T, err error) barcode.GenericAPIError {
+	t.Helper()
+	require.Error(t, err)
+
+	apiError, ok := err.(barcode.GenericAPIError)
+	require.Truef(t, ok, "expected GenericAPIError, got %T: %v", err, err)
+	assert.GreaterOrEqual(t, apiError.StatusCode, 400)
+	assert.NotEmpty(t, apiError.Text())
+
+	return apiError
 }
