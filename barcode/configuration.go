@@ -34,12 +34,6 @@ type BasicAuth struct {
 	Password string `json:"password,omitempty"`
 }
 
-// APIKey provides API key based authentication to a request passed via context using ContextAPIKey
-type APIKey struct {
-	Key    string
-	Prefix string
-}
-
 // Configuration - API configuration
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
