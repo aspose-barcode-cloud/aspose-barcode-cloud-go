@@ -37,9 +37,7 @@ Use this reference when you want the closest existing pattern before writing new
 - `test/api_recognize_test.go`: recognize via URL, base64 body, and multipart.
 - `test/api_scan_test.go`: scan via URL, base64 body, and multipart.
 - `test/jwt_test.go`: token-source and validation behavior.
-- `test/api_generate_error_test.go`: expected API error behavior for generate endpoints.
-- `test/api_recognize_error_test.go`: expected API error behavior for recognize endpoints.
-- `test/api_scan_error_test.go`: expected API error behavior for scan endpoints.
+- `test/barcode_error_test.go`: expected API error behavior.
 - `test/configuration_test.go`: configuration defaults and header behavior.
 - `test/test_config_test.go`: file-vs-env test configuration loading.
 
