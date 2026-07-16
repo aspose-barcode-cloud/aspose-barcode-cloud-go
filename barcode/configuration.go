@@ -34,12 +34,6 @@ type BasicAuth struct {
 	Password string `json:"password,omitempty"`
 }
 
-// APIKey provides API key based authentication to a request passed via context using ContextAPIKey
-type APIKey struct {
-	Key    string
-	Prefix string
-}
-
 // Configuration - API configuration
 type Configuration struct {
 	BasePath      string            `json:"basePath,omitempty"`
@@ -54,7 +48,7 @@ func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		BasePath:      "https://api.aspose.cloud/v4.0",
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "Aspose-Barcode-SDK/4.2606.0/go",
+		UserAgent:     "Aspose-Barcode-SDK/4.2607.0/go",
 	}
 	return cfg
 }
