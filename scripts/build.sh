@@ -1,4 +1,4 @@
 #!/bin/bash
 set -euo pipefail
 
-go build $(go list ./... | grep -v snippets)
+go build $(go list ./... | grep -v snippets | grep -v "/test$")
