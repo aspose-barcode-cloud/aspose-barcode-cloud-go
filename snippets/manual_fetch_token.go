@@ -28,7 +28,7 @@ func main() {
 
 	req, err := http.NewRequest("POST", baseURL+endpoint, bytes.NewBuffer(payload))
 	if err != nil {
-		log.Fatalln("Error creating request: %v\n", err)
+		log.Fatalf("Error creating request: %v", err)
 	}
 
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -36,17 +36,17 @@ func main() {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		log.Fatalln("HTTP request error: %v\n", err)
+		log.Fatalf("HTTP request error: %v", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		log.Fatalln("HTTP error occurred: %v\n", resp.Status)
+		log.Fatalf("HTTP error occurred: %v", resp.Status)
 	}
 
 	var data map[string]interface{}
 	if err := json.NewDecoder(resp.Body).Decode(&data); err != nil {
-		log.Fatalln("Error decoding response: %v\n", err)
+		log.Fatalf("Error decoding response: %v", err)
 	}
 
 	fmt.Println("Token reciewed successfully")
