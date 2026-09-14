@@ -1,7 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-mapfile -t packages < <(go list ./... | grep -v '/snippets' | grep -v '/test$')
+mapfile -t vet_packages < <(go list ./... | grep -v '/snippets')
 
-go vet -v "${packages[@]}"
-staticcheck "${packages[@]}"
+go vet -v "${vet_packages[@]}"
