@@ -1,8 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-mapfile -t vet_packages < <(go list ./... | grep -v '/snippets')
-mapfile -t staticcheck_packages < <(printf '%s\n' "${vet_packages[@]}" | grep -v '/test$')
+mapfile -t lint_packages < <(go list ./... | grep -v '/snippets')
 
-go vet -v "${vet_packages[@]}"
-staticcheck "${staticcheck_packages[@]}"
+go vet -v "${lint_packages[@]}"
+go run honnef.co/go/tools/cmd/staticcheck@v0.8.1 "${lint_packages[@]}"

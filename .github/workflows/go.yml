@@ -7,17 +7,32 @@ on:
     branches: [ v4 ]
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache-dependency-path: go.sum
+
+      - name: Lint
+        run: |
+         chmod +x scripts/*
+         make lint
+
   test:
     name: Test
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         # See go.mod for oldest supported version
         # And https://go.dev/dl/ for updates
         # https://github.com/actions/setup-go/#using-stableoldstable-aliases
         go-version: [ '1.24', 'oldstable', 'stable' ]
-    continue-on-error: true
-
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-go@v6
