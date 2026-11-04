@@ -17,3 +17,6 @@
 !/test/configuration.example.json
 snippets_test/
 
+
+# make cover
+/coverage/
