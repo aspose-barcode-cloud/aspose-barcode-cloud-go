@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/github/license/aspose-barcode-cloud/aspose-barcode-cloud-go)](LICENSE)
 [![Go Reference](https://pkg.go.dev/badge/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4.svg)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4)
 [![Go](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml/badge.svg?branch=v4)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/actions/workflows/go.yml)
+[![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/aspose-barcode-cloud/test-coverage/main/go/coverage-badge.json)](https://github.com/aspose-barcode-cloud/test-coverage)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 4.0
