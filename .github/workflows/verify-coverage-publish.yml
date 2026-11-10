@@ -1,0 +1,108 @@
+# Temporary one-off check of the coverage publish pipeline with the GitHub App
+# client ID (COVERAGE_APP_CLIENT_ID). Publishes to the "verify" branch of
+# test-coverage, not to main.
+name: Verify coverage publish
+
+on:
+  push:
+    branches: [ verify-coverage-publish ]
+
+permissions:
+  contents: read
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          cache-dependency-path: go.sum
+      - name: Get dependencies
+        run: make init
+      - name: Check library coverage
+        run: |
+         chmod +x scripts/*
+         make cover
+        env:
+          TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage
+          path: |
+            coverage/coverage-badge.json
+            coverage/coverage-summary.json
+            coverage/coverage.out
+
+  publish-coverage:
+    name: Publish coverage
+    needs: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: coverage
+          path: coverage
+      - name: Check that COVERAGE_APP_CLIENT_ID is visible here
+        run: |
+          if [ -z "${COVERAGE_APP_CLIENT_ID}" ]; then
+            echo "::error::The organization variable COVERAGE_APP_CLIENT_ID is not visible to this repository"
+            exit 1
+          fi
+          echo "COVERAGE_APP_CLIENT_ID is set (${COVERAGE_APP_CLIENT_ID:0:6}...)"
+        env:
+          COVERAGE_APP_CLIENT_ID: ${{ vars.COVERAGE_APP_CLIENT_ID }}
+      - name: Ask GitHub for the client ID of the app behind COVERAGE_APP_ID
+        run: |
+          python -m venv "$RUNNER_TEMP/jwt" && "$RUNNER_TEMP/jwt/bin/pip" install --quiet pyjwt cryptography
+          "$RUNNER_TEMP/jwt/bin/python" - <<'PY'
+          import json, os, time, urllib.request
+          import jwt
+          now = int(time.time())
+          token = jwt.encode({"iat": now - 60, "exp": now + 540, "iss": os.environ["APP_ID"]}, os.environ["KEY"], algorithm="RS256")
+          request = urllib.request.Request(
+              "https://api.github.com/app",
+              headers={"Authorization": "Bearer " + token, "Accept": "application/vnd.github+json"},
+          )
+          app = json.load(urllib.request.urlopen(request))
+          print("app:", app["slug"], "| id:", app["id"], "| owner:", app["owner"]["login"])
+          print("client_id from GitHub  :", app["client_id"])
+          print("COVERAGE_APP_CLIENT_ID :", os.environ["CLIENT_ID"])
+          print("match:", app["client_id"] == os.environ["CLIENT_ID"])
+          PY
+        env:
+          APP_ID: ${{ vars.COVERAGE_APP_ID }}
+          KEY: ${{ secrets.COVERAGE_APP_PRIVATE_KEY }}
+          CLIENT_ID: ${{ vars.COVERAGE_APP_CLIENT_ID }}
+      - name: Control - token with the old numeric app-id
+        id: control-token
+        continue-on-error: true
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.COVERAGE_APP_ID }}
+          private-key: ${{ secrets.COVERAGE_APP_PRIVATE_KEY }}
+          owner: aspose-barcode-cloud
+          repositories: test-coverage
+          permission-contents: read
+      - name: Get a token for the test-coverage repository
+        id: coverage-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.COVERAGE_APP_CLIENT_ID }}
+          private-key: ${{ secrets.COVERAGE_APP_PRIVATE_KEY }}
+          owner: aspose-barcode-cloud
+          repositories: test-coverage
+          permission-contents: write
+      - name: Publish to the verify branch of test-coverage
+        run: python scripts/publish-coverage.py go
+        env:
+          COVERAGE_TOKEN: ${{ steps.coverage-token.outputs.token }}
+          COVERAGE_APP_SLUG: ${{ steps.coverage-token.outputs.app-slug }}
+          COVERAGE_BRANCH: verify
