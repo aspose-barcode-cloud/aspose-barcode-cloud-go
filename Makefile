@@ -17,9 +17,13 @@ test:
 	./scripts/test.sh
 	./scripts/run_snippets.sh
 
+.PHONY: cover
+cover:
+	./scripts/coverage.sh
+
+# Old name of `cover`, kept for existing scripts.
 .PHONY: coverage
-coverage:
-	bash ./scripts/coverage.sh
+coverage: cover
 
 .PHONY: build
 build:
