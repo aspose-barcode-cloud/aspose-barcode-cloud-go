@@ -39,7 +39,6 @@ jobs:
 
       - name: Build and Test
         run: |
-         chmod +x scripts/*
          make ci
         env:
           TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
@@ -62,7 +61,6 @@ jobs:
 
       - name: Check library coverage
         run: |
-         chmod +x scripts/*
          make cover
         env:
           TEST_JWT_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
