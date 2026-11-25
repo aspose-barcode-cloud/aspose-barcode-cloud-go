@@ -7,12 +7,24 @@
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/aspose-barcode-cloud/aspose-barcode-cloud-go?label=module&sort=semver)](https://pkg.go.dev/github.com/aspose-barcode-cloud/aspose-barcode-cloud-go)
 
 - API version: 4.0
-- SDK version: 4.2610.0
+- SDK version: 4.2611.0
 
 ## SDK and API Version Compatibility:
 
 - SDK Version 4.2501.0 and Later: Starting from SDK version 25.1, all subsequent versions are compatible with API Version v4.0.
 - SDK Version 1.2412.0 and Earlier: These versions are compatible with API Version v3.0.
+
+## Batch Generation
+
+Generate one to three barcodes in a single request with the Generate API and
+`BatchGenerateRequest`. Choose `Zip` (the default), `Tar` or `TarGzip`
+for the returned binary archive. Each item contains generation parameters and an optional
+file name; the image format is independent of the file extension.
+
+[Save a batch as a ZIP archive](snippets/generate/batch/generate_batch.go).
+The example reads `TEST_CONFIGURATION_ACCESS_TOKEN` from the environment.
+
+The barcode-type enums also include `JapanPost` for generation and recognition.
 
 ## Demo applications
 
@@ -44,7 +56,7 @@ To use Aspose.BarCode Cloud SDK for Go you need to register an account with [Asp
 1. Run `go get` command
 
     ```shell script
-    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4@v4.2610.0
+    go get -u github.com/aspose-barcode-cloud/aspose-barcode-cloud-go/v4@v4.2611.0
     ```
 
 ## Sample usage
@@ -198,6 +210,7 @@ All URIs are relative to *<https://api.aspose.cloud/v4.0>*
 Class | Method | HTTP request | Description
 ----- | ------ | ------------ | -----------
 *GenerateAPI* | [**Generate**](docs/GenerateAPI.md#generate) | **Get** /barcode/generate/{barcodeType} | Generate a barcode using a GET request with parameters in the route and query string.
+*GenerateAPI* | [**GenerateBatch**](docs/GenerateAPI.md#generatebatch) | **Post** /barcode/generate-batch | Generate multiple barcodes and return them in a ZIP, TAR, or TAR.GZ archive.
 *GenerateAPI* | [**GenerateBody**](docs/GenerateAPI.md#generatebody) | **Post** /barcode/generate-body | Generate a barcode using a POST request with parameters in the request body in JSON or XML format.
 *GenerateAPI* | [**GenerateMultipart**](docs/GenerateAPI.md#generatemultipart) | **Post** /barcode/generate-multipart | Generate a barcode using a POST request with parameters in a multipart form.
 *RecognizeAPI* | [**Recognize**](docs/RecognizeAPI.md#recognize) | **Get** /barcode/recognize | Recognize a barcode from a file on an Internet server using a GET request with a query string parameter. For recognizing files from your hard drive, use &#x60;recognize-body&#x60; or &#x60;recognize-multipart&#x60; endpoints instead.
@@ -215,6 +228,9 @@ Class | Method | HTTP request | Description
 - [BarcodeImageParams](docs/BarcodeImageParams.md)
 - [BarcodeResponse](docs/BarcodeResponse.md)
 - [BarcodeResponseList](docs/BarcodeResponseList.md)
+- [BatchArchiveFormat](docs/BatchArchiveFormat.md)
+- [BatchGenerateItem](docs/BatchGenerateItem.md)
+- [BatchGenerateRequest](docs/BatchGenerateRequest.md)
 - [Code128EncodeMode](docs/Code128EncodeMode.md)
 - [Code128Params](docs/Code128Params.md)
 - [CodeLocation](docs/CodeLocation.md)

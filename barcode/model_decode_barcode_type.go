@@ -89,4 +89,5 @@ const (
 	DecodeBarcodeTypeUPCA                          DecodeBarcodeType = "UPCA"
 	DecodeBarcodeTypeUPCE                          DecodeBarcodeType = "UPCE"
 	DecodeBarcodeTypeVIN                           DecodeBarcodeType = "VIN"
+	DecodeBarcodeTypeJapanPost                     DecodeBarcodeType = "JapanPost"
 )

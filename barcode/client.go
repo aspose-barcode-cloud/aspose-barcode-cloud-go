@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	PACKAGE_VERSION         = "4.2610.0"
+	PACKAGE_VERSION         = "4.2611.0"
 	PACKAGE_NAME            = "go sdk"
 	X_ASPOSE_CLIENT         = "x-aspose-client"
 	X_ASPOSE_CLIENT_VERSION = "x-aspose-client-version"
@@ -296,7 +296,9 @@ func (c *APIClient) prepareRequest(
 }
 
 func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
-	if strings.HasPrefix(contentType, "image/") {
+	// Binary operations return raw bytes, including image and archive responses.
+	if data, ok := v.(*[]byte); ok {
+		*data = b
 		return nil
 	}
 

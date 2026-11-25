@@ -5,6 +5,7 @@ All URIs are relative to *<https://api.aspose.cloud/v4.0>*
 Method | HTTP request | Description
 ------ | ------------ | -----------
 [**Generate**](GenerateAPI.md#Generate) | **Get** /barcode/generate/{barcodeType} | Generate a barcode using a GET request with parameters in the route and query string.
+[**GenerateBatch**](GenerateAPI.md#GenerateBatch) | **Post** /barcode/generate-batch | Generate multiple barcodes and return them in a ZIP, TAR, or TAR.GZ archive.
 [**GenerateBody**](GenerateAPI.md#GenerateBody) | **Post** /barcode/generate-body | Generate a barcode using a POST request with parameters in the request body in JSON or XML format.
 [**GenerateMultipart**](GenerateAPI.md#GenerateMultipart) | **Post** /barcode/generate-multipart | Generate a barcode using a POST request with parameters in a multipart form.
 
@@ -59,6 +60,24 @@ Name | Type | Description  | Notes
 **Pdf417IsCode128Emulation** | **optional.** | Whether to use Code128 emulation for MicroPdf417. |
 
 ### Generate Return type
+
+**byte[]**
+
+[[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+## GenerateBatch
+
+> *os.File GenerateBatch(ctx, batchGenerateRequest)
+Generate multiple barcodes and return them in a ZIP, TAR, or TAR.GZ archive.
+
+### GenerateBatch Required Parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+ **batchGenerateRequest** | [**BatchGenerateRequest**](BatchGenerateRequest.md) | Batch generation request in JSON or XML format. |
+
+### GenerateBatch Return type
 
 **byte[]**
 
