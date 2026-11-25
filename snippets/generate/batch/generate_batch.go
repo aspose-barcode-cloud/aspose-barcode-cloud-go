@@ -9,7 +9,11 @@ import (
 
 func main() {
 	configuration := barcode.NewConfiguration()
-	configuration.AddDefaultHeader("Authorization", "Bearer "+os.Getenv("TEST_CONFIGURATION_ACCESS_TOKEN"))
+	token := os.Getenv("TEST_CONFIGURATION_ACCESS_TOKEN")
+	if token == "" {
+		token = os.Getenv("TEST_JWT_ACCESS_TOKEN")
+	}
+	configuration.AddDefaultHeader("Authorization", "Bearer "+token)
 	client := barcode.NewAPIClient(configuration)
 	data, _, err := client.GenerateAPI.GenerateBatch(context.Background(), barcode.BatchGenerateRequest{
 		ArchiveFormat: barcode.BatchArchiveFormatZip,
