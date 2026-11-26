@@ -20,3 +20,6 @@ snippets_test/
 
 # make cover
 /coverage/
+
+# make lint
+/lint/bin/
