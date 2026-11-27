@@ -294,6 +294,96 @@ func (a *GenerateAPIService) Generate(ctx context.Context, barcodeType EncodeBar
 }
 
 /*
+* GenerateBatch -  Generate multiple barcodes and return them in a ZIP, TAR, or TAR.GZ archive.
+* @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+* @param batchGenerateRequest Batch generation request in JSON or XML format.
+
+* @return []byte
+ */
+func (a *GenerateAPIService) GenerateBatch(ctx context.Context, batchGenerateRequest BatchGenerateRequest) ([]byte, *http.Response, error) {
+	var (
+		httpMethod    = strings.ToUpper("Post")
+		postBody      interface{}
+		fileName      string
+		fileFieldName string
+		fileBytes     []byte
+		returnValue   []byte
+	)
+
+	// create path and map variables
+	requestPath := a.client.cfg.BasePath + "/barcode/generate-batch"
+
+	headerParams := make(map[string]string)
+	queryParams := url.Values{}
+	formParams := url.Values{}
+
+	// to determine the Content-Type header
+	contentTypeChoices := []string{"application/json", "application/xml"}
+
+	// set Content-Type header
+	httpContentType := selectHeaderContentType(contentTypeChoices)
+	if httpContentType != "" {
+		headerParams["Content-Type"] = httpContentType
+	}
+
+	// to determine Accept header
+	acceptChoices := []string{"application/zip", "application/x-tar", "application/gzip", "application/json", "application/xml"}
+
+	// set Accept header
+	httpHeaderAccept := selectHeaderAccept(acceptChoices)
+	if httpHeaderAccept != "" {
+		headerParams["Accept"] = httpHeaderAccept
+	}
+	// body params
+	postBody = &batchGenerateRequest
+	r, err := a.client.prepareRequest(ctx, requestPath, httpMethod, postBody, headerParams, queryParams, formParams, fileName, fileFieldName, fileBytes)
+	if err != nil {
+		return returnValue, nil, err
+	}
+
+	httpResponse, err := a.client.callAPI(r)
+	if err != nil || httpResponse == nil {
+		return returnValue, httpResponse, err
+	}
+
+	responseBody, err := io.ReadAll(io.Reader(httpResponse.Body))
+	httpResponse.Body.Close()
+	if err != nil {
+		return returnValue, httpResponse, err
+	}
+
+	if httpResponse.StatusCode < 300 {
+		// If we succeed, return the data, otherwise pass on to decode error.
+		err = a.client.decode(&returnValue, responseBody, httpResponse.Header.Get("Content-Type"))
+		if err == nil {
+			return responseBody, httpResponse, err
+		}
+	}
+
+	if httpResponse.StatusCode >= 300 {
+		newErr := GenericAPIError{
+			error:      httpResponse.Status,
+			text:       string(responseBody),
+			StatusCode: httpResponse.StatusCode,
+		}
+		if httpResponse.StatusCode >= 400 && httpResponse.StatusCode < 500 {
+			var v ApiErrorResponse
+			err = a.client.decode(&v, responseBody, httpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return returnValue, httpResponse, newErr
+			}
+			newErr.model = v
+			return returnValue, httpResponse, newErr
+		}
+
+		return returnValue, httpResponse, newErr
+	}
+
+	return returnValue, httpResponse, err
+}
+
+/*
 * GenerateBody -  Generate a barcode using a POST request with parameters in the request body in JSON or XML format.
 * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 * @param generateParams Generation parameters.

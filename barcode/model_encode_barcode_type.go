@@ -78,4 +78,5 @@ const (
 	EncodeBarcodeTypeUpcaGs1Code128Coupon          EncodeBarcodeType = "UpcaGs1Code128Coupon"
 	EncodeBarcodeTypeUpcaGs1DatabarCoupon          EncodeBarcodeType = "UpcaGs1DatabarCoupon"
 	EncodeBarcodeTypeVIN                           EncodeBarcodeType = "VIN"
+	EncodeBarcodeTypeJapanPost                     EncodeBarcodeType = "JapanPost"
 )
