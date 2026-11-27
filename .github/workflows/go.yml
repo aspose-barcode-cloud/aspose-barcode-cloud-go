@@ -14,6 +14,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version: stable
+          # lint/ is a separate module with its own go.sum.
+          cache-dependency-path: |
+            go.sum
+            lint/go.sum
+
+      - name: Lint
+        run: make lint
+
   test:
     name: Test
     runs-on: ubuntu-latest

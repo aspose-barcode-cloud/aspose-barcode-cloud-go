@@ -2,7 +2,6 @@ package test
 
 import (
 	"encoding/base64"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -34,7 +33,7 @@ func TestRecognizeBase64(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "pdf417Sample.png")
-	fileContent, err := ioutil.ReadFile(filePath)
+	fileContent, err := os.ReadFile(filePath)
 	require.Nil(t, err)
 
 	encodedString := base64.StdEncoding.EncodeToString(fileContent)

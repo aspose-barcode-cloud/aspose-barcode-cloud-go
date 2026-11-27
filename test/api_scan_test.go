@@ -2,7 +2,6 @@ package test
 
 import (
 	"encoding/base64"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"testing"
@@ -33,7 +32,7 @@ func TestScanBase64(t *testing.T) {
 	apiClient, authCtx := setup(t)
 
 	filePath := filepath.Join(GetTestDataFolder(), "QR_and_Code128.png")
-	fileContent, err := ioutil.ReadFile(filePath)
+	fileContent, err := os.ReadFile(filePath)
 	require.Nil(t, err)
 
 	encodedFile := base64.StdEncoding.EncodeToString(fileContent)

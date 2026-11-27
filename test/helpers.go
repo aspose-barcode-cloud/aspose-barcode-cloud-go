@@ -2,7 +2,6 @@ package test
 
 import (
 	"context"
-	"io"
 	"os"
 	"path/filepath"
 	"testing"
@@ -55,13 +54,4 @@ func setup(t *testing.T) (*barcode.APIClient, context.Context) {
 	client, err := NewClientForTests()
 	require.Nil(t, err)
 	return client, authCtx
-}
-
-func readFileContent(t *testing.T, fileName string) []byte {
-	file, err := os.Open(fileName)
-	require.Nil(t, err)
-	bytes, err := io.ReadAll(io.Reader(file))
-	require.Nil(t, err)
-	file.Close()
-	return bytes
 }
